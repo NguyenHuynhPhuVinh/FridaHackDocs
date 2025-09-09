@@ -1,182 +1,193 @@
-# Hướng dẫn chi tiết Hack Game Android (Assault Cube) trên Thiết bị Chưa Root bằng Frida và `apk.sh` trên Windows WSL
+## Hướng dẫn Hack Game Android (Assault Cube) trên Thiết bị Chưa Root từ A-Z
 
-Tài liệu này tổng hợp lại toàn bộ quy trình để chèn `frida-gadget` vào một ứng dụng Android, cho phép can thiệp động (dynamic instrumentation) trên các thiết bị chưa root. Quy trình này sử dụng Windows Subsystem for Linux (WSL) và script tự động hóa `apk.sh`.
+**Mục tiêu:** Tạo cheat "God Mode" (Bất tử) cho game Assault Cube trên điện thoại Android chưa root, sử dụng Frida.
 
-## Phần 1: Chuẩn bị Môi trường
+**Đối tượng:** Người dùng laptop Windows mới, chưa có kinh nghiệm.
 
-Đây là phần quan trọng nhất và thường gặp nhiều lỗi nhất. Chúng ta sẽ thiết lập một môi trường WSL hoàn chỉnh để làm việc.
+### Phần I: Chuẩn bị Môi trường trên Laptop Windows
 
-### 1.1. Cài đặt WSL và các công cụ cần thiết
+Đây là phần nền tảng, thiết lập tất cả các công cụ cần thiết.
 
-1.  **Cài đặt WSL:**
-    Mở **PowerShell** với quyền **Administrator** và chạy:
+#### Bước 1: Kích hoạt Chế độ Nhà phát triển trên Windows
 
+1.  Nhấn phím **Windows**, gõ `Developer settings` và mở nó lên.
+2.  Bật tùy chọn **Developer Mode**.
+
+#### Bước 2: Cài đặt Windows Subsystem for Linux (WSL)
+
+WSL cho phép bạn chạy một môi trường Linux đầy đủ ngay trên Windows. Đây là công cụ cốt lõi.
+
+1.  Nhấn phím **Windows**, gõ `PowerShell`.
+2.  Nhấn chuột phải vào **Windows PowerShell** và chọn **Run as administrator**.
+3.  Trong cửa sổ PowerShell hiện ra, gõ lệnh sau và nhấn Enter:
     ```powershell
     wsl --install
     ```
+4.  Máy tính sẽ tự động tải và cài đặt Ubuntu. Sau khi hoàn tất, **hãy khởi động lại máy tính của bạn.**
+5.  Sau khi khởi động lại, mở Start Menu, tìm và chạy ứng dụng **Ubuntu**. Lần đầu tiên chạy, nó sẽ yêu cầu bạn tạo một **username** và **password** cho môi trường Linux. Hãy ghi nhớ chúng.
 
-    Khởi động lại máy nếu được yêu cầu. Sau đó, mở ứng dụng **Ubuntu** từ Start Menu để hoàn tất cài đặt (tạo username và password).
+#### Bước 3: Cài đặt và Cấu hình Công cụ USB (`usbipd`)
 
-2.  **Cài đặt các gói cần thiết trong WSL:**
-    Mở terminal Ubuntu (WSL) và chạy các lệnh sau để cài đặt các công cụ nền tảng:
-    ```bash
-    sudo apt update
-    sudo apt install git unzip openjdk-17-jdk -y
-    ```
-    - **Ghi chú:** `openjdk-17-jdk` là cần thiết để các công cụ Android (như `sdkmanager`) có thể chạy.
+Công cụ này cho phép WSL "nhìn thấy" các thiết bị USB được cắm vào máy tính.
 
-### 1.2. Cài đặt và cấu hình `usbipd` để WSL nhận diện thiết bị Android
-
-Vì WSL không thể truy cập trực tiếp thiết bị USB, chúng ta cần "chia sẻ" nó từ Windows.
-
-1.  **Cài đặt `usbipd-win` trên Windows:**
-    Mở **PowerShell** với quyền **Administrator** và chạy:
-
+1.  Mở lại **PowerShell** với quyền **Administrator**.
+2.  Chạy lệnh sau để cài đặt `usbipd-win`:
     ```powershell
     winget install --interactive --exact dorssel.usbipd-win
     ```
+    Một trình cài đặt đồ họa sẽ hiện ra, hãy làm theo các bước để hoàn tất.
 
-2.  **Chia sẻ thiết bị Android với WSL:**
+#### Bước 4: Cài đặt Python và Frida trên Windows
 
-    - Cắm điện thoại vào máy tính và bật **USB Debugging**.
-    - Trong **PowerShell (Admin)**, liệt kê các thiết bị USB:
-      ```powershell
-      usbipd list
+Chúng ta sẽ dùng Python và Frida trên Windows để điều khiển quá trình hack.
+
+1.  **Cài đặt Python:**
+
+    - Truy cập [python.org](https://www.python.org/downloads/) và tải về phiên bản Python mới nhất.
+    - Chạy tệp cài đặt. **Quan trọng:** Ở màn hình cài đặt đầu tiên, hãy đánh dấu vào ô **"Add Python to PATH"**.
+    - Hoàn tất quá trình cài đặt.
+
+2.  **Cài đặt Frida-tools:**
+    - Nhấn phím **Windows**, gõ `cmd` và mở **Command Prompt**.
+    - Chạy lệnh sau để cài đặt Frida:
+      ```cmd
+      pip install frida-tools
       ```
-    - Tìm thiết bị Android của bạn và ghi lại giá trị **BUSID** (ví dụ: `1-4`).
-    - Chạy các lệnh sau để chia sẻ thiết bị (thay `<BUSID>` bằng giá trị của bạn):
 
-      ```powershell
-      # Dừng adb server trên Windows để tránh xung đột
-      adb kill-server
+#### Bước 5: Cài đặt Android Platform Tools (ADB) trên Windows
 
-      # Ràng buộc và đính kèm thiết bị vào WSL
-      usbipd bind --force --busid <BUSID>
-      usbipd attach --wsl --busID <BUSID>
-      ```
+ADB là cầu nối giao tiếp giữa máy tính và điện thoại.
 
-    - **Ghi chú lỗi:** Nếu lệnh `attach` báo lỗi `Device busy`, hãy chắc chắn bạn đã chạy `adb kill-server` trên Windows và thử lại với cờ `--force` ở lệnh `bind`.
+1.  Truy cập trang web chính thức của Android: [SDK Platform Tools](https://developer.android.com/tools/sdk/platform-tools).
+2.  Tải về gói "SDK Platform Tools for Windows".
+3.  Giải nén tệp `.zip` vào một vị trí dễ nhớ, ví dụ: `C:\platform-tools`.
+4.  **Thêm thư mục này vào PATH của hệ thống:**
+    - Nhấn phím Windows, gõ `environment variables`, chọn "Edit the system environment variables".
+    - Nhấn "Environment Variables...".
+    - Trong phần "System variables", tìm biến `Path`, chọn nó, nhấn "Edit...".
+    - Nhấn "New", gõ vào đường dẫn `C:\platform-tools` và nhấn OK trên tất cả các cửa sổ.
+    - **Đóng và mở lại tất cả các cửa sổ CMD/PowerShell** để thay đổi có hiệu lực.
 
-### 1.3. Cài đặt và chuẩn bị `apk.sh`
+### Phần II: Chuẩn bị Môi trường trên Điện thoại Android
 
-1.  **Clone dự án `apk.sh` vào WSL:**
-    Trong terminal WSL:
+1.  **Bật Tùy chọn Nhà phát triển:**
 
+    - Vào **Settings (Cài đặt) -> About phone (Giới thiệu về điện thoại)**.
+    - Tìm mục **Build number (Số bản dựng)** và nhấn vào nó **7 lần** cho đến khi có thông báo bạn đã là nhà phát triển.
+
+2.  **Bật Gỡ lỗi USB:**
+
+    - Vào **Settings -> System (Hệ thống) -> Developer options (Tùy chọn nhà phát triển)**.
+    - Tìm và **bật** tùy chọn **USB debugging (Gỡ lỗi USB)**.
+
+3.  **Cài đặt game Assault Cube:**
+    - Tải tệp `assaultcube.xapk` về điện thoại.
+    - Bạn có thể cần một ứng dụng cài đặt XAPK từ Google Play (ví dụ: "XAPK Installer") để cài đặt game.
+
+### Phần III: Quy trình Hack Game
+
+Bây giờ mọi thứ đã sẵn sàng, chúng ta sẽ bắt đầu quy trình hack.
+
+#### Bước 1: Thiết lập môi trường trong WSL
+
+1.  Mở terminal **Ubuntu** (WSL).
+2.  Cài đặt các công cụ cần thiết cho WSL:
+
+    ```bash
+    sudo apt update
+    sudo apt install git unzip openjdk-17-jdk dos2unix patchelf -y
+    ```
+
+3.  Clone dự án `apk.sh`:
     ```bash
     git clone https://github.com/ax/apk.sh.git
     cd apk.sh
-    ```
-
-2.  **Chuyển đổi định dạng script và cấp quyền:**
-    Các tệp được clone từ Git trên Windows có thể có định dạng dòng không tương thích với Linux.
-
-    ```bash
-    # Cài đặt công cụ chuyển đổi (nếu chưa có)
-    sudo apt install dos2unix -y
-
-    # Chuyển đổi và cấp quyền thực thi
     dos2unix apk.sh
     chmod +x apk.sh
     ```
 
-    - **Ghi chú lỗi:** Nếu bạn gặp lỗi `cannot execute: required file not found` mặc dù tệp tồn tại, nguyên nhân chính là do định dạng dấu xuống dòng (CRLF). Lệnh `dos2unix` sẽ khắc phục điều này.
+#### Bước 2: Chia sẻ thiết bị và Kéo tệp APK
 
-## Phần 2: Sử dụng `apk.sh` để Patch ứng dụng
-
-Bây giờ môi trường đã sẵn sàng, chúng ta có thể sử dụng sức mạnh tự động hóa của `apk.sh`.
-
-### 2.1. Kéo (Pull) tệp APK từ thiết bị
-
-Đây là cách tốt nhất để lấy tệp cài đặt, vì nó xử lý được cả các ứng dụng dạng App Bundle/Split APKs.
-
-1.  **Chạy lệnh `pull`:**
-    Trong thư mục `~/apk.sh` (WSL):
+1.  Cắm điện thoại vào máy tính.
+2.  Mở **PowerShell (Admin)** trên Windows.
+3.  Liệt kê thiết bị và ghi lại **BUSID** của điện thoại:
+    ```powershell
+    usbipd list
+    ```
+4.  Chia sẻ thiết bị với WSL (thay `<BUSID>`):
+    ```powershell
+    adb kill-server
+    usbipd bind --force --busid <BUSID>
+    usbipd attach --wsl --busid <BUSID>
+    ```
+5.  Quay lại terminal **WSL**.
+6.  Chạy lệnh `pull` để lấy tệp APK. `apk.sh` sẽ tự động cài đặt các công cụ còn thiếu của Android. Quá trình này có thể mất vài phút.
     ```bash
     ./apk.sh pull net.cubers.assaultcube
     ```
-    - Script sẽ tự động tải tất cả các công cụ cần thiết (`apktool`, `Android Build Tools`, `platform-tools`, `dexpatch`). Quá trình này có thể mất vài phút.
-    - Sau khi hoàn tất, bạn sẽ có một tệp `base.apk` (hoặc `file.single.apk` nếu là split APK) trong thư mục `~/apk.sh`.
+7.  Sau khi xong, bạn sẽ có tệp `base.apk` trong thư mục `~/apk.sh`.
 
-### 2.2. Tạo tệp cấu hình cho Frida Gadget
+#### Bước 3: Patch APK với Frida Gadget
 
-Để tránh lỗi ứng dụng không phản hồi (ANR), chúng ta cần cấu hình `frida-gadget` để không chặn luồng chính của ứng dụng khi khởi động.
-
-1.  **Tạo tệp `config.json`:**
-    Trong thư mục `~/apk.sh`, chạy lệnh sau để tạo và ghi nội dung vào tệp:
-    ```bash
-    echo '{"interaction": {"type": "listen", "on_load": "resume"}}' > config.json
-    ```
-
-### 2.3. Patch APK với `frida-gadget`
-
-Đây là bước cốt lõi. Chúng ta sẽ sử dụng phương pháp vá bytecode trực tiếp để đảm bảo ổn định.
-
-1.  **Đổi tên tệp APK (tùy chọn):**
-
+1.  Trong **WSL**, đổi tên tệp APK:
     ```bash
     mv base.apk assaultcube.apk
     ```
-
-2.  **Chạy lệnh `patch`:**
+2.  Tạo tệp cấu hình để tránh game bị treo:
+    ```bash
+    echo '{"interaction": {"type": "listen", "on_load": "resume"}}' > config.json
+    ```
+3.  Chạy lệnh `patch` tự động:
     ```bash
     ./apk.sh patch assaultcube.apk --arch arm64 -s --gadget-conf config.json
     ```
-    - `--arch arm64`: Chỉ định kiến trúc CPU (hầu hết điện thoại hiện đại).
-    - `-s`: **Quan trọng!** Kích hoạt chế độ vá bytecode trực tiếp, tránh lỗi khi giải nén/biên dịch lại Smali.
-    - `--gadget-conf config.json`: Nhúng tệp cấu hình chúng ta vừa tạo vào APK.
-
-### 2.4. Ký (Sign) tệp APK đã patch
-
-Script `patch` sẽ tạo ra tệp `assaultcube.gadget.apk`. Chúng ta cần ký nó.
-
-1.  **Chạy lệnh `sign`:**
+4.  Ký lại tệp APK vừa được tạo:
     ```bash
     ./apk.sh sign assaultcube.gadget.apk
     ```
-    - **Ghi chú lỗi:** Nếu bạn gặp lỗi `INSTALL_PARSE_FAILED_NO_CERTIFICATES` khi cài đặt, điều đó có nghĩa là bạn đã quên bước này.
 
-## Phần 3: Cài đặt và Chạy Cheat
+#### Bước 4: Cài đặt và Kiểm tra
 
-### 3.1. Cài đặt ứng dụng đã patch
-
-1.  **Gỡ thiết bị khỏi WSL:**
-    Trong **PowerShell (Admin)**, chạy:
-
+1.  **Trả lại thiết bị cho Windows:**
+    Trong **PowerShell (Admin)**:
     ```powershell
     usbipd detach --busid <BUSID>
     ```
-
-2.  **Sao chép APK ra Windows:**
+2.  **Sao chép APK đã patch ra Windows:**
     Trong **WSL**:
-
     ```bash
-    cp assaultcube.gadget.apk /mnt/c/Users/tomis/Documents/
+    cp assaultcube.gadget.apk /mnt/c/Users/TênNgườiDùngCủaBạn/Documents/
     ```
-
 3.  **Cài đặt lên điện thoại:**
     Trong **CMD** trên Windows:
     ```cmd
     adb uninstall net.cubers.assaultcube
-    adb install "C:\Users\tomis\Documents\assaultcube.gadget.apk"
+    adb install "C:\Users\TênNgườiDùngCủaBạn\Documents\assaultcube.gadget.apk"
     ```
-
-### 3.2. Kiểm tra và chạy Cheat
-
-1.  **Mở ứng dụng** Assault Cube đã cài đặt trên điện thoại.
-2.  **Kiểm tra kết nối Frida (Rất quan trọng):**
-    Trên máy tính (CMD), chạy:
-
+4.  **Mở game Assault Cube** trên điện thoại.
+5.  **Kiểm tra xem Frida đã chạy chưa:**
+    Trong **CMD**:
     ```cmd
     frida-ps -Uai
     ```
+    Tìm dòng AssaultCube, bạn phải thấy **biểu tượng viên thuốc 💊** bên cạnh. Nếu thấy, bạn đã thành công.
 
-    Tìm dòng `AssaultCube` trong danh sách. Nếu bạn thấy **biểu tượng viên thuốc 💊** và một **PID** hợp lệ, bạn đã thành công.
+#### Bước 5: Chạy Script Cheat
 
-3.  **Tạo và chạy script `s1.js`:**
-    - Chuẩn bị tệp script `s1.js` với logic God Mode như trong video.
-    - Chạy lệnh sau để tiêm cheat vào game đang chạy:
-      ```cmd
-      frida -U "AssaultCube" -l s1.js
-      ```
+1.  Tạo một thư mục mới trên Desktop, ví dụ `AndroidCheat`.
+2.  Bên trong thư mục đó, tạo 2 tệp:
+    - **`loader.py`**: (Không cần thiết nếu dùng lệnh Frida trực tiếp, nhưng để tham khảo)
+    - **`s1.js`**: Dán mã JavaScript từ video vào tệp này.
+3.  Mở **CMD**, di chuyển đến thư mục `AndroidCheat`:
+    ```cmd
+    cd Desktop\AndroidCheat
+    ```
+4.  Chạy lệnh Frida để tiêm cheat:
+    ```cmd
+    frida -U "AssaultCube" -l s1.js
+    ```
+5.  Vào game, chơi một trận và bạn sẽ bất tử!
 
-Bây giờ, bạn có thể vào game và tận hưởng chế độ bất tử
+---
+
+Bạn đã hoàn thành một quy trình khá phức tạp. Hãy kiên nhẫn và làm theo từng bước, bạn sẽ thành công
