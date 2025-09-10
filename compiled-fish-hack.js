@@ -1,5 +1,5 @@
 📦
-137632 /girlAdrift-cheat.js
+137681 /fish-reward-hack.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3307,12 +3307,13 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
   }
 });
 
-// girlAdrift-cheat.js
-var require_girlAdrift_cheat = __commonJS({
-  "girlAdrift-cheat.js"() {
+// fish-reward-hack.js
+var require_fish_reward_hack = __commonJS({
+  "fish-reward-hack.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] Il2Cpp-Bridge Cheat for 'A Girl Adrift' is starting...");
+    console.log("[*] Fish Reward Hack for 'A Girl Adrift' is starting...");
+    var GOLD_MULTIPLIER = 100;
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge is ready!");
       try {
@@ -3320,33 +3321,37 @@ var require_girlAdrift_cheat = __commonJS({
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
         );
+        const addMethod = PlayerCurrencyElement.method("Add").overload(
+          "System.Double",
+          "System.Nullable<UnityEngine.Vector3>",
+          "System.Boolean"
+        );
         console.log(
-          `[+] Found Target Class: ${PlayerCurrencyElement.name} @ ${PlayerCurrencyElement.handle}`
+          `[+] Found Target Method: ${addMethod.name} @ ${addMethod.virtualAddress}`
         );
-        const useMethod = PlayerCurrencyElement.method("Use").overload("System.Double");
+        addMethod.implementation = function(num, effect_pos, isWorldPos) {
+          let hackedGold = num;
+          if (num > 0) {
+            hackedGold = num * GOLD_MULTIPLIER;
+            console.log(
+              `[*] Fishing reward intercepted! Original: ${num.toFixed(
+                2
+              )} ---> Hacked: ${hackedGold.toFixed(2)} (x${GOLD_MULTIPLIER})`
+            );
+          }
+          return addMethod.bind(this).invoke(hackedGold, effect_pos, isWorldPos);
+        };
         console.log(
-          `[+] Found Target Method: ${useMethod.name} @ ${useMethod.virtualAddress}`
+          `
+[SUCCESS] Gold Hack is ACTIVE. Go catch a fish! (Multiplier: x${GOLD_MULTIPLIER})`
         );
-        Interceptor.replace(
-          useMethod.virtualAddress,
-          new NativeCallback(
-            (this_ptr, amount_to_spend_double) => {
-              const reversedAmount = -amount_to_spend_double;
-              console.log(
-                `[*] Intercepted 'Use' call. Original spend: ${amount_to_spend_double}, Patched to: ${reversedAmount}`
-              );
-              return useMethod.invokeRaw(this_ptr, reversedAmount);
-            },
-            "void",
-            ["pointer", "double"]
-          )
-        );
-        console.log("\n[SUCCESS] Free Shopping Cheat is ACTIVE. Go buy something!");
       } catch (error) {
-        console.error("[ERROR] Script failed. Maybe the game was updated?");
+        console.error(
+          "[ERROR] Script failed. Maybe the game was updated or the method signature changed?"
+        );
         console.error(error.stack);
       }
     });
   }
 });
-export default require_girlAdrift_cheat();
+export default require_fish_reward_hack();
