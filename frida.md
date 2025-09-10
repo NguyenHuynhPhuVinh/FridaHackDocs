@@ -49,6 +49,9 @@ Chúng ta sẽ nhúng `frida-gadget` vào APK để Frida có thể kết nối.
   ```bash
   # Trong thư mục ~/apk.sh
   sudo ./apk.sh decode girlAdrift.apk
+
+  # Xóa trước nếu đã có
+  sudo rm -rf girlAdrift
   ```
 
   Thao tác này tạo ra thư mục `girlAdrift`.
