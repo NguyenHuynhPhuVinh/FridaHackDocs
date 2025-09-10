@@ -11,4 +11,4 @@ def export_tree(startpath, output_file):
                 f.write(f'{subindent}{file}\n')
 
 # Sử dụng với thư mục exize.tapas.girlAdrift
-export_tree('exize.tapas.girlAdrift', 'directory_tree_with_files.txt')
+export_tree('HHPT', 'directory_tree_with_files.txt')
