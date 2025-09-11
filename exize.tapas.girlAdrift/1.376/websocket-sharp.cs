@@ -943,7 +943,7 @@ namespace WebSocketSharp
     class HttpBase
     {
         static int _headersMaxLength = 8192;
-        static string CrLf = "
+        static string CrLf = "
 ";
         /*0x10*/ System.Collections.Specialized.NameValueCollection _headers;
         /*0x18*/ System.Version _version;

@@ -4098,7 +4098,7 @@ namespace Newtonsoft
 
             class StringUtils
             {
-                static string CarriageReturnLineFeed = "
+                static string CarriageReturnLineFeed = "
 ";
                 static string Empty = "";
                 static char CarriageReturn = 13;
