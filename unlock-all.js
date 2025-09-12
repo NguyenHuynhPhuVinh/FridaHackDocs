@@ -1,6 +1,6 @@
 import "frida-il2cpp-bridge";
 
-console.log("[*] Bắt đầu script Frida HOÀN CHỈNH v7 cho 'A Girl Adrift'...");
+console.log("[*] Bắt đầu script Frida HOÀN CHỈNH v9 cho 'A Girl Adrift'...");
 
 let skinsAdded = false;
 let rankMaxed = false;
@@ -12,7 +12,7 @@ Il2Cpp.perform(() => {
   const dataIns = assembly.image.class("data").field("ins");
 
   // ===================================================================
-  // CHỨC NĂNG 6 (MỚI): MAX RANK & LEVEL - TỰ ĐỘNG KHI MỞ CÀI ĐẶT
+  // CHỨC NĂNG 6 (HOÀN THIỆN): TỰ ĐỘNG MAX RANK & LEVEL - MÔ PHỎNG LÊN CẤP
   // ===================================================================
   try {
     const UiWinSetting = assembly.image.class("ui_win_setting");
@@ -21,15 +21,17 @@ Il2Cpp.perform(() => {
     onEnableSettingMethod.implementation = function () {
       if (!rankMaxed) {
         rankMaxed = true;
-        console.log(
-          "[*] Cửa sổ Cài đặt đã mở. Bắt đầu mô phỏng lên Rank & Level..."
-        );
+        console.log("[*] Cửa sổ Cài đặt đã mở. Bắt đầu hack Rank & Level...");
         try {
           const playerCharacter = playerIns.value.field("character").value;
-          const DataSetting = assembly.image.class("data_setting");
-          const MAX_RANK = DataSetting.field("MAX_RANK").value;
+          const DataSettingClass = assembly.image.class("data_setting");
 
-          const currentRank = playerCharacter.method("get_rank").invoke();
+          // SỬA LỖI: Lấy đối tượng (instance) của data_setting từ data.ins
+          const dataSettingInstance = dataIns.value.field("setting").value;
+
+          // --- BƯỚC 1: MAX RANK BẰNG CÁCH GỌI Add_Rank() ---
+          const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
+          let currentRank = playerCharacter.method("get_rank").invoke();
           const ranksToAdd = MAX_RANK - currentRank;
 
           if (ranksToAdd > 0) {
@@ -38,17 +40,35 @@ Il2Cpp.perform(() => {
             for (let i = 0; i < ranksToAdd; i++) {
               addRankMethod.invoke();
             }
-            console.log(`[+] Đã lên đủ ${ranksToAdd} rank!`);
-          } else {
-            console.log(`[+] Rank đã ở mức tối đa (${currentRank}).`);
+            console.log(`[+] Đã lên Rank tối đa: ${MAX_RANK}!`);
           }
 
-          console.log(`[+] Đặt Level tối đa theo Rank...`);
-          playerCharacter.method("Godmod_Set_Lv_Max").invoke();
+          // --- BƯỚC 2: MAX LEVEL BẰNG CÁCH THÊM EXP ---
+          console.log("[+] Bắt đầu quá trình lên Level tối đa...");
+
+          // SỬA LỖI: Gọi phương thức từ đối tượng dataSettingInstance
+          const getLvMaxMethod = dataSettingInstance
+            .method("Get_lvMax")
+            .overload("System.Int32");
+          const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
+
+          let currentLevel = playerCharacter.method("get_lv").invoke();
+
+          const getExpNeedMethod = playerCharacter.method("get_exp_need");
+          const addExpMethod = playerCharacter
+            .method("Add_Exp")
+            .overload("System.Single");
+
+          while (currentLevel < maxLevelForRank) {
+            const expNeeded = getExpNeedMethod.invoke();
+            addExpMethod.invoke(expNeeded);
+            currentLevel = playerCharacter.method("get_lv").invoke();
+          }
 
           console.log(
-            "[SUCCESS] Đã hack Rank và Level thành công! Giao diện sẽ tự cập nhật."
+            `[+] Đã đạt Level tối đa: ${currentLevel}/${maxLevelForRank}!`
           );
+          console.log("[SUCCESS] Đã hack Rank và Level thành công!");
         } catch (e) {
           console.error("[ERROR] Lỗi khi đang hack Rank & Level:", e.stack);
         }

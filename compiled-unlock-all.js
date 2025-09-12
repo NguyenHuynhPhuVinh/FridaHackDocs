@@ -1,5 +1,5 @@
 📦
-144070 /unlock-all.js
+144689 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,7 +3312,7 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v7 cho 'A Girl Adrift'...");
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v9 cho 'A Girl Adrift'...");
     var skinsAdded = false;
     var rankMaxed = false;
     Il2Cpp.perform(() => {
@@ -3326,14 +3326,13 @@ var require_unlock_all = __commonJS({
         onEnableSettingMethod.implementation = function() {
           if (!rankMaxed) {
             rankMaxed = true;
-            console.log(
-              "[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u m\xF4 ph\u1ECFng l\xEAn Rank & Level..."
-            );
+            console.log("[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u hack Rank & Level...");
             try {
               const playerCharacter = playerIns.value.field("character").value;
-              const DataSetting = assembly.image.class("data_setting");
-              const MAX_RANK = DataSetting.field("MAX_RANK").value;
-              const currentRank = playerCharacter.method("get_rank").invoke();
+              const DataSettingClass = assembly.image.class("data_setting");
+              const dataSettingInstance = dataIns.value.field("setting").value;
+              const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
+              let currentRank = playerCharacter.method("get_rank").invoke();
               const ranksToAdd = MAX_RANK - currentRank;
               if (ranksToAdd > 0) {
                 console.log(`[+] C\u1EA7n l\xEAn ${ranksToAdd} rank. B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh...`);
@@ -3341,15 +3340,23 @@ var require_unlock_all = __commonJS({
                 for (let i = 0; i < ranksToAdd; i++) {
                   addRankMethod.invoke();
                 }
-                console.log(`[+] \u0110\xE3 l\xEAn \u0111\u1EE7 ${ranksToAdd} rank!`);
-              } else {
-                console.log(`[+] Rank \u0111\xE3 \u1EDF m\u1EE9c t\u1ED1i \u0111a (${currentRank}).`);
+                console.log(`[+] \u0110\xE3 l\xEAn Rank t\u1ED1i \u0111a: ${MAX_RANK}!`);
               }
-              console.log(`[+] \u0110\u1EB7t Level t\u1ED1i \u0111a theo Rank...`);
-              playerCharacter.method("Godmod_Set_Lv_Max").invoke();
+              console.log("[+] B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh l\xEAn Level t\u1ED1i \u0111a...");
+              const getLvMaxMethod = dataSettingInstance.method("Get_lvMax").overload("System.Int32");
+              const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
+              let currentLevel = playerCharacter.method("get_lv").invoke();
+              const getExpNeedMethod = playerCharacter.method("get_exp_need");
+              const addExpMethod = playerCharacter.method("Add_Exp").overload("System.Single");
+              while (currentLevel < maxLevelForRank) {
+                const expNeeded = getExpNeedMethod.invoke();
+                addExpMethod.invoke(expNeeded);
+                currentLevel = playerCharacter.method("get_lv").invoke();
+              }
               console.log(
-                "[SUCCESS] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng! Giao di\u1EC7n s\u1EBD t\u1EF1 c\u1EADp nh\u1EADt."
+                `[+] \u0110\xE3 \u0111\u1EA1t Level t\u1ED1i \u0111a: ${currentLevel}/${maxLevelForRank}!`
               );
+              console.log("[SUCCESS] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng!");
             } catch (e) {
               console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
             }
