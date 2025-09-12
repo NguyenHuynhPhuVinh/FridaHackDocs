@@ -1,5 +1,5 @@
 📦
-138126 /dump-text.js
+139988 /agent.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3307,58 +3307,97 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
   }
 });
 
-// dump-text.js
-var require_dump_text = __commonJS({
-  "dump-text.js"() {
+// agent.js
+var require_agent = __commonJS({
+  "agent.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script tr\xEDch xu\u1EA5t v\u0103n b\u1EA3n...");
-    var dumpedStrings = /* @__PURE__ */ new Map();
-    var dumpCounter = 0;
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script D\u1ECACH GAME REAL-TIME (Agent)...");
+    var translationCache = /* @__PURE__ */ new Map();
+    rpc.exports.onReceiveTranslation = function(originalText, translatedText) {
+      if (originalText && translatedText) {
+        translationCache.set(originalText, {
+          status: "translated",
+          value: translatedText
+        });
+      }
+    };
+    rpc.exports.onTranslationError = function(originalText) {
+      if (originalText) {
+        translationCache.set(originalText, {
+          status: "error",
+          value: originalText
+        });
+      }
+    };
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng!");
       const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
-      const StringFormat = assembly.image.class("stringFormat");
-      const getLanguageMethod = StringFormat.method("get_language").overload("System.String");
-      getLanguageMethod.implementation = function(code) {
-        const originalText = getLanguageMethod.invoke(code);
-        const codeContent = code.content;
-        const originalTextContent = originalText.content;
-        if (codeContent && originalTextContent && !dumpedStrings.has(codeContent)) {
-          dumpedStrings.set(codeContent, originalTextContent);
-          dumpCounter++;
-          if (dumpCounter % 100 === 0) {
-            console.log(`[+] \u0110\xE3 tr\xEDch xu\u1EA5t ${dumpCounter} chu\u1ED7i...`);
+      try {
+        const StringFormat = assembly.image.class("stringFormat");
+        const getLanguageMethod = StringFormat.method("get_language").overload("System.String");
+        getLanguageMethod.implementation = function(code) {
+          const originalText = getLanguageMethod.invoke(code);
+          const textContent = originalText.content;
+          if (textContent && textContent.length > 1 && !translationCache.has(textContent)) {
+            translationCache.set(textContent, { status: "pending" });
+            send({ type: "translate", text: textContent });
           }
-        }
-        return originalText;
-      };
-      console.log(
-        "[SUCCESS] \u0110\xE3 hook v\xE0o stringFormat.get_language. H\xE3y ch\u01A1i game \u0111\u1EC3 thu th\u1EADp d\u1EEF li\u1EC7u."
-      );
-    });
-    function saveDump() {
-      if (dumpCounter > 0) {
-        const outputObject = Object.fromEntries(dumpedStrings);
-        const jsonString = JSON.stringify(outputObject, null, 2);
-        const filePath = "./game_texts.json";
-        const file = new File(filePath, "w");
-        file.write(jsonString);
-        file.close();
-        console.log(
-          `
-[SUCCESS] \u0110\xE3 l\u01B0u th\xE0nh c\xF4ng ${dumpCounter} chu\u1ED7i v\xE0o file: ${filePath}`
-        );
-      } else {
-        console.log("\n[*] Kh\xF4ng c\xF3 chu\u1ED7i n\xE0o m\u1EDBi \u0111\u1EC3 l\u01B0u.");
+          return originalText;
+        };
+        console.log("[SUCCESS] Hook 1: \u0110\xE3 c\xE0i \u0111\u1EB7t b\u1ED9 b\u1EAFt v\xE0 g\u1EEDi v\u0103n b\u1EA3n.");
+      } catch (e) {
+        console.error("[ERROR] Hook 1 th\u1EA5t b\u1EA1i:", e.stack);
       }
-    }
-    rpc.exports.dispose = function() {
-      saveDump();
-    };
-    rpc.exports.save = function() {
-      saveDump();
-    };
+      try {
+        const HyperText = assembly.image.class("GarlicText.UI.HyperText");
+        const setTextMethod = HyperText.method("set_text");
+        setTextMethod.implementation = function(text) {
+          const callOriginal = () => setTextMethod.bind(this).invoke(text);
+          if (text == null || text.handle.isNull()) {
+            return callOriginal();
+          }
+          const textContent = text.content;
+          if (!textContent) {
+            return callOriginal();
+          }
+          const cached = translationCache.get(textContent);
+          if (cached && cached.status === "translated") {
+            const translatedString = Il2Cpp.string(cached.value);
+            return setTextMethod.bind(this).invoke(translatedString);
+          } else {
+            if (this.hasOwnProperty("_translationInterval")) {
+              clearInterval(this._translationInterval);
+            }
+            const self = this;
+            const checkInterval = 100;
+            let attempts = 100;
+            this._translationInterval = setInterval(() => {
+              const latestCache = translationCache.get(textContent);
+              attempts--;
+              if (latestCache && (latestCache.status === "translated" || latestCache.status === "error") || attempts <= 0) {
+                clearInterval(self._translationInterval);
+                delete self._translationInterval;
+                if (latestCache && latestCache.status === "translated") {
+                  try {
+                    if (!self.handle.isNull()) {
+                      const translatedString = Il2Cpp.string(latestCache.value);
+                      setTextMethod.invoke(self, translatedString);
+                    }
+                  } catch (e) {
+                  }
+                }
+              }
+            }, checkInterval);
+            return callOriginal();
+          }
+        };
+        console.log("[SUCCESS] Hook 2: \u0110\xE3 c\xE0i \u0111\u1EB7t b\u1ED9 c\u1EADp nh\u1EADt UI.");
+      } catch (e) {
+        console.error("[ERROR] Hook 2 th\u1EA5t b\u1EA1i:", e.stack);
+      }
+      console.log("\n[***] AGENT D\u1ECACH \u0110\xC3 S\u1EB4N S\xC0NG, CH\u1EDC L\u1EC6NH T\u1EEA PYTHON! [***]");
+    });
   }
 });
-export default require_dump_text();
+export default require_agent();
