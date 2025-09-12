@@ -1,5 +1,5 @@
 📦
-142271 /unlock-all.js
+144070 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,22 +3312,62 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v3 cho 'A Girl Adrift'...");
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v7 cho 'A Girl Adrift'...");
     var skinsAdded = false;
+    var rankMaxed = false;
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng!");
       const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
       const playerIns = assembly.image.class("player").field("ins");
       const dataIns = assembly.image.class("data").field("ins");
       try {
+        const UiWinSetting = assembly.image.class("ui_win_setting");
+        const onEnableSettingMethod = UiWinSetting.method("OnEnable");
+        onEnableSettingMethod.implementation = function() {
+          if (!rankMaxed) {
+            rankMaxed = true;
+            console.log(
+              "[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u m\xF4 ph\u1ECFng l\xEAn Rank & Level..."
+            );
+            try {
+              const playerCharacter = playerIns.value.field("character").value;
+              const DataSetting = assembly.image.class("data_setting");
+              const MAX_RANK = DataSetting.field("MAX_RANK").value;
+              const currentRank = playerCharacter.method("get_rank").invoke();
+              const ranksToAdd = MAX_RANK - currentRank;
+              if (ranksToAdd > 0) {
+                console.log(`[+] C\u1EA7n l\xEAn ${ranksToAdd} rank. B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh...`);
+                const addRankMethod = playerCharacter.method("Add_Rank");
+                for (let i = 0; i < ranksToAdd; i++) {
+                  addRankMethod.invoke();
+                }
+                console.log(`[+] \u0110\xE3 l\xEAn \u0111\u1EE7 ${ranksToAdd} rank!`);
+              } else {
+                console.log(`[+] Rank \u0111\xE3 \u1EDF m\u1EE9c t\u1ED1i \u0111a (${currentRank}).`);
+              }
+              console.log(`[+] \u0110\u1EB7t Level t\u1ED1i \u0111a theo Rank...`);
+              playerCharacter.method("Godmod_Set_Lv_Max").invoke();
+              console.log(
+                "[SUCCESS] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng! Giao di\u1EC7n s\u1EBD t\u1EF1 c\u1EADp nh\u1EADt."
+              );
+            } catch (e) {
+              console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
+            }
+          }
+          return onEnableSettingMethod.bind(this).invoke();
+        };
+        console.log(
+          "[SUCCESS] Ch\u1EE9c n\u0103ng MAX RANK & LEVEL \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t (Settings)."
+        );
+      } catch (error) {
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t Max Rank & Level:", error.stack);
+      }
+      try {
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
         );
         const useMethod = PlayerCurrencyElement.method("Use").overload("System.Double");
         useMethod.implementation = function(amount) {
-          console.log(
-            `[*] Mua s\u1EAFm: Chi ti\xEAu g\u1ED1c ${amount}, \u0111\xE3 s\u1EEDa th\xE0nh ${-amount}`
-          );
           return this.method("Use").invoke(-amount);
         };
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng MUA S\u1EAEM MI\u1EC4N PH\xCD \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
@@ -3345,19 +3385,16 @@ var require_unlock_all = __commonJS({
           const ObscuredDouble = assembly.image.class(
             "CodeStage.AntiCheat.ObscuredTypes.ObscuredDouble"
           );
-          const newMax = ObscuredDouble.method("op_Implicit").invoke(
+          maxField.value = ObscuredDouble.method("op_Implicit").invoke(
             Number.MAX_SAFE_INTEGER
           );
-          maxField.value = newMax;
-          let hackedAmount = num;
-          if (num > 0) {
-            hackedAmount = num * GOLD_MULTIPLIER;
+          let hackedAmount = num > 0 ? num * GOLD_MULTIPLIER : num;
+          if (num > 0)
             console.log(
               `[*] Ph\u1EA7n th\u01B0\u1EDFng: G\u1ED1c ${num.toFixed(
                 2
-              )} ---> \u0110\xE3 hack ${hackedAmount.toFixed(2)} (x${GOLD_MULTIPLIER})`
+              )} -> Hack ${hackedAmount.toFixed(2)}`
             );
-          }
           const result = addMethod.bind(this).invoke(hackedAmount, effect_pos, isWorldPos);
           maxField.value = originalMax;
           return result;
@@ -3380,13 +3417,9 @@ var require_unlock_all = __commonJS({
           );
         };
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A IAP \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
-      } catch (error) {
-        console.error("[ERROR] L\u1ED7i \u1EDF ch\u1EE9c n\u0103ng Ti\u1EC1n t\u1EC7/V\xE0ng/IAP:", error.stack);
-      }
-      try {
         const UiWinSkin = assembly.image.class("ui_win_skin");
-        const onEnableMethod = UiWinSkin.method("OnEnable");
-        onEnableMethod.implementation = function() {
+        const onEnableSkinMethod = UiWinSkin.method("OnEnable");
+        onEnableSkinMethod.implementation = function() {
           if (!skinsAdded) {
             skinsAdded = true;
             console.log("[*] C\u1EEDa s\u1ED5 skin \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u th\xEAm t\u1EA5t c\u1EA3 skins...");
@@ -3395,15 +3428,14 @@ var require_unlock_all = __commonJS({
               const allSkinsList = dataIns.value.field("skin").value.method("get_list").invoke();
               const addSkinMethod = playerSkin.method("Add").overload("data_skin_element");
               const count = allSkinsList.method("get_Count").invoke();
-              for (let i = 0; i < count; i++) {
+              for (let i = 0; i < count; i++)
                 addSkinMethod.invoke(allSkinsList.method("get_Item").invoke(i));
-              }
               console.log(`[+] \u0110\xE3 th\xEAm th\xE0nh c\xF4ng ${count} skins!`);
             } catch (e) {
               console.error("[ERROR] L\u1ED7i khi \u0111ang th\xEAm skin:", e.stack);
             }
           }
-          return onEnableMethod.bind(this).invoke();
+          return onEnableSkinMethod.bind(this).invoke();
         };
         console.log(
           "[SUCCESS] Ch\u1EE9c n\u0103ng TH\xCAM SKINS \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa h\xE0ng/kho \u0111\u1ED3 skin."
@@ -3412,18 +3444,20 @@ var require_unlock_all = __commonJS({
         const isCompletedMethod = PlayerQuest.method("Is_Completed_Quest").overload("data_quest_element");
         isCompletedMethod.implementation = function(quest_element) {
           if (isCompletedMethod.bind(this).invoke(quest_element)) return true;
-          const questName = new Il2Cpp.Object(quest_element).method("get_name_withoutPrefix").invoke().content;
-          console.log(`[*] V\u01B0\u1EE3t qua y\xEAu c\u1EA7u nhi\u1EC7m v\u1EE5: "${questName}"`);
+          console.log(`[*] V\u01B0\u1EE3t qua y\xEAu c\u1EA7u nhi\u1EC7m v\u1EE5.`);
           return true;
         };
         console.log(
           "[SUCCESS] Ch\u1EE9c n\u0103ng V\u01AF\u1EE2T QUA Y\xCAU C\u1EA6U NHI\u1EC6M V\u1EE4 \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
         );
       } catch (error) {
-        console.error("[ERROR] L\u1ED7i \u1EDF ch\u1EE9c n\u0103ng Skins/Nhi\u1EC7m v\u1EE5:", error.stack);
+        console.error(
+          "[ERROR] L\u1ED7i khi thi\u1EBFt l\u1EADp c\xE1c ch\u1EE9c n\u0103ng c\u01A1 b\u1EA3n:",
+          error.stack
+        );
       }
       console.log(
-        "\n[***] SCRIPT HO\xC0N CH\u1EC8NH \u0110\xC3 K\xCDCH HO\u1EA0T. CH\xDAC B\u1EA0N T\u1EACN H\u01AF\u1EDENG TR\xD2 CH\u01A0I! [***]"
+        "\n[***] SCRIPT HO\xC0N CH\u1EC8NH \u0110\xC3 K\xCDCH HO\u1EA0T. T\u1EA4T C\u1EA2 T\xCDNH N\u0102NG \u0110\xC3 S\u1EB4N S\xC0NG! [***]"
       );
     });
   }
