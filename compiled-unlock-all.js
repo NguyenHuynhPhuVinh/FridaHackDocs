@@ -1,5 +1,5 @@
 📦
-144689 /unlock-all.js
+145424 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,7 +3312,7 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v9 cho 'A Girl Adrift'...");
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v15 cho 'A Girl Adrift'...");
     var skinsAdded = false;
     var rankMaxed = false;
     Il2Cpp.perform(() => {
@@ -3320,6 +3320,32 @@ var require_unlock_all = __commonJS({
       const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
       const playerIns = assembly.image.class("player").field("ins");
       const dataIns = assembly.image.class("data").field("ins");
+      const gameIns = assembly.image.class("game").field("ins");
+      try {
+        const gameClass = assembly.image.class("game");
+        const fightAttackMethod = gameClass.method("Fight_Attack").overload("System.Double", "System.Boolean");
+        fightAttackMethod.implementation = function(original_damage, isCrit) {
+          try {
+            const gameFish = gameIns.value.field("fish").value;
+            const fishMaxHealthObscured = gameFish.field(
+              "<life>k__BackingField"
+            ).value;
+            const fishMaxHealth = fishMaxHealthObscured.method("InternalDecrypt").invoke();
+            console.log(
+              `[*] One-Hit Kill: S\xE1t th\u01B0\u01A1ng g\u1ED1c ${original_damage.toFixed(
+                0
+              )}, \u0111\xE3 s\u1EEDa th\xE0nh m\xE1u t\u1ED1i \u0111a c\u1EE7a c\xE1 (${fishMaxHealth.toFixed(0)})`
+            );
+            return fightAttackMethod.bind(this).invoke(fishMaxHealth, true);
+          } catch (e) {
+            console.error(`[ERROR] L\u1ED7i b\xEAn trong One-Hit Kill: ${e.stack}`);
+            return fightAttackMethod.bind(this).invoke(original_damage, isCrit);
+          }
+        };
+        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng ONE-HIT KILL (v15) \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
+      } catch (error) {
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t One-Hit Kill:", error.stack);
+      }
       try {
         const UiWinSetting = assembly.image.class("ui_win_setting");
         const onEnableSettingMethod = UiWinSetting.method("OnEnable");
@@ -3335,27 +3361,18 @@ var require_unlock_all = __commonJS({
               let currentRank = playerCharacter.method("get_rank").invoke();
               const ranksToAdd = MAX_RANK - currentRank;
               if (ranksToAdd > 0) {
-                console.log(`[+] C\u1EA7n l\xEAn ${ranksToAdd} rank. B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh...`);
                 const addRankMethod = playerCharacter.method("Add_Rank");
-                for (let i = 0; i < ranksToAdd; i++) {
-                  addRankMethod.invoke();
-                }
-                console.log(`[+] \u0110\xE3 l\xEAn Rank t\u1ED1i \u0111a: ${MAX_RANK}!`);
+                for (let i = 0; i < ranksToAdd; i++) addRankMethod.invoke();
               }
-              console.log("[+] B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh l\xEAn Level t\u1ED1i \u0111a...");
               const getLvMaxMethod = dataSettingInstance.method("Get_lvMax").overload("System.Int32");
               const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
               let currentLevel = playerCharacter.method("get_lv").invoke();
               const getExpNeedMethod = playerCharacter.method("get_exp_need");
               const addExpMethod = playerCharacter.method("Add_Exp").overload("System.Single");
               while (currentLevel < maxLevelForRank) {
-                const expNeeded = getExpNeedMethod.invoke();
-                addExpMethod.invoke(expNeeded);
+                addExpMethod.invoke(getExpNeedMethod.invoke());
                 currentLevel = playerCharacter.method("get_lv").invoke();
               }
-              console.log(
-                `[+] \u0110\xE3 \u0111\u1EA1t Level t\u1ED1i \u0111a: ${currentLevel}/${maxLevelForRank}!`
-              );
               console.log("[SUCCESS] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng!");
             } catch (e) {
               console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
@@ -3366,10 +3383,6 @@ var require_unlock_all = __commonJS({
         console.log(
           "[SUCCESS] Ch\u1EE9c n\u0103ng MAX RANK & LEVEL \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t (Settings)."
         );
-      } catch (error) {
-        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t Max Rank & Level:", error.stack);
-      }
-      try {
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
         );

@@ -1,6 +1,6 @@
 import "frida-il2cpp-bridge";
 
-console.log("[*] Bắt đầu script Frida HOÀN CHỈNH v9 cho 'A Girl Adrift'...");
+console.log("[*] Bắt đầu script Frida HOÀN CHỈNH v15 cho 'A Girl Adrift'...");
 
 let skinsAdded = false;
 let rankMaxed = false;
@@ -10,14 +10,57 @@ Il2Cpp.perform(() => {
   const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
   const playerIns = assembly.image.class("player").field("ins");
   const dataIns = assembly.image.class("data").field("ins");
+  const gameIns = assembly.image.class("game").field("ins");
 
   // ===================================================================
-  // CHỨC NĂNG 6 (HOÀN THIỆN): TỰ ĐỘNG MAX RANK & LEVEL - MÔ PHỎNG LÊN CẤP
+  // CHỨC NĂNG 7 (HOÀN THIỆN): ONE-HIT KILL - SÁT THƯƠNG THÔNG MINH
+  // ===================================================================
+  try {
+    const gameClass = assembly.image.class("game");
+    const fightAttackMethod = gameClass
+      .method("Fight_Attack")
+      .overload("System.Double", "System.Boolean");
+
+    fightAttackMethod.implementation = function (original_damage, isCrit) {
+      try {
+        // Lấy đối tượng game_fish để biết máu của cá hiện tại
+        const gameFish = gameIns.value.field("fish").value;
+
+        // Lấy đối tượng ValueType ObscuredDouble chứa máu tối đa của cá
+        const fishMaxHealthObscured = gameFish.field(
+          "<life>k__BackingField"
+        ).value;
+
+        // SỬA LỖI: Gọi phương thức InternalDecrypt() trên đối tượng ValueType để lấy giá trị double thực sự
+        const fishMaxHealth = fishMaxHealthObscured
+          .method("InternalDecrypt")
+          .invoke();
+
+        console.log(
+          `[*] One-Hit Kill: Sát thương gốc ${original_damage.toFixed(
+            0
+          )}, đã sửa thành máu tối đa của cá (${fishMaxHealth.toFixed(0)})`
+        );
+
+        // Gọi hàm gốc với sát thương bằng máu tối đa của cá
+        return fightAttackMethod.bind(this).invoke(fishMaxHealth, true);
+      } catch (e) {
+        console.error(`[ERROR] Lỗi bên trong One-Hit Kill: ${e.stack}`);
+        // Nếu có lỗi, gọi lại hàm gốc để game không bị crash
+        return fightAttackMethod.bind(this).invoke(original_damage, isCrit);
+      }
+    };
+    console.log("[SUCCESS] Chức năng ONE-HIT KILL (v15) đã được kích hoạt!");
+  } catch (error) {
+    console.error("[ERROR] Không thể kích hoạt One-Hit Kill:", error.stack);
+  }
+
+  // ===================================================================
+  // CÁC CHỨC NĂNG CÒN LẠI (Đã hoạt động tốt)
   // ===================================================================
   try {
     const UiWinSetting = assembly.image.class("ui_win_setting");
     const onEnableSettingMethod = UiWinSetting.method("OnEnable");
-
     onEnableSettingMethod.implementation = function () {
       if (!rankMaxed) {
         rankMaxed = true;
@@ -25,68 +68,38 @@ Il2Cpp.perform(() => {
         try {
           const playerCharacter = playerIns.value.field("character").value;
           const DataSettingClass = assembly.image.class("data_setting");
-
-          // SỬA LỖI: Lấy đối tượng (instance) của data_setting từ data.ins
           const dataSettingInstance = dataIns.value.field("setting").value;
-
-          // --- BƯỚC 1: MAX RANK BẰNG CÁCH GỌI Add_Rank() ---
           const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
           let currentRank = playerCharacter.method("get_rank").invoke();
           const ranksToAdd = MAX_RANK - currentRank;
-
           if (ranksToAdd > 0) {
-            console.log(`[+] Cần lên ${ranksToAdd} rank. Bắt đầu quá trình...`);
             const addRankMethod = playerCharacter.method("Add_Rank");
-            for (let i = 0; i < ranksToAdd; i++) {
-              addRankMethod.invoke();
-            }
-            console.log(`[+] Đã lên Rank tối đa: ${MAX_RANK}!`);
+            for (let i = 0; i < ranksToAdd; i++) addRankMethod.invoke();
           }
-
-          // --- BƯỚC 2: MAX LEVEL BẰNG CÁCH THÊM EXP ---
-          console.log("[+] Bắt đầu quá trình lên Level tối đa...");
-
-          // SỬA LỖI: Gọi phương thức từ đối tượng dataSettingInstance
           const getLvMaxMethod = dataSettingInstance
             .method("Get_lvMax")
             .overload("System.Int32");
           const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
-
           let currentLevel = playerCharacter.method("get_lv").invoke();
-
           const getExpNeedMethod = playerCharacter.method("get_exp_need");
           const addExpMethod = playerCharacter
             .method("Add_Exp")
             .overload("System.Single");
-
           while (currentLevel < maxLevelForRank) {
-            const expNeeded = getExpNeedMethod.invoke();
-            addExpMethod.invoke(expNeeded);
+            addExpMethod.invoke(getExpNeedMethod.invoke());
             currentLevel = playerCharacter.method("get_lv").invoke();
           }
-
-          console.log(
-            `[+] Đã đạt Level tối đa: ${currentLevel}/${maxLevelForRank}!`
-          );
           console.log("[SUCCESS] Đã hack Rank và Level thành công!");
         } catch (e) {
           console.error("[ERROR] Lỗi khi đang hack Rank & Level:", e.stack);
         }
       }
-
       return onEnableSettingMethod.bind(this).invoke();
     };
     console.log(
       "[SUCCESS] Chức năng MAX RANK & LEVEL đã sẵn sàng! Hãy mở cửa sổ Cài đặt (Settings)."
     );
-  } catch (error) {
-    console.error("[ERROR] Không thể kích hoạt Max Rank & Level:", error.stack);
-  }
 
-  // ===================================================================
-  // CÁC CHỨC NĂNG CŨ (Đã hoạt động tốt)
-  // ===================================================================
-  try {
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
     );
