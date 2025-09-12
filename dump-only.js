@@ -1,91 +1,87 @@
 import "frida-il2cpp-bridge";
 
-console.log("[*] Bắt đầu AGENT DỊCH & DUMP TĂNG TRƯỞNG...");
+console.log("[*] Bắt đầu AGENT ĐIỀU TRA BỘ NHỚ...");
 
-let translationDict = {};
-const newlyDumpedStrings = new Map();
-let newStringsCount = 0;
+// Hàm để quét bộ nhớ tìm một chuỗi và các con trỏ trỏ đến nó
+function findStringAndReferences(textToFind) {
+  console.log(`\n[*] Bắt đầu quét bộ nhớ cho chuỗi: "${textToFind}"`);
+  const pattern = Buffer.from(textToFind, "utf16le").toString("hex");
+  const matches = [];
 
-// RPC: Python sẽ gọi hàm này để gửi bản dịch đã có
-rpc.exports.initialize = function (translations) {
-  if (translations) {
-    translationDict = translations;
-    console.log(
-      `[+] Đã nhận ${Object.keys(translationDict).length} chuỗi dịch từ Python.`
-    );
+  // Chỉ quét trong các vùng heap có thể ghi được
+  Process.enumerateRanges("rw-").forEach((range) => {
+    try {
+      const results = Memory.scanSync(range.base, range.size, pattern);
+      results.forEach((match) => {
+        matches.push(match.address);
+      });
+    } catch (e) {}
+  });
+
+  if (matches.length === 0) {
+    console.log(`[!] Không tìm thấy chuỗi "${textToFind}" trong bộ nhớ.`);
+    return;
   }
-};
 
-// RPC: Python gọi để lấy các chuỗi mới cần dịch
-rpc.exports.getNewStrings = function () {
-  if (newStringsCount > 0) {
-    const outputObject = Object.fromEntries(newlyDumpedStrings);
-    send({
-      type: "dump_result",
-      payload: outputObject,
-      count: newStringsCount,
+  console.log(
+    `[+] Tìm thấy ${matches.length} địa chỉ chứa chuỗi "${textToFind}":`
+  );
+  matches.forEach((addr) => console.log(`    - String at: ${addr}`));
+
+  console.log(`\n[*] Bắt đầu quét tìm các con trỏ trỏ đến các địa chỉ trên...`);
+  const foundReferences = new Map();
+
+  Process.enumerateRanges("rw-").forEach((range) => {
+    matches.forEach((stringAddress) => {
+      try {
+        const results = Memory.scanSync(
+          range.base,
+          range.size,
+          stringAddress.toString(16).match(/../g).reverse().join(" ")
+        );
+        results.forEach((refMatch) => {
+          const refAddress = refMatch.address;
+          // Giả sử con trỏ tới vtable nằm ở đầu đối tượng
+          const vtablePtr = refAddress.readPointer();
+          // Con trỏ tới Il2CppClass thường nằm ngay sau vtable
+          const classPtr = vtablePtr.add(Process.pointerSize).readPointer();
+
+          try {
+            const klass = new Il2Cpp.Class(classPtr);
+            const className = klass.fullName;
+
+            if (!foundReferences.has(className)) {
+              foundReferences.set(className, []);
+            }
+            foundReferences.get(className).push(refAddress);
+          } catch (e) {
+            // Bỏ qua nếu không phải là đối tượng Il2Cpp hợp lệ
+          }
+        });
+      } catch (e) {}
     });
-    console.log(`\n[SUCCESS] Đã gửi ${newStringsCount} chuỗi mới về Python.`);
+  });
+
+  if (foundReferences.size === 0) {
+    console.log("[!] Không tìm thấy con trỏ nào trỏ tới chuỗi này.");
   } else {
-    console.log("\n[*] Không có chuỗi mới nào để gửi về.");
-    send({ type: "dump_result", payload: {}, count: 0 });
+    console.log(
+      "[SUCCESS] Tìm thấy các đối tượng sau có khả năng đang chứa chuỗi này:"
+    );
+    for (const [className, addresses] of foundReferences.entries()) {
+      console.log(`    -> Lớp: ${className} (${addresses.length} đối tượng)`);
+      console.log(`       -> Một ví dụ tại handle: ${addresses[0]}`);
+    }
   }
+}
+
+// Cung cấp một hàm để Python có thể gọi
+rpc.exports.scan = function (text) {
+  Il2Cpp.perform(() => {
+    findStringAndReferences(text);
+  });
 };
 
 Il2Cpp.perform(() => {
-  console.log("[+] Đã kết nối. Đang cài đặt hook...");
-  const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
-
-  // Hook để DUMP các chuỗi chưa biết
-  try {
-    const StringFormat = assembly.image.class("stringFormat");
-    const getLanguageMethod =
-      StringFormat.method("get_language").overload("System.String");
-    getLanguageMethod.implementation = function (code) {
-      const originalText = getLanguageMethod.invoke(code);
-      const textContent = originalText.content;
-
-      // Nếu text gốc tồn tại và CHƯA CÓ trong từ điển dịch
-      if (
-        textContent &&
-        !translationDict.hasOwnProperty(textContent) &&
-        !newlyDumpedStrings.has(textContent)
-      ) {
-        const codeContent = code.content;
-        if (codeContent) {
-          newlyDumpedStrings.set(codeContent, textContent);
-          newStringsCount++;
-        }
-      }
-      return originalText;
-    };
-    console.log("[SUCCESS] Hook DUMP đã được cài đặt.");
-  } catch (e) {
-    console.error("[ERROR] Hook dump thất bại:", e.stack);
-  }
-
-  // Hook để DỊCH UI
-  try {
-    const HyperText = assembly.image.class("GarlicText.UI.HyperText");
-    const setTextMethod = HyperText.method("set_text");
-    const originalSetText = setTextMethod.implementation;
-
-    setTextMethod.implementation = function (text) {
-      if (text && !text.handle.isNull()) {
-        const textContent = text.content;
-        // Ưu tiên tra cứu bản dịch
-        if (textContent && translationDict.hasOwnProperty(textContent)) {
-          const translatedString = Il2Cpp.string(translationDict[textContent]);
-          return setTextMethod.bind(this).invoke(translatedString);
-        }
-      }
-      // Nếu không có bản dịch, gọi hàm gốc để hiển thị tiếng Anh
-      return setTextMethod.bind(this).invoke(text);
-    };
-    console.log("[SUCCESS] Hook DỊCH đã được cài đặt.");
-  } catch (e) {
-    console.error("[ERROR] Hook dịch thất bại:", e.stack);
-  }
-
-  console.log("\n[***] AGENT ĐA NĂNG ĐÃ SẴN SÀNG! [***]");
+  console.log("[+] Agent đã sẵn sàng. Chờ lệnh quét từ Python.");
 });
