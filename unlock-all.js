@@ -1,7 +1,7 @@
 import "frida-il2cpp-bridge";
 
 console.log(
-  "[*] Bắt đầu script Frida TOÀN DIỆN v22 (Final) cho 'A Girl Adrift'..."
+  "[*] Bắt đầu script Frida TOÀN DIỆN v23 (Final) cho 'A Girl Adrift'..."
 );
 
 let featuresUnlocked = false;
@@ -15,23 +15,46 @@ Il2Cpp.perform(() => {
   const gameIns = assembly.image.class("game").field("ins");
 
   // ===================================================================
-  // CHỨC NĂNG MASTER KEY: BỎ QUA MỌI KIỂM TRA ĐIỀU KIỆN
+  // CHỨC NĂNG MỚI: LOẠI BỎ QUẢNG CÁO & NHẬN THƯỞNG NGAY
   // ===================================================================
   try {
-    const conditionChecker = assembly.image.class(
-      "DimensionalConditionChecker"
+    // --- PHẦN 1: Tắt vĩnh viễn quảng cáo banner và xen kẽ ---
+    const playerSetting = playerIns.value.field("setting").value;
+    const removeAdField = playerSetting.field("<removeAd>k__BackingField");
+    const ObscuredBool = assembly.image.class(
+      "CodeStage.AntiCheat.ObscuredTypes.ObscuredBool"
     );
-    const checkConditionMethod = conditionChecker.method(
-      "check_condition_internal"
+    const trueBool = ObscuredBool.method("op_Implicit").invoke(true);
+    removeAdField.value = trueBool;
+    console.log(
+      "[SUCCESS] Chức năng TẮT QUẢNG CÁO VĨNH VIỄN đã được kích hoạt!"
     );
-    checkConditionMethod.implementation = function () {
-      return true;
+
+    // --- PHẦN 2: Bỏ qua quảng cáo có thưởng và nhận quà ngay ---
+    const addonAds = assembly.image.class("addon_ads");
+    const showAdMethod = addonAds
+      .method("Show")
+      .overload("System.Action", "System.Boolean", "System.Boolean");
+    showAdMethod.implementation = function (
+      onShowSuccess,
+      rewardAnyway,
+      showAlert
+    ) {
+      console.log(
+        "[*] Đã bỏ qua quảng cáo có thưởng. Trực tiếp trao phần thưởng!"
+      );
+      // Gọi callback thành công ngay lập tức
+      onShowSuccess.method("Invoke").invoke();
+      // Không gọi hàm gốc để quảng cáo không bao giờ hiện lên
     };
     console.log(
-      "[SUCCESS] Chức năng MASTER KEY đã được kích hoạt! Mọi tính năng sẽ được mở khóa."
+      "[SUCCESS] Chức năng BỎ QUA QUẢNG CÁO CÓ THƯỞNG đã được kích hoạt!"
     );
   } catch (error) {
-    console.error("[ERROR] Không thể kích hoạt Master Key:", error.stack);
+    console.error(
+      "[ERROR] Không thể kích hoạt chức năng loại bỏ quảng cáo:",
+      error.stack
+    );
   }
 
   // ===================================================================
@@ -45,6 +68,7 @@ Il2Cpp.perform(() => {
         featuresUnlocked = true;
         console.log("[*] Cửa sổ Cài đặt đã mở. Kích hoạt mở khóa toàn diện...");
         try {
+          console.log("[*] Bắt đầu hack Rank & Level...");
           const playerCharacter = playerIns.value.field("character").value;
           const DataSettingClass = assembly.image.class("data_setting");
           const dataSettingInstance = dataIns.value.field("setting").value;
@@ -162,7 +186,7 @@ Il2Cpp.perform(() => {
     console.error("[ERROR] Không thể kích hoạt hook Cài đặt:", error.stack);
   }
 
-  // ... (Các chức năng khác)
+  // ... (Các chức năng khác giữ nguyên)
   try {
     const gameClass = assembly.image.class("game");
     const fightAttackMethod = gameClass
@@ -187,17 +211,14 @@ Il2Cpp.perform(() => {
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
     );
-
-    // CHỨC NĂNG MỚI: BỎ QUA YÊU CẦU TÀI NGUYÊN
     const canUseMethod =
       PlayerCurrencyElement.method("Can_Use").overload("System.Double");
     canUseMethod.implementation = function (amount) {
-      return true; // Luôn trả về true, cho phép mua hàng dù không đủ tiền
+      return true;
     };
     console.log(
       "[SUCCESS] Chức năng BỎ QUA YÊU CẦU TÀI NGUYÊN đã được kích hoạt!"
     );
-
     const useMethod =
       PlayerCurrencyElement.method("Use").overload("System.Double");
     useMethod.implementation = function (amount) {

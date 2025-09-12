@@ -1,5 +1,5 @@
 📦
-148479 /unlock-all.js
+149348 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3313,7 +3313,7 @@ var require_unlock_all = __commonJS({
     init_node_globals();
     init_dist();
     console.log(
-      "[*] B\u1EAFt \u0111\u1EA7u script Frida TO\xC0N DI\u1EC6N v22 (Final) cho 'A Girl Adrift'..."
+      "[*] B\u1EAFt \u0111\u1EA7u script Frida TO\xC0N DI\u1EC6N v23 (Final) cho 'A Girl Adrift'..."
     );
     var featuresUnlocked = false;
     var skinsAdded = false;
@@ -3324,20 +3324,32 @@ var require_unlock_all = __commonJS({
       const dataIns = assembly.image.class("data").field("ins");
       const gameIns = assembly.image.class("game").field("ins");
       try {
-        const conditionChecker = assembly.image.class(
-          "DimensionalConditionChecker"
+        const playerSetting = playerIns.value.field("setting").value;
+        const removeAdField = playerSetting.field("<removeAd>k__BackingField");
+        const ObscuredBool = assembly.image.class(
+          "CodeStage.AntiCheat.ObscuredTypes.ObscuredBool"
         );
-        const checkConditionMethod = conditionChecker.method(
-          "check_condition_internal"
+        const trueBool = ObscuredBool.method("op_Implicit").invoke(true);
+        removeAdField.value = trueBool;
+        console.log(
+          "[SUCCESS] Ch\u1EE9c n\u0103ng T\u1EAET QU\u1EA2NG C\xC1O V\u0128NH VI\u1EC4N \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
         );
-        checkConditionMethod.implementation = function() {
-          return true;
+        const addonAds = assembly.image.class("addon_ads");
+        const showAdMethod = addonAds.method("Show").overload("System.Action", "System.Boolean", "System.Boolean");
+        showAdMethod.implementation = function(onShowSuccess, rewardAnyway, showAlert) {
+          console.log(
+            "[*] \u0110\xE3 b\u1ECF qua qu\u1EA3ng c\xE1o c\xF3 th\u01B0\u1EDFng. Tr\u1EF1c ti\u1EBFp trao ph\u1EA7n th\u01B0\u1EDFng!"
+          );
+          onShowSuccess.method("Invoke").invoke();
         };
         console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng MASTER KEY \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t! M\u1ECDi t\xEDnh n\u0103ng s\u1EBD \u0111\u01B0\u1EE3c m\u1EDF kh\xF3a."
+          "[SUCCESS] Ch\u1EE9c n\u0103ng B\u1ECE QUA QU\u1EA2NG C\xC1O C\xD3 TH\u01AF\u1EDENG \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
         );
       } catch (error) {
-        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t Master Key:", error.stack);
+        console.error(
+          "[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t ch\u1EE9c n\u0103ng lo\u1EA1i b\u1ECF qu\u1EA3ng c\xE1o:",
+          error.stack
+        );
       }
       try {
         const UiWinSetting = assembly.image.class("ui_win_setting");
@@ -3347,6 +3359,7 @@ var require_unlock_all = __commonJS({
             featuresUnlocked = true;
             console.log("[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. K\xEDch ho\u1EA1t m\u1EDF kh\xF3a to\xE0n di\u1EC7n...");
             try {
+              console.log("[*] B\u1EAFt \u0111\u1EA7u hack Rank & Level...");
               const playerCharacter = playerIns.value.field("character").value;
               const DataSettingClass = assembly.image.class("data_setting");
               const dataSettingInstance = dataIns.value.field("setting").value;
