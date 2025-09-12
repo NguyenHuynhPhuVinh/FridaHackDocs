@@ -1,7 +1,7 @@
 import "frida-il2cpp-bridge";
 
 console.log(
-  "[*] Bắt đầu script Frida TOÀN DIỆN v23 (Final) cho 'A Girl Adrift'..."
+  "[*] Bắt đầu script Frida TOÀN DIỆN v24 (Master Key Edition) cho 'A Girl Adrift'..."
 );
 
 let featuresUnlocked = false;
@@ -15,22 +15,55 @@ Il2Cpp.perform(() => {
   const gameIns = assembly.image.class("game").field("ins");
 
   // ===================================================================
-  // CHỨC NĂNG MỚI: LOẠI BỎ QUẢNG CÁO & NHẬN THƯỞNG NGAY
+  // BỘ CHỨC NĂNG "MASTER KEY" - BỎ QUA MỌI RÀO CẢN
   // ===================================================================
   try {
-    // --- PHẦN 1: Tắt vĩnh viễn quảng cáo banner và xen kẽ ---
+    // Master Key 1: Bỏ qua mọi điều kiện chung (rank, quest, vị trí, etc.)
+    const conditionChecker = assembly.image.class(
+      "DimensionalConditionChecker"
+    );
+    conditionChecker.method("check_condition_internal").implementation = () =>
+      true;
+    console.log(
+      "[SUCCESS] MASTER KEY: Bỏ qua điều kiện chung đã được kích hoạt!"
+    );
+
+    // Master Key 2: Luôn cho phép nâng cấp Legendary Fish
+    const playerPlaceClass = assembly.image.class("player_place");
+    playerPlaceClass.method("get_legend_canUpgrade").implementation = () =>
+      true;
+    console.log(
+      "[SUCCESS] MASTER KEY: Mở khóa Legendary Fish đã được kích hoạt!"
+    );
+
+    // Master Key 3: Luôn cho phép mua/nâng cấp dù không đủ tài nguyên
+    const PlayerCurrencyElement = assembly.image.class(
+      "player_currency_element"
+    );
+    PlayerCurrencyElement.method("Can_Use").overload(
+      "System.Double"
+    ).implementation = () => true;
+    console.log(
+      "[SUCCESS] MASTER KEY: Mua sắm không cần điều kiện đã được kích hoạt!"
+    );
+  } catch (error) {
+    console.error("[ERROR] Không thể kích hoạt bộ Master Key:", error.stack);
+  }
+
+  // ===================================================================
+  // CHỨC NĂNG LOẠI BỎ QUẢNG CÁO
+  // ===================================================================
+  try {
     const playerSetting = playerIns.value.field("setting").value;
     const removeAdField = playerSetting.field("<removeAd>k__BackingField");
     const ObscuredBool = assembly.image.class(
       "CodeStage.AntiCheat.ObscuredTypes.ObscuredBool"
     );
-    const trueBool = ObscuredBool.method("op_Implicit").invoke(true);
-    removeAdField.value = trueBool;
+    removeAdField.value = ObscuredBool.method("op_Implicit").invoke(true);
     console.log(
       "[SUCCESS] Chức năng TẮT QUẢNG CÁO VĨNH VIỄN đã được kích hoạt!"
     );
 
-    // --- PHẦN 2: Bỏ qua quảng cáo có thưởng và nhận quà ngay ---
     const addonAds = assembly.image.class("addon_ads");
     const showAdMethod = addonAds
       .method("Show")
@@ -43,9 +76,7 @@ Il2Cpp.perform(() => {
       console.log(
         "[*] Đã bỏ qua quảng cáo có thưởng. Trực tiếp trao phần thưởng!"
       );
-      // Gọi callback thành công ngay lập tức
       onShowSuccess.method("Invoke").invoke();
-      // Không gọi hàm gốc để quảng cáo không bao giờ hiện lên
     };
     console.log(
       "[SUCCESS] Chức năng BỎ QUA QUẢNG CÁO CÓ THƯỞNG đã được kích hoạt!"
@@ -58,7 +89,7 @@ Il2Cpp.perform(() => {
   }
 
   // ===================================================================
-  // KÍCH HOẠT MỞ KHÓA TOÀN DIỆN KHI MỞ CÀI ĐẶT
+  // KÍCH HOẠT MỞ KHÓA DỮ LIỆU KHI MỞ CÀI ĐẶT
   // ===================================================================
   try {
     const UiWinSetting = assembly.image.class("ui_win_setting");
@@ -67,6 +98,7 @@ Il2Cpp.perform(() => {
       if (!featuresUnlocked) {
         featuresUnlocked = true;
         console.log("[*] Cửa sổ Cài đặt đã mở. Kích hoạt mở khóa toàn diện...");
+        // BƯỚC 1: MAX RANK & LEVEL (Tự nhiên)
         try {
           console.log("[*] Bắt đầu hack Rank & Level...");
           const playerCharacter = playerIns.value.field("character").value;
@@ -96,6 +128,7 @@ Il2Cpp.perform(() => {
         } catch (e) {
           console.error("[ERROR] Lỗi khi hack Rank & Level:", e.stack);
         }
+        // BƯỚC 2: HOÀN THÀNH TẤT CẢ NHIỆM VỤ
         try {
           console.log("[*] Bắt đầu hoàn thành tất cả nhiệm vụ...");
           const playerQuest = playerIns.value.field("quest").value;
@@ -124,6 +157,7 @@ Il2Cpp.perform(() => {
         } catch (e) {
           console.error("[ERROR] Lỗi khi hoàn thành nhiệm vụ:", e.stack);
         }
+        // BƯỚC 3: "ĐÃ BẮT" TẤT CẢ CÁ
         try {
           console.log("[*] Bắt đầu thêm tất cả cá vào bộ sưu tập...");
           const playerFish = playerIns.value.field("fish").value;
@@ -145,6 +179,7 @@ Il2Cpp.perform(() => {
         } catch (e) {
           console.error("[ERROR] Lỗi khi thêm cá:", e.stack);
         }
+        // BƯỚC 4: MAX LEVEL TẤT CẢ VẬT PHẨM CHẾ TẠO (FARM)
         try {
           console.log(
             "[*] Bắt đầu max level tất cả vật phẩm chế tạo (Farm)..."
@@ -180,7 +215,7 @@ Il2Cpp.perform(() => {
       return onEnableSettingMethod.bind(this).invoke();
     };
     console.log(
-      "[SUCCESS] Chức năng MỞ KHÓA TOÀN DIỆN đã sẵn sàng! Hãy mở cửa sổ Cài đặt."
+      "[SUCCESS] Chức năng MỞ KHÓA DỮ LIỆU đã sẵn sàng! Hãy mở cửa sổ Cài đặt."
     );
   } catch (error) {
     console.error("[ERROR] Không thể kích hoạt hook Cài đặt:", error.stack);
@@ -210,14 +245,6 @@ Il2Cpp.perform(() => {
 
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
-    );
-    const canUseMethod =
-      PlayerCurrencyElement.method("Can_Use").overload("System.Double");
-    canUseMethod.implementation = function (amount) {
-      return true;
-    };
-    console.log(
-      "[SUCCESS] Chức năng BỎ QUA YÊU CẦU TÀI NGUYÊN đã được kích hoạt!"
     );
     const useMethod =
       PlayerCurrencyElement.method("Use").overload("System.Double");

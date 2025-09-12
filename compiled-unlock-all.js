@@ -1,5 +1,5 @@
 📦
-149348 /unlock-all.js
+150177 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3313,7 +3313,7 @@ var require_unlock_all = __commonJS({
     init_node_globals();
     init_dist();
     console.log(
-      "[*] B\u1EAFt \u0111\u1EA7u script Frida TO\xC0N DI\u1EC6N v23 (Final) cho 'A Girl Adrift'..."
+      "[*] B\u1EAFt \u0111\u1EA7u script Frida TO\xC0N DI\u1EC6N v24 (Master Key Edition) cho 'A Girl Adrift'..."
     );
     var featuresUnlocked = false;
     var skinsAdded = false;
@@ -3324,13 +3324,37 @@ var require_unlock_all = __commonJS({
       const dataIns = assembly.image.class("data").field("ins");
       const gameIns = assembly.image.class("game").field("ins");
       try {
+        const conditionChecker = assembly.image.class(
+          "DimensionalConditionChecker"
+        );
+        conditionChecker.method("check_condition_internal").implementation = () => true;
+        console.log(
+          "[SUCCESS] MASTER KEY: B\u1ECF qua \u0111i\u1EC1u ki\u1EC7n chung \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
+        );
+        const playerPlaceClass = assembly.image.class("player_place");
+        playerPlaceClass.method("get_legend_canUpgrade").implementation = () => true;
+        console.log(
+          "[SUCCESS] MASTER KEY: M\u1EDF kh\xF3a Legendary Fish \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
+        );
+        const PlayerCurrencyElement = assembly.image.class(
+          "player_currency_element"
+        );
+        PlayerCurrencyElement.method("Can_Use").overload(
+          "System.Double"
+        ).implementation = () => true;
+        console.log(
+          "[SUCCESS] MASTER KEY: Mua s\u1EAFm kh\xF4ng c\u1EA7n \u0111i\u1EC1u ki\u1EC7n \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
+        );
+      } catch (error) {
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t b\u1ED9 Master Key:", error.stack);
+      }
+      try {
         const playerSetting = playerIns.value.field("setting").value;
         const removeAdField = playerSetting.field("<removeAd>k__BackingField");
         const ObscuredBool = assembly.image.class(
           "CodeStage.AntiCheat.ObscuredTypes.ObscuredBool"
         );
-        const trueBool = ObscuredBool.method("op_Implicit").invoke(true);
-        removeAdField.value = trueBool;
+        removeAdField.value = ObscuredBool.method("op_Implicit").invoke(true);
         console.log(
           "[SUCCESS] Ch\u1EE9c n\u0103ng T\u1EAET QU\u1EA2NG C\xC1O V\u0128NH VI\u1EC4N \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
         );
@@ -3448,7 +3472,7 @@ var require_unlock_all = __commonJS({
           return onEnableSettingMethod.bind(this).invoke();
         };
         console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A TO\xC0N DI\u1EC6N \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t."
+          "[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A D\u1EEE LI\u1EC6U \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t."
         );
       } catch (error) {
         console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t hook C\xE0i \u0111\u1EB7t:", error.stack);
@@ -3471,13 +3495,6 @@ var require_unlock_all = __commonJS({
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng ONE-HIT KILL \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
-        );
-        const canUseMethod = PlayerCurrencyElement.method("Can_Use").overload("System.Double");
-        canUseMethod.implementation = function(amount) {
-          return true;
-        };
-        console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng B\u1ECE QUA Y\xCAU C\u1EA6U T\xC0I NGUY\xCAN \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
         );
         const useMethod = PlayerCurrencyElement.method("Use").overload("System.Double");
         useMethod.implementation = function(amount) {
