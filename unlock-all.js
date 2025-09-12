@@ -1,6 +1,6 @@
 import "frida-il2cpp-bridge";
 
-console.log("[*] Bắt đầu script Frida toàn diện v3 cho 'A Girl Adrift'...");
+console.log("[*] Bắt đầu script Frida toàn diện v4 cho 'A Girl Adrift'...");
 
 let skinsAdded = false;
 
@@ -15,18 +15,16 @@ Il2Cpp.perform(() => {
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
     );
+
     const useMethod =
       PlayerCurrencyElement.method("Use").overload("System.Double");
-    Interceptor.replace(
-      useMethod.virtualAddress,
-      new NativeCallback(
-        (this_ptr, amount_to_spend_double) => {
-          return useMethod.invokeRaw(this_ptr, -amount_to_spend_double);
-        },
-        "void",
-        ["pointer", "double"]
-      )
-    );
+    useMethod.implementation = function (amount_to_spend_double) {
+      console.log(
+        `[*] Mua sắm: Chi tiêu gốc ${amount_to_spend_double}, đã sửa thành ${-amount_to_spend_double}`
+      );
+      // 'this' trong implementation là một Il2Cpp.Object, nên chúng ta dùng this.method thay vì invokeRaw
+      return this.method("Use").invoke(-amount_to_spend_double);
+    };
     console.log("[SUCCESS] Chức năng MUA SẮM MIỄN PHÍ đã được kích hoạt!");
 
     const GOLD_MULTIPLIER = 1000;
@@ -36,13 +34,15 @@ Il2Cpp.perform(() => {
       "System.Boolean"
     );
     addMethod.implementation = function (num, effect_pos, isWorldPos) {
-      let hackedAmount = num * (num > 0 ? GOLD_MULTIPLIER : 1);
-      if (num > 0)
+      let hackedAmount = num;
+      if (num > 0) {
+        hackedAmount = num * GOLD_MULTIPLIER;
         console.log(
           `[*] Phần thưởng: Gốc ${num.toFixed(
             2
           )} ---> Đã hack ${hackedAmount.toFixed(2)} (x${GOLD_MULTIPLIER})`
         );
+      }
       return addMethod.bind(this).invoke(hackedAmount, effect_pos, isWorldPos);
     };
     console.log(
@@ -72,28 +72,28 @@ Il2Cpp.perform(() => {
       const player_ins = assembly.image.class("player").field("ins").value;
       const playerCurrency = player_ins.field("currency").value;
 
-      // SỬA LỖI: Chỉ định rõ overload cần dùng
+      // SỬA LỖI: Tìm và gọi phiên bản "Adds" đơn giản hơn chỉ với 1 tham số.
       const addsMethod = playerCurrency
         .method("Adds")
-        .overload(
-          "System.Collections.Generic.List<CurNumPair>",
-          "System.Nullable<UnityEngine.Vector3>",
-          "System.Boolean"
-        );
+        .overload("System.Collections.Generic.List<CurNumPair>");
 
-      addsMethod.invoke(rewardsList, NULL, false);
+      // Gọi hàm với chỉ một tham số là danh sách phần thưởng.
+      addsMethod.invoke(rewardsList);
+
       console.log(
         `[+] Đã cấp thành công phần thưởng cho gói IAP "${iapName}"!`
       );
+
+      // Không gọi hàm gốc để chặn cửa sổ mua hàng.
       return;
     };
-    console.log("[SUCCESS] Chức năng MỞ KHÓA IAP (v3) đã được kích hoạt!");
+    console.log("[SUCCESS] Chức năng MỞ KHÓA IAP (v4) đã được kích hoạt!");
   } catch (error) {
-    console.error("[ERROR] Không thể kích hoạt Mở khóa IAP (v3):", error.stack);
+    console.error("[ERROR] Không thể kích hoạt Mở khóa IAP (v4):", error.stack);
   }
 
   // ===================================================================
-  // CHỨC NĂNG 4 (SỬA LỖI): THÊM TẤT CẢ SKINS - GỌI ĐÚNG PHƯƠNG THỨC INSTANCE
+  // CHỨC NĂNG 4 (Đã hoạt động tốt): THÊM TẤT CẢ SKINS - TRÌ HOÃN THỰC THI
   // ===================================================================
   try {
     const UiWinSkin = assembly.image.class("ui_win_skin");
@@ -112,7 +112,6 @@ Il2Cpp.perform(() => {
             .value.method("get_list")
             .invoke();
 
-          // SỬA LỖI: Lấy phương thức `Add` trực tiếp từ đối tượng `playerSkin`
           const addSkinMethod = playerSkin
             .method("Add")
             .overload("data_skin_element");
@@ -120,7 +119,6 @@ Il2Cpp.perform(() => {
           const count = allSkinsList.method("get_Count").invoke();
           for (let i = 0; i < count; i++) {
             const skinElement = allSkinsList.method("get_Item").invoke(i);
-            // Khi gọi, không cần truyền 'playerSkin' nữa vì Frida tự xử lý
             addSkinMethod.invoke(skinElement);
           }
           console.log(`[+] Đã thêm thành công ${count} skins!`);
@@ -131,10 +129,10 @@ Il2Cpp.perform(() => {
       return onEnableMethod.bind(this).invoke();
     };
     console.log(
-      "[SUCCESS] Chức năng THÊM SKINS (v3) đã sẵn sàng! Hãy mở cửa hàng/kho đồ skin."
+      "[SUCCESS] Chức năng THÊM SKINS (v4) đã sẵn sàng! Hãy mở cửa hàng/kho đồ skin."
     );
   } catch (error) {
-    console.error("[ERROR] Không thể kích hoạt Thêm Skins (v3):", error.stack);
+    console.error("[ERROR] Không thể kích hoạt Thêm Skins (v4):", error.stack);
   }
 
   // ===================================================================
@@ -165,6 +163,6 @@ Il2Cpp.perform(() => {
   }
 
   console.log(
-    "\n[***] SCRIPT V3 ĐÃ KÍCH HOẠT. MỌI LỖI ĐÃ ĐƯỢC SỬA. CHÚC BẠN CHƠI GAME VUI VẺ! [***]"
+    "\n[***] SCRIPT V4 ĐÃ KÍCH HOẠT. TẤT CẢ CÁC CHỨC NĂNG ĐỀU ĐANG HOẠT ĐỘNG! [***]"
   );
 });

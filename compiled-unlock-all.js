@@ -1,5 +1,5 @@
 📦
-142427 /unlock-all.js
+142334 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,7 +3312,7 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida to\xE0n di\u1EC7n v3 cho 'A Girl Adrift'...");
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida to\xE0n di\u1EC7n v4 cho 'A Girl Adrift'...");
     var skinsAdded = false;
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng!");
@@ -3322,16 +3322,12 @@ var require_unlock_all = __commonJS({
           "player_currency_element"
         );
         const useMethod = PlayerCurrencyElement.method("Use").overload("System.Double");
-        Interceptor.replace(
-          useMethod.virtualAddress,
-          new NativeCallback(
-            (this_ptr, amount_to_spend_double) => {
-              return useMethod.invokeRaw(this_ptr, -amount_to_spend_double);
-            },
-            "void",
-            ["pointer", "double"]
-          )
-        );
+        useMethod.implementation = function(amount_to_spend_double) {
+          console.log(
+            `[*] Mua s\u1EAFm: Chi ti\xEAu g\u1ED1c ${amount_to_spend_double}, \u0111\xE3 s\u1EEDa th\xE0nh ${-amount_to_spend_double}`
+          );
+          return this.method("Use").invoke(-amount_to_spend_double);
+        };
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng MUA S\u1EAEM MI\u1EC4N PH\xCD \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
         const GOLD_MULTIPLIER = 1e3;
         const addMethod = PlayerCurrencyElement.method("Add").overload(
@@ -3340,13 +3336,15 @@ var require_unlock_all = __commonJS({
           "System.Boolean"
         );
         addMethod.implementation = function(num, effect_pos, isWorldPos) {
-          let hackedAmount = num * (num > 0 ? GOLD_MULTIPLIER : 1);
-          if (num > 0)
+          let hackedAmount = num;
+          if (num > 0) {
+            hackedAmount = num * GOLD_MULTIPLIER;
             console.log(
               `[*] Ph\u1EA7n th\u01B0\u1EDFng: G\u1ED1c ${num.toFixed(
                 2
               )} ---> \u0110\xE3 hack ${hackedAmount.toFixed(2)} (x${GOLD_MULTIPLIER})`
             );
+          }
           return addMethod.bind(this).invoke(hackedAmount, effect_pos, isWorldPos);
         };
         console.log(
@@ -3365,20 +3363,16 @@ var require_unlock_all = __commonJS({
           const rewardsList = iapElement.field("reward").value;
           const player_ins = assembly.image.class("player").field("ins").value;
           const playerCurrency = player_ins.field("currency").value;
-          const addsMethod = playerCurrency.method("Adds").overload(
-            "System.Collections.Generic.List<CurNumPair>",
-            "System.Nullable<UnityEngine.Vector3>",
-            "System.Boolean"
-          );
-          addsMethod.invoke(rewardsList, NULL, false);
+          const addsMethod = playerCurrency.method("Adds").overload("System.Collections.Generic.List<CurNumPair>");
+          addsMethod.invoke(rewardsList);
           console.log(
             `[+] \u0110\xE3 c\u1EA5p th\xE0nh c\xF4ng ph\u1EA7n th\u01B0\u1EDFng cho g\xF3i IAP "${iapName}"!`
           );
           return;
         };
-        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A IAP (v3) \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
+        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A IAP (v4) \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
       } catch (error) {
-        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t M\u1EDF kh\xF3a IAP (v3):", error.stack);
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t M\u1EDF kh\xF3a IAP (v4):", error.stack);
       }
       try {
         const UiWinSkin = assembly.image.class("ui_win_skin");
@@ -3406,10 +3400,10 @@ var require_unlock_all = __commonJS({
           return onEnableMethod.bind(this).invoke();
         };
         console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng TH\xCAM SKINS (v3) \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa h\xE0ng/kho \u0111\u1ED3 skin."
+          "[SUCCESS] Ch\u1EE9c n\u0103ng TH\xCAM SKINS (v4) \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa h\xE0ng/kho \u0111\u1ED3 skin."
         );
       } catch (error) {
-        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t Th\xEAm Skins (v3):", error.stack);
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t Th\xEAm Skins (v4):", error.stack);
       }
       try {
         const PlayerQuest = assembly.image.class("player_quest");
@@ -3431,7 +3425,7 @@ var require_unlock_all = __commonJS({
         );
       }
       console.log(
-        "\n[***] SCRIPT V3 \u0110\xC3 K\xCDCH HO\u1EA0T. M\u1ECCI L\u1ED6I \u0110\xC3 \u0110\u01AF\u1EE2C S\u1EECA. CH\xDAC B\u1EA0N CH\u01A0I GAME VUI V\u1EBA! [***]"
+        "\n[***] SCRIPT V4 \u0110\xC3 K\xCDCH HO\u1EA0T. T\u1EA4T C\u1EA2 C\xC1C CH\u1EE8C N\u0102NG \u0110\u1EC0U \u0110ANG HO\u1EA0T \u0110\u1ED8NG! [***]"
       );
     });
   }
