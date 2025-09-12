@@ -11,4 +11,4 @@ def export_tree(startpath, output_file):
                 f.write(f'{subindent}{file}\n')
 
 # Sử dụng với thư mục exize.tapas.girlAdrift
-export_tree('HHPT', 'directory_tree_with_files.txt')
+export_tree(r'C:\Users\tomis\Documents\APK Easy Tool v1.60 Portable\1-Decompiled APKs\mwr', 'directory_tree_with_files.txt')
