@@ -1,10 +1,7 @@
 import "frida-il2cpp-bridge";
 
-console.log(
-  "[*] Bắt đầu script Frida TỰ ĐỘNG HOÀN TOÀN v19 cho 'A Girl Adrift'..."
-);
+console.log("[*] Bắt đầu script Frida TOÀN DIỆN v21 cho 'A Girl Adrift'...");
 
-// Các biến cờ để đảm bảo các hành động chỉ chạy một lần
 let featuresUnlocked = false;
 let skinsAdded = false;
 
@@ -27,7 +24,7 @@ Il2Cpp.perform(() => {
         featuresUnlocked = true;
         console.log("[*] Cửa sổ Cài đặt đã mở. Kích hoạt mở khóa toàn diện...");
 
-        // --- BƯỚC 1: MAX RANK & LEVEL (Tự nhiên) ---
+        // ... (Các bước 1, 2, 3 giữ nguyên)
         try {
           console.log("[*] Bắt đầu hack Rank & Level...");
           const playerCharacter = playerIns.value.field("character").value;
@@ -58,7 +55,6 @@ Il2Cpp.perform(() => {
           console.error("[ERROR] Lỗi khi hack Rank & Level:", e.stack);
         }
 
-        // --- BƯỚC 2: HOÀN THÀNH TẤT CẢ NHIỆM VỤ ---
         try {
           console.log("[*] Bắt đầu hoàn thành tất cả nhiệm vụ...");
           const playerQuest = playerIns.value.field("quest").value;
@@ -88,7 +84,6 @@ Il2Cpp.perform(() => {
           console.error("[ERROR] Lỗi khi hoàn thành nhiệm vụ:", e.stack);
         }
 
-        // --- BƯỚC 3: "ĐÃ BẮT" TẤT CẢ CÁ ---
         try {
           console.log("[*] Bắt đầu thêm tất cả cá vào bộ sưu tập...");
           const playerFish = playerIns.value.field("fish").value;
@@ -100,12 +95,55 @@ Il2Cpp.perform(() => {
             .value.field("list").value;
           const fishCount = allFishList.method("get_Count").invoke();
           for (let i = 0; i < fishCount; i++) {
-            const fishElement = allFishList.method("get_Item").invoke(i);
-            addFishMethod.invoke(fishElement, 1, false);
+            addFishMethod.invoke(
+              allFishList.method("get_Item").invoke(i),
+              1,
+              false
+            );
           }
           console.log(`[+] Đã thêm ${fishCount} loại cá!`);
         } catch (e) {
           console.error("[ERROR] Lỗi khi thêm cá:", e.stack);
+        }
+
+        // --- BƯỚC 4 (SỬA LỖI): MAX LEVEL TẤT CẢ VẬT PHẨM CHẾ TẠO (FARM) ---
+        try {
+          console.log(
+            "[*] Bắt đầu max level tất cả vật phẩm chế tạo (Farm)..."
+          );
+          const playerCraft = playerIns.value.field("craft").value;
+          const allCraftsList = dataIns.value
+            .field("craft")
+            .value.field("elements").value;
+          const getPlayerCraftElementMethod = playerCraft
+            .method("Get_element")
+            .overload("data_craft_element");
+
+          // Lấy class ObscuredInt để tạo giá trị mới
+          const ObscuredInt = assembly.image.class(
+            "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt"
+          );
+
+          const craftCount = allCraftsList.method("get_Count").invoke();
+          let maxedCount = 0;
+
+          for (let i = 0; i < craftCount; i++) {
+            const dataCraftElement = allCraftsList.method("get_Item").invoke(i);
+            const playerCraftElement =
+              getPlayerCraftElementMethod.invoke(dataCraftElement);
+            const needsList = dataCraftElement.field("needs").value;
+            const maxLevel = needsList.method("get_Count").invoke();
+
+            // SỬA LỖI: Tạo một đối tượng ObscuredInt mới và gán nó
+            const newLevelObscured =
+              ObscuredInt.method("op_Implicit").invoke(maxLevel);
+            playerCraftElement.field("lv").value = newLevelObscured;
+
+            maxedCount++;
+          }
+          console.log(`[+] Đã max level ${maxedCount} vật phẩm chế tạo/farm!`);
+        } catch (e) {
+          console.error("[ERROR] Lỗi khi max level vật phẩm chế tạo:", e.stack);
         }
 
         console.log("\n[SUCCESS] Mở khóa toàn diện hoàn tất!");
@@ -119,9 +157,7 @@ Il2Cpp.perform(() => {
     console.error("[ERROR] Không thể kích hoạt hook Cài đặt:", error.stack);
   }
 
-  // ===================================================================
-  // CÁC CHỨC NĂNG HACK LUÔN CHẠY - ĐẶT TRONG CÁC KHỐI TRY...CATCH RIÊNG
-  // ===================================================================
+  // ... (Các chức năng khác giữ nguyên)
   try {
     const gameClass = assembly.image.class("game");
     const fightAttackMethod = gameClass
@@ -142,11 +178,7 @@ Il2Cpp.perform(() => {
       }
     };
     console.log("[SUCCESS] Chức năng ONE-HIT KILL đã được kích hoạt!");
-  } catch (error) {
-    console.error("[ERROR] Không thể kích hoạt One-Hit Kill:", error.stack);
-  }
 
-  try {
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
     );
@@ -206,7 +238,6 @@ Il2Cpp.perform(() => {
     const onEnableSkinMethod = UiWinSkin.method("OnEnable");
     onEnableSkinMethod.implementation = function () {
       if (!skinsAdded) {
-        // 'skinsAdded' bây giờ nằm trong cùng phạm vi
         skinsAdded = true;
         try {
           const playerSkin = playerIns.value.field("skin").value;

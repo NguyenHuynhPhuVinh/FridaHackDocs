@@ -1,5 +1,5 @@
 📦
-146182 /unlock-all.js
+147599 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,9 +3312,7 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log(
-      "[*] B\u1EAFt \u0111\u1EA7u script Frida T\u1EF0 \u0110\u1ED8NG HO\xC0N TO\xC0N v19 cho 'A Girl Adrift'..."
-    );
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida TO\xC0N DI\u1EC6N v21 cho 'A Girl Adrift'...");
     var featuresUnlocked = false;
     var skinsAdded = false;
     Il2Cpp.perform(() => {
@@ -3381,12 +3379,40 @@ var require_unlock_all = __commonJS({
               const allFishList = dataIns.value.field("fish").value.field("list").value;
               const fishCount = allFishList.method("get_Count").invoke();
               for (let i = 0; i < fishCount; i++) {
-                const fishElement = allFishList.method("get_Item").invoke(i);
-                addFishMethod.invoke(fishElement, 1, false);
+                addFishMethod.invoke(
+                  allFishList.method("get_Item").invoke(i),
+                  1,
+                  false
+                );
               }
               console.log(`[+] \u0110\xE3 th\xEAm ${fishCount} lo\u1EA1i c\xE1!`);
             } catch (e) {
               console.error("[ERROR] L\u1ED7i khi th\xEAm c\xE1:", e.stack);
+            }
+            try {
+              console.log(
+                "[*] B\u1EAFt \u0111\u1EA7u max level t\u1EA5t c\u1EA3 v\u1EADt ph\u1EA9m ch\u1EBF t\u1EA1o (Farm)..."
+              );
+              const playerCraft = playerIns.value.field("craft").value;
+              const allCraftsList = dataIns.value.field("craft").value.field("elements").value;
+              const getPlayerCraftElementMethod = playerCraft.method("Get_element").overload("data_craft_element");
+              const ObscuredInt = assembly.image.class(
+                "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt"
+              );
+              const craftCount = allCraftsList.method("get_Count").invoke();
+              let maxedCount = 0;
+              for (let i = 0; i < craftCount; i++) {
+                const dataCraftElement = allCraftsList.method("get_Item").invoke(i);
+                const playerCraftElement = getPlayerCraftElementMethod.invoke(dataCraftElement);
+                const needsList = dataCraftElement.field("needs").value;
+                const maxLevel = needsList.method("get_Count").invoke();
+                const newLevelObscured = ObscuredInt.method("op_Implicit").invoke(maxLevel);
+                playerCraftElement.field("lv").value = newLevelObscured;
+                maxedCount++;
+              }
+              console.log(`[+] \u0110\xE3 max level ${maxedCount} v\u1EADt ph\u1EA9m ch\u1EBF t\u1EA1o/farm!`);
+            } catch (e) {
+              console.error("[ERROR] L\u1ED7i khi max level v\u1EADt ph\u1EA9m ch\u1EBF t\u1EA1o:", e.stack);
             }
             console.log("\n[SUCCESS] M\u1EDF kh\xF3a to\xE0n di\u1EC7n ho\xE0n t\u1EA5t!");
           }
@@ -3414,10 +3440,6 @@ var require_unlock_all = __commonJS({
           }
         };
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng ONE-HIT KILL \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
-      } catch (error) {
-        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t One-Hit Kill:", error.stack);
-      }
-      try {
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
         );
