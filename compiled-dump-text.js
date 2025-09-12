@@ -1,5 +1,5 @@
 📦
-139988 /agent.js
+138695 /dump-only.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3307,97 +3307,68 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
   }
 });
 
-// agent.js
-var require_agent = __commonJS({
-  "agent.js"() {
+// dump-only.js
+var require_dump_only = __commonJS({
+  "dump-only.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script D\u1ECACH GAME REAL-TIME (Agent)...");
-    var translationCache = /* @__PURE__ */ new Map();
-    rpc.exports.onReceiveTranslation = function(originalText, translatedText) {
-      if (originalText && translatedText) {
-        translationCache.set(originalText, {
-          status: "translated",
-          value: translatedText
-        });
+    console.log("[*] B\u1EAFt \u0111\u1EA7u script DUMP T\u0102NG TR\u01AF\u1EDENG...");
+    var knownKeys = /* @__PURE__ */ new Set();
+    var newlyDumpedStrings = /* @__PURE__ */ new Map();
+    var newStringsCount = 0;
+    rpc.exports.initialize = function(existingKeys) {
+      if (existingKeys && Array.isArray(existingKeys)) {
+        for (const key of existingKeys) {
+          knownKeys.add(key);
+        }
+        console.log(`[+] \u0110\xE3 nh\u1EADn ${knownKeys.size} key \u0111\xE3 t\u1ED3n t\u1EA1i t\u1EEB Python.`);
       }
     };
-    rpc.exports.onTranslationError = function(originalText) {
-      if (originalText) {
-        translationCache.set(originalText, {
-          status: "error",
-          value: originalText
+    rpc.exports.getNewStrings = function() {
+      if (newStringsCount > 0) {
+        const outputObject = Object.fromEntries(newlyDumpedStrings);
+        send({
+          type: "dump_result",
+          payload: outputObject,
+          count: newStringsCount
         });
+        console.log(`
+[SUCCESS] \u0110\xE3 g\u1EEDi ${newStringsCount} chu\u1ED7i m\u1EDBi v\u1EC1 Python.`);
+      } else {
+        console.log("\n[*] Kh\xF4ng c\xF3 chu\u1ED7i m\u1EDBi n\xE0o \u0111\u1EC3 g\u1EEDi v\u1EC1.");
+        send({ type: "dump_result", payload: {}, count: 0 });
       }
     };
     Il2Cpp.perform(() => {
-      console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng!");
-      const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
+      console.log("[+] \u0110\xE3 k\u1EBFt n\u1ED1i. \u0110ang hook \u0111\u1EC3 dump...");
       try {
-        const StringFormat = assembly.image.class("stringFormat");
+        const StringFormat = Il2Cpp.domain.assembly("Assembly-CSharp").image.class("stringFormat");
         const getLanguageMethod = StringFormat.method("get_language").overload("System.String");
         getLanguageMethod.implementation = function(code) {
           const originalText = getLanguageMethod.invoke(code);
-          const textContent = originalText.content;
-          if (textContent && textContent.length > 1 && !translationCache.has(textContent)) {
-            translationCache.set(textContent, { status: "pending" });
-            send({ type: "translate", text: textContent });
+          if (originalText && !originalText.handle.isNull()) {
+            const codeContent = code.content;
+            if (codeContent && !knownKeys.has(codeContent)) {
+              const originalTextContent = originalText.content;
+              if (originalTextContent) {
+                knownKeys.add(codeContent);
+                newlyDumpedStrings.set(codeContent, originalTextContent);
+                newStringsCount++;
+                if (newStringsCount % 50 === 0) {
+                  console.log(`[+] \u0110\xE3 t\xECm th\u1EA5y ${newStringsCount} chu\u1ED7i m\u1EDBi...`);
+                }
+              }
+            }
           }
           return originalText;
         };
-        console.log("[SUCCESS] Hook 1: \u0110\xE3 c\xE0i \u0111\u1EB7t b\u1ED9 b\u1EAFt v\xE0 g\u1EEDi v\u0103n b\u1EA3n.");
+        console.log(
+          "[SUCCESS] Hook dump \u0111\xE3 \u0111\u01B0\u1EE3c c\xE0i \u0111\u1EB7t. H\xE3y ch\u01A1i game \u0111\u1EC3 thu th\u1EADp text."
+        );
       } catch (e) {
-        console.error("[ERROR] Hook 1 th\u1EA5t b\u1EA1i:", e.stack);
+        console.error("[ERROR] Hook dump th\u1EA5t b\u1EA1i:", e.stack);
       }
-      try {
-        const HyperText = assembly.image.class("GarlicText.UI.HyperText");
-        const setTextMethod = HyperText.method("set_text");
-        setTextMethod.implementation = function(text) {
-          const callOriginal = () => setTextMethod.bind(this).invoke(text);
-          if (text == null || text.handle.isNull()) {
-            return callOriginal();
-          }
-          const textContent = text.content;
-          if (!textContent) {
-            return callOriginal();
-          }
-          const cached = translationCache.get(textContent);
-          if (cached && cached.status === "translated") {
-            const translatedString = Il2Cpp.string(cached.value);
-            return setTextMethod.bind(this).invoke(translatedString);
-          } else {
-            if (this.hasOwnProperty("_translationInterval")) {
-              clearInterval(this._translationInterval);
-            }
-            const self = this;
-            const checkInterval = 100;
-            let attempts = 100;
-            this._translationInterval = setInterval(() => {
-              const latestCache = translationCache.get(textContent);
-              attempts--;
-              if (latestCache && (latestCache.status === "translated" || latestCache.status === "error") || attempts <= 0) {
-                clearInterval(self._translationInterval);
-                delete self._translationInterval;
-                if (latestCache && latestCache.status === "translated") {
-                  try {
-                    if (!self.handle.isNull()) {
-                      const translatedString = Il2Cpp.string(latestCache.value);
-                      setTextMethod.invoke(self, translatedString);
-                    }
-                  } catch (e) {
-                  }
-                }
-              }
-            }, checkInterval);
-            return callOriginal();
-          }
-        };
-        console.log("[SUCCESS] Hook 2: \u0110\xE3 c\xE0i \u0111\u1EB7t b\u1ED9 c\u1EADp nh\u1EADt UI.");
-      } catch (e) {
-        console.error("[ERROR] Hook 2 th\u1EA5t b\u1EA1i:", e.stack);
-      }
-      console.log("\n[***] AGENT D\u1ECACH \u0110\xC3 S\u1EB4N S\xC0NG, CH\u1EDC L\u1EC6NH T\u1EEA PYTHON! [***]");
     });
   }
 });
-export default require_agent();
+export default require_dump_only();
