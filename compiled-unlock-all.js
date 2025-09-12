@@ -1,5 +1,5 @@
 📦
-144779 /unlock-all.js
+146182 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3313,7 +3313,7 @@ var require_unlock_all = __commonJS({
     init_node_globals();
     init_dist();
     console.log(
-      "[*] B\u1EAFt \u0111\u1EA7u script Frida T\u1EF0 \u0110\u1ED8NG HO\xC0N TO\xC0N v17 cho 'A Girl Adrift'..."
+      "[*] B\u1EAFt \u0111\u1EA7u script Frida T\u1EF0 \u0110\u1ED8NG HO\xC0N TO\xC0N v19 cho 'A Girl Adrift'..."
     );
     var featuresUnlocked = false;
     var skinsAdded = false;
@@ -3329,9 +3329,7 @@ var require_unlock_all = __commonJS({
         onEnableSettingMethod.implementation = function() {
           if (!featuresUnlocked) {
             featuresUnlocked = true;
-            console.log(
-              "[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. K\xEDch ho\u1EA1t to\xE0n b\u1ED9 hack m\u1ED9t l\u1EA7n..."
-            );
+            console.log("[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. K\xEDch ho\u1EA1t m\u1EDF kh\xF3a to\xE0n di\u1EC7n...");
             try {
               console.log("[*] B\u1EAFt \u0111\u1EA7u hack Rank & Level...");
               const playerCharacter = playerIns.value.field("character").value;
@@ -3340,12 +3338,22 @@ var require_unlock_all = __commonJS({
               const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
               let currentRank = playerCharacter.method("get_rank").invoke();
               if (MAX_RANK > currentRank) {
-                playerCharacter.method("Godmod_Set_Rank").invoke(MAX_RANK);
+                const addRankMethod = playerCharacter.method("Add_Rank");
+                for (let i = 0; i < MAX_RANK - currentRank; i++)
+                  addRankMethod.invoke();
               }
-              playerCharacter.method("Godmod_Set_Lv_Max").invoke();
-              console.log("[+] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng!");
+              const getLvMaxMethod = dataSettingInstance.method("Get_lvMax").overload("System.Int32");
+              const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
+              let currentLevel = playerCharacter.method("get_lv").invoke();
+              const getExpNeedMethod = playerCharacter.method("get_exp_need");
+              const addExpMethod = playerCharacter.method("Add_Exp").overload("System.Single");
+              while (currentLevel < maxLevelForRank) {
+                addExpMethod.invoke(getExpNeedMethod.invoke());
+                currentLevel = playerCharacter.method("get_lv").invoke();
+              }
+              console.log("[+] \u0110\xE3 max Rank v\xE0 Level!");
             } catch (e) {
-              console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
+              console.error("[ERROR] L\u1ED7i khi hack Rank & Level:", e.stack);
             }
             try {
               console.log("[*] B\u1EAFt \u0111\u1EA7u ho\xE0n th\xE0nh t\u1EA5t c\u1EA3 nhi\u1EC7m v\u1EE5...");
@@ -3353,26 +3361,39 @@ var require_unlock_all = __commonJS({
               const finishQuestMethod = playerQuest.method("Finish_Quest").overload("data_quest_element", "UnityEngine.Vector3");
               const allQuestsList = dataIns.value.field("quest").value.method("get_quest_list").invoke();
               const questsIterator = allQuestsList.method("GetEnumerator").invoke();
-              const Vector3 = Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Vector3");
-              const zeroVector = Vector3.alloc();
-              zeroVector.method(".ctor").invoke(0, 0, 0);
+              const zeroVector = Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Vector3").alloc().unbox();
               let completedCount = 0;
               while (questsIterator.method("MoveNext").invoke()) {
-                const questElement = questsIterator.method("get_Current").invoke();
-                finishQuestMethod.invoke(questElement, zeroVector.unbox());
+                finishQuestMethod.invoke(
+                  questsIterator.method("get_Current").invoke(),
+                  zeroVector
+                );
                 completedCount++;
               }
-              console.log(
-                `[+] \u0110\xE3 ho\xE0n th\xE0nh ${completedCount} nhi\u1EC7m v\u1EE5! T\u1EA5t c\u1EA3 t\xEDnh n\u0103ng \u0111\xE3 \u0111\u01B0\u1EE3c m\u1EDF kh\xF3a.`
-              );
+              console.log(`[+] \u0110\xE3 ho\xE0n th\xE0nh ${completedCount} nhi\u1EC7m v\u1EE5!`);
             } catch (e) {
               console.error("[ERROR] L\u1ED7i khi ho\xE0n th\xE0nh nhi\u1EC7m v\u1EE5:", e.stack);
             }
+            try {
+              console.log("[*] B\u1EAFt \u0111\u1EA7u th\xEAm t\u1EA5t c\u1EA3 c\xE1 v\xE0o b\u1ED9 s\u01B0u t\u1EADp...");
+              const playerFish = playerIns.value.field("fish").value;
+              const addFishMethod = playerFish.method("Add_fish").overload("data_fish_element", "System.Int32", "System.Boolean");
+              const allFishList = dataIns.value.field("fish").value.field("list").value;
+              const fishCount = allFishList.method("get_Count").invoke();
+              for (let i = 0; i < fishCount; i++) {
+                const fishElement = allFishList.method("get_Item").invoke(i);
+                addFishMethod.invoke(fishElement, 1, false);
+              }
+              console.log(`[+] \u0110\xE3 th\xEAm ${fishCount} lo\u1EA1i c\xE1!`);
+            } catch (e) {
+              console.error("[ERROR] L\u1ED7i khi th\xEAm c\xE1:", e.stack);
+            }
+            console.log("\n[SUCCESS] M\u1EDF kh\xF3a to\xE0n di\u1EC7n ho\xE0n t\u1EA5t!");
           }
           return onEnableSettingMethod.bind(this).invoke();
         };
         console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng MAX RANK/LEVEL & UNLOCK ALL FEATURES \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t."
+          "[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A TO\xC0N DI\u1EC6N \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t."
         );
       } catch (error) {
         console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t hook C\xE0i \u0111\u1EB7t:", error.stack);

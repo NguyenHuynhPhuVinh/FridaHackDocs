@@ -1,7 +1,7 @@
 import "frida-il2cpp-bridge";
 
 console.log(
-  "[*] Bắt đầu script Frida TỰ ĐỘNG HOÀN TOÀN v17 cho 'A Girl Adrift'..."
+  "[*] Bắt đầu script Frida TỰ ĐỘNG HOÀN TOÀN v19 cho 'A Girl Adrift'..."
 );
 
 // Các biến cờ để đảm bảo các hành động chỉ chạy một lần
@@ -16,7 +16,7 @@ Il2Cpp.perform(() => {
   const gameIns = assembly.image.class("game").field("ins");
 
   // ===================================================================
-  // KÍCH HOẠT TẤT CẢ TÍNH NĂNG MỘT LẦN KHI MỞ CÀI ĐẶT
+  // KÍCH HOẠT MỞ KHÓA TOÀN DIỆN KHI MỞ CÀI ĐẶT
   // ===================================================================
   try {
     const UiWinSetting = assembly.image.class("ui_win_setting");
@@ -25,11 +25,9 @@ Il2Cpp.perform(() => {
     onEnableSettingMethod.implementation = function () {
       if (!featuresUnlocked) {
         featuresUnlocked = true;
-        console.log(
-          "[*] Cửa sổ Cài đặt đã mở. Kích hoạt toàn bộ hack một lần..."
-        );
+        console.log("[*] Cửa sổ Cài đặt đã mở. Kích hoạt mở khóa toàn diện...");
 
-        // --- BƯỚC 1: MAX RANK & LEVEL ---
+        // --- BƯỚC 1: MAX RANK & LEVEL (Tự nhiên) ---
         try {
           console.log("[*] Bắt đầu hack Rank & Level...");
           const playerCharacter = playerIns.value.field("character").value;
@@ -38,12 +36,26 @@ Il2Cpp.perform(() => {
           const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
           let currentRank = playerCharacter.method("get_rank").invoke();
           if (MAX_RANK > currentRank) {
-            playerCharacter.method("Godmod_Set_Rank").invoke(MAX_RANK);
+            const addRankMethod = playerCharacter.method("Add_Rank");
+            for (let i = 0; i < MAX_RANK - currentRank; i++)
+              addRankMethod.invoke();
           }
-          playerCharacter.method("Godmod_Set_Lv_Max").invoke();
-          console.log("[+] Đã hack Rank và Level thành công!");
+          const getLvMaxMethod = dataSettingInstance
+            .method("Get_lvMax")
+            .overload("System.Int32");
+          const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
+          let currentLevel = playerCharacter.method("get_lv").invoke();
+          const getExpNeedMethod = playerCharacter.method("get_exp_need");
+          const addExpMethod = playerCharacter
+            .method("Add_Exp")
+            .overload("System.Single");
+          while (currentLevel < maxLevelForRank) {
+            addExpMethod.invoke(getExpNeedMethod.invoke());
+            currentLevel = playerCharacter.method("get_lv").invoke();
+          }
+          console.log("[+] Đã max Rank và Level!");
         } catch (e) {
-          console.error("[ERROR] Lỗi khi đang hack Rank & Level:", e.stack);
+          console.error("[ERROR] Lỗi khi hack Rank & Level:", e.stack);
         }
 
         // --- BƯỚC 2: HOÀN THÀNH TẤT CẢ NHIỆM VỤ ---
@@ -58,38 +70,57 @@ Il2Cpp.perform(() => {
             .value.method("get_quest_list")
             .invoke();
           const questsIterator = allQuestsList.method("GetEnumerator").invoke();
-
-          // SỬA LỖI: Tạo một đối tượng Vector3 rỗng để truyền vào
-          const Vector3 = Il2Cpp.domain
+          const zeroVector = Il2Cpp.domain
             .assembly("UnityEngine.CoreModule")
-            .image.class("UnityEngine.Vector3");
-          const zeroVector = Vector3.alloc();
-          zeroVector.method(".ctor").invoke(0, 0, 0);
-
+            .image.class("UnityEngine.Vector3")
+            .alloc()
+            .unbox();
           let completedCount = 0;
           while (questsIterator.method("MoveNext").invoke()) {
-            const questElement = questsIterator.method("get_Current").invoke();
-            finishQuestMethod.invoke(questElement, zeroVector.unbox());
+            finishQuestMethod.invoke(
+              questsIterator.method("get_Current").invoke(),
+              zeroVector
+            );
             completedCount++;
           }
-          console.log(
-            `[+] Đã hoàn thành ${completedCount} nhiệm vụ! Tất cả tính năng đã được mở khóa.`
-          );
+          console.log(`[+] Đã hoàn thành ${completedCount} nhiệm vụ!`);
         } catch (e) {
           console.error("[ERROR] Lỗi khi hoàn thành nhiệm vụ:", e.stack);
         }
+
+        // --- BƯỚC 3: "ĐÃ BẮT" TẤT CẢ CÁ ---
+        try {
+          console.log("[*] Bắt đầu thêm tất cả cá vào bộ sưu tập...");
+          const playerFish = playerIns.value.field("fish").value;
+          const addFishMethod = playerFish
+            .method("Add_fish")
+            .overload("data_fish_element", "System.Int32", "System.Boolean");
+          const allFishList = dataIns.value
+            .field("fish")
+            .value.field("list").value;
+          const fishCount = allFishList.method("get_Count").invoke();
+          for (let i = 0; i < fishCount; i++) {
+            const fishElement = allFishList.method("get_Item").invoke(i);
+            addFishMethod.invoke(fishElement, 1, false);
+          }
+          console.log(`[+] Đã thêm ${fishCount} loại cá!`);
+        } catch (e) {
+          console.error("[ERROR] Lỗi khi thêm cá:", e.stack);
+        }
+
+        console.log("\n[SUCCESS] Mở khóa toàn diện hoàn tất!");
       }
       return onEnableSettingMethod.bind(this).invoke();
     };
     console.log(
-      "[SUCCESS] Chức năng MAX RANK/LEVEL & UNLOCK ALL FEATURES đã sẵn sàng! Hãy mở cửa sổ Cài đặt."
+      "[SUCCESS] Chức năng MỞ KHÓA TOÀN DIỆN đã sẵn sàng! Hãy mở cửa sổ Cài đặt."
     );
   } catch (error) {
     console.error("[ERROR] Không thể kích hoạt hook Cài đặt:", error.stack);
   }
 
   // ===================================================================
-  // CÁC CHỨC NĂNG HACK LUÔN CHẠY
+  // CÁC CHỨC NĂNG HACK LUÔN CHẠY - ĐẶT TRONG CÁC KHỐI TRY...CATCH RIÊNG
   // ===================================================================
   try {
     const gameClass = assembly.image.class("game");
@@ -175,6 +206,7 @@ Il2Cpp.perform(() => {
     const onEnableSkinMethod = UiWinSkin.method("OnEnable");
     onEnableSkinMethod.implementation = function () {
       if (!skinsAdded) {
+        // 'skinsAdded' bây giờ nằm trong cùng phạm vi
         skinsAdded = true;
         try {
           const playerSkin = playerIns.value.field("skin").value;
