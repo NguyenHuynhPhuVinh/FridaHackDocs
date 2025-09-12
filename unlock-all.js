@@ -1,9 +1,12 @@
 import "frida-il2cpp-bridge";
 
-console.log("[*] Bắt đầu script Frida HOÀN CHỈNH v15 cho 'A Girl Adrift'...");
+console.log(
+  "[*] Bắt đầu script Frida TỰ ĐỘNG HOÀN TOÀN v17 cho 'A Girl Adrift'..."
+);
 
+// Các biến cờ để đảm bảo các hành động chỉ chạy một lần
+let featuresUnlocked = false;
 let skinsAdded = false;
-let rankMaxed = false;
 
 Il2Cpp.perform(() => {
   console.log("[+] Il2Cpp Bridge đã sẵn sàng!");
@@ -13,93 +16,106 @@ Il2Cpp.perform(() => {
   const gameIns = assembly.image.class("game").field("ins");
 
   // ===================================================================
-  // CHỨC NĂNG 7 (HOÀN THIỆN): ONE-HIT KILL - SÁT THƯƠNG THÔNG MINH
+  // KÍCH HOẠT TẤT CẢ TÍNH NĂNG MỘT LẦN KHI MỞ CÀI ĐẶT
+  // ===================================================================
+  try {
+    const UiWinSetting = assembly.image.class("ui_win_setting");
+    const onEnableSettingMethod = UiWinSetting.method("OnEnable");
+
+    onEnableSettingMethod.implementation = function () {
+      if (!featuresUnlocked) {
+        featuresUnlocked = true;
+        console.log(
+          "[*] Cửa sổ Cài đặt đã mở. Kích hoạt toàn bộ hack một lần..."
+        );
+
+        // --- BƯỚC 1: MAX RANK & LEVEL ---
+        try {
+          console.log("[*] Bắt đầu hack Rank & Level...");
+          const playerCharacter = playerIns.value.field("character").value;
+          const DataSettingClass = assembly.image.class("data_setting");
+          const dataSettingInstance = dataIns.value.field("setting").value;
+          const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
+          let currentRank = playerCharacter.method("get_rank").invoke();
+          if (MAX_RANK > currentRank) {
+            playerCharacter.method("Godmod_Set_Rank").invoke(MAX_RANK);
+          }
+          playerCharacter.method("Godmod_Set_Lv_Max").invoke();
+          console.log("[+] Đã hack Rank và Level thành công!");
+        } catch (e) {
+          console.error("[ERROR] Lỗi khi đang hack Rank & Level:", e.stack);
+        }
+
+        // --- BƯỚC 2: HOÀN THÀNH TẤT CẢ NHIỆM VỤ ---
+        try {
+          console.log("[*] Bắt đầu hoàn thành tất cả nhiệm vụ...");
+          const playerQuest = playerIns.value.field("quest").value;
+          const finishQuestMethod = playerQuest
+            .method("Finish_Quest")
+            .overload("data_quest_element", "UnityEngine.Vector3");
+          const allQuestsList = dataIns.value
+            .field("quest")
+            .value.method("get_quest_list")
+            .invoke();
+          const questsIterator = allQuestsList.method("GetEnumerator").invoke();
+
+          // SỬA LỖI: Tạo một đối tượng Vector3 rỗng để truyền vào
+          const Vector3 = Il2Cpp.domain
+            .assembly("UnityEngine.CoreModule")
+            .image.class("UnityEngine.Vector3");
+          const zeroVector = Vector3.alloc();
+          zeroVector.method(".ctor").invoke(0, 0, 0);
+
+          let completedCount = 0;
+          while (questsIterator.method("MoveNext").invoke()) {
+            const questElement = questsIterator.method("get_Current").invoke();
+            finishQuestMethod.invoke(questElement, zeroVector.unbox());
+            completedCount++;
+          }
+          console.log(
+            `[+] Đã hoàn thành ${completedCount} nhiệm vụ! Tất cả tính năng đã được mở khóa.`
+          );
+        } catch (e) {
+          console.error("[ERROR] Lỗi khi hoàn thành nhiệm vụ:", e.stack);
+        }
+      }
+      return onEnableSettingMethod.bind(this).invoke();
+    };
+    console.log(
+      "[SUCCESS] Chức năng MAX RANK/LEVEL & UNLOCK ALL FEATURES đã sẵn sàng! Hãy mở cửa sổ Cài đặt."
+    );
+  } catch (error) {
+    console.error("[ERROR] Không thể kích hoạt hook Cài đặt:", error.stack);
+  }
+
+  // ===================================================================
+  // CÁC CHỨC NĂNG HACK LUÔN CHẠY
   // ===================================================================
   try {
     const gameClass = assembly.image.class("game");
     const fightAttackMethod = gameClass
       .method("Fight_Attack")
       .overload("System.Double", "System.Boolean");
-
     fightAttackMethod.implementation = function (original_damage, isCrit) {
       try {
-        // Lấy đối tượng game_fish để biết máu của cá hiện tại
         const gameFish = gameIns.value.field("fish").value;
-
-        // Lấy đối tượng ValueType ObscuredDouble chứa máu tối đa của cá
         const fishMaxHealthObscured = gameFish.field(
           "<life>k__BackingField"
         ).value;
-
-        // SỬA LỖI: Gọi phương thức InternalDecrypt() trên đối tượng ValueType để lấy giá trị double thực sự
         const fishMaxHealth = fishMaxHealthObscured
           .method("InternalDecrypt")
           .invoke();
-
-        console.log(
-          `[*] One-Hit Kill: Sát thương gốc ${original_damage.toFixed(
-            0
-          )}, đã sửa thành máu tối đa của cá (${fishMaxHealth.toFixed(0)})`
-        );
-
-        // Gọi hàm gốc với sát thương bằng máu tối đa của cá
         return fightAttackMethod.bind(this).invoke(fishMaxHealth, true);
       } catch (e) {
-        console.error(`[ERROR] Lỗi bên trong One-Hit Kill: ${e.stack}`);
-        // Nếu có lỗi, gọi lại hàm gốc để game không bị crash
         return fightAttackMethod.bind(this).invoke(original_damage, isCrit);
       }
     };
-    console.log("[SUCCESS] Chức năng ONE-HIT KILL (v15) đã được kích hoạt!");
+    console.log("[SUCCESS] Chức năng ONE-HIT KILL đã được kích hoạt!");
   } catch (error) {
     console.error("[ERROR] Không thể kích hoạt One-Hit Kill:", error.stack);
   }
 
-  // ===================================================================
-  // CÁC CHỨC NĂNG CÒN LẠI (Đã hoạt động tốt)
-  // ===================================================================
   try {
-    const UiWinSetting = assembly.image.class("ui_win_setting");
-    const onEnableSettingMethod = UiWinSetting.method("OnEnable");
-    onEnableSettingMethod.implementation = function () {
-      if (!rankMaxed) {
-        rankMaxed = true;
-        console.log("[*] Cửa sổ Cài đặt đã mở. Bắt đầu hack Rank & Level...");
-        try {
-          const playerCharacter = playerIns.value.field("character").value;
-          const DataSettingClass = assembly.image.class("data_setting");
-          const dataSettingInstance = dataIns.value.field("setting").value;
-          const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
-          let currentRank = playerCharacter.method("get_rank").invoke();
-          const ranksToAdd = MAX_RANK - currentRank;
-          if (ranksToAdd > 0) {
-            const addRankMethod = playerCharacter.method("Add_Rank");
-            for (let i = 0; i < ranksToAdd; i++) addRankMethod.invoke();
-          }
-          const getLvMaxMethod = dataSettingInstance
-            .method("Get_lvMax")
-            .overload("System.Int32");
-          const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
-          let currentLevel = playerCharacter.method("get_lv").invoke();
-          const getExpNeedMethod = playerCharacter.method("get_exp_need");
-          const addExpMethod = playerCharacter
-            .method("Add_Exp")
-            .overload("System.Single");
-          while (currentLevel < maxLevelForRank) {
-            addExpMethod.invoke(getExpNeedMethod.invoke());
-            currentLevel = playerCharacter.method("get_lv").invoke();
-          }
-          console.log("[SUCCESS] Đã hack Rank và Level thành công!");
-        } catch (e) {
-          console.error("[ERROR] Lỗi khi đang hack Rank & Level:", e.stack);
-        }
-      }
-      return onEnableSettingMethod.bind(this).invoke();
-    };
-    console.log(
-      "[SUCCESS] Chức năng MAX RANK & LEVEL đã sẵn sàng! Hãy mở cửa sổ Cài đặt (Settings)."
-    );
-
     const PlayerCurrencyElement = assembly.image.class(
       "player_currency_element"
     );
@@ -117,8 +133,7 @@ Il2Cpp.perform(() => {
       "System.Boolean"
     );
     addMethod.implementation = function (num, effect_pos, isWorldPos) {
-      const self = this;
-      const dataElement = self.field("<element>k__BackingField").value;
+      const dataElement = this.field("<element>k__BackingField").value;
       const maxField = dataElement.field("max");
       const originalMax = maxField.value;
       const ObscuredDouble = assembly.image.class(
@@ -128,12 +143,6 @@ Il2Cpp.perform(() => {
         Number.MAX_SAFE_INTEGER
       );
       let hackedAmount = num > 0 ? num * GOLD_MULTIPLIER : num;
-      if (num > 0)
-        console.log(
-          `[*] Phần thưởng: Gốc ${num.toFixed(
-            2
-          )} -> Hack ${hackedAmount.toFixed(2)}`
-        );
       const result = addMethod
         .bind(this)
         .invoke(hackedAmount, effect_pos, isWorldPos);
@@ -150,28 +159,23 @@ Il2Cpp.perform(() => {
       .overload("data_iap_element");
     purchaseMethod.implementation = function (iap_element_obj) {
       const iapElement = new Il2Cpp.Object(iap_element_obj);
-      const iapName = iapElement
-        .method("get_name_withoutPrefix")
-        .invoke().content;
-      console.log(`[*] Chặn mua IAP: "${iapName}". Tự cấp phần thưởng...`);
-      const rewardsList = iapElement.field("reward").value;
       const playerCurrency = playerIns.value.field("currency").value;
       const addsMethod = playerCurrency
         .method("Adds")
         .overload("System.Collections.Generic.List<CurNumPair>");
-      addsMethod.invoke(rewardsList);
-      console.log(
-        `[+] Đã cấp thành công phần thưởng cho gói IAP "${iapName}"!`
-      );
+      addsMethod.invoke(iapElement.field("reward").value);
     };
     console.log("[SUCCESS] Chức năng MỞ KHÓA IAP đã được kích hoạt!");
+  } catch (error) {
+    console.error("[ERROR] Lỗi ở chức năng Tiền tệ/Vàng/IAP:", error.stack);
+  }
 
+  try {
     const UiWinSkin = assembly.image.class("ui_win_skin");
     const onEnableSkinMethod = UiWinSkin.method("OnEnable");
     onEnableSkinMethod.implementation = function () {
       if (!skinsAdded) {
         skinsAdded = true;
-        console.log("[*] Cửa sổ skin đã mở. Bắt đầu thêm tất cả skins...");
         try {
           const playerSkin = playerIns.value.field("skin").value;
           const allSkinsList = dataIns.value
@@ -191,26 +195,9 @@ Il2Cpp.perform(() => {
       }
       return onEnableSkinMethod.bind(this).invoke();
     };
-    console.log(
-      "[SUCCESS] Chức năng THÊM SKINS đã sẵn sàng! Hãy mở cửa hàng/kho đồ skin."
-    );
-
-    const PlayerQuest = assembly.image.class("player_quest");
-    const isCompletedMethod =
-      PlayerQuest.method("Is_Completed_Quest").overload("data_quest_element");
-    isCompletedMethod.implementation = function (quest_element) {
-      if (isCompletedMethod.bind(this).invoke(quest_element)) return true;
-      console.log(`[*] Vượt qua yêu cầu nhiệm vụ.`);
-      return true;
-    };
-    console.log(
-      "[SUCCESS] Chức năng VƯỢT QUA YÊU CẦU NHIỆM VỤ đã được kích hoạt!"
-    );
+    console.log("[SUCCESS] Chức năng THÊM SKINS đã sẵn sàng!");
   } catch (error) {
-    console.error(
-      "[ERROR] Lỗi khi thiết lập các chức năng cơ bản:",
-      error.stack
-    );
+    console.error("[ERROR] Lỗi khi hook chức năng thêm skin:", error.stack);
   }
 
   console.log(

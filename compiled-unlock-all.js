@@ -1,5 +1,5 @@
 📦
-145424 /unlock-all.js
+144779 /unlock-all.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,15 +3312,71 @@ var require_unlock_all = __commonJS({
   "unlock-all.js"() {
     init_node_globals();
     init_dist();
-    console.log("[*] B\u1EAFt \u0111\u1EA7u script Frida HO\xC0N CH\u1EC8NH v15 cho 'A Girl Adrift'...");
+    console.log(
+      "[*] B\u1EAFt \u0111\u1EA7u script Frida T\u1EF0 \u0110\u1ED8NG HO\xC0N TO\xC0N v17 cho 'A Girl Adrift'..."
+    );
+    var featuresUnlocked = false;
     var skinsAdded = false;
-    var rankMaxed = false;
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng!");
       const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
       const playerIns = assembly.image.class("player").field("ins");
       const dataIns = assembly.image.class("data").field("ins");
       const gameIns = assembly.image.class("game").field("ins");
+      try {
+        const UiWinSetting = assembly.image.class("ui_win_setting");
+        const onEnableSettingMethod = UiWinSetting.method("OnEnable");
+        onEnableSettingMethod.implementation = function() {
+          if (!featuresUnlocked) {
+            featuresUnlocked = true;
+            console.log(
+              "[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. K\xEDch ho\u1EA1t to\xE0n b\u1ED9 hack m\u1ED9t l\u1EA7n..."
+            );
+            try {
+              console.log("[*] B\u1EAFt \u0111\u1EA7u hack Rank & Level...");
+              const playerCharacter = playerIns.value.field("character").value;
+              const DataSettingClass = assembly.image.class("data_setting");
+              const dataSettingInstance = dataIns.value.field("setting").value;
+              const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
+              let currentRank = playerCharacter.method("get_rank").invoke();
+              if (MAX_RANK > currentRank) {
+                playerCharacter.method("Godmod_Set_Rank").invoke(MAX_RANK);
+              }
+              playerCharacter.method("Godmod_Set_Lv_Max").invoke();
+              console.log("[+] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng!");
+            } catch (e) {
+              console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
+            }
+            try {
+              console.log("[*] B\u1EAFt \u0111\u1EA7u ho\xE0n th\xE0nh t\u1EA5t c\u1EA3 nhi\u1EC7m v\u1EE5...");
+              const playerQuest = playerIns.value.field("quest").value;
+              const finishQuestMethod = playerQuest.method("Finish_Quest").overload("data_quest_element", "UnityEngine.Vector3");
+              const allQuestsList = dataIns.value.field("quest").value.method("get_quest_list").invoke();
+              const questsIterator = allQuestsList.method("GetEnumerator").invoke();
+              const Vector3 = Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Vector3");
+              const zeroVector = Vector3.alloc();
+              zeroVector.method(".ctor").invoke(0, 0, 0);
+              let completedCount = 0;
+              while (questsIterator.method("MoveNext").invoke()) {
+                const questElement = questsIterator.method("get_Current").invoke();
+                finishQuestMethod.invoke(questElement, zeroVector.unbox());
+                completedCount++;
+              }
+              console.log(
+                `[+] \u0110\xE3 ho\xE0n th\xE0nh ${completedCount} nhi\u1EC7m v\u1EE5! T\u1EA5t c\u1EA3 t\xEDnh n\u0103ng \u0111\xE3 \u0111\u01B0\u1EE3c m\u1EDF kh\xF3a.`
+              );
+            } catch (e) {
+              console.error("[ERROR] L\u1ED7i khi ho\xE0n th\xE0nh nhi\u1EC7m v\u1EE5:", e.stack);
+            }
+          }
+          return onEnableSettingMethod.bind(this).invoke();
+        };
+        console.log(
+          "[SUCCESS] Ch\u1EE9c n\u0103ng MAX RANK/LEVEL & UNLOCK ALL FEATURES \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t."
+        );
+      } catch (error) {
+        console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t hook C\xE0i \u0111\u1EB7t:", error.stack);
+      }
       try {
         const gameClass = assembly.image.class("game");
         const fightAttackMethod = gameClass.method("Fight_Attack").overload("System.Double", "System.Boolean");
@@ -3331,58 +3387,16 @@ var require_unlock_all = __commonJS({
               "<life>k__BackingField"
             ).value;
             const fishMaxHealth = fishMaxHealthObscured.method("InternalDecrypt").invoke();
-            console.log(
-              `[*] One-Hit Kill: S\xE1t th\u01B0\u01A1ng g\u1ED1c ${original_damage.toFixed(
-                0
-              )}, \u0111\xE3 s\u1EEDa th\xE0nh m\xE1u t\u1ED1i \u0111a c\u1EE7a c\xE1 (${fishMaxHealth.toFixed(0)})`
-            );
             return fightAttackMethod.bind(this).invoke(fishMaxHealth, true);
           } catch (e) {
-            console.error(`[ERROR] L\u1ED7i b\xEAn trong One-Hit Kill: ${e.stack}`);
             return fightAttackMethod.bind(this).invoke(original_damage, isCrit);
           }
         };
-        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng ONE-HIT KILL (v15) \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
+        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng ONE-HIT KILL \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
       } catch (error) {
         console.error("[ERROR] Kh\xF4ng th\u1EC3 k\xEDch ho\u1EA1t One-Hit Kill:", error.stack);
       }
       try {
-        const UiWinSetting = assembly.image.class("ui_win_setting");
-        const onEnableSettingMethod = UiWinSetting.method("OnEnable");
-        onEnableSettingMethod.implementation = function() {
-          if (!rankMaxed) {
-            rankMaxed = true;
-            console.log("[*] C\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u hack Rank & Level...");
-            try {
-              const playerCharacter = playerIns.value.field("character").value;
-              const DataSettingClass = assembly.image.class("data_setting");
-              const dataSettingInstance = dataIns.value.field("setting").value;
-              const MAX_RANK = DataSettingClass.field("MAX_RANK").value;
-              let currentRank = playerCharacter.method("get_rank").invoke();
-              const ranksToAdd = MAX_RANK - currentRank;
-              if (ranksToAdd > 0) {
-                const addRankMethod = playerCharacter.method("Add_Rank");
-                for (let i = 0; i < ranksToAdd; i++) addRankMethod.invoke();
-              }
-              const getLvMaxMethod = dataSettingInstance.method("Get_lvMax").overload("System.Int32");
-              const maxLevelForRank = getLvMaxMethod.invoke(MAX_RANK);
-              let currentLevel = playerCharacter.method("get_lv").invoke();
-              const getExpNeedMethod = playerCharacter.method("get_exp_need");
-              const addExpMethod = playerCharacter.method("Add_Exp").overload("System.Single");
-              while (currentLevel < maxLevelForRank) {
-                addExpMethod.invoke(getExpNeedMethod.invoke());
-                currentLevel = playerCharacter.method("get_lv").invoke();
-              }
-              console.log("[SUCCESS] \u0110\xE3 hack Rank v\xE0 Level th\xE0nh c\xF4ng!");
-            } catch (e) {
-              console.error("[ERROR] L\u1ED7i khi \u0111ang hack Rank & Level:", e.stack);
-            }
-          }
-          return onEnableSettingMethod.bind(this).invoke();
-        };
-        console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng MAX RANK & LEVEL \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa s\u1ED5 C\xE0i \u0111\u1EB7t (Settings)."
-        );
         const PlayerCurrencyElement = assembly.image.class(
           "player_currency_element"
         );
@@ -3398,8 +3412,7 @@ var require_unlock_all = __commonJS({
           "System.Boolean"
         );
         addMethod.implementation = function(num, effect_pos, isWorldPos) {
-          const self = this;
-          const dataElement = self.field("<element>k__BackingField").value;
+          const dataElement = this.field("<element>k__BackingField").value;
           const maxField = dataElement.field("max");
           const originalMax = maxField.value;
           const ObscuredDouble = assembly.image.class(
@@ -3409,12 +3422,6 @@ var require_unlock_all = __commonJS({
             Number.MAX_SAFE_INTEGER
           );
           let hackedAmount = num > 0 ? num * GOLD_MULTIPLIER : num;
-          if (num > 0)
-            console.log(
-              `[*] Ph\u1EA7n th\u01B0\u1EDFng: G\u1ED1c ${num.toFixed(
-                2
-              )} -> Hack ${hackedAmount.toFixed(2)}`
-            );
           const result = addMethod.bind(this).invoke(hackedAmount, effect_pos, isWorldPos);
           maxField.value = originalMax;
           return result;
@@ -3426,23 +3433,20 @@ var require_unlock_all = __commonJS({
         const purchaseMethod = addonIAP.method("Purchase").overload("data_iap_element");
         purchaseMethod.implementation = function(iap_element_obj) {
           const iapElement = new Il2Cpp.Object(iap_element_obj);
-          const iapName = iapElement.method("get_name_withoutPrefix").invoke().content;
-          console.log(`[*] Ch\u1EB7n mua IAP: "${iapName}". T\u1EF1 c\u1EA5p ph\u1EA7n th\u01B0\u1EDFng...`);
-          const rewardsList = iapElement.field("reward").value;
           const playerCurrency = playerIns.value.field("currency").value;
           const addsMethod = playerCurrency.method("Adds").overload("System.Collections.Generic.List<CurNumPair>");
-          addsMethod.invoke(rewardsList);
-          console.log(
-            `[+] \u0110\xE3 c\u1EA5p th\xE0nh c\xF4ng ph\u1EA7n th\u01B0\u1EDFng cho g\xF3i IAP "${iapName}"!`
-          );
+          addsMethod.invoke(iapElement.field("reward").value);
         };
         console.log("[SUCCESS] Ch\u1EE9c n\u0103ng M\u1EDE KH\xD3A IAP \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!");
+      } catch (error) {
+        console.error("[ERROR] L\u1ED7i \u1EDF ch\u1EE9c n\u0103ng Ti\u1EC1n t\u1EC7/V\xE0ng/IAP:", error.stack);
+      }
+      try {
         const UiWinSkin = assembly.image.class("ui_win_skin");
         const onEnableSkinMethod = UiWinSkin.method("OnEnable");
         onEnableSkinMethod.implementation = function() {
           if (!skinsAdded) {
             skinsAdded = true;
-            console.log("[*] C\u1EEDa s\u1ED5 skin \u0111\xE3 m\u1EDF. B\u1EAFt \u0111\u1EA7u th\xEAm t\u1EA5t c\u1EA3 skins...");
             try {
               const playerSkin = playerIns.value.field("skin").value;
               const allSkinsList = dataIns.value.field("skin").value.method("get_list").invoke();
@@ -3457,24 +3461,9 @@ var require_unlock_all = __commonJS({
           }
           return onEnableSkinMethod.bind(this).invoke();
         };
-        console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng TH\xCAM SKINS \u0111\xE3 s\u1EB5n s\xE0ng! H\xE3y m\u1EDF c\u1EEDa h\xE0ng/kho \u0111\u1ED3 skin."
-        );
-        const PlayerQuest = assembly.image.class("player_quest");
-        const isCompletedMethod = PlayerQuest.method("Is_Completed_Quest").overload("data_quest_element");
-        isCompletedMethod.implementation = function(quest_element) {
-          if (isCompletedMethod.bind(this).invoke(quest_element)) return true;
-          console.log(`[*] V\u01B0\u1EE3t qua y\xEAu c\u1EA7u nhi\u1EC7m v\u1EE5.`);
-          return true;
-        };
-        console.log(
-          "[SUCCESS] Ch\u1EE9c n\u0103ng V\u01AF\u1EE2T QUA Y\xCAU C\u1EA6U NHI\u1EC6M V\u1EE4 \u0111\xE3 \u0111\u01B0\u1EE3c k\xEDch ho\u1EA1t!"
-        );
+        console.log("[SUCCESS] Ch\u1EE9c n\u0103ng TH\xCAM SKINS \u0111\xE3 s\u1EB5n s\xE0ng!");
       } catch (error) {
-        console.error(
-          "[ERROR] L\u1ED7i khi thi\u1EBFt l\u1EADp c\xE1c ch\u1EE9c n\u0103ng c\u01A1 b\u1EA3n:",
-          error.stack
-        );
+        console.error("[ERROR] L\u1ED7i khi hook ch\u1EE9c n\u0103ng th\xEAm skin:", error.stack);
       }
       console.log(
         "\n[***] SCRIPT HO\xC0N CH\u1EC8NH \u0110\xC3 K\xCDCH HO\u1EA0T. T\u1EA4T C\u1EA2 T\xCDNH N\u0102NG \u0110\xC3 S\u1EB4N S\xC0NG! [***]"
