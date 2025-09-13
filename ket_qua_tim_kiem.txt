@@ -1,36 +1,364 @@
+Dòng 1544: /*0xf76e40*/ void HandleCheckHitDamage(CharacterBase _attacker, float _fDamage);
+Dòng 1629: /*0x13229f4*/ void HandleCheckRecieveDamage(CharacterBase _, float _fDamage);
+Dòng 1772: /*0x1bc*/ float MultHitDamage;
+Dòng 1773: /*0x1c0*/ float MultHitDamage_Physical;
+Dòng 1774: /*0x1c4*/ float MultHitDamage_Magical;
+Dòng 1779: /*0x1d8*/ float MultDamage_InitData;
+Dòng 1782: /*0x1e4*/ float MultDamageCC;
+Dòng 1783: /*0x1e8*/ float MultDamageBoss;
+Dòng 1786: /*0x1f4*/ float MultDamageCritical_Buff;
+Dòng 1790: /*0x1fc*/ float IgnoreDamagePerMaxHP;
+Dòng 1825: /*0x310*/ System.Action<CharacterBase, int, float> OnAttack_Target_FXID_Damage;
+Dòng 1835: /*0x360*/ System.Action<CharacterBase, float> OnHitWithAttackerDamage_PreCalc;
+Dòng 1836: /*0x368*/ System.Action<CharacterBase, float> OnHitWithAttackerDamage_PostCalc;
+Dòng 1862: /*0x424*/ Battle.DamageResult m_NoDamage;
+Dòng 1863: /*0x42c*/ Battle.DamageResult m_Avoid;
+Dòng 1904: /*0x524*/ float <TMP_ReflectionDamage>k__BackingField;
+Dòng 1905: /*0x528*/ float <TMP_MultHitDamage>k__BackingField;
+Dòng 1906: /*0x52c*/ float <TMP_AddCriticalBeforeCalcDamage>k__BackingField;
+Dòng 1908: /*0x534*/ float <TMP_AddDamage_Physical>k__BackingField;
+Dòng 1909: /*0x538*/ float <TMP_AddDamage_Magical>k__BackingField;
+Dòng 1910: /*0x53c*/ float <Blood_fMultDamage>k__BackingField;
+Dòng 1945: /*0x618*/ UnityEngine.Transform m_DamageMarkerTrans;
+Dòng 2020: /*0xd76768*/ float get_MultDamageCritical();
+Dòng 2073: /*0xd7bf78*/ void CheckMultDamageCriticalWithBuff();
+Dòng 2121: /*0xd7e48c*/ Battle.DamageResult RecievePercentageDamage(CharacterBase _attacker, float _fPercentage, Battle.AttackType _eAttackType, int _nFactionID, int _nSkillID);
 Dòng 2122: /*0xd7e568*/ Battle.DamageResult RecieveDotDamage(CharacterBase _attacker, ref Battle.StatTransfer _statTransfer);
 Dòng 2124: /*0xd7f560*/ Battle.DamageResult RecieveDamage(CharacterBase _attacker, ref Battle.StatTransfer _statTransfer, bool _bAddDamage, System.Nullable<UnityEngine.Vector2> _vAttackPOS);
+Dòng 2125: /*0xd7ed20*/ void GiveDamageResult(Battle.DamageResult _result, bool _bDotDamage, int _nAttackSkillID);
+Dòng 2126: /*0xd7eb30*/ float RecieveShieldDamage(float _fDamage, Battle.AttackType _eAttackType);
+Dòng 2127: /*0xd7e894*/ float RecieveFreezeDamage(float _fDamage);
+Dòng 2129: /*0xd80054*/ float CalcDamage(float _fDamage, float _fDEF);
+Dòng 2157: /*0xd73ef8*/ void SetHP(float _fRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
+Dòng 2158: /*0xd7e10c*/ void AddHP(float _fAddValue, CharacterBase _caster, bool _bAddDamage, Battle.DamageMarkType _eMarkType);
+Dòng 2160: /*0xd7ff04*/ void AddHPWithRatio(float _fAddRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
+Dòng 2161: /*0xd80e1c*/ void AddHPWithRatio_CurHP(float _fAddRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
+Dòng 2261: /*0xd83580*/ float get_TMP_ReflectionDamage();
+Dòng 2262: /*0xd83588*/ void set_TMP_ReflectionDamage(float value);
+Dòng 2263: /*0xd83590*/ float get_TMP_MultHitDamage();
+Dòng 2264: /*0xd83598*/ void set_TMP_MultHitDamage(float value);
+Dòng 2265: /*0xd835a0*/ float get_TMP_AddCriticalBeforeCalcDamage();
+Dòng 2266: /*0xd835a8*/ void set_TMP_AddCriticalBeforeCalcDamage(float value);
+Dòng 2269: /*0xd835c0*/ float get_TMP_AddDamage_Physical();
+Dòng 2270: /*0xd835c8*/ void set_TMP_AddDamage_Physical(float value);
+Dòng 2271: /*0xd835d0*/ float get_TMP_AddDamage_Magical();
+Dòng 2272: /*0xd835d8*/ void set_TMP_AddDamage_Magical(float value);
+Dòng 2273: /*0xd835e0*/ float get_Blood_fMultDamage();
+Dòng 2274: /*0xd835e8*/ void set_Blood_fMultDamage(float value);
+Dòng 2372: /*0xd866a8*/ UnityEngine.Transform get_GetDamageMarkerTrans();
+Dòng 2452: /*0x54*/ float m_fMultDamageRatio;
+Dòng 2560: class Buff_Baba_DOT_Heal : Buff_DOT_Damage
+Dòng 2563: /*0x16f47e4*/ void InitDotDamage();
+Dòng 2598: /*0x16f4a10*/ float get_m_fMultDamage();
 Dòng 2617: /*0x16f501c*/ void RecieveDamageToTarget(CharacterBase _attacker, CharacterBase _target, ref Battle.StatTransfer _transfer);
-Dòng 3539: /*0x58*/ Battle.StatTransfer m_ReleaseTransfer;
+Dòng 2618: /*0x16f50d4*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
+Dòng 2637: /*0x16f54d8*/ void CheckMultDamageCritical();
+Dòng 2652: MULT_HIT_DAMAGE = 5,
+Dòng 2653: MULT_HIT_DAMAGE_PHYSICAL = 6,
+Dòng 2654: MULT_HIT_DAMAGE_MAGICAL = 7,
+Dòng 2655: MULT_DAMAGE_CRITICAL = 8,
+Dòng 2662: BOSS_DAMAGE_NEXT_TARGET = 15,
+Dòng 2682: class Buff_Blood : Buff_DOT_Damage
+Dòng 2686: /*0x16f58d4*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
+Dòng 2693: /*0x16f5a74*/ void InitDotDamage();
+Dòng 2715: class Buff_Burn : Buff_DOT_Damage
+Dòng 2793: class Buff_Cook_DotHeal : Buff_DOT_Damage
+Dòng 2803: /*0x16f7174*/ void SetDotDamage(float _fDamage);
+Dòng 2822: class Buff_DOT_Damage : Buff_Base
+Dòng 2824: /*0x54*/ float m_fDotDamageParam;
+Dòng 2825: /*0x58*/ float m_fDOTDamage;
+Dòng 2829: /*0x16f4838*/ Buff_DOT_Damage();
+Dòng 2831: /*0x16f77b4*/ void InitDotDamage();
+Dòng 2834: /*0x16f7978*/ void SetDotDamage(float _fDamage);
+Dòng 2837: class Buff_DOT_Damage_PerHP : Buff_DOT_Damage
+Dòng 2839: /*0x16f7a24*/ Buff_DOT_Damage_PerHP();
+Dòng 2841: /*0x16f79cc*/ void InitDotDamage();
+Dòng 2844: class Buff_DOT_Damage_PerHP_P2 : Buff_DOT_Damage_PerHP
+Dòng 2846: /*0x16f7a60*/ Buff_DOT_Damage_PerHP_P2();
+Dòng 2850: class Buff_DOT_MP : Buff_DOT_Damage
+Dòng 2856: /*0x16f7ab8*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
+Dòng 2874: /*0x16f7d84*/ void HandleHitDamage(CharacterBase _attacker, float _fDamage);
+Dòng 2884: /*0x16f7fa8*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
+Dòng 2916: /*0x54*/ float m_fTotalRecieveDamage;
+Dòng 2925: /*0x16f89c0*/ void HandleCheckRecieveDamage(CharacterBase _, float _fDamage);
+Dòng 3078: class Buff_IgnoreDamagePerHP : Buff_Base
+Dòng 3080: /*0x54*/ float m_fIgnoreDamage;
+Dòng 3083: /*0x16fae44*/ Buff_IgnoreDamagePerHP();
+Dòng 3172: /*0x16fb83c*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
+Dòng 3196: /*0x16fbe70*/ void HandleCheckHit(CharacterBase _, float _fDamage);
+Dòng 3199: class Buff_Middle_MultHitDamage : Buff_MultHitDamage
+Dòng 3201: /*0x59*/ bool m_bAddMultHitDamage;
+Dòng 3203: /*0x16fc134*/ Buff_Middle_MultHitDamage();
+Dòng 3226: class Buff_MultDamageBlood : Buff_Base
+Dòng 3231: /*0x16fc26c*/ Buff_MultDamageBlood();
+Dòng 3237: class Buff_MultDamageCritical : Buff_Base
+Dòng 3239: /*0x54*/ float m_fMultDamageCritical;
+Dòng 3241: /*0x16fc2d0*/ Buff_MultDamageCritical();
+Dòng 3248: class Buff_MultHitDamage : Buff_Base
+Dòng 3250: /*0x54*/ float m_fAddDamage;
+Dòng 3253: /*0x16fc13c*/ Buff_MultHitDamage();
+Dòng 3259: class Buff_MultHitDamage_AttackType : Buff_Base
+Dòng 3261: /*0x54*/ float m_fAddDamage_Physical;
+Dòng 3262: /*0x58*/ float m_fAddDamage_Magical;
+Dòng 3263: /*0x5c*/ bool m_bAddMultDamageValue;
+Dòng 3265: /*0x16fc420*/ Buff_MultHitDamage_AttackType();
+Dòng 3347: /*0x16fce20*/ void HandleCheckRecieveDamage(CharacterBase _attacker, float _fDamage);
+Dòng 3370: /*0x16fd420*/ void HandleHit(CharacterBase _attacker, float _fDamage);
+Dòng 3446: /*0x60*/ float m_fHitDamageMultRatio;
+Dòng 3469: class Buff_Redhood : Buff_MultHitDamage
+Dòng 3477: /*0x133350c*/ void HandleCheckCondition(CharacterBase _attacker, float _fDamage);
+Dòng 3486: /*0x1333580*/ void InitDotDamage();
+Dòng 3496: /*0x1333728*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
+Dòng 3536: class Buff_ReleaseDamage_Magic : Buff_Base
+Dòng 3541: /*0x1333ba8*/ Buff_ReleaseDamage_Magic();
+Dòng 3614: class Buff_SUGAR_DOT_Heal : Buff_DOT_Damage
+Dòng 3617: /*0x133412c*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
+Dòng 3632: /*0x54*/ float m_fSacrificeDamageRatio;
+Dòng 3638: /*0x133450c*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
+Dòng 3680: /*0x1335054*/ void HandleHitAttack(CharacterBase _attacker, float _fDamage);
+Dòng 3726: /*0x1335518*/ void AddCheckDamageAction();
+Dòng 3727: /*0x1335630*/ void RemoveCheckDamageAction();
+Dòng 3730: /*0x1335790*/ void HandleCheckHit(CharacterBase _, float _fDamage);
+Dòng 3979: class Passive_Damaged : Passive_Base
+Dòng 3981: /*0xf0*/ int m_nDamagedCount;
+Dòng 3982: /*0xf4*/ int m_nCurDamagedCount;
+Dòng 3984: /*0x1146834*/ Passive_Damaged();
+Dòng 3986: /*0x11467f4*/ bool CheckCondition_Child(CharacterBase _attacker, float _fDamage);
+Dòng 3989: class Passive_Damaged_Chance : Passive_Base
+Dòng 3993: /*0x114691c*/ Passive_Damaged_Chance();
+Dòng 3995: /*0x114687c*/ bool CheckCondition_Child(CharacterBase _attacker, float _fDamage);
+Dòng 4189: /*0xaa2ed8*/ float get_DamageMULT();
+Dòng 4190: /*0xaa2f04*/ float get_DamageMULT_Critical();
+Dòng 4225: /*0x1516ab8*/ void CalcDamage(CharacterBase _target);
+Dòng 4231: /*0x168*/ float m_fAddDamageRatio;
 Dòng 4238: /*0x15156ec*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 4244: /*0x164*/ float m_fAddDamageRatio;
 Dòng 4253: /*0x1516138*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4343: /*0x174*/ Battle.StatTransfer m_StatTransferTmp;
-Dòng 4413: /*0xb0*/ Battle.StatTransfer m_StatTransfer;
+Dòng 4296: /*0x1516c1c*/ void CalcDamage(CharacterBase _target);
+Dòng 4342: /*0x170*/ float m_fDamagePercent;
+Dòng 4348: /*0x1517870*/ void GiveDamageToTarget(CharacterBase _target);
+Dòng 4368: /*0x1517f60*/ void HandleCheckCondition(CharacterBase _target, int _nSkillFXID, float _fDamage);
+Dòng 4426: /*0x118*/ Battle.DamageResult m_damageResult;
+Dòng 4427: /*0x120*/ Battle.DamageResult m_damageResult_Origin;
+Dòng 4428: /*0x128*/ System.Action<System.ValueTuple<CharacterBase, float>> OnDamageWithTarget;
+Dòng 4470: /*0x1518ab0*/ float get_DamageMult();
+Dòng 4471: /*0x1518adc*/ float get_DamageMult_Critical();
+Dòng 4493: /*0x1516c60*/ void CalcDamage(CharacterBase _target);
+Dòng 4494: /*0x1517a88*/ void GiveDamageToTarget(CharacterBase _target);
+Dòng 4495: /*0x15197f4*/ void InvokeEventsBeforeCalcDamage(CharacterBase _target);
+Dòng 4496: /*0x151988c*/ void InvokeEventsAfterCalcDamage(CharacterBase _target);
 Dòng 4497: /*0x151576c*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
 Dòng 4498: /*0x15199e8*/ void RecieveAddDamage(CharacterBase _target, ref Battle.StatTransfer _stat);
-Dòng 4511: /*0x1519d8c*/ Battle.StatTransfer GetStatTransfer();
+Dòng 4499: /*0x1519b58*/ float GetAddDamageMultRatio(CharacterBase _target);
 Dòng 4512: /*0x15180dc*/ Battle.StatTransfer GetStarTransferWithDamage(Battle.AttackType _eAttackType, float _fDamage);
-Dòng 4513: /*0x1519dd8*/ Battle.StatTransfer GetStatTransferWithCOEF(Battle.AttackType _eAttackType, float _fCOEFNum);
-Dòng 4514: /*0x1519e6c*/ Battle.StatTransfer GetStatTransferWithCOEF(Battle.CharacterStat.StatType _eStatType, Battle.AttackType _eAttackType, float _fCOEFNum);
-Dòng 4515: /*0x1515aa0*/ Battle.StatTransfer GetStatTransferWithCOEF(float _fCOEFNum);
-Dòng 4516: /*0x1519f18*/ Battle.StatTransfer GetStatTransferWithCOEF(Battle.CharacterStat.StatType _eStatType, float _fCOEFNum);
+Dòng 4584: /*0x168*/ float m_fAddDamagePercentage;
+Dòng 4588: /*0x151a73c*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 4609: /*0x151ad08*/ void CalcDamage(CharacterBase _target);
 Dòng 4626: /*0x151b738*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
 Dòng 4650: /*0x151bff0*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4787: /*0x14434ec*/ Battle.StatTransfer GetStatTransfer();
-Dòng 4800: /*0x14438b0*/ Battle.StatTransfer GetStatTransfer();
+Dòng 4655: /*0x164*/ float m_fAddDamage;
+Dòng 4659: /*0x151c060*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 4750: /*0x174*/ float m_fDamageRatio;
+Dòng 4777: /*0x180*/ float m_sig_10_AddDamage;
+Dòng 4785: /*0x14431f4*/ void CalcDamage(CharacterBase _target);
+Dòng 4809: /*0x14439cc*/ void CalcDamage(CharacterBase _target);
+Dòng 4909: /*0x1445c9c*/ void CalcDamage(CharacterBase _target);
+Dòng 4971: /*0x16c*/ float m_fAddDamageRatio;
+Dòng 4976: /*0x1447fc8*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 5022: /*0x164*/ float m_fAddDamageRatio;
+Dòng 5026: /*0x1448ee8*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 5096: /*0x144a358*/ void HandleCheckCondition(CharacterBase _target, int _nSkillFXID, float _fDamage);
+Dòng 5106: /*0x144a6f4*/ void CalcDamage(CharacterBase _target);
+Dòng 5115: /*0x144a968*/ void CalcDamage(CharacterBase _target);
+Dòng 5145: /*0x164*/ float m_fAddMultDamage;
+Dòng 5146: /*0x168*/ float m_fMaxMultDamage;
 Dòng 5152: /*0x144b0b8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 5153: /*0x144b150*/ void CalcDamage(CharacterBase _target);
+Dòng 5218: /*0x164*/ float m_fMultDamageDistance;
+Dòng 5219: /*0x168*/ float m_fMultDamageRatio;
 Dòng 5232: /*0x144c870*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
 Dòng 5233: /*0x144c954*/ void RecieveAddDamage(CharacterBase _target, ref Battle.StatTransfer _stat);
+Dòng 5234: /*0x144c9c0*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 5255: /*0x168*/ float m_fMultDamageRatio;
+Dòng 5259: /*0x178*/ float m_SIG_MultDamageRatio;
+Dòng 5263: /*0x144ccec*/ void GiveDamageToTarget(CharacterBase _target);
 Dòng 5264: /*0x144ce3c*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 5281: /*0x168*/ float m_fAddDamageATKRatio;
 Dòng 5285: /*0x144d1b8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
 Dòng 5296: /*0x144d2cc*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 5331: /*0x164*/ float m_fAddDamageRatio;
 Dòng 5336: /*0x144dc34*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 5337: /*0x144dda8*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 5342: /*0x164*/ float m_fAddDamageAmount;
+Dòng 5345: /*0x170*/ float m_nAddDamageMult;
 Dòng 5349: /*0x144dedc*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5376: /*0x144e4f4*/ Battle.StatTransfer GetStatTransfer();
+Dòng 5350: /*0x144e00c*/ float GetAddDamageMultRatio(CharacterBase _target);
+Dòng 5370: /*0x164*/ float m_fAddDamagePercent;
+Dòng 5383: /*0x144e6f4*/ void CalcDamage(CharacterBase _target);
+Dòng 5393: /*0x144e81c*/ void CalcDamage(CharacterBase _target);
 Dòng 5403: /*0x144e918*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
 Dòng 5440: /*0x144ece4*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
+Dòng 5449: /*0x144edd4*/ void GiveDamageToTarget(CharacterBase _target);
+Dòng 5477: /*0x164*/ float m_fMultDamageRatio_NoRestoreHP;
+Dòng 5478: /*0x168*/ float m_fMultDamageRatio_Blood;
 Dòng 5482: /*0x144f2e8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 78896: /*0x38*/ Battle.StatTransferFlag flag;
-Dòng 78899: static /*0xc9a798*/ Battle.StatTransfer GetHealStat(float _fHealAmount, float _fDamageMult);
-Dòng 78903: /*0xa38324*/ void SetFlag(Battle.StatTransferFlag _flag, bool _boolean);
-Dòng 78904: /*0xa38350*/ bool FlagEquals(Battle.StatTransferFlag _flag);
+Dòng 6032: /*0x270*/ double <GW_CurrentMaxValueDamage_Ally>k__BackingField;
+Dòng 6035: /*0x288*/ double <GW_CurrentMaxValueDamage_Enemy>k__BackingField;
+Dòng 6043: /*0x2c0*/ long WorldBoss_PrevRecieveDamage;
+Dòng 6278: /*0xe4722c*/ double get_GW_CurrentMaxValueDamage_Ally();
+Dòng 6279: /*0xe47234*/ void set_GW_CurrentMaxValueDamage_Ally(double value);
+Dòng 6284: /*0xe4725c*/ double get_GW_CurrentMaxValueDamage_Enemy();
+Dòng 6285: /*0xe47264*/ void set_GW_CurrentMaxValueDamage_Enemy(double value);
+Dòng 6290: /*0xe2fc10*/ double get_GW_CurrentMaxValueDamage();
+Dòng 6309: /*0xe48f18*/ void GoToBattleSceneForWorldBoss(int bossId, int bossLevel, int bossGrade, long damage);
+Dòng 6520: /*0x10*/ double totalValueDamage;
+Dòng 6559: /*0x68*/ long <DPS_MaxDamage>k__BackingField;
+Dòng 6560: /*0x70*/ long <DPS_TotalDamage>k__BackingField;
+Dòng 6561: /*0x78*/ long <DPS_TotalDamage_ATK>k__BackingField;
+Dòng 6562: /*0x80*/ long <DPS_TotalDamage_ULT>k__BackingField;
+Dòng 6563: /*0x88*/ long <DPS_TotalDamage_SP01>k__BackingField;
+Dòng 6564: /*0x90*/ long <DPS_TotalDamage_SP02>k__BackingField;
+Dòng 6565: /*0x98*/ long <DPS_TotalDamage_SP03>k__BackingField;
+Dòng 6572: /*0xc8*/ System.Collections.Generic.List<DamageMarker> <DamageMarkers>k__BackingField;
+Dòng 6575: /*0xe0*/ double <GuildBossTotalHitDamage>k__BackingField;
+Dòng 6652: /*0x2f8*/ long m_lGuildBossStepUpDamage;
+Dòng 6658: /*0x308*/ bool <EnableDamageFont>k__BackingField;
+Dòng 6690: /*0x390*/ double <WorldBossTotalHitDamage>k__BackingField;
+Dòng 6783: /*0xd29ab0*/ long get_DPS_MaxDamage();
+Dòng 6784: /*0xd29ab8*/ void set_DPS_MaxDamage(long value);
+Dòng 6785: /*0xd29ac0*/ long get_DPS_TotalDamage();
+Dòng 6786: /*0xd29ac8*/ void set_DPS_TotalDamage(long value);
+Dòng 6787: /*0xd29ad0*/ long get_DPS_TotalDamage_ATK();
+Dòng 6788: /*0xd29ad8*/ void set_DPS_TotalDamage_ATK(long value);
+Dòng 6789: /*0xd29ae0*/ long get_DPS_TotalDamage_ULT();
+Dòng 6790: /*0xd29ae8*/ void set_DPS_TotalDamage_ULT(long value);
+Dòng 6791: /*0xd29af0*/ long get_DPS_TotalDamage_SP01();
+Dòng 6792: /*0xd29af8*/ void set_DPS_TotalDamage_SP01(long value);
+Dòng 6793: /*0xd29b00*/ long get_DPS_TotalDamage_SP02();
+Dòng 6794: /*0xd29b08*/ void set_DPS_TotalDamage_SP02(long value);
+Dòng 6795: /*0xd29b10*/ long get_DPS_TotalDamage_SP03();
+Dòng 6796: /*0xd29b18*/ void set_DPS_TotalDamage_SP03(long value);
+Dòng 6797: /*0xd29b20*/ float get_DPS_TotalDamage_Skills();
+Dòng 6799: /*0xd29b68*/ void DPS_AddDamage(Battle.SkillSlotType _eSlotType, long _lDamage);
+Dòng 6809: /*0xd29e88*/ System.Collections.Generic.List<DamageMarker> get_DamageMarkers();
+Dòng 6810: /*0xd29e90*/ void set_DamageMarkers(System.Collections.Generic.List<DamageMarker> value);
+Dòng 6815: /*0xd29eb8*/ double get_GuildBossTotalHitDamage();
+Dòng 6816: /*0xd29ec0*/ void set_GuildBossTotalHitDamage(double value);
+Dòng 6870: /*0xd2ed74*/ DamageMarker SpawnDamageMarker(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical, bool _bDelayed);
+Dòng 6871: /*0xd2dc1c*/ void RemoveDamageMarker(DamageMarker marker);
+Dòng 6986: /*0xd38f3c*/ bool get_EnableDamageFont();
+Dòng 6987: /*0xd38f44*/ void set_EnableDamageFont(bool value);
+Dòng 7000: /*0xd39868*/ void SetActiveDamageFont(bool _bActive);
+Dòng 7011: /*0xd3a170*/ void HandleCheckGuildBossHitDamage(CharacterBase _caster);
+Dòng 7094: /*0xd3bbc0*/ double get_WorldBossTotalHitDamage();
+Dòng 7095: /*0xd3bbc8*/ void set_WorldBossTotalHitDamage(double value);
+Dòng 7779: static string CRIT_DAMAGE_BUFF_IMAGE_NAME = "FatalBlowEffectUp1_Buff";
+Dòng 7809: class DamageMarker : ObjectBase
+Dòng 7822: /*0x80*/ int m_nDamage;
+Dòng 7829: /*0xa0*/ DamageMarker.InitParams m_InitParams;
+Dòng 7833: /*0xf5cbe0*/ DamageMarker();
+Dòng 7836: /*0xf5c2b4*/ void Init(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical, bool _bDelayed);
+Dòng 7846: /*0x1c*/ float Damage;
+Dòng 7849: /*0xa8a1b8*/ InitParams(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical);
+Dòng 19469: /*0x40*/ LocalizeString m_prevDamageText;
+Dòng 19481: /*0x114f960*/ void SetPrevDamage();
+Dòng 20115: /*0x115f244*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardData(long damage);
+Dòng 20116: /*0x115f29c*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardDataByPrev(long damage);
+Dòng 20117: /*0x115f2f4*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardDataByPrev(int hutingRewardID, long damage);
+Dòng 20118: /*0x114fb54*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardData(int rewardId, long damage);
+Dòng 20123: /*0x115170c*/ long GetEventBosLastDamage(int index);
+Dòng 20130: /*0x115f688*/ void Send_BossFinish(string statistics, string playData, long lcp, string hpmps, double bossTotalDamage, System.Action<PTShare.Define.SProperty> action);
+Dòng 20442: /*0x18*/ double bossTotalDamage;
+Dòng 22138: /*0x48*/ LocalizeString m_bestDamageText;
+Dòng 22156: /*0xe625b0*/ void SetBestDamage();
+Dòng 22169: /*0x40*/ LocalizeString m_prevDamageText;
+Dòng 22181: /*0xe62cb4*/ void SetPrevDamage();
+Dòng 22225: /*0x28*/ LocalizeString m_damageText;
+Dòng 22234: /*0xe63ed0*/ void SetDamage();
+Dòng 23189: /*0x58*/ ServerProtocol.ResGuildRanking m_bossDamagePersonData;
+Dòng 23190: /*0x60*/ ServerProtocol.ResGuildGuildRanking m_bossDamageGuildData;
+Dòng 23240: /*0xe7adb4*/ ServerProtocol.ResGuildRanking GetBossDamagePersonRankData();
+Dòng 23241: /*0xe7adbc*/ ServerProtocol.ResGuildGuildRanking GetBossDamageGuildRankData();
+Dòng 23251: /*0xe7ae54*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardData(long damage);
+Dòng 23252: /*0xe7af64*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardDataByPrev(long damage);
+Dòng 23253: /*0xe7b074*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardDataByPrev(int hutingRewardID, long damage);
+Dòng 23254: /*0xe62f8c*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardData(int hutingRewardID, long damage);
+Dòng 23270: /*0xe6e840*/ System.Collections.Generic.List<Rewards> GetHuntingDropItem(int bossIndex, long damage);
+Dòng 23307: /*0xe7d9e8*/ void Send_BossFinish(string statistics, string playData, long lcp, string hpmps, double guildBossTotalHitDamage, System.Action<PTShare.Define.SProperty> action);
+Dòng 23311: /*0xe7dd50*/ void Send_BossGuildPersonDamageRanking(int bossIndex, System.Action<ServerProtocol.ResGuildRanking> callBack);
+Dòng 23312: /*0xe6f800*/ void Send_BossGuildDamageRanking(int bossIndex, System.Action<ServerProtocol.ResGuildGuildRanking> callBack);
+Dòng 23765: /*0x18*/ double guildBossTotalHitDamage;
+Dòng 23808: /*0xf6daac*/ void <Send_BossGuildPersonDamageRanking>b__0(ServerProtocol.ResGuildRanking response);
+Dòng 23817: /*0xf6db34*/ void <Send_BossGuildDamageRanking>b__0(ServerProtocol.ResGuildGuildRanking response);
+Dòng 24829: /*0x78*/ LocalizeString m_totalDamageText;
+Dòng 35141: /*0xe0c530*/ long GetDamage();
+Dòng 35162: /*0xe0dbb8*/ void Send_FinishBattle(string statistics, string playData, long lcp, string HpMps, double damage, bool isWin, System.Action<PTShare.Define.SProperty> callBack);
+Dòng 41177: /*0x50*/ UnityEngine.UI.Toggle m_goToggleDamage;
+Dòng 41180: /*0x5a*/ bool m_bDamageActive;
+Dòng 41194: /*0x113ac70*/ void OnClickToggleDamage(bool _bActive);
+Dòng 43965: /*0x128*/ UnityEngine.UI.Slider m_BossDamageSlider;
+Dòng 43968: /*0x140*/ LocalizeString m_BossDamageText;
+Dòng 43977: /*0x190*/ double m_dCurrentBossDamageSliderMax;
+Dòng 43978: /*0x198*/ double m_dPrevBossDamageSliderMax;
+Dòng 44012: /*0xe342d0*/ void SetTextBossDamage(double _dCurrentDamage, double _dTargetDamage);
+Dòng 44147: /*0x18*/ UnityEngine.UI.Slider m_DamageSlider;
+Dòng 44150: /*0x30*/ LocalizeString m_DamageText;
+Dòng 44164: /*0x30*/ UnityEngine.UI.Image m_BarDamage;
+Dòng 44173: /*0xf8b734*/ void Init(bool _bMVP, bool _bAlly, double _dMaxDamage, double _dMaxHit, double _dMaxHeal, Battle.BattleGraphValue _currentValue);
+Dòng 44212: /*0x80*/ double m_dMaxValueDamage;
+Dòng 53468: /*0x108*/ UnityEngine.GameObject m_totalDamageParent;
+Dòng 53471: /*0x120*/ LocalizeString m_guildTotalDamage;
+Dòng 55462: /*0x88*/ LocalizeString m_totalDamageText;
+Dòng 55550: /*0x38*/ LocalizeString m_bossDamageText;
+Dòng 55552: /*0x48*/ UnityEngine.UI.Slider m_bossDamageSlider;
+Dòng 58006: /*0x6c*/ float AddDamageFontDelay;
+Dòng 58007: /*0x70*/ float AddDamageFontScale;
+Dòng 66846: /*0x20*/ long lastdamage;
+Dòng 69451: static string OPTION_GUILDBATTLE_DAMAGE_VIEW = "option_guildbattle_damage_view";
+Dòng 69489: static /*0x113aaf8*/ void SaveGuildBattleDamageView(bool _save);
+Dòng 69490: static /*0x113a894*/ bool LoadGuildBattleDamageView();
+Dòng 70173: NO_DAMAGE_RECORD = 234,
+Dòng 71040: /*0x38*/ long damage;
+Dòng 71071: /*0x18*/ long damage;
+Dòng 71843: /*0x58*/ long damage;
+Dòng 72150: /*0x28*/ long lastdamage;
+Dòng 72152: /*0x38*/ long topdamage;
+Dòng 72161: /*0x18*/ long lastdamage;
+Dòng 74876: /*0x20*/ long StepUpDamage;
+Dòng 75682: /*0x20*/ long EventBossStepUpDamage;
+Dòng 77998: static float CRITICAL_DAMAGE_MULT = 2;
+Dòng 78021: static string BUFF_BASE_STAT_DAMAGE_NAME = "RECENT_DAMAGE";
+Dòng 78081: static string DAMAGE_MARKER_NAME = "DamageMarker";
+Dòng 78111: static float DAMAGE_MARKER_TIME = 0.44999998807907104;
+Dòng 78112: static float DAMAGE_MARKER_SPEED = 0.699999988079071;
+Dòng 78327: DOT_DAMAGE = 4096,
+Dòng 78393: IMMUNE_HP_DAMAGE = 32,
+Dòng 78410: MULT_HIT_DAMAGE = 49,
+Dòng 78411: MULT_HIT_DAMAGE_ATTACKTYPE = 50,
+Dòng 78412: RELEASE_DAMAGE_MAGIC = 51,
+Dòng 78431: MULT_DAMAGE_CRITICAL = 70,
+Dòng 78432: MULT_DAMAGE_BLOOD = 71,
+Dòng 78436: DOT_DAMAGE = 75,
+Dòng 78437: DOT_DAMAGE_PERHP = 76,
+Dòng 78438: DOT_DAMAGE_PERHP_P2 = 77,
+Dòng 78448: IGNORE_DAMAGE_PERHP = 87,
+Dòng 78474: MIDDLE_MULT_HIT_DAMAGE = 113,
+Dòng 78521: enum DamageMarkType
+Dòng 78557: DAMAGE = 20,
+Dòng 78558: DAMAGE_CHANCE = 21,
+Dòng 78773: DAMAGE = 1,
+Dòng 78849: struct DamageResult
+Dòng 78853: /*0x14*/ float damage;
+Dòng 78855: static /*0xf5cc94*/ Battle.DamageResult get_NoDamage();
+Dòng 78856: static /*0xf5ccb4*/ Battle.DamageResult op_Addition(Battle.DamageResult A, Battle.DamageResult B);
+Dòng 78857: /*0xa854a8*/ DamageResult(bool _bKill, bool _bCritical, float _fDamage);
+Dòng 78864: ADD_DAMAGE = 2,
+Dòng 78873: /*0x1c*/ float Damage;
+Dòng 78874: /*0x20*/ float DamageMULT_ForStageData;
+Dòng 78881: /*0x3c*/ float DamageMult;
+Dòng 78883: static /*0xc9a798*/ Battle.StatTransfer GetHealStat(float _fHealAmount, float _fDamageMult);
+Dòng 78884: /*0xa382cc*/ StatTransfer(Battle.AttackType _eAttackType, float _fDamage, float _fDamageMULT, Battle.Hit_WpnType _eWeaponType);
+Dòng 78885: /*0xa382ec*/ StatTransfer(Battle.AttackType _eAttackType, float _fDamage, int _nFactionID, int _nSkillID);
+Dòng 78886: /*0xa38308*/ StatTransfer(Battle.AttackType _eAttackType, float _fACC, float _fDamage, float _fDamageMULT, float _fCRI, float _fCRIMULT, float _fMPPAY, int _nFationID, int _nSkillID, Battle.Hit_WpnType _eWeaponType);
+Dòng 79045: /*0x10*/ double TotalDamage;
+Dòng 79057: /*0xe2f634*/ void Init(double _dDamage, double _dHit, double _dHeal, string _sSkinName, int _nUnitID, int _nFactionID, int _nLevel, int _nGrade);
