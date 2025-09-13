@@ -1,5 +1,5 @@
 📦
-139315 /hack_damage.js
+137754 /investigate.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3307,88 +3307,48 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
   }
 });
 
-// hack_damage.js
-var require_hack_damage = __commonJS({
-  "hack_damage.js"() {
+// investigate.js
+var require_investigate = __commonJS({
+  "investigate.js"() {
     init_node_globals();
     init_dist();
-    var GOD_MODE_ENABLED = true;
-    var ONE_HIT_KILL_ENABLED = true;
-    var DAMAGE_MULTIPLIER = 1e3;
-    function isPlayer(characterObject) {
-      try {
-        if (characterObject.handle.isNull()) return false;
-        return characterObject.method("get_IsPlayer").invoke();
-      } catch (e) {
-        return false;
-      }
-    }
     Il2Cpp.perform(() => {
-      console.log("[+] il2cpp is ready. Deploying final hooks...");
+      console.log("[+] il2cpp is ready. Starting interrogation...");
+      const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
+      const CharacterBase = assembly.image.class("CharacterBase");
       try {
-        const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
-        const CharacterBase = assembly.image.class("CharacterBase");
-        const BattleStatTransfer = assembly.image.class("Battle.StatTransfer");
         const recieveDamageMethod = CharacterBase.method("RecieveDamage", 4);
         console.log(
-          `[+] Found RecieveDamage at: ${recieveDamageMethod.virtualAddress}`
+          `[+] Attaching to RecieveDamage at: ${recieveDamageMethod.virtualAddress}`
         );
         Interceptor.attach(recieveDamageMethod.virtualAddress, {
           onEnter(args) {
+            console.log("\n--- INTERROGATION: RecieveDamage TRIGGERED ---");
             try {
-              const receiver = new Il2Cpp.Object(args[0]);
-              const attacker = new Il2Cpp.Object(args[1]);
-              const statTransferPtr = args[2];
-              const isAttackerPlayer = isPlayer(attacker);
-              const isReceiverPlayer = isPlayer(receiver);
-              if (GOD_MODE_ENABLED && isReceiverPlayer && !isAttackerPlayer) {
-                const statTransferStruct = new Il2Cpp.ValueType(
-                  statTransferPtr,
-                  BattleStatTransfer.type
-                );
-                const damageField = statTransferStruct.field("Damage");
-                const originalDamage = damageField.value;
-                if (originalDamage > 1) {
-                  console.log(
-                    `[*] GOD MODE ACTIVATED: Player taking damage. Original: ${originalDamage.toFixed(
-                      0
-                    )}, New: 1`
-                  );
-                  damageField.value = 1;
-                }
-              }
-              if (ONE_HIT_KILL_ENABLED && !isReceiverPlayer && isAttackerPlayer) {
-                const statTransferStruct = new Il2Cpp.ValueType(
-                  statTransferPtr,
-                  BattleStatTransfer.type
-                );
-                const damageField = statTransferStruct.field("Damage");
-                const originalDamage = damageField.value;
-                if (originalDamage > 0) {
-                  const newDamage = originalDamage * DAMAGE_MULTIPLIER;
-                  console.log(
-                    `[*] ONE-HIT KILL ACTIVATED: Enemy taking damage. Original: ${originalDamage.toFixed(
-                      0
-                    )}, New: ${newDamage.toFixed(0)}`
-                  );
-                  damageField.value = newDamage;
-                }
-              }
-            } catch (e) {
-              console.error(
-                `[!] Error inside RecieveDamage hook: ${e.message}
-Stack: ${e.stack}`
+              const attacker = new Il2Cpp.Object(args[0]);
+              const receiver = new Il2Cpp.Object(this.context.x0);
+              console.log(
+                `[Attacker]: ${attacker.toString()} | Class: ${attacker.class.name}`
               );
+              console.log(
+                `          -> isPlayer? ${attacker.method("get_IsPlayer").invoke()}`
+              );
+              console.log(
+                `[Receiver]: ${receiver.toString()} | Class: ${receiver.class.name}`
+              );
+              console.log(
+                `          -> isPlayer? ${receiver.method("get_IsPlayer").invoke()}`
+              );
+            } catch (e) {
+              console.error(`[!] Interrogation failed: ${e.message}`);
             }
+            console.log("------------------------------------------");
           }
         });
-        console.log("[OK] Universal Damage Hook is active.");
-      } catch (err) {
-        console.error(
-          `[!!!] An error occurred during initialization: ${err.message}`
-        );
+      } catch (e) {
+        console.error(`[FAIL] Could not attach to RecieveDamage: ${e.message}`);
       }
     });
   }
 });
-export default require_hack_damage();
+export default require_investigate();

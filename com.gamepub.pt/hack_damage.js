@@ -1,96 +1,104 @@
 /*
- * Script Frida HOÀN CHỈNH (đã sửa lỗi cú pháp TypeScript)
- * Yêu cầu: npm install frida-il2cpp-bridge
- * Cách chạy: frida -U "Chuyện công chúa" --no-pause -l final_hack.js
+ * Script Frida HOÀN CHỈNH V8 để hook sát thương cho game com.gamepub.pt
+ * Đã sửa lỗi truy cập sai tham số trong hàm RecieveDamage.
+ * Cách chạy: frida -U "Chuyện công chúa" --no-pause -l hack_damage.js
  */
 
 import "frida-il2cpp-bridge";
 
 // ======================= CẤU HÌNH =======================
-const GOD_MODE_ENABLED = true; // Bật/tắt chế độ bất tử (nhận 0 sát thương)
-const ONE_HIT_KILL_ENABLED = false; // Bật/tắt chế độ tăng sát thương gây ra
-const NEW_DAMAGE_VALUE = 9999999.0; // Sát thương mới (dùng số float)
+const GOD_MODE_ENABLED = true;
+const ONE_HIT_KILL_ENABLED = true;
+const DAMAGE_MULTIPLIER = 1000;
 // ==========================================================
 
+function isPlayer(characterObject) {
+  try {
+    if (characterObject.handle.isNull()) return false;
+    return characterObject.method("get_IsPlayer").invoke();
+  } catch (e) {
+    return false;
+  }
+}
+
 Il2Cpp.perform(() => {
-  console.log("[+] il2cpp is ready. Starting hooks based on your analysis...");
+  console.log("[+] il2cpp is ready. Deploying final hooks...");
 
-  const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
-  const CharacterBase = assembly.image.class("CharacterBase");
-  const StatTransfer = assembly.image.class("Battle.StatTransfer");
+  try {
+    const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
+    const CharacterBase = assembly.image.class("CharacterBase");
+    const BattleStatTransfer = assembly.image.class("Battle.StatTransfer");
 
-  // --- Chức năng 1: GOD MODE (Bất tử) ---
-  if (GOD_MODE_ENABLED) {
-    try {
-      const recieveDamageMethod = CharacterBase.method("RecieveDamage", 4);
-      console.log(
-        `[+] Found RecieveDamage at: ${recieveDamageMethod.virtualAddress}`
-      );
+    const recieveDamageMethod = CharacterBase.method("RecieveDamage", 4);
+    console.log(
+      `[+] Found RecieveDamage at: ${recieveDamageMethod.virtualAddress}`
+    );
 
-      Interceptor.attach(recieveDamageMethod.virtualAddress, {
-        onEnter(args) {
-          const statTransferPointer = args[2];
+    Interceptor.attach(recieveDamageMethod.virtualAddress, {
+      onEnter(args) {
+        try {
+          // SỬA LỖI TRUY CẬP THAM SỐ:
+          const receiver = new Il2Cpp.Object(args[0]); // this (người nhận) là args[0]
+          const attacker = new Il2Cpp.Object(args[1]); // _attacker là args[1]
+          const statTransferPtr = args[2]; // ref _statTransfer là args[2]
 
-          try {
+          const isAttackerPlayer = isPlayer(attacker);
+          const isReceiverPlayer = isPlayer(receiver);
+
+          // --- Logic God Mode ---
+          // Kích hoạt khi Player bị tấn công (isReceiverPlayer = true)
+          if (GOD_MODE_ENABLED && isReceiverPlayer && !isAttackerPlayer) {
+            // Thêm điều kiện !isAttackerPlayer để chắc chắn
             const statTransferStruct = new Il2Cpp.ValueType(
-              statTransferPointer,
-              StatTransfer.type
+              statTransferPtr,
+              BattleStatTransfer.type
+            );
+            const damageField = statTransferStruct.field("Damage");
+            const originalDamage = damageField.value;
+
+            if (originalDamage > 1) {
+              console.log(
+                `[*] GOD MODE ACTIVATED: Player taking damage. Original: ${originalDamage.toFixed(
+                  0
+                )}, New: 1`
+              );
+              damageField.value = 1.0; // Dùng float
+            }
+          }
+
+          // --- Logic One-Hit Kill ---
+          // Kích hoạt khi Enemy bị tấn công (isReceiverPlayer = false)
+          if (ONE_HIT_KILL_ENABLED && !isReceiverPlayer && isAttackerPlayer) {
+            // Thêm điều kiện isAttackerPlayer
+            const statTransferStruct = new Il2Cpp.ValueType(
+              statTransferPtr,
+              BattleStatTransfer.type
             );
             const damageField = statTransferStruct.field("Damage");
             const originalDamage = damageField.value;
 
             if (originalDamage > 0) {
+              const newDamage = originalDamage * DAMAGE_MULTIPLIER;
               console.log(
-                `[*] GOD MODE: Blocked incoming damage. Original: ${originalDamage.toFixed(
-                  2
-                )} -> New: 0`
+                `[*] ONE-HIT KILL ACTIVATED: Enemy taking damage. Original: ${originalDamage.toFixed(
+                  0
+                )}, New: ${newDamage.toFixed(0)}`
               );
-              damageField.value = 0.0;
+              damageField.value = newDamage;
             }
-          } catch (e) {
-            console.error(`[!] Error inside God Mode hook: ${e.message}`);
           }
-        },
-      });
-      console.log("[OK] God Mode hook attached successfully!");
-    } catch (e) {
-      console.error(`[FAIL] Could not attach God Mode hook: ${e.message}`);
-    }
-  }
-
-  // --- Chức năng 2: ONE-HIT KILL (Tăng sát thương) ---
-  if (ONE_HIT_KILL_ENABLED) {
-    try {
-      const handleCheckHitDamageMethod = CharacterBase.method(
-        "HandleCheckHitDamage",
-        2
-      );
-      console.log(
-        `[+] Found HandleCheckHitDamage at: ${handleCheckHitDamageMethod.virtualAddress}`
-      );
-
-      // === ĐÃ SỬA LỖI CÚ PHÁP TẠI ĐÂY ===
-      handleCheckHitDamageMethod.implementation = function (
-        attacker,
-        originalDamage
-      ) {
-        if (originalDamage > 0) {
-          console.log(
-            `[*] ONE-HIT KILL: Modified outgoing damage. Original: ${originalDamage.toFixed(
-              2
-            )} -> New: ${NEW_DAMAGE_VALUE}`
+        } catch (e) {
+          // Thêm log chi tiết hơn để dễ gỡ lỗi nếu vẫn còn vấn đề
+          console.error(
+            `[!] Error inside RecieveDamage hook: ${e.message}\nStack: ${e.stack}`
           );
         }
-        // 'this' ở đây sẽ tự động trỏ đến đúng instance của CharacterBase
-        return this.method("HandleCheckHitDamage", 2).invoke(
-          attacker,
-          NEW_DAMAGE_VALUE
-        );
-      };
-
-      console.log("[OK] One-Hit Kill hook attached successfully!");
-    } catch (e) {
-      console.error(`[FAIL] Could not attach One-Hit Kill hook: ${e.message}`);
-    }
+      },
+    });
+    console.log("[OK] Universal Damage Hook is active.");
+  } catch (err) {
+    console.error(
+      `[!!!] An error occurred during initialization: ${err.message}`
+    );
   }
 });
