@@ -1,5 +1,5 @@
 📦
-139260 /hack_damage.js
+138944 /hack_damage.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3316,77 +3316,69 @@ var require_hack_damage = __commonJS({
     var ONE_HIT_KILL_ENABLED = false;
     var NEW_DAMAGE_VALUE = 9999999;
     Il2Cpp.perform(() => {
-      console.log("[+] il2cpp is ready. Starting hooks...");
+      console.log("[+] il2cpp is ready. Starting hooks based on your analysis...");
       const assembly = Il2Cpp.domain.assembly("Assembly-CSharp");
+      const CharacterBase = assembly.image.class("CharacterBase");
+      const StatTransfer = assembly.image.class("Battle.StatTransfer");
       if (GOD_MODE_ENABLED) {
         try {
-          const CharacterBase = assembly.image.class("CharacterBase");
           const recieveDamageMethod = CharacterBase.method("RecieveDamage", 4);
           console.log(
             `[+] Found RecieveDamage at: ${recieveDamageMethod.virtualAddress}`
           );
           Interceptor.attach(recieveDamageMethod.virtualAddress, {
             onEnter(args) {
+              const statTransferPointer = args[2];
               try {
                 const statTransferStruct = new Il2Cpp.ValueType(
-                  args[1],
-                  assembly.image.class("Battle.StatTransfer").type
+                  statTransferPointer,
+                  StatTransfer.type
                 );
-                const damageField = statTransferStruct.field("fDamage");
+                const damageField = statTransferStruct.field("Damage");
                 const originalDamage = damageField.value;
                 if (originalDamage > 0) {
                   console.log(
-                    `[*] GOD MODE: Intercepted incoming damage. Original: ${originalDamage}, New: 0`
+                    `[*] GOD MODE: Blocked incoming damage. Original: ${originalDamage.toFixed(
+                      2
+                    )} -> New: 0`
                   );
                   damageField.value = 0;
                 }
               } catch (e) {
-                console.error(
-                  `[!] Error inside RecieveDamage hook: ${e.message}. Field name "fDamage" might be incorrect.`
-                );
+                console.error(`[!] Error inside God Mode hook: ${e.message}`);
               }
             }
           });
-          console.log("[OK] God Mode hook attached.");
+          console.log("[OK] God Mode hook attached successfully!");
         } catch (e) {
           console.error(`[FAIL] Could not attach God Mode hook: ${e.message}`);
         }
       }
       if (ONE_HIT_KILL_ENABLED) {
         try {
-          const PlayerSkillComponent = assembly.image.class(
-            "Skill.PlayerSkillComponent"
-          );
-          const handleCheckHitDamageMethod = PlayerSkillComponent.method(
+          const handleCheckHitDamageMethod = CharacterBase.method(
             "HandleCheckHitDamage",
             2
           );
           console.log(
             `[+] Found HandleCheckHitDamage at: ${handleCheckHitDamageMethod.virtualAddress}`
           );
-          Interceptor.attach(handleCheckHitDamageMethod.virtualAddress, {
-            onEnter(args) {
-              try {
-                const originalDamage = args[1].toInt32();
-                if (originalDamage > 0) {
-                  console.log(
-                    `[*] ONE-HIT KILL: Intercepted outgoing damage. Original: ${originalDamage}, New: ${NEW_DAMAGE_VALUE}`
-                  );
-                  args[1].replace(NEW_DAMAGE_VALUE);
-                }
-              } catch (e) {
-                console.error(
-                  `[!] Error inside HandleCheckHitDamage hook: ${e.message}`
-                );
-              }
+          handleCheckHitDamageMethod.implementation = function(attacker, originalDamage) {
+            if (originalDamage > 0) {
+              console.log(
+                `[*] ONE-HIT KILL: Modified outgoing damage. Original: ${originalDamage.toFixed(
+                  2
+                )} -> New: ${NEW_DAMAGE_VALUE}`
+              );
             }
-          });
-          console.log("[OK] One-Hit Kill hook attached.");
+            return this.method("HandleCheckHitDamage", 2).invoke(
+              attacker,
+              NEW_DAMAGE_VALUE
+            );
+          };
+          console.log("[OK] One-Hit Kill hook attached successfully!");
         } catch (e) {
           console.error(`[FAIL] Could not attach One-Hit Kill hook: ${e.message}`);
-          console.error(
-            "[INFO] Class 'Skill.PlayerSkillComponent' might be incorrect. Please check the dumped source."
-          );
         }
       }
     });
