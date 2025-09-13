@@ -32,12 +32,15 @@
 // ===============================================================================================
 
 namespace GameOffsets {
+    // CharacterBase$$AddHP
     const uintptr_t AddHP = 0xd7e10c;
+    // CharacterBase$$get_IsPlayer
     const uintptr_t get_IsPlayer = 0xd71e70;
 }
 
 // === KHAI BÁO BIẾN TOÀN CỤC CHO CÁC CHỨC NĂNG ===
 bool isGodModeEnabled = false;
+// Bỏ isOneHitKillEnabled, thay bằng hệ số nhân
 int damageMultiplier = 1; // Giá trị mặc định là 1 (không thay đổi sát thương)
 
 bool (*isPlayer_ptr)(void *instance);
@@ -49,7 +52,7 @@ bool isPlayer(void *characterBaseInstance) {
     return false;
 }
 
-// === HOOK HÀM ADDHP ===
+// === HOOK HÀM ADDHP (ĐÃ HOẠT ĐỘNG TỐT) ===
 void (*orig_AddHP)(void* instance, float addValue, void* caster, bool isAddDamage, int markType);
 
 void fake_AddHP(void* instance, float addValue, void* caster, bool isAddDamage, int markType) {
@@ -57,23 +60,27 @@ void fake_AddHP(void* instance, float addValue, void* caster, bool isAddDamage, 
         return orig_AddHP(instance, addValue, caster, isAddDamage, markType);
     }
 
+    // Chỉ can thiệp khi giá trị là âm (mất máu)
     if (addValue < 0) {
         bool receiverIsPlayer = isPlayer(instance);
         bool casterIsPlayer = isPlayer(caster);
 
+        // --- LOGIC GOD MODE ---
         if (isGodModeEnabled && receiverIsPlayer && !casterIsPlayer) {
             LOGD(OBFUSCATE("[God Mode] Blocked HP loss of %.0f"), addValue);
             return;
         }
 
+        // --- LOGIC DAMAGE MULTIPLIER (NÂNG CẤP TỪ ONE-HIT) ---
         if (damageMultiplier > 1 && !receiverIsPlayer && casterIsPlayer) {
-            float originalDamage = addValue;
+            float originalDamage = addValue; // Sát thương gốc là số âm
             float multipliedDamage = originalDamage * damageMultiplier;
             LOGD(OBFUSCATE("[Damage x%d] Overriding HP loss from %.0f to %.0f"), damageMultiplier, originalDamage, multipliedDamage);
             return orig_AddHP(instance, multipliedDamage, caster, isAddDamage, markType);
         }
     }
 
+    // Đối với các trường hợp khác, gọi hàm gốc
     return orig_AddHP(instance, addValue, caster, isAddDamage, markType);
 }
 
@@ -87,9 +94,8 @@ jobjectArray GetFeatureList(JNIEnv *env, jobject context) {
     const char *features[] = {
             OBFUSCATE("Category_Mod Chuyện Công Chúa by TomiSakae!"),
             OBFUSCATE("0_Toggle_God Mode (Bất Tử)"),
-            // Thêm InputValue và dùng chung feature number là 1
-            OBFUSCATE("1_SeekBar_Hệ Số Sát Thương_1_1000"),
-            OBFUSCATE("1_InputValue_Nhập Hệ Số Sát Thương"),
+            // Thay Toggle bằng SeekBar
+            OBFUSCATE("1_SeekBar_Hệ Số Sát Thương_1_1000"), // Min: 1, Max: 1000
     };
     int Total_Feature = (sizeof features / sizeof features[0]);
     ret = (jobjectArray)env->NewObjectArray(Total_Feature, env->FindClass(OBFUSCATE("java/lang/String")), env->NewStringUTF(""));
@@ -105,14 +111,8 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
             LOGI("[+] God Mode %s", isGodModeEnabled ? "ENABLED" : "DISABLED");
             break;
         case 1:
-            // Cả SeekBar và InputValue đều gọi đến case này
-            // Giá trị `value` sẽ được cập nhật bởi control nào được người dùng tương tác cuối cùng
-            if (value >= 1) {
-                damageMultiplier = value;
-            } else {
-                damageMultiplier = 1; // Nếu nhập số 0 hoặc số âm, coi như tắt
-            }
-
+            // Lấy giá trị từ thanh trượt
+            damageMultiplier = value;
             if (damageMultiplier > 1) {
                 LOGI("[+] Damage Multiplier set to x%d", damageMultiplier);
             } else {
