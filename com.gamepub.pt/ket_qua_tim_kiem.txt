@@ -1,172 +1,247 @@
-Dòng 1399: static /*0x18*/ System.DateTime <InspectionTime>k__BackingField;
-Dòng 1415: static /*0xecf510*/ System.DateTime get_InspectionTime();
-Dòng 1416: static /*0xecf574*/ void set_InspectionTime(System.DateTime value);
-Dòng 2764: /*0x5f*/ bool m_bSkipNextFrameUpdateTime;
-Dòng 2777: /*0x16f5228*/ void SetCurrentCoolTime(float _fCoolTime, bool _bSkipNextFrameUpdateTime);
-Dòng 5820: /*0x1143a68*/ bool UpdateTimer(float _fDeltaTime);
-Dòng 8406: /*0xfb887c*/ string GetConvertTimeString(System.DateTime _time);
-Dòng 9705: static /*0xccfbd0*/ System.DateTime GetConfigDateTime(TableManager.WorldArena.WorldArenaConfigKey key);
-Dòng 12439: /*0x20*/ System.DateTime now;
+Dòng 465: /*0x2b45060*/ void Send_AccountIdle(bool _loading, ServerProtocol.ReqAccountIdle _request, System.Action<ServerProtocol.ResAccountIdle> _response);
+Dòng 472: /*0x2b454a4*/ void Send_AccountPreviewIdle(bool _loading, ServerProtocol.ReqAccountPreviewIdle _request, System.Action<ServerProtocol.ResAccountPreviewIdle> _response);
+Dòng 1997: /*0xd7211c*/ bool Init(int _nUnitID, int _nSkinID, int _nUnitLV, int _nUnitGrade, int _nUnitTier, int _nSignatureLV, bool _bPlayer, bool _bIdle, bool _bSyncTool, bool _bDemo, string[] _params);
+Dòng 5635: class CharacterState_BDRAGON_Idle : CharacterState_Idle
+Dòng 5637: /*0x1327cc8*/ CharacterState_BDRAGON_Idle(bool _isStateEnable, bool _isRecursiveEnable);
+Dòng 5681: class CharacterState_Idle : CharacterState
+Dòng 5686: /*0x1327cd4*/ CharacterState_Idle(bool _isStateEnable, bool _isRecursiveEnable);
+Dòng 5689: /*0x13289b0*/ void SetIdleAnimation();
+Dòng 5693: class CharacterState_Idle_WorldBoss : CharacterState_Idle
+Dòng 5697: /*0x1328b68*/ CharacterState_Idle_WorldBoss(bool _isStateEnable, bool _isRecursiveEnable);
+Dòng 5750: class CharacterState_Swordcat_Idle : CharacterState_Idle
+Dòng 5757: /*0x1329538*/ CharacterState_Swordcat_Idle(bool _isStateEnable, bool _isRecursiveEnable);
+Dòng 5869: class InGameState_Idle : InGameState
+Dòng 5871: /*0x15722fc*/ InGameState_Idle();
+Dòng 6103: /*0xe3e840*/ void InitializeCurrentSettingsForIdle();
+Dòng 6551: /*0x28*/ float <CameraSizeOrigin_Idle>k__BackingField;
+Dòng 6593: /*0x170*/ System.Collections.Generic.List<UnitSpawnInfo> tmp_lisUnitIdleEnemy;
+Dòng 6622: /*0x220*/ float m_fCurEndToIdleDelay;
+Dòng 6624: /*0x230*/ bool m_bCheckEndToIdleDelay;
+Dòng 6665: /*0x338*/ float m_fCurrentIdleDialogueCooltime;
+Dòng 6675: /*0x35e*/ bool <IsIdle>k__BackingField;
+Dòng 6721: /*0xd22d08*/ float get_CameraSizeOrigin_Idle();
+Dòng 6722: /*0xd22d10*/ void set_CameraSizeOrigin_Idle(float value);
+Dòng 6723: /*0xd22d18*/ void Init(bool _bReplay, bool _bIdle, int _nRandomSeed);
+Dòng 6726: /*0xd2502c*/ void InitForIdle();
+Dòng 6845: /*0xd2be7c*/ void SpawnIdleEnemy();
+Dòng 6852: /*0xd2d334*/ CharacterBase SpawnCharacterForIdleAlly(System.Collections.Generic.List<PTShare.Define.SEquip> _equip, int _nUnitID, int _nSkinID, int _nUnitLV, int _nUnitGrade, int _nUnitTier, bool _bPlayer, UnityEngine.Vector2 _vecPos, float _fSizeMult);
+Dòng 6853: /*0xd2c1ec*/ CharacterBase SpawnCharacterForIdleEnemy(int _nUnitID, int _nUnitLV, int _nUnitGrade, int _nUnitTier, bool _bPlayer, UnityEngine.Vector2 _vecPos, float _fSizeMult);
+Dòng 6884: /*0xd2fac8*/ void HandleSetSpawnEenemyPosIdle(System.Collections.Generic.List<UnityEngine.Transform> _SpawnTransEnemyList);
+Dòng 6947: /*0xd353bc*/ void HandleCheckIdleWave();
+Dòng 6950: /*0xd35b34*/ void HandleCheckEndToIdleDelay();
+Dòng 6957: /*0xd37484*/ void HandleCheckIdleDialogueTime();
+Dòng 6964: /*0xd3679c*/ void SetBattleEndIdleStateAllUnits(bool _bPlayerWin);
+Dòng 6992: /*0xd38f50*/ void CheckIdleVoiceMousePosition();
+Dòng 7037: /*0xd3a9d8*/ bool get_IsIdle();
+Dòng 7038: /*0xd3a9e0*/ void set_IsIdle(bool value);
+Dòng 7134: IDLE = 2,
+Dòng 7143: IDLE_ALLY = 3,
+Dòng 7144: IDLE_EMEMY = 4,
+Dòng 7577: /*0x28*/ System.Collections.Generic.List<UnityEngine.Transform> spawnPosListAlly_Idle;
+Dòng 7578: /*0x30*/ System.Collections.Generic.List<UnityEngine.Transform> spawnPosListEnemy_Idle;
+Dòng 7599: /*0x135bfe8*/ UnityEngine.Vector3 get_GetIdleAllySpawnPOS();
+Dòng 7602: /*0x135cd40*/ System.Collections.IEnumerator CoDelayedStartIdle();
+Dòng 7604: /*0x135cea4*/ void InitializeForIdle();
+Dòng 7616: /*0x135f98c*/ void HandleSpawnAllyUnitsForIdleBattle();
+Dòng 7622: /*0x13602a0*/ void <InitializeForIdle>b__22_0();
+Dòng 7623: /*0x13602fc*/ void <InitializeForIdle>b__22_1();
+Dòng 7640: class <CoDelayedStartIdle>d__20 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
+Dòng 7646: /*0xda2888*/ <CoDelayedStartIdle>d__20(int <>1__state);
+Dòng 7868: /*0x11f2ce0*/ void CoinAnimIdleComplete(Spine.TrackEntry trackEntry);
+Dòng 7873: IDLE = 0,
+Dòng 8776: static /*0x248*/ System.Collections.Generic.Dictionary<string, TableData.TableData_Queststageidle> mQuestStageIdle;
+Dòng 8807: static /*0x340*/ System.Collections.Generic.Dictionary<int, TableData.TableData_Stageidle> mStageIdle;
+Dòng 8818: static /*0x398*/ System.Collections.Generic.Dictionary<int, TableData.TableData_Fastidle> mFastIdle;
+Dòng 8851: static /*0x4a0*/ System.Collections.Generic.Dictionary<int, TableData.TableData_Idleunittipdialog> mIdleUnitTipDialog;
+Dòng 8978: static /*0xcbad5c*/ TableData.TableData_Fastidle FindFastIdlebyIndex(int _index);
+Dòng 9220: class StageIdle
+Dòng 9222: static /*0xd95530*/ TableData.TableData_Queststageidle Find(string _questid);
+Dòng 9329: class Idle
+Dòng 9331: static /*0xccdda0*/ TableData.TableData_Stageidle Find(int _nIdleID);
+Dòng 9517: class IdleUnitTipDialog
+Dòng 9519: static /*0xccde34*/ TableData.TableData_Idleunittipdialog Find(int _nUnitID);
+Dòng 10312: static /*0x598*/ System.Func<TableData.TableData_Queststageidle, string> <>9__255_151;
+Dòng 10313: static /*0x5a0*/ System.Func<TableData.TableData_Queststageidle, TableData.TableData_Queststageidle> <>9__255_152;
+Dòng 10373: static /*0x780*/ System.Func<TableData.TableData_Stageidle, int> <>9__255_212;
+Dòng 10374: static /*0x788*/ System.Func<TableData.TableData_Stageidle, TableData.TableData_Stageidle> <>9__255_213;
+Dòng 10398: static /*0x848*/ System.Func<TableData.TableData_Battleidle, TableData.TableData_Stagebattle> <>9__255_237;
+Dòng 10413: static /*0x8c0*/ System.Func<TableData.TableData_Fastidle, int> <>9__255_252;
+Dòng 10414: static /*0x8c8*/ System.Func<TableData.TableData_Fastidle, TableData.TableData_Fastidle> <>9__255_253;
+Dòng 10454: static /*0xa08*/ System.Func<TableData.TableData_Idleunittipdialog, int> <>9__255_291;
+Dòng 10455: static /*0xa10*/ System.Func<TableData.TableData_Idleunittipdialog, TableData.TableData_Idleunittipdialog> <>9__255_292;
+Dòng 10801: /*0xcc8140*/ string <Init>b__255_151(TableData.TableData_Queststageidle k);
+Dòng 10802: /*0xcc8158*/ TableData.TableData_Queststageidle <Init>b__255_152(TableData.TableData_Queststageidle v);
+Dòng 10862: /*0xcc89b4*/ int <Init>b__255_212(TableData.TableData_Stageidle k);
+Dòng 10863: /*0xcc89cc*/ TableData.TableData_Stageidle <Init>b__255_213(TableData.TableData_Stageidle v);
+Dòng 10887: /*0xcc8b2c*/ TableData.TableData_Stagebattle <Init>b__255_237(TableData.TableData_Battleidle s);
+Dòng 10902: /*0xcc8d40*/ int <Init>b__255_252(TableData.TableData_Fastidle k);
+Dòng 10903: /*0xcc8d58*/ TableData.TableData_Fastidle <Init>b__255_253(TableData.TableData_Fastidle v);
+Dòng 10943: /*0xcc9898*/ int <Init>b__255_291(TableData.TableData_Idleunittipdialog k);
+Dòng 10944: /*0xcc98b0*/ TableData.TableData_Idleunittipdialog <Init>b__255_292(TableData.TableData_Idleunittipdialog v);
+Dòng 11872: static /*0x1100e6c*/ System.ValueTuple<int, int, int> GetIdleMinutesRewards();
+Dòng 11895: /*0xf75874*/ bool <GetIdleMinutesRewards>b__21_0(Rewards x);
+Dòng 11896: /*0xf7591c*/ bool <GetIdleMinutesRewards>b__21_1(Rewards x);
 Dòng 12452: /*0x80*/ System.DateTime lastidle;
+Dòng 12455: /*0x90*/ int fastidleCount;
 Dòng 12466: /*0xa8a368*/ UserData(string _token, string _chatip, System.DateTime _now, string _nickname, int _level, long _exp, string _campaign, int _campaignchapter, string _hcampaign, int _hcampaignchapter, bool _admin, long _guildid, string _guildname, PTShare.Define.SCurrency _currency, System.DateTime _lastidle, System.Collections.Generic.List<int> _towerfloors, bool _newmail, int _heroslot, long _playerid, string _language, int _nFastIdleCount, long _tutorial, int _vipPoint, bool _olduser, PTShare.Define.SPlayer _basic, System.Collections.Generic.List<PTShare.Define.SPass> _passs);
+Dòng 12480: /*0x128*/ System.Action<PTShare.Define.SProperty> OnCallBackIdle;
 Dòng 12514: /*0x120ac90*/ void set_LastIdle(System.DateTime value);
-Dòng 12534: /*0x120c618*/ void UpdateServerTime(System.DateTime time);
+Dòng 12524: /*0x120b968*/ void Send_AccountIdle(bool _isFast, System.Action<PTShare.Define.SProperty> _callback);
+Dòng 12532: /*0x120c3b0*/ void Send_AccountPreviewIdle(System.Action<PTShare.Define.SProperty> callback);
 Dòng 12543: /*0x120cb84*/ void UpdateRewardIdlePopup(System.DateTime _clearTime, PTShare.Define.SProperty _tProperty);
-Dòng 13072: /*0xee7990*/ System.DateTime GetWorldArenaFreeRefreshTime();
-Dòng 14516: /*0x16ee874*/ void StartUpdateTimer();
-Dòng 14518: /*0x16eeec0*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 14524: /*0x16ef5a8*/ void <CoUpdateTimer>b__16_0();
-Dòng 14542: class <CoUpdateTimer>d__16 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 14551: /*0xda4c18*/ <CoUpdateTimer>d__16(int <>1__state);
-Dòng 14567: static /*0x20*/ System.DateTime BountyDefaultTime;
-Dòng 14592: /*0x38*/ System.DateTime expireTime;
-Dòng 15893: /*0x40*/ System.DateTime m_beginnerEndTime;
-Dòng 15909: /*0x1543124*/ System.DateTime GetBeginnerEndTime();
-Dòng 15916: /*0x1543358*/ void SetBeginnerEndTime(System.DateTime dateTime);
-Dòng 16322: /*0x18*/ System.DateTime saveTime;
-Dòng 20083: /*0x115d5f0*/ void AddEventData_DateTime(DefineEvent.EVENT_TYPE eventType);
-Dòng 20280: /*0x18*/ System.DateTime startTime;
-Dòng 20281: /*0x20*/ System.DateTime endTime;
-Dòng 20282: /*0x28*/ System.DateTime now;
-Dòng 20286: /*0x109cd58*/ void <AddEventData_DateTime>b__0(TableData.TableData_Event data);
-Dòng 22444: static /*0x40*/ System.DateTime GuildDefaultDateTime;
-Dòng 23375: /*0xe81004*/ System.DateTime GetSeasonStartTime(int offset);
-Dòng 23376: /*0xe81180*/ System.DateTime GetSeasonNextTime();
-Dòng 25508: /*0x10ab474*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 25513: class <CoUpdateTimer>d__15 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 25519: /*0x30*/ System.DateTime <time>5__3;
-Dòng 25522: /*0x10a3514*/ <CoUpdateTimer>d__15(int <>1__state);
-Dòng 26344: /*0x1318dc0*/ System.Collections.IEnumerator CoUpdateProcessing(System.DateTime startTime);
-Dòng 26355: /*0x28*/ System.DateTime startTime;
-Dòng 26425: /*0x131a19c*/ System.Collections.IEnumerator CoUpdate(System.DateTime startTime);
-Dòng 26433: /*0x28*/ System.DateTime startTime;
-Dòng 26436: /*0x40*/ System.DateTime <endtime>5__4;
-Dòng 26719: /*0x58*/ System.DateTime m_floorOpenTime;
-Dòng 26745: /*0x110*/ System.Collections.Generic.Dictionary<int, System.ValueTuple<System.DateTime, System.DateTime>> m_furnitureShopTimeDic;
-Dòng 26749: /*0x128*/ System.DateTime m_gachaEndTime;
-Dòng 26840: /*0x125589c*/ int GetFastFurnitureUpgradeAmount(int start, int end, System.DateTime endTime);
-Dòng 26841: /*0x1255a74*/ int GetFastWasteAmount(int floor, System.DateTime endTime);
-Dòng 26872: /*0x1257158*/ System.ValueTuple<bool, System.DateTime> GetFloorOpenData();
-Dòng 26897: /*0x1257d10*/ System.DateTime ConvertEndTime(PTShare.Define.SHousingObj obj, TableData.TableData_Furniture table);
-Dòng 26918: /*0x1258eac*/ System.ValueTuple<System.DateTime, System.DateTime> GetShopTime(int groudId);
-Dòng 26920: /*0x1258f18*/ System.DateTime GetLeftGachaGroupExpireDay();
-Dòng 28040: /*0x28*/ System.DateTime <endTime>5__2;
-Dòng 28092: /*0xd1960c*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 28118: class <CoUpdateTimer>d__21 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 28125: /*0xe4c63c*/ <CoUpdateTimer>d__21(int <>1__state);
-Dòng 28164: /*0xd1a7c4*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 28174: class <CoUpdateTimer>d__27 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 28181: /*0xe4c77c*/ <CoUpdateTimer>d__27(int <>1__state);
-Dòng 28311: /*0x40*/ bool m_updateTimer;
-Dòng 28316: /*0xd1c940*/ void InitNotify(UnityEngine.GameObject follow, System.DateTime endTime);
-Dòng 28397: /*0x28*/ System.DateTime <endTime>5__2;
-Dòng 28447: /*0x90*/ System.DateTime m_endTime;
-Dòng 29873: static /*0x0*/ System.DateTime MazeDefaultTime;
-Dòng 30886: /*0xdf9ee8*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 31230: class <CoUpdateTimer>d__97 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 31236: /*0x1087538*/ <CoUpdateTimer>d__97(int <>1__state);
-Dòng 33700: /*0x28*/ System.DateTime buddyRefreshTime;
-Dòng 34031: static /*0x10*/ System.DateTime ArenaDefaultTime;
-Dòng 34032: static /*0x18*/ System.DateTime HousingDefaultTime;
-Dòng 34033: static /*0x20*/ System.DateTime GuildWarDefaultTime;
-Dòng 34034: static /*0x28*/ System.DateTime PveRankingDefaultTime;
-Dòng 34048: /*0x116deac*/ System.DateTime GetPveRankingDefaultTime();
-Dòng 34049: /*0x116dfd8*/ System.DateTime GetServerNow();
-Dòng 34050: /*0x116e150*/ System.DateTime GetServerNow(System.DateTime time);
-Dòng 34077: /*0x116f2bc*/ string GetLeftStringByCustomDay(string normalKey, string secKey, System.DateTime defaultTime, int terms);
-Dòng 34078: /*0x116f3cc*/ string GetLeftStringByCustomDay(string normalKey, string secKey, System.DateTime defaultTime, int terms, int season);
-Dòng 34079: /*0x116f7f4*/ string GetLeftStringByExpire(string normalKey, string secKey, System.DateTime expire);
-Dòng 34082: /*0x116f2f8*/ System.TimeSpan GetLeftTimeSpanByCustom(System.DateTime defaultTime, int terms);
-Dòng 35762: /*0x40*/ System.DateTime LatestDateTime;
-Dòng 35818: /*0x190*/ System.DateTime LastTime;
-Dòng 44827: /*0x153fc6c*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 44829: class <CoUpdateTimer>d__12 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 44835: /*0xda8d94*/ <CoUpdateTimer>d__12(int <>1__state);
-Dòng 45471: /*0x80*/ System.DateTime dtChatTime;
-Dòng 46659: /*0xd20a84*/ void Initialize(System.DateTime _clearTime, PTShare.Define.SProperty _reward, System.Action _exitCallback, ItemRewardBoxType[] _ignoreType);
-Dòng 46741: /*0x28*/ System.DateTime dtDefaultTime;
-Dòng 46748: /*0xe21694*/ void InitializeText(int term, System.DateTime defaultTime, string normalKey, string secKey);
-Dòng 46749: /*0xe216f4*/ void InitializeText(int season, int term, System.DateTime defaultTime, string normalKey, string secKey);
-Dòng 47131: /*0xf4a130*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 47151: class <CoUpdateTimer>d__46 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 47157: /*0x1073d34*/ <CoUpdateTimer>d__46(int <>1__state);
-Dòng 48594: /*0xebe058*/ void SetUpdateTime();
-Dòng 51232: /*0x117c3e0*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 51244: class <CoUpdateTimer>d__6 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 51253: /*0xcd2708*/ <CoUpdateTimer>d__6(int <>1__state);
-Dòng 51318: /*0x117cde0*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 51320: class <CoUpdateTimer>d__7 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 51329: /*0xcd2f10*/ <CoUpdateTimer>d__7(int <>1__state);
-Dòng 51546: /*0x111fdb8*/ System.DateTime get_LasttimeRewarded();
-Dòng 51547: /*0x111fe38*/ System.DateTime get_curNow();
-Dòng 52803: /*0x1236ea4*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 52818: class <CoUpdateTimer>d__12 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 52824: /*0x109227c*/ <CoUpdateTimer>d__12(int <>1__state);
-Dòng 53731: /*0x58*/ System.DateTime slotopen;
-Dòng 54322: /*0x111ceb0*/ void InitUserInfo(long _lPlayerID, int _nTableID, string _nickName, int _nLevel, int _nFloor, System.DateTime _clear, int _index, string detailids);
-Dòng 54324: /*0x111d1b0*/ void LoadClearTime(System.DateTime _clearTime);
-Dòng 55651: /*0xe0ecf4*/ System.Collections.IEnumerator CoUpdateTimer();
-Dòng 55657: class <CoUpdateTimer>d__18 : System.Collections.Generic.IEnumerator<object>, System.Collections.IEnumerator, System.IDisposable
-Dòng 55666: /*0xd8e0cc*/ <CoUpdateTimer>d__18(int <>1__state);
-Dòng 55933: /*0x10*/ System.DateTime time;
-Dòng 56312: static /*0xf61110*/ void <ConvertShopPackage>g__SetDateTime|60_1(ref System.DateTime start, ref System.DateTime end, TableData.TableData_Packagetime table);
-Dòng 58937: static /*0x10d0398*/ int GetWeekIndex(System.DateTime now, int standYear, int standMonth, int count);
-Dòng 58938: static /*0x10d04b4*/ System.DateTime GetFirstSunday(int year, int month);
-Dòng 58939: static /*0x10d052c*/ System.DateTime GetWeekSunday(System.DateTime time);
-Dòng 58940: static /*0x10d0578*/ System.DateTime GetNextWeekSunday(System.DateTime time);
-Dòng 58941: static /*0x10d05e8*/ System.DateTime GetWeekMonday(System.DateTime time);
-Dòng 58942: static /*0x10d067c*/ System.DateTime GetNextWeekMonday(System.DateTime time);
-Dòng 58943: static /*0x10d0710*/ System.DateTime GetOffsetCurrentTime(System.DateTime time);
-Dòng 58944: static /*0x10d0804*/ string GetConvertString(System.DateTime time);
-Dòng 64606: /*0x18*/ System.DateTime now;
+Dòng 12550: /*0x120d010*/ void UpdateFastIdleCount(int _count);
+Dòng 12624: /*0xe144bc*/ void <Send_AccountIdle>b__0(ServerProtocol.ResAccountIdle _response);
+Dòng 12665: /*0xe14924*/ void <Send_AccountPreviewIdle>b__0(ServerProtocol.ResAccountPreviewIdle res);
+Dòng 17423: static /*0x20*/ int BOMB_IDLE;
+Dòng 19743: IDLE = 3,
+Dòng 19762: CURRENCY_IDLE = 22,
+Dòng 19777: TAKE_IDLE = 37,
+Dòng 20170: /*0x11611f4*/ System.Collections.Generic.List<System.ValueTuple<string, int>> GetPassIdleRewardData();
+Dòng 20637: /*0x18*/ System.Collections.Generic.List<System.ValueTuple<string, int>> idleRewardData;
+Dòng 20642: /*0x109c0a8*/ void <GetPassIdleRewardData>b__0(TableData.TableData_Eventcurrencylocal data);
+Dòng 22060: /*0xe60940*/ void ShowBuyMessageBox_IdleReward(PTShare.Define.Currency _type, long _amount, System.Action<bool> _onAction, System.TimeSpan _remainTime, string[] _params);
+Dòng 24962: /*0x121e258*/ System.Collections.Generic.List<PTShare.Define.SHero> FindIdleHeroListNoOverlapTableID();
+Dòng 32329: /*0x48*/ TableData.TableData_Queststageidle StageIdle;
+Dòng 32730: class RedDotFastIdle : RedDotBase
+Dòng 32732: /*0x11c5cc0*/ RedDotFastIdle();
+Dòng 32975: IDLEREWARD = 3,
+Dòng 33746: /*0xc93450*/ TableData.TableData_Stageidle GetCurrentStageIdle();
+Dòng 35068: /*0x10d1400*/ int GetFastIdleAddCount();
+Dòng 35069: /*0x10d1420*/ int GetIdleAddMaxTime();
+Dòng 35075: /*0x10d1540*/ float GetIdleGoldAddPercent();
+Dòng 35076: /*0x10d1570*/ float GetIdleHeroExpAddPercent();
+Dòng 36804: class BuyConfirmPopup_IdleReward : BuyConfirmPopup
+Dòng 36811: /*0x1339388*/ BuyConfirmPopup_IdleReward();
+Dòng 36815: /*0x1338c08*/ void SetLocalizebyIdleReward();
+Dòng 36825: /*0x20*/ BuyConfirmPopup_IdleReward <>4__this;
+Dòng 36838: /*0x10*/ BuyConfirmPopup_IdleReward <>4__this;
+Dòng 36964: /*0x50*/ string m_titleIdle;
+Dòng 41919: /*0x78*/ LocalizeString m_idleRewardGold;
+Dòng 41920: /*0x80*/ LocalizeString m_idleRewardHeroExp;
+Dòng 41921: /*0x88*/ LocalizeString m_idleRewardUserExp;
+Dòng 41937: /*0x119f4c8*/ void SetIdleReward();
+Dòng 42071: /*0x80*/ LocalizeString m_idleRewardGold;
+Dòng 42072: /*0x88*/ LocalizeString m_idleRewardHeroExp;
+Dòng 42073: /*0x90*/ LocalizeString m_idleRewardUserExp;
+Dòng 42095: /*0x11a3434*/ void SetIdleReward();
+Dòng 44723: /*0x58*/ UnityEngine.RectTransform IdleSpawnTrans;
+Dòng 46641: class IdleRewardPopup : RewardPopupBase
+Dòng 46652: /*0xd210d0*/ IdleRewardPopup();
+Dòng 46660: /*0xd20c9c*/ void LoadStageIdle();
+Dòng 46663: /*0xd20ee0*/ void OnClick_SendAccountIdle();
+Dòng 46664: /*0xd20fd8*/ void OnClick_SendAccountIdlebyFast();
+Dòng 46665: /*0xd21144*/ void <OnClick_SendAccountIdle>b__18_0(PTShare.Define.SProperty _reward);
+Dòng 46666: /*0xd21310*/ void <OnClick_SendAccountIdlebyFast>b__19_0(PTShare.Define.SProperty _reward);
+Dòng 46672: /*0x20*/ IdleRewardPopup <>4__this;
+Dòng 46685: static /*0x0*/ IdleRewardPopup.<> <>9;
+Dòng 46691: /*0xe4d4f4*/ void <OnClick_SendAccountIdle>b__18_1();
+Dòng 46692: /*0xe4d550*/ void <OnClick_SendAccountIdlebyFast>b__19_1();
+Dòng 46962: /*0x20*/ string m_idleAnimName;
+Dòng 46972: /*0x2367e30*/ void PlayingIdle();
+Dòng 47247: IDLE = 1,
+Dòng 50895: /*0x58*/ System.Collections.Generic.List<Rewards> m_liIdleReward;
+Dòng 50896: /*0x60*/ TableData.TableData_Stageidle m_IdleInfo;
+Dòng 51638: /*0xde4034*/ void OnClick_IdleReward(bool _isFast);
+Dòng 51686: /*0xe5d98c*/ void <OnClick_IdleReward>b__1(bool _instance);
+Dòng 51687: /*0xe5daa4*/ void <OnClick_IdleReward>b__2(PTShare.Define.SProperty _reward);
+Dòng 51688: /*0xe5dc30*/ void <OnClick_IdleReward>b__3();
+Dòng 51689: /*0xe5dcbc*/ void <OnClick_IdleReward>b__0(PTShare.Define.SProperty response);
+Dòng 52396: /*0x40*/ ParticleBase m_PromoteEffectIdle;
+Dòng 52442: /*0x1224fac*/ void SetActiveEffect(bool _bIdle, bool _bLight);
+Dòng 53793: IDLE_CRYSTAL = 0,
+Dòng 53794: IDLE_NO = 1,
+Dòng 55740: IDLE = 0,
+Dòng 55942: static /*0x0*/ int MAX_FASTIDLE;
+Dòng 56741: StageIdle = 5,
+Dòng 57508: static string IDLE = "idle";
+Dòng 57509: static string IDLE_CLEAR = "idle_clear";
+Dòng 57510: static string IDLE_ENEMY = "idle_enemy";
+Dòng 57511: static string IDLE_UNARMED = "idle_unarmed";
+Dòng 57515: static string DUNGEON_IDLE = "idle_lantern";
+Dòng 57522: static string IDLE_NO = "idle_no";
+Dòng 57523: static string IDLE_STAR = "idle_star";
+Dòng 57996: /*0x2c*/ float IdleUnitDistanceY;
+Dòng 58107: class IdleConstantsGroup : UnityEngine.ScriptableObject
+Dòng 58120: /*0xd20a58*/ IdleConstantsGroup();
+Dòng 58866: static /*0x10cc02c*/ void TransColliderForIdleMode(ref Battle.ColliderData _colliderData);
+Dòng 59119: IDLE = 1,
+Dòng 59120: IDLE_UNARM = 2,
+Dòng 59121: IDLE_BDRAGON_SP_03 = 3,
+Dòng 64207: enum StageIdleType
+Dòng 64210: Idle = 1,
+Dòng 64281: StageIdle = 2,
+Dòng 64457: Idle = 78,
+Dòng 64506: PreviewIdle = 127,
 Dòng 64624: /*0x68*/ System.DateTime lastidle;
-Dòng 64640: /*0x20*/ System.DateTime endtime;
-Dòng 64648: /*0x20*/ System.DateTime realquittime;
-Dòng 64655: /*0x20*/ System.DateTime stopendplan;
-Dòng 64778: /*0x98*/ System.DateTime beginnerend;
-Dòng 64815: /*0x1b0*/ System.DateTime housingfloortime;
+Dòng 64767: /*0x44*/ int fastidle;
+Dòng 64908: class ReqAccountPreviewIdle : ServerProtocol.IRequestCommon
+Dòng 64910: /*0xf1fe14*/ ReqAccountPreviewIdle(string token);
+Dòng 64913: class ResAccountPreviewIdle : ServerProtocol.IResponseCommonV2
+Dòng 64917: /*0xf24888*/ ResAccountPreviewIdle();
+Dòng 64920: class ReqAccountIdle : ServerProtocol.IRequestCommon
+Dòng 64924: /*0xf1fc8c*/ ReqAccountIdle(string token, bool fast);
+Dòng 64927: class ResAccountIdle : ServerProtocol.IResponseCommonV3
 Dòng 64929: /*0x30*/ System.DateTime lastidle;
-Dòng 64996: /*0x28*/ System.DateTime arg0;
-Dòng 65577: /*0x28*/ System.DateTime expire;
-Dòng 66498: /*0x18*/ System.DateTime now;
-Dòng 66499: /*0x20*/ System.DateTime stopendplan;
-Dòng 68388: /*0x30*/ System.DateTime myclear;
-Dòng 68544: /*0x60*/ System.DateTime refreshfree;
-Dòng 68585: /*0x38*/ System.DateTime refreshfree;
-Dòng 68833: /*0x30*/ System.DateTime pvefreex;
-Dòng 68894: /*0x58*/ System.DateTime pvefreex;
-Dòng 68961: /*0x40*/ System.DateTime housingfloortime;
-Dòng 68975: /*0x30*/ System.DateTime housingfloortime;
-Dòng 68991: /*0x30*/ System.DateTime housingfloortime;
-Dòng 69672: static string PACKAGE_LIMITED_LAST_START_DATETIME_KEY = "LimitedLastStartDateTime";
-Dòng 69675: static /*0xf50a18*/ string GetLastStartDateTime();
-Dòng 69676: static /*0xf50a78*/ void SetLastStartDateTime(string startDateTime);
-Dòng 70313: static /*0x38*/ int DATETIME_LENGTH;
-Dòng 70919: /*0x30*/ System.DateTime begin;
-Dòng 70920: /*0x38*/ System.DateTime expire;
-Dòng 70949: /*0x20*/ System.DateTime expire;
-Dòng 70959: /*0x20*/ System.DateTime expire;
-Dòng 71509: /*0x30*/ System.DateTime begin;
-Dòng 71685: /*0x18*/ System.DateTime open;
-Dòng 71832: /*0x30*/ System.DateTime time;
-Dòng 71861: /*0x10*/ System.DateTime time;
-Dòng 71900: /*0x40*/ System.DateTime lastwin;
-Dòng 71902: /*0x50*/ System.DateTime hlastwin;
-Dòng 71904: /*0x60*/ System.DateTime lastaccess;
-Dòng 72016: /*0x30*/ System.DateTime complete;
-Dòng 72081: /*0x38*/ System.DateTime clear;
-Dòng 72124: /*0x30*/ System.DateTime create;
-Dòng 72148: /*0x18*/ System.DateTime expire;
-Dòng 72177: /*0x18*/ System.DateTime post;
-Dòng 72178: /*0x20*/ System.DateTime expire;
-Dòng 72193: /*0x20*/ System.DateTime expire;
-Dòng 72195: /*0x30*/ System.DateTime finish;
-Dòng 72332: /*0x18*/ System.DateTime expire;
-Dòng 72363: /*0x18*/ System.DateTime time;
-Dòng 72404: /*0x20*/ System.DateTime time;
-Dòng 72414: /*0x18*/ System.DateTime time;
-Dòng 72440: /*0x78*/ System.DateTime visittime;
-Dòng 72757: static /*0x10a5a04*/ int PveFreeTicketCnt(System.DateTime now, System.DateTime valx, int valy);
-Dòng 72979: /*0x10*/ System.DateTime <time>k__BackingField;
-Dòng 72986: /*0x1299a90*/ System.DateTime get_time();
-Dòng 72987: /*0x1299a98*/ void set_time(System.DateTime value);
+Dòng 64930: /*0x38*/ int fastidle;
+Dòng 64934: /*0xf24828*/ ResAccountIdle();
+Dòng 70246: static /*0x40*/ string TAKE_IDLE;
+Dòng 70567: IDLE = 21,
+Dòng 72788: /*0x10a2e7c*/ bool <ParseTriggerByQuestId>b__0(TableData.TableData_Queststageidle d);
+Dòng 73146: /*0x50*/ TableData.BattleIdleTable BattleIdleTable;
+Dòng 73163: /*0xd8*/ TableData.FastIdleTable FastIdleTable;
+Dòng 73172: /*0x120*/ TableData.IdleUnitTipDialogTable IdleUnitTipDialogTable;
+Dòng 73179: /*0x158*/ TableData.StageIdleTable StageIdleTable;
+Dòng 73299: /*0x518*/ TableData.QuestStageIdleTable QuestStageIdleTable;
+Dòng 73620: class TableData_Battleidle : TableData.TableData_Stagebattle
+Dòng 73622: /*0xc9ef08*/ TableData_Battleidle();
+Dòng 73625: class BattleIdleTable
+Dòng 73627: /*0x10*/ System.Collections.Generic.List<TableData.TableData_Battleidle> List;
+Dòng 73629: /*0xe31fb0*/ BattleIdleTable();
+Dòng 73980: class TableData_Stageidle
+Dòng 73994: /*0xc8fc84*/ TableData_Stageidle();
+Dòng 73997: class StageIdleTable
+Dòng 73999: /*0x10*/ System.Collections.Generic.List<TableData.TableData_Stageidle> List;
+Dòng 74001: /*0xc8f158*/ StageIdleTable();
+Dòng 74143: /*0x4c*/ int StageIdleTime;
+Dòng 74204: class TableData_Fastidle
+Dòng 74207: /*0x14*/ int FastIdleCash;
+Dòng 74209: /*0xc9f108*/ TableData_Fastidle();
+Dòng 74212: class FastIdleTable
+Dòng 74214: /*0x10*/ System.Collections.Generic.List<TableData.TableData_Fastidle> List;
+Dòng 74216: /*0x11d9ed8*/ FastIdleTable();
+Dòng 74530: class TableData_Idleunittipdialog
+Dòng 74533: /*0x18*/ string IdleDialogType;
+Dòng 74552: /*0xc9f238*/ TableData_Idleunittipdialog();
+Dòng 74555: class IdleUnitTipDialogTable
+Dòng 74557: /*0x10*/ System.Collections.Generic.List<TableData.TableData_Idleunittipdialog> List;
+Dòng 74559: /*0xd21538*/ IdleUnitTipDialogTable();
+Dòng 74609: /*0x20*/ int StageIdleGold;
+Dòng 74610: /*0x24*/ int StageIdleHeroexp;
+Dòng 74611: /*0x28*/ int FastIdleCount;
+Dòng 74616: /*0x3c*/ int StageIdleTimeUp;
+Dòng 76293: /*0x58*/ int PriorityIDLE;
+Dòng 76304: /*0x90*/ bool UseIdle;
+Dòng 76877: class TableData_Queststageidle
+Dòng 76881: /*0x20*/ string IdleKind;
+Dòng 76885: /*0xc9f338*/ TableData_Queststageidle();
+Dòng 76888: class QuestStageIdleTable
+Dòng 76890: /*0x10*/ System.Collections.Generic.List<TableData.TableData_Queststageidle> List;
+Dòng 76892: /*0x12461c8*/ QuestStageIdleTable();
+Dòng 77987: static float BATTLE_SPEED_IDLE = 0.800000011920929;
+Dòng 78023: static string ANIM_IDLE_NAME = "idle";
+Dòng 78024: static string ANIM_IDLE_UNARM_NAME = "idle_unarmed";
+Dòng 78025: static string ANIM_IDLE_BDRAGON_SP_03_NAME = "idle_Bdragon_sp_03";
+Dòng 78087: static float END_TO_IDLE_DELAY = 2;
+Dòng 78101: static int IDLE_SPAWN_MONSTER_AMOUNT_MAX = 4;
+Dòng 78102: static float START_HAST_IDLE = 50;
+Dòng 78103: static float START_HAST_DISTANCE_IDLE = 1;
+Dòng 78105: static float BATTLE_AREA_LIMIT_POSX_IDLE = 5;
+Dòng 78106: static float IDLE_SPAWN_DELAY_TIME_MIN = 0.5;
+Dòng 78107: static float IDLE_SPAWN_DELAY_TIME_MAX = 3;
+Dòng 78117: static /*0x20*/ IdleConstantsGroup IdleConstants;
+Dòng 78177: IDLE = 4,
+Dòng 78209: IDLE = 3,
+Dòng 78221: IDLE = 3,
+Dòng 78238: IDLE = 8,
+Dòng 78291: MAIN_IDLE = 4,
+Dòng 79266: IDLE = 1,
