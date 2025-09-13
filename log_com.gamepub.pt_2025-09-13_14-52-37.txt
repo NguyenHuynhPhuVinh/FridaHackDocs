@@ -1,0 +1,139 @@
+09-13 14:52:32.926  2580  6072 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.gamepub.pt/com.unity3d.player.UnityPlayerActivity bnds=[547,467][799,755] mCallingUid=10181} from uid 10181
+09-13 14:52:32.945  2580  6072 I OplusScreenSecurityMask: onStackAdded task = Task{bed15ac #89 type=standard A=12442:com.gamepub.pt U=0 visible=false mode=fullscreen translucent=true sz=0} record = null displayId = 0
+09-13 14:52:32.949  2580  6072 D CompactWindowManagerService: onOriginListAdded child: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}; parent: Task{bed15ac #89 type=standard A=12442:com.gamepub.pt U=0 visible=true mode=fullscreen translucent=true sz=1}
+09-13 14:52:32.949  2580  6072 I OplusCompactWindowManagerService: supportMultiResume :true in package :com.gamepub.pt
+09-13 14:52:32.949  2580  6072 D TaskExtImpl: add ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89} to mActivityRecordSum = Counter{ com.gamepub.pt/com.unity3d.player.UnityPlayerActivity(1) }
+09-13 14:52:32.952  2580  6072 D ActivityTaskManager: getStartingWindowType: newTask=true, taskSwitch=true, processRunning=false, allowTaskSnapshot=true, activityCreated=false, snapshot=null, record:ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:32.953  2580  6072 V OplusZoomWindowManagerService: windowMode: 0 ,stack: Task{bed15ac #89 type=standard A=12442:com.gamepub.pt U=0 visible=true mode=fullscreen translucent=true sz=1}
+09-13 14:52:32.965  3233  3461 D WindowManager: Add to mViews: android.widget.FrameLayout{e43a0c3 V.E...... ......I. 0,0-0,0},pkg= com.gamepub.pt
+09-13 14:52:32.967  2580  6067 I OplusHansManager : front pkg: com.gamepub.pt, uid: 12442, prev pkg: com.android.launcher, prev uid: 10181
+09-13 14:52:32.972  2580  3749 I OplusResourcePreloadManager: resume pkg: com.gamepub.pt, uid:12442, prev pkg: com.android.launcher, prev uid: 10181
+09-13 14:52:32.972  2580  6067 D OplusDisplayPolicy: com.gamepub.pt, no change cutoutMode: 0
+09-13 14:52:32.979  2580  6067 D OplusDisplayPolicy: com.gamepub.pt, no change cutoutMode: 0
+09-13 14:52:32.990  1381  1381 D OplusLayer: setBuffer sequence=4093, name=Splash Screen com.gamepub.pt#0
+09-13 14:52:33.000  2580  2613 D CompactWindowManagerService: updateBackgroundSurface openingApp: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.020  2580  2613 I WindowStateExtImpl: onSurfaceShowChange show = true mPackageName = com.gamepub.pt parentPkgName = com.gamepub.pt
+09-13 14:52:33.026  2580  2629 I ActivityManager: Start proc 14579:com.gamepub.pt/u0a2442 for pre-top-activity {com.gamepub.pt/com.unity3d.player.UnityPlayerActivity}
+09-13 14:52:33.040 14579 14579 I com.gamepub.pt: Late-enabling -Xcheck:jni
+09-13 14:52:33.063 14579 14579 E com.gamepub.pt: Unknown bits set in runtime_flags: 0x40000000
+09-13 14:52:33.063 14579 14579 I com.gamepub.pt: Using CollectorTypeCC GC.
+09-13 14:52:33.075  2580  6072 D OplusAppListInterceptManager: shouldFilterTask::packageName = com.gamepub.pt
+09-13 14:52:33.104  2580  6072 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.105  2580  6072 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.105  2580  4003 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppExit, resuming = com.gamepub.pt, target = com.android.launcher, is ResumingFirstStart =  true, is ResumingMultiApp =  false, extensionInfo =  Bundle[{taskId=89, uid=12442}]
+09-13 14:52:33.106  2580  6072 I InputDispatcher: setFocusedApplication displayId=0 ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.108  2580  4003 D OplusEapManager: mTargetEnterName :com.gamepub.pt
+09-13 14:52:33.108  2580  4003 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppEnter, launchedFrom =  com.android.launcher, target =  com.gamepub.pt, is firstStart =  true, is multiApp =  false, extensionInfo =  Bundle[{taskId=89, pid=14579, uid=12442}]
+09-13 14:52:33.109  2580  4003 D VRR [OPlusFrontAppManager]: OnAppSwitchObserver: onAppEnter , info.targetName = com.gamepub.pt
+09-13 14:52:33.110  2580  7693 D DCSEX-AppLaunchEventRecorder: onAppSwitch from = com.android.launcher to = com.gamepub.pt
+09-13 14:52:33.113  3905  3922 W Battery : ThermalControlUtils: mForegroundPkg=com.gamepub.pt
+09-13 14:52:33.114  2580  2654 D VRR [OPlusRefreshRateService]: handleFrontAppChange pkgName: com.gamepub.pt
+09-13 14:52:33.114  2580  2654 D VRR [OPlusExternalRefreshRateManager]: setFrontPackageName pkgName: com.gamepub.pt CurPkgName: null
+09-13 14:52:33.125  5400  5400 W athena_handler_: type=1400 audit(0.0:17910): avc: denied { write } for name="com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==" dev="sda11" ino=2101641 scontext=u:r:system_app:s0 tcontext=u:object_r:apk_data_file:s0 tclass=dir permissive=0
+09-13 14:52:33.124  2580  2612 D OplusKeepAliveManager: TOP_APP is ProcessRecord{c2d78ae 14579:com.gamepub.pt/u0a2442} uid is 12442
+09-13 14:52:33.124  2580  2637 E OplusThermalStats: Error getting package info: com.gamepub.pt
+09-13 14:52:33.129  5400  5594 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.129  5400  5594 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.151  3847 19039 D OplusLinkLatencyManagerService: gameOptimizeSetLoad.id:2, pkgName:com.gamepub.pt
+09-13 14:52:33.168  2580  6043 D OplusWifiTransactionHelper: notifyGameInfoJsonStr: gameInfo = {"PKG_NAME":"com.gamepub.pt","GAME_PLAYING":1}
+09-13 14:52:33.182  2580  6069 D OplusWifiTransactionHelper: Get notifyGameModeState: state = true pkgName = com.gamepub.pt
+09-13 14:52:33.182 10356 10391 I Quality : 17001301:14579 com.gamepub.pt GAME_START
+09-13 14:52:33.183  2580  6069 D OplusWifiCoexManager: setGameModeState: gameStateIn=true pkgName=com.gamepub.pt uid=12442
+09-13 14:52:33.184  2580  6043 D OplusWifiTransactionHelper: notifyGameInfoJsonStr: gameInfo = {"PKG_NAME":"com.gamepub.pt","APP_FOREGROUND":true}
+09-13 14:52:33.228  3905  7076 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.228  3905  7076 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.228 14579 14579 D nativeloader: Configuring clns-4 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:33.225  3905  3905 W LogcatParserThr: type=1400 audit(0.0:17911): avc: denied { write } for name="com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==" dev="sda11" ino=2101641 scontext=u:r:system_app:s0 tcontext=u:object_r:apk_data_file:s0 tclass=dir permissive=0
+09-13 14:52:33.230 14579 14579 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.230 14579 14579 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:33.292  2580  6071 V OplusZoomWindowManagerService: onAnimationFinished:  r = ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.293  2580  6071 I OplusAppSwitchManagerService:  handleAppVisible , r = ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:33.450 14579 14579 D nativeloader: Configuring clns-5 for other apk /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk. target_sdk_version=33, uses_libraries=, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:33.480 14579 14579 V GraphicsEnvironment: ANGLE Developer option for 'com.gamepub.pt' set to: 'default'
+09-13 14:52:33.522  1377 31164 D AudioFlingerExtImpl: AudioFlingerExtImpl oplusSetParameters: keyvalue currentGamePackageName=com.gamepub.pt
+09-13 14:52:33.522  1377 31164 D AudioFlingerExtImpl: MagicVoiceSetParameters, tempCurrentPackageName:com.gamepub.pt
+09-13 14:52:33.522  1317  1317 D audio_hw_primary: adev_set_parameters: enter: currentGamePackageName=com.gamepub.pt
+09-13 14:52:33.532 16172 16526 D AppSortManager: updateApp app:com.gamepub.pt
+09-13 14:52:33.533  2580  6043 D OplusWifiTransactionHelper: notifyGameInfoJsonStr: gameInfo = {"PKG_NAME":"com.gamepub.pt","PERFORMANCE_MODE":0}
+09-13 14:52:33.537 16172 16172 W FrameInsert: getDisplayFunctionCapability for com.gamepub.pt enter
+09-13 14:52:33.614 14579 14605 W com.gamepub.pt: ClassLoaderContext classpath size mismatch. expected=1, found=0 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[])
+09-13 14:52:33.617  3905  4181 W AuthDialogHelper: checkNotificationSwitchFirst() called with: context = [com.oplus.notification.NotificationCenterService@754e682], pkg = [com.gamepub.pt], uid = [12442], userId = [0], init checker
+09-13 14:52:33.618  3905  4181 E AuthDialogHelper: CheckNotificationCanBeSetSecond: check com.gamepub.pt , Notification master switch on, unable to pop dialog
+09-13 14:52:33.665  2580  6069 D OplusWifiTransactionHelper: notifyGameInfoJsonStr: gameInfo = {"PKG_NAME":"com.gamepub.pt","PERFORMANCE_MODE":0}
+09-13 14:52:33.713 14579 14605 W com.gamepub.pt: ClassLoaderContext classpath element checksum mismatch. expected=2933616277, found=3611197325 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk*3611197325]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]})
+09-13 14:52:33.734 16172 16504 D network : getData for https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt started !!
+09-13 14:52:33.735 16172 16504 I httpdns : HttpDnsInterceptor.preIntercept, input: https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt
+09-13 14:52:33.735 16172 16504 I httpdns : HttpDnsInterceptor.preIntercept, output: https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt
+09-13 14:52:33.899 16172 16504 I httpdns : HttpDnsInterceptor.afterIntercept, https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt#200#null
+09-13 14:52:33.902 16172 16504 D network : return  NetworkResponse for https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt took 168
+09-13 14:52:33.902 16172 16504 D network : desiriaize for https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt return  NetworkResponse took 0
+09-13 14:52:33.902 16172 16504 D network : getData for https://games-community-sg.heytapmobile.com/games/tool/recharge/page/jump?pkgName=com.gamepub.pt took : 168
+09-13 14:52:33.944 14579 14579 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libcrashlytics.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
+09-13 14:52:33.958 14579 14615 W com.gamepub.pt: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (unsupported, reflection, allowed)
+09-13 14:52:33.969 14579 14579 I FirebaseCrashlytics: Initializing Firebase Crashlytics 18.3.2 for com.gamepub.pt
+09-13 14:52:33.985 14579 14611 E com.gamepub.pt: No package ID 6a found for ID 0x6a0b000f.
+09-13 14:52:33.988 14579 14611 I FA      :   adb shell setprop debug.firebase.analytics.app com.gamepub.pt
+09-13 14:52:34.043  2580  6072 W PackageManager: package unknown uid 12442 pid 14579 call SetEnabledSetting(com.gamepub.pt component = androidx.work.impl.background.systemjob.SystemJobService, 1, 0x1, 0)
+09-13 14:52:34.107 14579 14579 I Quality : ActivityThread: bindApplication delay 986 com.gamepub.pt 14579
+09-13 14:52:34.169 14579 14579 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libModLoader.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
+09-13 14:52:34.251  2580  6069 D TheiaManager: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89} callDeclaredMethod : com.android.server.wm.ActivityRecord.getPid param[] null args[]null
+09-13 14:52:34.252  2580  6069 D TheiaManager: KEY:packageNameVALUE:com.gamepub.pt
+09-13 14:52:34.252  2580  6069 D TheiaCrashMonitor: com.gamepub.ptcrash
+09-13 14:52:34.252  2580  6069 I ActivityManager: Process com.gamepub.pt (pid 14579) has died: fg  TOP 
+09-13 14:52:34.260  2580  4502 I OplusHansManager : onUidGone(), 12442 com.gamepub.pt exit SM
+09-13 14:52:34.283  2580  6061 D OplusWifiTransactionHelper: notifyGameInfoJsonStr: gameInfo = {"PKG_NAME":"com.gamepub.pt","GAME_PLAYING":0}
+09-13 14:52:34.323  2580  2629 I ActivityManager: Start proc 14649:com.gamepub.pt/u0a2442 for top-activity {com.gamepub.pt/com.unity3d.player.UnityPlayerActivity}
+09-13 14:52:34.334 14649 14649 I com.gamepub.pt: Late-enabling -Xcheck:jni
+09-13 14:52:34.353 14649 14649 E com.gamepub.pt: Unknown bits set in runtime_flags: 0x40000000
+09-13 14:52:34.353 14649 14649 I com.gamepub.pt: Using CollectorTypeCC GC.
+09-13 14:52:34.385  2580  6072 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:34.385  2580  6072 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:34.391  2580  2613 D CompactWindowManagerService: updateBackgroundSurface openingApp: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:34.396  2580  2613 I OplusAppSwitchManagerService:  handleAppVisible , r = ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:34.474 14649 14649 D nativeloader: Configuring clns-4 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:34.476 14649 14649 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:34.476 14649 14649 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:34.673 14649 14649 D nativeloader: Configuring clns-5 for other apk /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk. target_sdk_version=33, uses_libraries=, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:34.698 14649 14649 V GraphicsEnvironment: ANGLE Developer option for 'com.gamepub.pt' set to: 'default'
+09-13 14:52:34.785 14649 14670 W com.gamepub.pt: ClassLoaderContext classpath size mismatch. expected=1, found=0 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[])
+09-13 14:52:34.844 14649 14670 W com.gamepub.pt: ClassLoaderContext classpath element checksum mismatch. expected=2933616277, found=3611197325 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk*3611197325]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]})
+09-13 14:52:35.053 14649 14684 W com.gamepub.pt: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (unsupported, reflection, allowed)
+09-13 14:52:35.075 14649 14681 E com.gamepub.pt: No package ID 6a found for ID 0x6a0b000f.
+09-13 14:52:35.079 14649 14681 I FA      :   adb shell setprop debug.firebase.analytics.app com.gamepub.pt
+09-13 14:52:35.084 14649 14649 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libcrashlytics.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
+09-13 14:52:35.112 14649 14649 I FirebaseCrashlytics: Initializing Firebase Crashlytics 18.3.2 for com.gamepub.pt
+09-13 14:52:35.113 14649 14668 W com.gamepub.pt: ClassLoaderContext type mismatch. expected=PCL, found=DLC (PCL[] | DLC[];PCL[/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk*3611197325]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]})
+09-13 14:52:35.188  2580  6069 W PackageManager: package unknown uid 12442 pid 14649 call SetEnabledSetting(com.gamepub.pt component = androidx.work.impl.background.systemjob.SystemJobService, 1, 0x1, 0)
+09-13 14:52:35.252 14649 14649 I Quality : ActivityThread: bindApplication delay 856 com.gamepub.pt 14649
+09-13 14:52:35.303 14649 14649 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libModLoader.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
+09-13 14:52:35.319 14649 14705 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 14705 (firebase-instal), pid 14649 (com.gamepub.pt)
+09-13 14:52:35.328  2580  6043 D OplusAppListInterceptManager: shouldFilterTask::packageName = com.gamepub.pt
+09-13 14:52:35.908  2580  6067 D TheiaManager: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89} callDeclaredMethod : com.android.server.wm.ActivityRecord.getPid param[] null args[]null
+09-13 14:52:35.910  2580  6067 D TheiaManager: KEY:packageNameVALUE:com.gamepub.pt
+09-13 14:52:35.910  2580  6067 D TheiaCrashMonitor: com.gamepub.ptcrash
+09-13 14:52:35.910  2580  6067 I ActivityManager: Process com.gamepub.pt (pid 14649) has died: fg  TOP 
+09-13 14:52:35.926  2580  4502 I OplusHansManager : onUidGone(), 12442 com.gamepub.pt exit SM
+09-13 14:52:35.960  2580  2629 I ActivityManager: Start proc 14730:com.gamepub.pt/u0a2442 for top-activity {com.gamepub.pt/com.unity3d.player.UnityPlayerActivity}
+09-13 14:52:35.967 14730 14730 I com.gamepub.pt: Late-enabling -Xcheck:jni
+09-13 14:52:35.984 14730 14730 E com.gamepub.pt: Unknown bits set in runtime_flags: 0x40000000
+09-13 14:52:35.984 14730 14730 I com.gamepub.pt: Using CollectorTypeCC GC.
+09-13 14:52:36.019  2580  6043 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:36.020  2580  6043 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:36.046  2580  2613 D CompactWindowManagerService: updateBackgroundSurface openingApp: ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:36.049  2580  2613 I OplusAppSwitchManagerService:  handleAppVisible , r = ActivityRecord{f94d275 u0 com.gamepub.pt/com.unity3d.player.UnityPlayerActivity t89}
+09-13 14:52:36.113 14730 14730 D nativeloader: Configuring clns-4 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:36.115 14730 14730 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:36.115 14730 14730 W ziparchive: Unable to open '/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.dm': No such file or directory
+09-13 14:52:36.330 14730 14730 D nativeloader: Configuring clns-5 for other apk /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk. target_sdk_version=33, uses_libraries=, library_path=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64:/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.pt
+09-13 14:52:36.356 14730 14730 V GraphicsEnvironment: ANGLE Developer option for 'com.gamepub.pt' set to: 'default'
+09-13 14:52:36.472 14730 14778 W com.gamepub.pt: ClassLoaderContext classpath size mismatch. expected=1, found=0 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[])
+09-13 14:52:36.520 14730 14778 W com.gamepub.pt: ClassLoaderContext classpath element checksum mismatch. expected=2933616277, found=3611197325 (DLC[];PCL[base.apk*2933616277]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]#PCL[/system/framework/com.android.media.remotedisplay.jar*3472798123]#PCL[/system/framework/com.android.location.provider.jar*3633238672]#PCL[/system/framework/org.apache.http.legacy.jar*3034548894]#PCL[/apex/com.android.extservices/javalib/android.ext.adservices.jar*114502043]} | DLC[];PCL[/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk*3611197325]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]})
+09-13 14:52:36.703 14730 14792 W com.gamepub.pt: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (unsupported, reflection, allowed)
+09-13 14:52:36.712 14730 14775 W com.gamepub.pt: ClassLoaderContext type mismatch. expected=PCL, found=DLC (PCL[] | DLC[];PCL[/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk*3611197325]{PCL[/system/framework/org.apache.http.legacy.jar*3034548894]})
+09-13 14:52:36.748 14730 14790 E com.gamepub.pt: No package ID 6a found for ID 0x6a0b000f.
+09-13 14:52:36.751 14730 14790 I FA      :   adb shell setprop debug.firebase.analytics.app com.gamepub.pt
+09-13 14:52:36.827 14730 14730 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libcrashlytics.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
+09-13 14:52:36.852 14730 14730 I FirebaseCrashlytics: Initializing Firebase Crashlytics 18.3.2 for com.gamepub.pt
+09-13 14:52:36.916  2580  6043 W PackageManager: package unknown uid 12442 pid 14730 call SetEnabledSetting(com.gamepub.pt component = androidx.work.impl.background.systemjob.SystemJobService, 1, 0x1, 0)
+09-13 14:52:36.977 14730 14730 I Quality : ActivityThread: bindApplication delay 948 com.gamepub.pt 14730
+09-13 14:52:37.030 14730 14730 D nativeloader: Load /data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/lib/arm64/libModLoader.so using ns clns-5 from class loader (caller=/data/app/~~91CJEcF3uhld_u5Q0xUDMQ==/com.gamepub.pt-AE0wZVHYUQv7d1GzYW3BLQ==/base.apk!classes3.dex): ok
