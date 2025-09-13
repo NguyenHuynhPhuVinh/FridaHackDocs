@@ -1,5 +1,5 @@
 📦
-139259 /hack_damage.js
+139260 /hack_damage.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3313,7 +3313,7 @@ var require_hack_damage = __commonJS({
     init_node_globals();
     init_dist();
     var GOD_MODE_ENABLED = true;
-    var ONE_HIT_KILL_ENABLED = true;
+    var ONE_HIT_KILL_ENABLED = false;
     var NEW_DAMAGE_VALUE = 9999999;
     Il2Cpp.perform(() => {
       console.log("[+] il2cpp is ready. Starting hooks...");

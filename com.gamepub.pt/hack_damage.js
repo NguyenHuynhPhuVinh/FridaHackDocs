@@ -9,7 +9,7 @@ import "frida-il2cpp-bridge";
 
 // ======================= CẤU HÌNH =======================
 const GOD_MODE_ENABLED = true; // Bật/tắt chế độ bất tử (nhận 0 sát thương)
-const ONE_HIT_KILL_ENABLED = true; // Bật/tắt chế độ tăng sát thương gây ra
+const ONE_HIT_KILL_ENABLED = false; // Bật/tắt chế độ tăng sát thương gây ra
 const NEW_DAMAGE_VALUE = 9999999; // Sát thương mới bạn muốn gây ra
 // ==========================================================
 
