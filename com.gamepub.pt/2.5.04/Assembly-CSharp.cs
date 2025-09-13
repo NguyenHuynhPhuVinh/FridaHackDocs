@@ -59217,24 +59217,8 @@ class AnimEvent
     /*0xedc9f8*/ AnimEvent();
 }
 
-class Helper_AnimEvent
+interface T
 {
-    static /*0x10f7850*/ void ClearAnimEvent(string charName, AnimEvent animEvent);
-    static /*0x10f788c*/ void ClearAnimEventSaveInfo(ref AnimEventSaveInfo info);
-    static /*0x10f7a34*/ void SetSaveInfo(string charName, AnimEvent animEvent, ANIMATION_CLIP eAnimState, ref AnimEventSaveInfo info);
-    static /*0x10f7b84*/ string IgnoreCloneString(string _charName);
-    static /*0x10f7bd8*/ void ClearEventCount(ref int[,] _EventCount);
-    static /*0x10f7c48*/ float ClampTeleportHitOffset(float fSpeed);
-    static /*0x10f7b44*/ float ClampScreenEffect_ExecuteTransTime(float time);
-    static /*0x10f7b54*/ float ClampScreenEffect_UndoTransTime(float time);
-    static /*0x10f7b64*/ float ClampScreenEffect_KeepTime(float time);
-    static /*0x10f7c58*/ float ClampScreenEffect_ZoomSize(float factor);
-    static /*0x10f7b74*/ float ClampScreenEffect_ShakePoer(float factor);
-    static /*0x10f7c68*/ float ClampScreenEffect_DarkIntensity(float factor);
-    static /*0x10f7c78*/ float ClampScreenEffect_Speed(float factor);
-    static /*0x10f7c8c*/ float ClampAdjustmentPosition(float _offset);
-    static /*0x10f7c9c*/ float ClampShaderDuration(float _factor);
-    /*0x10f7cac*/ Helper_AnimEvent();
 }
 
 class Helper_ScreenEffect

@@ -1126,7 +1126,7 @@ namespace Newtonsoft
                 /*0x171750c*/ void WriteChars(char[] chars, int index, int count);
             }
 
-            class BidirectionalDictionary<TFirst, TSecond>
+            class BidirectionalDictionary<System.Runtime.CompilerServices.CallSite<T>, TSecond>
             {
                 /*0x0*/ System.Collections.Generic.IDictionary<TFirst, TSecond> _firstToSecond;
                 /*0x0*/ System.Collections.Generic.IDictionary<TSecond, TFirst> _secondToFirst;
