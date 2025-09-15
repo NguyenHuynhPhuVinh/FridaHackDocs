@@ -1,5 +1,5 @@
 📦
-138630 /hack-server-time.js
+139991 /hack-server-time.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -2936,7 +2936,7 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
       Il2Cpp3.string = string;
     })(Il2Cpp2 || (Il2Cpp2 = {}));
     (function(Il2Cpp3) {
-      class Thread2 extends NativeStruct {
+      class Thread extends NativeStruct {
         /** Gets the native id of the current thread. */
         get id() {
           let get = function() {
@@ -3017,23 +3017,23 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
       }
       __decorate([
         lazy
-      ], Thread2.prototype, "internal", null);
+      ], Thread.prototype, "internal", null);
       __decorate([
         lazy
-      ], Thread2.prototype, "isFinalizer", null);
+      ], Thread.prototype, "isFinalizer", null);
       __decorate([
         lazy
-      ], Thread2.prototype, "managedId", null);
+      ], Thread.prototype, "managedId", null);
       __decorate([
         lazy
-      ], Thread2.prototype, "object", null);
+      ], Thread.prototype, "object", null);
       __decorate([
         lazy
-      ], Thread2.prototype, "staticData", null);
+      ], Thread.prototype, "staticData", null);
       __decorate([
         lazy
-      ], Thread2.prototype, "synchronizationContext", null);
-      Il2Cpp3.Thread = Thread2;
+      ], Thread.prototype, "synchronizationContext", null);
+      Il2Cpp3.Thread = Thread;
       getter(Il2Cpp3, "attachedThreads", () => {
         if (Il2Cpp3.exports.threadGetAttachedThreads.isNull()) {
           const currentThreadHandle = Il2Cpp3.currentThread?.handle ?? raise("Current thread is not attached to IL2CPP");
@@ -3312,69 +3312,102 @@ var require_hack_server_time = __commonJS({
   "hack-server-time.js"() {
     init_node_globals();
     init_dist();
-    Il2Cpp.perform(() => {
-      console.log("[+] Il2Cpp Bridge is ready. Deploying Generic Network Spy...");
-      try {
-        const keywords = [
-          "Send",
-          "send",
-          "Write",
-          "write",
-          "Request",
-          "request",
-          "Post",
-          "post",
-          "Connect",
-          "connect",
-          "BeginSend",
-          "BeginWrite",
-          "BeginConnect"
-        ];
-        const assembliesToScan = ["Assembly-CSharp", "mscorlib", "System"];
-        let hookedCount = 0;
-        assembliesToScan.forEach((assemblyName) => {
-          const assembly = Il2Cpp.domain.tryAssembly(assemblyName);
-          if (!assembly) {
-            console.warn(`[!] Assembly not found: ${assemblyName}`);
-            return;
-          }
-          console.log(`[*] Scanning assembly: ${assemblyName}...`);
-          assembly.image.classes.forEach((klass) => {
-            klass.methods.forEach((method) => {
-              if (keywords.some((keyword) => method.name.includes(keyword))) {
-                if (method.virtualAddress.isNull() || method.name.startsWith("add_") || method.name.startsWith("remove_")) {
-                  return;
-                }
-                try {
-                  Interceptor.attach(method.virtualAddress, {
-                    onEnter(args) {
-                      console.log(`
->>> NETWORK ACTIVITY DETECTED <<<`);
-                      console.log(`    Class: ${klass.fullName}`);
-                      console.log(`    Method: ${method.name}`);
-                      console.log(`    Address: ${method.virtualAddress}`);
-                      console.log(
-                        "    Backtrace:\n" + Thread.backtrace(this.context, Backtracer.ACCURATE).map(DebugSymbol.fromAddress).join("\n	")
-                      );
-                      console.log(`>>> END <<<`);
-                    }
-                  });
-                  hookedCount++;
-                } catch (e) {
+    function startStalker() {
+      console.log("[Stalker] Starting to monitor syscalls...");
+      const SYSCALL_SENDTO = 206;
+      Process.enumerateThreads({
+        onMatch: function(thread) {
+          try {
+            Stalker.follow(thread.id, {
+              transform: function(iterator) {
+                let instruction = iterator.next();
+                while (instruction !== null) {
+                  if (instruction.mnemonic === "svc" && instruction.opStr === "#0") {
+                    iterator.putCallout(function(context) {
+                      if (context.x8.toInt32() === SYSCALL_SENDTO) {
+                        const buffer = context.x1;
+                        const len = context.x2.toInt32();
+                        if (len > 0) {
+                          console.log(
+                            `
+--- [STALKER: Raw Packet Sent] ${len} bytes ---`
+                          );
+                          console.log(
+                            hexdump(buffer, { length: Math.min(len, 128) })
+                          );
+                          console.log(`--- [END STALKER] ---`);
+                        }
+                      }
+                    });
+                  }
+                  iterator.keep();
+                  instruction = iterator.next();
                 }
               }
             });
-          });
+          } catch (e) {
+          }
+        },
+        onComplete: function() {
+        }
+      });
+    }
+    Il2Cpp.perform(() => {
+      console.log("[Il2Cpp] Bridge is ready. Hooking NetworkManager...");
+      try {
+        const assemblyCSharp = Il2Cpp.domain.assembly("Assembly-CSharp");
+        const NetworkManager = assemblyCSharp.image.class("NetworkManager");
+        let hookedCount = 0;
+        NetworkManager.methods.forEach((method) => {
+          if (method.name.startsWith("Send_") && !method.virtualAddress.isNull()) {
+            try {
+              Interceptor.attach(method.virtualAddress, {
+                onEnter(args) {
+                  console.log(`
+
+<<<<<<<<<< [API CALL DETECTED] >>>>>>>>>>`);
+                  console.log(
+                    `[Il2Cpp Hook] Method: NetworkManager::${method.name}`
+                  );
+                  try {
+                    const requestObject = new Il2Cpp.Object(args[2]);
+                    console.log(
+                      `[Il2Cpp Hook] Request Object Type: ${requestObject.class.fullName}`
+                    );
+                    console.log("[Il2Cpp Hook] Request Data (Fields):");
+                    requestObject.class.fields.forEach((field) => {
+                      if (!field.isStatic) {
+                        try {
+                          const value = field.bind(requestObject).value;
+                          console.log(`    - ${field.name}: ${value}`);
+                        } catch (e) {
+                          console.log(
+                            `    - ${field.name}: (Could not read value)`
+                          );
+                        }
+                      }
+                    });
+                  } catch (e) {
+                    console.log(
+                      `[Il2Cpp Hook] Could not parse request object for ${method.name}.`
+                    );
+                  }
+                  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                }
+              });
+              hookedCount++;
+            } catch (e) {
+            }
+          }
         });
         console.log(
-          `[OK] Generic Network Spy is active. Hooked ${hookedCount} potential methods.`
+          `[Il2Cpp] Hooked ${hookedCount} Send_ methods in NetworkManager.`
         );
-        console.log(
-          "[!] Play the game and trigger a network action (login, get reward, etc.)."
-        );
+        console.log("[OK] API Analyzer is active. Play the game.");
+        startStalker();
       } catch (err) {
         console.error(
-          `[!!!] An error occurred during initialization: ${err.message}
+          `[!!!] An Il2Cpp error occurred: ${err.message}
 Stack: ${err.stack}`
         );
       }
