@@ -1,5 +1,5 @@
 📦
-138806 /hack-server-time.js
+138818 /ultimate_api_mapper.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3307,9 +3307,9 @@ ${this.isEnum ? `enum` : this.isStruct ? `struct` : this.isInterface ? `interfac
   }
 });
 
-// hack-server-time.js
-var require_hack_server_time = __commonJS({
-  "hack-server-time.js"() {
+// ultimate_api_mapper.js
+var require_ultimate_api_mapper = __commonJS({
+  "ultimate_api_mapper.js"() {
     init_node_globals();
     init_dist();
     function startStalkerSpy() {
@@ -3385,4 +3385,4 @@ var require_hack_server_time = __commonJS({
     });
   }
 });
-export default require_hack_server_time();
+export default require_ultimate_api_mapper();
