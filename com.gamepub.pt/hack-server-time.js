@@ -1,20 +1,40 @@
 /*
- * Script Frida TỐI THƯỢỢNG để tạo bản đồ API.
- * Kết hợp Il2Cpp để lấy tên API và Stalker để lấy dữ liệu thô.
- * Cách chạy: frida -U "Chuyện Công Chúa" --no-pause -l ultimate_api_mapper.js
+ * Script Frida TỐI THƯỢỢNG để tạo bản đồ API (v2).
+ * Stalker sẽ in ra tất cả các syscall để đảm bảo không bỏ sót.
+ * Cách chạy: frida -U "Chuyện Công Chúa" -l ultimate_api_mapper_v2.js
  */
 
 "use strict";
 
-// ======================= Tầng Syscall (Stalker) =======================
+// ======================= Stalker (Tầng Thấp - Chế độ Brute-force) =======================
 function startStalkerSpy() {
-  console.log("[Stalker] Activating syscall monitoring...");
-  const SYSCALL_SENDTO = 206; // aarch64 syscall number for sendto
+  console.log("[Stalker] Activating BRUTE-FORCE syscall monitoring...");
+
+  // Một từ điển nhỏ để tra cứu tên syscall, không cần đầy đủ
+  const syscallNames = {
+    63: "read",
+    64: "write",
+    203: "connect",
+    206: "sendto",
+    207: "recvfrom",
+    214: "sendmsg",
+    215: "recvmsg",
+  };
 
   Process.enumerateThreads({
     onMatch: function (thread) {
       try {
         Stalker.follow(thread.id, {
+          events: {
+            call: false,
+            ret: false,
+            exec: false,
+            block: false,
+            compile: true, // Chỉ cần compile một lần
+          },
+          onReceive: function (events) {
+            // Chúng ta không cần phân tích sâu ở đây, chỉ cần biết syscall nào được gọi
+          },
           transform: function (iterator) {
             let instruction = iterator.next();
             while (instruction !== null) {
@@ -23,16 +43,27 @@ function startStalkerSpy() {
                 instruction.opStr === "#0"
               ) {
                 iterator.putCallout(function (context) {
-                  if (context.x8.toInt32() === SYSCALL_SENDTO) {
+                  const syscall_nr = context.x8.toInt32();
+                  const name = syscallNames[syscall_nr] || "UNKNOWN";
+
+                  // In ra MỌI syscall để chúng ta có thể xem
+                  console.log(`[Stalker] Syscall: ${name} (${syscall_nr})`);
+
+                  // Nếu là một trong các syscall gửi dữ liệu, in hexdump
+                  if (
+                    syscall_nr === 206 ||
+                    syscall_nr === 214 ||
+                    syscall_nr === 64
+                  ) {
+                    // sendto, sendmsg, write
                     const buffer = context.x1;
                     const len = context.x2.toInt32();
                     if (len > 0) {
                       console.log(
-                        `\n--- [STALKER: Raw Packet Sent] ${len} bytes ---`
+                        `\n--- [STALKER: Raw Packet Sent via syscall ${syscall_nr}] ${len} bytes ---`
                       );
-                      // In ra hexdump. Dữ liệu này sẽ tương ứng với lời gọi API ngay trước đó.
                       console.log(
-                        hexdump(buffer, { length: Math.min(len, 256) })
+                        hexdump(buffer, { length: Math.min(len, 128) })
                       );
                       console.log(`------------------------------------------`);
                     }
@@ -44,15 +75,13 @@ function startStalkerSpy() {
             }
           },
         });
-      } catch (e) {
-        /* Bỏ qua các luồng không thể theo dõi */
-      }
+      } catch (e) {}
     },
     onComplete: function () {},
   });
 }
 
-// ======================= Tầng Il2Cpp =======================
+// ======================= Il2Cpp Hooks (Tầng Cao) =======================
 import "frida-il2cpp-bridge";
 
 Il2Cpp.perform(() => {
@@ -62,32 +91,23 @@ Il2Cpp.perform(() => {
     const assemblyCSharp = Il2Cpp.domain.assembly("Assembly-CSharp");
     const NetworkManager = assemblyCSharp.image.class("NetworkManager");
 
-    let hookedCount = 0;
     NetworkManager.methods.forEach((method) => {
-      // Chỉ hook các hàm Send_...
       if (method.name.startsWith("Send_") && !method.virtualAddress.isNull()) {
         try {
           Interceptor.attach(method.virtualAddress, {
             onEnter(args) {
-              // Chỉ in ra tên của API được gọi
               console.log(
                 `\n[Il2Cpp] API Call -> NetworkManager::${method.name}`
               );
             },
           });
-          hookedCount++;
         } catch (e) {}
       }
     });
 
-    console.log(`[Il2Cpp] Hooked ${hookedCount} Send_ methods.`);
-
-    // Khởi động Stalker
     startStalkerSpy();
 
-    console.log(
-      "\n[OK] Ultimate API Mapper is active. Play the game to log API calls and their raw data."
-    );
+    console.log("\n[OK] Ultimate API Mapper v2 is active. Play the game.");
   } catch (err) {
     console.error(`[!!!] An Il2Cpp error occurred: ${err.message}`);
   }
