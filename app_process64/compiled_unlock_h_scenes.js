@@ -1,5 +1,5 @@
 📦
-140120 /unlock_h_scenes.js
+139861 /unlock_h_scenes.js
 ✄
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
@@ -3312,10 +3312,12 @@ var require_unlock_h_scenes = __commonJS({
   "unlock_h_scenes.js"() {
     init_node_globals();
     init_dist();
+    var CHARACTER_ASSEMBLY_NAME = "Assembly-CSharp";
     Il2Cpp.perform(() => {
       console.log("[+] Il2Cpp Bridge \u0111\xE3 s\u1EB5n s\xE0ng. B\u1EAFt \u0111\u1EA7u qu\xE1 tr\xECnh m\u1EDF kh\xF3a...");
       try {
-        const CharacterDetailParameterController = Il2Cpp.domain.assembly("Assembly-CSharp").image.class(
+        const assembly = Il2Cpp.domain.assembly(CHARACTER_ASSEMBLY_NAME);
+        const CharacterDetailParameterController = assembly.image.class(
           "Assets.GameUi.CharacterDetail.Parameter.CharacterDetailParameterController"
         );
         const applyLockMethod = CharacterDetailParameterController.method(
@@ -3323,19 +3325,15 @@ var require_unlock_h_scenes = __commonJS({
           2
         );
         console.log(
-          `[+] T\xECm th\u1EA5y ph\u01B0\u01A1ng th\u1EE9c kh\xF3a n\xFAt k\u1ECBch b\u1EA3n t\u1EA1i: ${applyLockMethod.virtualAddress}`
+          `[+] T\xECm th\u1EA5y ph\u01B0\u01A1ng th\u1EE9c kh\xF3a n\xFAt k\u1ECBch b\u1EA3n t\u1EA1i: ${applyLockMethod.virtualAddress} trong ${CHARACTER_ASSEMBLY_NAME}.dll`
         );
         Interceptor.attach(applyLockMethod.virtualAddress, {
           onEnter(args) {
             const requiredLevel = new Il2Cpp.Value(args[1], "int32").value;
             const currentLevel = new Il2Cpp.Value(args[2], "int32").value;
-            console.log(`[HOOK 1] \u0110ang ki\u1EC3m tra n\xFAt k\u1ECBch b\u1EA3n...`);
-            console.log(
-              `    - Y\xEAu c\u1EA7u: C\u1EA5p ${requiredLevel}, Hi\u1EC7n t\u1EA1i: C\u1EA5p ${currentLevel}`
-            );
             if (currentLevel < requiredLevel) {
               console.log(
-                `    - [!] \u0110\u1ED9 th\xE2n m\u1EADt kh\xF4ng \u0111\u1EE7. \u0110ang s\u1EEDa \u0111\u1ED5i \u0111\u1EC3 m\u1EDF kh\xF3a...`
+                `[HOOK 1] \u0110\xE3 ph\xE1t hi\u1EC7n n\xFAt k\u1ECBch b\u1EA3n b\u1ECB kh\xF3a (Y\xEAu c\u1EA7u: ${requiredLevel}, Hi\u1EC7n t\u1EA1i: ${currentLevel}). \u0110ang m\u1EDF kh\xF3a...`
               );
               args[2] = args[1];
             }
@@ -3348,15 +3346,14 @@ var require_unlock_h_scenes = __commonJS({
         console.error(`[!!!] L\u1ED7i \u1EDF Chi\u1EBFn l\u01B0\u1EE3c 1 (Affection Hook): ${err.message}`);
       }
       try {
-        const EpisodeService = Il2Cpp.domain.assembly("Assembly-CSharp").image.class("Assets.GameUi.Service.EpisodeService");
-        const isReadMethod = EpisodeService.method("IsReadEpisode", 1);
-        console.log(
-          `[+] T\xECm th\u1EA5y ph\u01B0\u01A1ng th\u1EE9c ki\u1EC3m tra k\u1ECBch b\u1EA3n t\u1EA1i: ${isReadMethod.virtualAddress}`
+        const assembly = Il2Cpp.domain.assembly("GameUi");
+        const EpisodeService = assembly.image.class(
+          "Assets.GameUi.Service.EpisodeService"
         );
+        const isReadMethod = EpisodeService.method("IsReadEpisode", 1);
         isReadMethod.implementation = function(episodeMasterId) {
-          console.log(
-            `[HOOK 2] \xC9p IsReadEpisode cho ID ${this.arg0.value} tr\u1EA3 v\u1EC1 TRUE.`
-          );
+          const id = arguments[0].value;
+          console.log(`[HOOK 2] \xC9p IsReadEpisode cho ID ${id} tr\u1EA3 v\u1EC1 TRUE.`);
           return true;
         };
         console.log("[OK] Chi\u1EBFn l\u01B0\u1EE3c 2: \u0110\xE3 hook th\xE0nh c\xF4ng v\xE0o IsReadEpisode.");
@@ -3364,15 +3361,22 @@ var require_unlock_h_scenes = __commonJS({
         console.error(`[!!!] L\u1ED7i \u1EDF Chi\u1EBFn l\u01B0\u1EE3c 2 (IsRead Hook): ${err.message}`);
       }
       try {
-        const UnlockFunctionService = Il2Cpp.domain.assembly("Assembly-CSharp").image.class("Assets.GameUi.Service.UnlockFunctionService");
-        const canAccessMethod = UnlockFunctionService.method("CanAccess", 1);
-        console.log(
-          `[+] T\xECm th\u1EA5y ph\u01B0\u01A1ng th\u1EE9c m\u1EDF kh\xF3a t\xEDnh n\u0103ng t\u1EA1i: ${canAccessMethod.virtualAddress}`
+        const assembly = Il2Cpp.domain.assembly("GameUi");
+        const UnlockFunctionService = assembly.image.class(
+          "Assets.GameUi.Service.UnlockFunctionService"
         );
+        const canAccessMethod = UnlockFunctionService.method("CanAccess", 1);
         canAccessMethod.implementation = function(type) {
-          console.log(
-            `[HOOK 3] \xC9p UnlockFunctionService.CanAccess cho lo\u1EA1i ${this.arg0.value} tr\u1EA3 v\u1EC1 TRUE.`
-          );
+          try {
+            const unlockType = arguments[0].value;
+            console.log(
+              `[HOOK 3] \xC9p UnlockFunctionService.CanAccess cho lo\u1EA1i ${unlockType} tr\u1EA3 v\u1EC1 TRUE.`
+            );
+          } catch (e) {
+            console.log(
+              `[HOOK 3] \xC9p UnlockFunctionService.CanAccess (kh\xF4ng c\xF3 tham s\u1ED1) tr\u1EA3 v\u1EC1 TRUE.`
+            );
+          }
           return true;
         };
         console.log("[OK] Chi\u1EBFn l\u01B0\u1EE3c 3: \u0110\xE3 hook th\xE0nh c\xF4ng v\xE0o CanAccess.");
@@ -3380,10 +3384,7 @@ var require_unlock_h_scenes = __commonJS({
         console.error(`[!!!] L\u1ED7i \u1EDF Chi\u1EBFn l\u01B0\u1EE3c 3 (General Unlock): ${err.message}`);
       }
       console.log(
-        "\n[SUCCESS] T\u1EA5t c\u1EA3 c\xE1c hook \u0111\xE3 \u0111\u01B0\u1EE3c \xE1p d\u1EE5ng. H\xE3y v\xE0o game v\xE0 ki\u1EC3m tra k\u1EBFt qu\u1EA3!"
-      );
-      console.log(
-        "G\u1EE3i \xFD: V\xE0o m\xE0n h\xECnh H\u1ED3 s\u01A1 nh\xE2n v\u1EADt (Character Profile) ho\u1EB7c Album \u0111\u1EC3 xem c\xE1c k\u1ECBch b\u1EA3n \u0111\xE3 m\u1EDF kh\xF3a."
+        "\n[SUCCESS] T\u1EA5t c\u1EA3 c\xE1c hook \u0111\xE3 \u0111\u01B0\u1EE3c \xE1p d\u1EE5ng. H\xE3y v\xE0o game v\xE0 ki\u1EC3m tra l\u1EA1i!"
       );
     });
   }
