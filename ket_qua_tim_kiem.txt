@@ -1,364 +1,978 @@
-Dòng 1544: /*0xf76e40*/ void HandleCheckHitDamage(CharacterBase _attacker, float _fDamage);
-Dòng 1629: /*0x13229f4*/ void HandleCheckRecieveDamage(CharacterBase _, float _fDamage);
-Dòng 1772: /*0x1bc*/ float MultHitDamage;
-Dòng 1773: /*0x1c0*/ float MultHitDamage_Physical;
-Dòng 1774: /*0x1c4*/ float MultHitDamage_Magical;
-Dòng 1779: /*0x1d8*/ float MultDamage_InitData;
-Dòng 1782: /*0x1e4*/ float MultDamageCC;
-Dòng 1783: /*0x1e8*/ float MultDamageBoss;
-Dòng 1786: /*0x1f4*/ float MultDamageCritical_Buff;
-Dòng 1790: /*0x1fc*/ float IgnoreDamagePerMaxHP;
-Dòng 1825: /*0x310*/ System.Action<CharacterBase, int, float> OnAttack_Target_FXID_Damage;
-Dòng 1835: /*0x360*/ System.Action<CharacterBase, float> OnHitWithAttackerDamage_PreCalc;
-Dòng 1836: /*0x368*/ System.Action<CharacterBase, float> OnHitWithAttackerDamage_PostCalc;
-Dòng 1862: /*0x424*/ Battle.DamageResult m_NoDamage;
-Dòng 1863: /*0x42c*/ Battle.DamageResult m_Avoid;
-Dòng 1904: /*0x524*/ float <TMP_ReflectionDamage>k__BackingField;
-Dòng 1905: /*0x528*/ float <TMP_MultHitDamage>k__BackingField;
-Dòng 1906: /*0x52c*/ float <TMP_AddCriticalBeforeCalcDamage>k__BackingField;
-Dòng 1908: /*0x534*/ float <TMP_AddDamage_Physical>k__BackingField;
-Dòng 1909: /*0x538*/ float <TMP_AddDamage_Magical>k__BackingField;
-Dòng 1910: /*0x53c*/ float <Blood_fMultDamage>k__BackingField;
-Dòng 1945: /*0x618*/ UnityEngine.Transform m_DamageMarkerTrans;
-Dòng 2020: /*0xd76768*/ float get_MultDamageCritical();
-Dòng 2073: /*0xd7bf78*/ void CheckMultDamageCriticalWithBuff();
-Dòng 2121: /*0xd7e48c*/ Battle.DamageResult RecievePercentageDamage(CharacterBase _attacker, float _fPercentage, Battle.AttackType _eAttackType, int _nFactionID, int _nSkillID);
-Dòng 2122: /*0xd7e568*/ Battle.DamageResult RecieveDotDamage(CharacterBase _attacker, ref Battle.StatTransfer _statTransfer);
-Dòng 2124: /*0xd7f560*/ Battle.DamageResult RecieveDamage(CharacterBase _attacker, ref Battle.StatTransfer _statTransfer, bool _bAddDamage, System.Nullable<UnityEngine.Vector2> _vAttackPOS);
-Dòng 2125: /*0xd7ed20*/ void GiveDamageResult(Battle.DamageResult _result, bool _bDotDamage, int _nAttackSkillID);
-Dòng 2126: /*0xd7eb30*/ float RecieveShieldDamage(float _fDamage, Battle.AttackType _eAttackType);
-Dòng 2127: /*0xd7e894*/ float RecieveFreezeDamage(float _fDamage);
-Dòng 2129: /*0xd80054*/ float CalcDamage(float _fDamage, float _fDEF);
-Dòng 2157: /*0xd73ef8*/ void SetHP(float _fRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
-Dòng 2158: /*0xd7e10c*/ void AddHP(float _fAddValue, CharacterBase _caster, bool _bAddDamage, Battle.DamageMarkType _eMarkType);
-Dòng 2160: /*0xd7ff04*/ void AddHPWithRatio(float _fAddRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
-Dòng 2161: /*0xd80e1c*/ void AddHPWithRatio_CurHP(float _fAddRatio, CharacterBase _caster, Battle.DamageMarkType _eMarkType);
-Dòng 2261: /*0xd83580*/ float get_TMP_ReflectionDamage();
-Dòng 2262: /*0xd83588*/ void set_TMP_ReflectionDamage(float value);
-Dòng 2263: /*0xd83590*/ float get_TMP_MultHitDamage();
-Dòng 2264: /*0xd83598*/ void set_TMP_MultHitDamage(float value);
-Dòng 2265: /*0xd835a0*/ float get_TMP_AddCriticalBeforeCalcDamage();
-Dòng 2266: /*0xd835a8*/ void set_TMP_AddCriticalBeforeCalcDamage(float value);
-Dòng 2269: /*0xd835c0*/ float get_TMP_AddDamage_Physical();
-Dòng 2270: /*0xd835c8*/ void set_TMP_AddDamage_Physical(float value);
-Dòng 2271: /*0xd835d0*/ float get_TMP_AddDamage_Magical();
-Dòng 2272: /*0xd835d8*/ void set_TMP_AddDamage_Magical(float value);
-Dòng 2273: /*0xd835e0*/ float get_Blood_fMultDamage();
-Dòng 2274: /*0xd835e8*/ void set_Blood_fMultDamage(float value);
-Dòng 2372: /*0xd866a8*/ UnityEngine.Transform get_GetDamageMarkerTrans();
-Dòng 2452: /*0x54*/ float m_fMultDamageRatio;
-Dòng 2560: class Buff_Baba_DOT_Heal : Buff_DOT_Damage
-Dòng 2563: /*0x16f47e4*/ void InitDotDamage();
-Dòng 2598: /*0x16f4a10*/ float get_m_fMultDamage();
-Dòng 2617: /*0x16f501c*/ void RecieveDamageToTarget(CharacterBase _attacker, CharacterBase _target, ref Battle.StatTransfer _transfer);
-Dòng 2618: /*0x16f50d4*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
-Dòng 2637: /*0x16f54d8*/ void CheckMultDamageCritical();
-Dòng 2652: MULT_HIT_DAMAGE = 5,
-Dòng 2653: MULT_HIT_DAMAGE_PHYSICAL = 6,
-Dòng 2654: MULT_HIT_DAMAGE_MAGICAL = 7,
-Dòng 2655: MULT_DAMAGE_CRITICAL = 8,
-Dòng 2662: BOSS_DAMAGE_NEXT_TARGET = 15,
-Dòng 2682: class Buff_Blood : Buff_DOT_Damage
-Dòng 2686: /*0x16f58d4*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
-Dòng 2693: /*0x16f5a74*/ void InitDotDamage();
-Dòng 2715: class Buff_Burn : Buff_DOT_Damage
-Dòng 2793: class Buff_Cook_DotHeal : Buff_DOT_Damage
-Dòng 2803: /*0x16f7174*/ void SetDotDamage(float _fDamage);
-Dòng 2822: class Buff_DOT_Damage : Buff_Base
-Dòng 2824: /*0x54*/ float m_fDotDamageParam;
-Dòng 2825: /*0x58*/ float m_fDOTDamage;
-Dòng 2829: /*0x16f4838*/ Buff_DOT_Damage();
-Dòng 2831: /*0x16f77b4*/ void InitDotDamage();
-Dòng 2834: /*0x16f7978*/ void SetDotDamage(float _fDamage);
-Dòng 2837: class Buff_DOT_Damage_PerHP : Buff_DOT_Damage
-Dòng 2839: /*0x16f7a24*/ Buff_DOT_Damage_PerHP();
-Dòng 2841: /*0x16f79cc*/ void InitDotDamage();
-Dòng 2844: class Buff_DOT_Damage_PerHP_P2 : Buff_DOT_Damage_PerHP
-Dòng 2846: /*0x16f7a60*/ Buff_DOT_Damage_PerHP_P2();
-Dòng 2850: class Buff_DOT_MP : Buff_DOT_Damage
-Dòng 2856: /*0x16f7ab8*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
-Dòng 2874: /*0x16f7d84*/ void HandleHitDamage(CharacterBase _attacker, float _fDamage);
-Dòng 2884: /*0x16f7fa8*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
-Dòng 2916: /*0x54*/ float m_fTotalRecieveDamage;
-Dòng 2925: /*0x16f89c0*/ void HandleCheckRecieveDamage(CharacterBase _, float _fDamage);
-Dòng 3078: class Buff_IgnoreDamagePerHP : Buff_Base
-Dòng 3080: /*0x54*/ float m_fIgnoreDamage;
-Dòng 3083: /*0x16fae44*/ Buff_IgnoreDamagePerHP();
-Dòng 3172: /*0x16fb83c*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
-Dòng 3196: /*0x16fbe70*/ void HandleCheckHit(CharacterBase _, float _fDamage);
-Dòng 3199: class Buff_Middle_MultHitDamage : Buff_MultHitDamage
-Dòng 3201: /*0x59*/ bool m_bAddMultHitDamage;
-Dòng 3203: /*0x16fc134*/ Buff_Middle_MultHitDamage();
-Dòng 3226: class Buff_MultDamageBlood : Buff_Base
-Dòng 3231: /*0x16fc26c*/ Buff_MultDamageBlood();
-Dòng 3237: class Buff_MultDamageCritical : Buff_Base
-Dòng 3239: /*0x54*/ float m_fMultDamageCritical;
-Dòng 3241: /*0x16fc2d0*/ Buff_MultDamageCritical();
-Dòng 3248: class Buff_MultHitDamage : Buff_Base
-Dòng 3250: /*0x54*/ float m_fAddDamage;
-Dòng 3253: /*0x16fc13c*/ Buff_MultHitDamage();
-Dòng 3259: class Buff_MultHitDamage_AttackType : Buff_Base
-Dòng 3261: /*0x54*/ float m_fAddDamage_Physical;
-Dòng 3262: /*0x58*/ float m_fAddDamage_Magical;
-Dòng 3263: /*0x5c*/ bool m_bAddMultDamageValue;
-Dòng 3265: /*0x16fc420*/ Buff_MultHitDamage_AttackType();
-Dòng 3347: /*0x16fce20*/ void HandleCheckRecieveDamage(CharacterBase _attacker, float _fDamage);
-Dòng 3370: /*0x16fd420*/ void HandleHit(CharacterBase _attacker, float _fDamage);
-Dòng 3446: /*0x60*/ float m_fHitDamageMultRatio;
-Dòng 3469: class Buff_Redhood : Buff_MultHitDamage
-Dòng 3477: /*0x133350c*/ void HandleCheckCondition(CharacterBase _attacker, float _fDamage);
-Dòng 3486: /*0x1333580*/ void InitDotDamage();
-Dòng 3496: /*0x1333728*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
-Dòng 3536: class Buff_ReleaseDamage_Magic : Buff_Base
-Dòng 3541: /*0x1333ba8*/ Buff_ReleaseDamage_Magic();
-Dòng 3614: class Buff_SUGAR_DOT_Heal : Buff_DOT_Damage
-Dòng 3617: /*0x133412c*/ Battle.DamageResult RecieveDotDamageToTarget(CharacterBase _attacker, CharacterBase _target, float _fDamage, Battle.AttackType _eAttackType, int _nFactionID);
-Dòng 3632: /*0x54*/ float m_fSacrificeDamageRatio;
-Dòng 3638: /*0x133450c*/ void HandleCheckHit(CharacterBase _attacker, float _fDamage);
-Dòng 3680: /*0x1335054*/ void HandleHitAttack(CharacterBase _attacker, float _fDamage);
-Dòng 3726: /*0x1335518*/ void AddCheckDamageAction();
-Dòng 3727: /*0x1335630*/ void RemoveCheckDamageAction();
-Dòng 3730: /*0x1335790*/ void HandleCheckHit(CharacterBase _, float _fDamage);
-Dòng 3979: class Passive_Damaged : Passive_Base
-Dòng 3981: /*0xf0*/ int m_nDamagedCount;
-Dòng 3982: /*0xf4*/ int m_nCurDamagedCount;
-Dòng 3984: /*0x1146834*/ Passive_Damaged();
-Dòng 3986: /*0x11467f4*/ bool CheckCondition_Child(CharacterBase _attacker, float _fDamage);
-Dòng 3989: class Passive_Damaged_Chance : Passive_Base
-Dòng 3993: /*0x114691c*/ Passive_Damaged_Chance();
-Dòng 3995: /*0x114687c*/ bool CheckCondition_Child(CharacterBase _attacker, float _fDamage);
-Dòng 4189: /*0xaa2ed8*/ float get_DamageMULT();
-Dòng 4190: /*0xaa2f04*/ float get_DamageMULT_Critical();
-Dòng 4225: /*0x1516ab8*/ void CalcDamage(CharacterBase _target);
-Dòng 4231: /*0x168*/ float m_fAddDamageRatio;
-Dòng 4238: /*0x15156ec*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4244: /*0x164*/ float m_fAddDamageRatio;
-Dòng 4253: /*0x1516138*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4296: /*0x1516c1c*/ void CalcDamage(CharacterBase _target);
-Dòng 4342: /*0x170*/ float m_fDamagePercent;
-Dòng 4348: /*0x1517870*/ void GiveDamageToTarget(CharacterBase _target);
-Dòng 4368: /*0x1517f60*/ void HandleCheckCondition(CharacterBase _target, int _nSkillFXID, float _fDamage);
-Dòng 4426: /*0x118*/ Battle.DamageResult m_damageResult;
-Dòng 4427: /*0x120*/ Battle.DamageResult m_damageResult_Origin;
-Dòng 4428: /*0x128*/ System.Action<System.ValueTuple<CharacterBase, float>> OnDamageWithTarget;
-Dòng 4470: /*0x1518ab0*/ float get_DamageMult();
-Dòng 4471: /*0x1518adc*/ float get_DamageMult_Critical();
-Dòng 4493: /*0x1516c60*/ void CalcDamage(CharacterBase _target);
-Dòng 4494: /*0x1517a88*/ void GiveDamageToTarget(CharacterBase _target);
-Dòng 4495: /*0x15197f4*/ void InvokeEventsBeforeCalcDamage(CharacterBase _target);
-Dòng 4496: /*0x151988c*/ void InvokeEventsAfterCalcDamage(CharacterBase _target);
-Dòng 4497: /*0x151576c*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4498: /*0x15199e8*/ void RecieveAddDamage(CharacterBase _target, ref Battle.StatTransfer _stat);
-Dòng 4499: /*0x1519b58*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 4512: /*0x15180dc*/ Battle.StatTransfer GetStarTransferWithDamage(Battle.AttackType _eAttackType, float _fDamage);
-Dòng 4584: /*0x168*/ float m_fAddDamagePercentage;
-Dòng 4588: /*0x151a73c*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 4609: /*0x151ad08*/ void CalcDamage(CharacterBase _target);
-Dòng 4626: /*0x151b738*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4650: /*0x151bff0*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 4655: /*0x164*/ float m_fAddDamage;
-Dòng 4659: /*0x151c060*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 4750: /*0x174*/ float m_fDamageRatio;
-Dòng 4777: /*0x180*/ float m_sig_10_AddDamage;
-Dòng 4785: /*0x14431f4*/ void CalcDamage(CharacterBase _target);
-Dòng 4809: /*0x14439cc*/ void CalcDamage(CharacterBase _target);
-Dòng 4909: /*0x1445c9c*/ void CalcDamage(CharacterBase _target);
-Dòng 4971: /*0x16c*/ float m_fAddDamageRatio;
-Dòng 4976: /*0x1447fc8*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 5022: /*0x164*/ float m_fAddDamageRatio;
-Dòng 5026: /*0x1448ee8*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 5096: /*0x144a358*/ void HandleCheckCondition(CharacterBase _target, int _nSkillFXID, float _fDamage);
-Dòng 5106: /*0x144a6f4*/ void CalcDamage(CharacterBase _target);
-Dòng 5115: /*0x144a968*/ void CalcDamage(CharacterBase _target);
-Dòng 5145: /*0x164*/ float m_fAddMultDamage;
-Dòng 5146: /*0x168*/ float m_fMaxMultDamage;
-Dòng 5152: /*0x144b0b8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5153: /*0x144b150*/ void CalcDamage(CharacterBase _target);
-Dòng 5218: /*0x164*/ float m_fMultDamageDistance;
-Dòng 5219: /*0x168*/ float m_fMultDamageRatio;
-Dòng 5232: /*0x144c870*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5233: /*0x144c954*/ void RecieveAddDamage(CharacterBase _target, ref Battle.StatTransfer _stat);
-Dòng 5234: /*0x144c9c0*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 5255: /*0x168*/ float m_fMultDamageRatio;
-Dòng 5259: /*0x178*/ float m_SIG_MultDamageRatio;
-Dòng 5263: /*0x144ccec*/ void GiveDamageToTarget(CharacterBase _target);
-Dòng 5264: /*0x144ce3c*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5281: /*0x168*/ float m_fAddDamageATKRatio;
-Dòng 5285: /*0x144d1b8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5296: /*0x144d2cc*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5331: /*0x164*/ float m_fAddDamageRatio;
-Dòng 5336: /*0x144dc34*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5337: /*0x144dda8*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 5342: /*0x164*/ float m_fAddDamageAmount;
-Dòng 5345: /*0x170*/ float m_nAddDamageMult;
-Dòng 5349: /*0x144dedc*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5350: /*0x144e00c*/ float GetAddDamageMultRatio(CharacterBase _target);
-Dòng 5370: /*0x164*/ float m_fAddDamagePercent;
-Dòng 5383: /*0x144e6f4*/ void CalcDamage(CharacterBase _target);
-Dòng 5393: /*0x144e81c*/ void CalcDamage(CharacterBase _target);
-Dòng 5403: /*0x144e918*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5440: /*0x144ece4*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 5449: /*0x144edd4*/ void GiveDamageToTarget(CharacterBase _target);
-Dòng 5477: /*0x164*/ float m_fMultDamageRatio_NoRestoreHP;
-Dòng 5478: /*0x168*/ float m_fMultDamageRatio_Blood;
-Dòng 5482: /*0x144f2e8*/ void RecieveDamage(CharacterBase _target, Battle.StatTransfer _stat);
-Dòng 6032: /*0x270*/ double <GW_CurrentMaxValueDamage_Ally>k__BackingField;
-Dòng 6035: /*0x288*/ double <GW_CurrentMaxValueDamage_Enemy>k__BackingField;
-Dòng 6043: /*0x2c0*/ long WorldBoss_PrevRecieveDamage;
-Dòng 6278: /*0xe4722c*/ double get_GW_CurrentMaxValueDamage_Ally();
-Dòng 6279: /*0xe47234*/ void set_GW_CurrentMaxValueDamage_Ally(double value);
-Dòng 6284: /*0xe4725c*/ double get_GW_CurrentMaxValueDamage_Enemy();
-Dòng 6285: /*0xe47264*/ void set_GW_CurrentMaxValueDamage_Enemy(double value);
-Dòng 6290: /*0xe2fc10*/ double get_GW_CurrentMaxValueDamage();
-Dòng 6309: /*0xe48f18*/ void GoToBattleSceneForWorldBoss(int bossId, int bossLevel, int bossGrade, long damage);
-Dòng 6520: /*0x10*/ double totalValueDamage;
-Dòng 6559: /*0x68*/ long <DPS_MaxDamage>k__BackingField;
-Dòng 6560: /*0x70*/ long <DPS_TotalDamage>k__BackingField;
-Dòng 6561: /*0x78*/ long <DPS_TotalDamage_ATK>k__BackingField;
-Dòng 6562: /*0x80*/ long <DPS_TotalDamage_ULT>k__BackingField;
-Dòng 6563: /*0x88*/ long <DPS_TotalDamage_SP01>k__BackingField;
-Dòng 6564: /*0x90*/ long <DPS_TotalDamage_SP02>k__BackingField;
-Dòng 6565: /*0x98*/ long <DPS_TotalDamage_SP03>k__BackingField;
-Dòng 6572: /*0xc8*/ System.Collections.Generic.List<DamageMarker> <DamageMarkers>k__BackingField;
-Dòng 6575: /*0xe0*/ double <GuildBossTotalHitDamage>k__BackingField;
-Dòng 6652: /*0x2f8*/ long m_lGuildBossStepUpDamage;
-Dòng 6658: /*0x308*/ bool <EnableDamageFont>k__BackingField;
-Dòng 6690: /*0x390*/ double <WorldBossTotalHitDamage>k__BackingField;
-Dòng 6783: /*0xd29ab0*/ long get_DPS_MaxDamage();
-Dòng 6784: /*0xd29ab8*/ void set_DPS_MaxDamage(long value);
-Dòng 6785: /*0xd29ac0*/ long get_DPS_TotalDamage();
-Dòng 6786: /*0xd29ac8*/ void set_DPS_TotalDamage(long value);
-Dòng 6787: /*0xd29ad0*/ long get_DPS_TotalDamage_ATK();
-Dòng 6788: /*0xd29ad8*/ void set_DPS_TotalDamage_ATK(long value);
-Dòng 6789: /*0xd29ae0*/ long get_DPS_TotalDamage_ULT();
-Dòng 6790: /*0xd29ae8*/ void set_DPS_TotalDamage_ULT(long value);
-Dòng 6791: /*0xd29af0*/ long get_DPS_TotalDamage_SP01();
-Dòng 6792: /*0xd29af8*/ void set_DPS_TotalDamage_SP01(long value);
-Dòng 6793: /*0xd29b00*/ long get_DPS_TotalDamage_SP02();
-Dòng 6794: /*0xd29b08*/ void set_DPS_TotalDamage_SP02(long value);
-Dòng 6795: /*0xd29b10*/ long get_DPS_TotalDamage_SP03();
-Dòng 6796: /*0xd29b18*/ void set_DPS_TotalDamage_SP03(long value);
-Dòng 6797: /*0xd29b20*/ float get_DPS_TotalDamage_Skills();
-Dòng 6799: /*0xd29b68*/ void DPS_AddDamage(Battle.SkillSlotType _eSlotType, long _lDamage);
-Dòng 6809: /*0xd29e88*/ System.Collections.Generic.List<DamageMarker> get_DamageMarkers();
-Dòng 6810: /*0xd29e90*/ void set_DamageMarkers(System.Collections.Generic.List<DamageMarker> value);
-Dòng 6815: /*0xd29eb8*/ double get_GuildBossTotalHitDamage();
-Dòng 6816: /*0xd29ec0*/ void set_GuildBossTotalHitDamage(double value);
-Dòng 6870: /*0xd2ed74*/ DamageMarker SpawnDamageMarker(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical, bool _bDelayed);
-Dòng 6871: /*0xd2dc1c*/ void RemoveDamageMarker(DamageMarker marker);
-Dòng 6986: /*0xd38f3c*/ bool get_EnableDamageFont();
-Dòng 6987: /*0xd38f44*/ void set_EnableDamageFont(bool value);
-Dòng 7000: /*0xd39868*/ void SetActiveDamageFont(bool _bActive);
-Dòng 7011: /*0xd3a170*/ void HandleCheckGuildBossHitDamage(CharacterBase _caster);
-Dòng 7094: /*0xd3bbc0*/ double get_WorldBossTotalHitDamage();
-Dòng 7095: /*0xd3bbc8*/ void set_WorldBossTotalHitDamage(double value);
-Dòng 7779: static string CRIT_DAMAGE_BUFF_IMAGE_NAME = "FatalBlowEffectUp1_Buff";
-Dòng 7809: class DamageMarker : ObjectBase
-Dòng 7822: /*0x80*/ int m_nDamage;
-Dòng 7829: /*0xa0*/ DamageMarker.InitParams m_InitParams;
-Dòng 7833: /*0xf5cbe0*/ DamageMarker();
-Dòng 7836: /*0xf5c2b4*/ void Init(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical, bool _bDelayed);
-Dòng 7846: /*0x1c*/ float Damage;
-Dòng 7849: /*0xa8a1b8*/ InitParams(UnityEngine.Transform _parent, float _fUnitSize, float _fDamage, bool _bCritical);
-Dòng 19469: /*0x40*/ LocalizeString m_prevDamageText;
-Dòng 19481: /*0x114f960*/ void SetPrevDamage();
-Dòng 20115: /*0x115f244*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardData(long damage);
-Dòng 20116: /*0x115f29c*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardDataByPrev(long damage);
-Dòng 20117: /*0x115f2f4*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardDataByPrev(int hutingRewardID, long damage);
-Dòng 20118: /*0x114fb54*/ TableData.TableData_Eventbossreward GetEventBossHuntingRewardData(int rewardId, long damage);
-Dòng 20123: /*0x115170c*/ long GetEventBosLastDamage(int index);
-Dòng 20130: /*0x115f688*/ void Send_BossFinish(string statistics, string playData, long lcp, string hpmps, double bossTotalDamage, System.Action<PTShare.Define.SProperty> action);
-Dòng 20442: /*0x18*/ double bossTotalDamage;
-Dòng 22138: /*0x48*/ LocalizeString m_bestDamageText;
-Dòng 22156: /*0xe625b0*/ void SetBestDamage();
-Dòng 22169: /*0x40*/ LocalizeString m_prevDamageText;
-Dòng 22181: /*0xe62cb4*/ void SetPrevDamage();
-Dòng 22225: /*0x28*/ LocalizeString m_damageText;
-Dòng 22234: /*0xe63ed0*/ void SetDamage();
-Dòng 23189: /*0x58*/ ServerProtocol.ResGuildRanking m_bossDamagePersonData;
-Dòng 23190: /*0x60*/ ServerProtocol.ResGuildGuildRanking m_bossDamageGuildData;
-Dòng 23240: /*0xe7adb4*/ ServerProtocol.ResGuildRanking GetBossDamagePersonRankData();
-Dòng 23241: /*0xe7adbc*/ ServerProtocol.ResGuildGuildRanking GetBossDamageGuildRankData();
-Dòng 23251: /*0xe7ae54*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardData(long damage);
-Dòng 23252: /*0xe7af64*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardDataByPrev(long damage);
-Dòng 23253: /*0xe7b074*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardDataByPrev(int hutingRewardID, long damage);
-Dòng 23254: /*0xe62f8c*/ TableData.TableData_Guildhuntingreward GetGuildHuntingRewardData(int hutingRewardID, long damage);
-Dòng 23270: /*0xe6e840*/ System.Collections.Generic.List<Rewards> GetHuntingDropItem(int bossIndex, long damage);
-Dòng 23307: /*0xe7d9e8*/ void Send_BossFinish(string statistics, string playData, long lcp, string hpmps, double guildBossTotalHitDamage, System.Action<PTShare.Define.SProperty> action);
-Dòng 23311: /*0xe7dd50*/ void Send_BossGuildPersonDamageRanking(int bossIndex, System.Action<ServerProtocol.ResGuildRanking> callBack);
-Dòng 23312: /*0xe6f800*/ void Send_BossGuildDamageRanking(int bossIndex, System.Action<ServerProtocol.ResGuildGuildRanking> callBack);
-Dòng 23765: /*0x18*/ double guildBossTotalHitDamage;
-Dòng 23808: /*0xf6daac*/ void <Send_BossGuildPersonDamageRanking>b__0(ServerProtocol.ResGuildRanking response);
-Dòng 23817: /*0xf6db34*/ void <Send_BossGuildDamageRanking>b__0(ServerProtocol.ResGuildGuildRanking response);
-Dòng 24829: /*0x78*/ LocalizeString m_totalDamageText;
-Dòng 35141: /*0xe0c530*/ long GetDamage();
-Dòng 35162: /*0xe0dbb8*/ void Send_FinishBattle(string statistics, string playData, long lcp, string HpMps, double damage, bool isWin, System.Action<PTShare.Define.SProperty> callBack);
-Dòng 41177: /*0x50*/ UnityEngine.UI.Toggle m_goToggleDamage;
-Dòng 41180: /*0x5a*/ bool m_bDamageActive;
-Dòng 41194: /*0x113ac70*/ void OnClickToggleDamage(bool _bActive);
-Dòng 43965: /*0x128*/ UnityEngine.UI.Slider m_BossDamageSlider;
-Dòng 43968: /*0x140*/ LocalizeString m_BossDamageText;
-Dòng 43977: /*0x190*/ double m_dCurrentBossDamageSliderMax;
-Dòng 43978: /*0x198*/ double m_dPrevBossDamageSliderMax;
-Dòng 44012: /*0xe342d0*/ void SetTextBossDamage(double _dCurrentDamage, double _dTargetDamage);
-Dòng 44147: /*0x18*/ UnityEngine.UI.Slider m_DamageSlider;
-Dòng 44150: /*0x30*/ LocalizeString m_DamageText;
-Dòng 44164: /*0x30*/ UnityEngine.UI.Image m_BarDamage;
-Dòng 44173: /*0xf8b734*/ void Init(bool _bMVP, bool _bAlly, double _dMaxDamage, double _dMaxHit, double _dMaxHeal, Battle.BattleGraphValue _currentValue);
-Dòng 44212: /*0x80*/ double m_dMaxValueDamage;
-Dòng 53468: /*0x108*/ UnityEngine.GameObject m_totalDamageParent;
-Dòng 53471: /*0x120*/ LocalizeString m_guildTotalDamage;
-Dòng 55462: /*0x88*/ LocalizeString m_totalDamageText;
-Dòng 55550: /*0x38*/ LocalizeString m_bossDamageText;
-Dòng 55552: /*0x48*/ UnityEngine.UI.Slider m_bossDamageSlider;
-Dòng 58006: /*0x6c*/ float AddDamageFontDelay;
-Dòng 58007: /*0x70*/ float AddDamageFontScale;
-Dòng 66846: /*0x20*/ long lastdamage;
-Dòng 69451: static string OPTION_GUILDBATTLE_DAMAGE_VIEW = "option_guildbattle_damage_view";
-Dòng 69489: static /*0x113aaf8*/ void SaveGuildBattleDamageView(bool _save);
-Dòng 69490: static /*0x113a894*/ bool LoadGuildBattleDamageView();
-Dòng 70173: NO_DAMAGE_RECORD = 234,
-Dòng 71040: /*0x38*/ long damage;
-Dòng 71071: /*0x18*/ long damage;
-Dòng 71843: /*0x58*/ long damage;
-Dòng 72150: /*0x28*/ long lastdamage;
-Dòng 72152: /*0x38*/ long topdamage;
-Dòng 72161: /*0x18*/ long lastdamage;
-Dòng 74876: /*0x20*/ long StepUpDamage;
-Dòng 75682: /*0x20*/ long EventBossStepUpDamage;
-Dòng 77998: static float CRITICAL_DAMAGE_MULT = 2;
-Dòng 78021: static string BUFF_BASE_STAT_DAMAGE_NAME = "RECENT_DAMAGE";
-Dòng 78081: static string DAMAGE_MARKER_NAME = "DamageMarker";
-Dòng 78111: static float DAMAGE_MARKER_TIME = 0.44999998807907104;
-Dòng 78112: static float DAMAGE_MARKER_SPEED = 0.699999988079071;
-Dòng 78327: DOT_DAMAGE = 4096,
-Dòng 78393: IMMUNE_HP_DAMAGE = 32,
-Dòng 78410: MULT_HIT_DAMAGE = 49,
-Dòng 78411: MULT_HIT_DAMAGE_ATTACKTYPE = 50,
-Dòng 78412: RELEASE_DAMAGE_MAGIC = 51,
-Dòng 78431: MULT_DAMAGE_CRITICAL = 70,
-Dòng 78432: MULT_DAMAGE_BLOOD = 71,
-Dòng 78436: DOT_DAMAGE = 75,
-Dòng 78437: DOT_DAMAGE_PERHP = 76,
-Dòng 78438: DOT_DAMAGE_PERHP_P2 = 77,
-Dòng 78448: IGNORE_DAMAGE_PERHP = 87,
-Dòng 78474: MIDDLE_MULT_HIT_DAMAGE = 113,
-Dòng 78521: enum DamageMarkType
-Dòng 78557: DAMAGE = 20,
-Dòng 78558: DAMAGE_CHANCE = 21,
-Dòng 78773: DAMAGE = 1,
-Dòng 78849: struct DamageResult
-Dòng 78853: /*0x14*/ float damage;
-Dòng 78855: static /*0xf5cc94*/ Battle.DamageResult get_NoDamage();
-Dòng 78856: static /*0xf5ccb4*/ Battle.DamageResult op_Addition(Battle.DamageResult A, Battle.DamageResult B);
-Dòng 78857: /*0xa854a8*/ DamageResult(bool _bKill, bool _bCritical, float _fDamage);
-Dòng 78864: ADD_DAMAGE = 2,
-Dòng 78873: /*0x1c*/ float Damage;
-Dòng 78874: /*0x20*/ float DamageMULT_ForStageData;
-Dòng 78881: /*0x3c*/ float DamageMult;
-Dòng 78883: static /*0xc9a798*/ Battle.StatTransfer GetHealStat(float _fHealAmount, float _fDamageMult);
-Dòng 78884: /*0xa382cc*/ StatTransfer(Battle.AttackType _eAttackType, float _fDamage, float _fDamageMULT, Battle.Hit_WpnType _eWeaponType);
-Dòng 78885: /*0xa382ec*/ StatTransfer(Battle.AttackType _eAttackType, float _fDamage, int _nFactionID, int _nSkillID);
-Dòng 78886: /*0xa38308*/ StatTransfer(Battle.AttackType _eAttackType, float _fACC, float _fDamage, float _fDamageMULT, float _fCRI, float _fCRIMULT, float _fMPPAY, int _nFationID, int _nSkillID, Battle.Hit_WpnType _eWeaponType);
-Dòng 79045: /*0x10*/ double TotalDamage;
-Dòng 79057: /*0xe2f634*/ void Init(double _dDamage, double _dHit, double _dHeal, string _sSkinName, int _nUnitID, int _nFactionID, int _nLevel, int _nGrade);
+Dòng 607: /*0x401574c*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(Assets.Api.Client.Character character, System.Nullable<bool> doNotShowVoiceDownload);
+Dòng 770: struct <MoveToScenario>d__64 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 4995: /*0x42e4680*/ Assets.GameUi.Icon.IconBase.IconArgs GetPreviewScenarioLogIconArgs();
+Dòng 5672: /*0x58*/ Assets.GameUi.Services.IScenarioService scenarioService;
+Dòng 5690: /*0x442f880*/ TweetyWindowController(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.GameUi.Toast.IToastComponent toast, Assets.Api.MemoryDB.IMemoryDB memoryDB, Assets.Api.Client.IApiClient apiClient, Assets.Api.Client.Time.IAdjustedTime adjustedTime, Assets.GameUi.Icon.IAvatarIconArgsFactory playerIconArgsProvider, Assets.GameUi.Services.IScenarioService scenarioService, Assets.GameUi.Service.IBadgeService badgeService);
+Dòng 6922: /*0x45827a4*/ Cysharp.Threading.Tasks.UniTask GUIDE_MoveToScenario(Assets.GameUi.Guide.GuideController.GuideDetailViewModel detail);
+Dòng 7001: /*0x458300c*/ int <GUIDE_MoveToScenario>b__75_0(Assets.Api.Client.SceneMaster s);
+Dòng 7082: struct <GUIDE_MoveToScenario>d__75 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 8053: /*0x48*/ Assets.GameUi.Services.IScenarioService scenarioService;
+Dòng 8066: /*0x459c804*/ TalkWindowController(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.Api.MemoryDB.IMemoryDB memoryDB, Assets.Api.Client.IApiClient apiClient, Assets.GameUi.Externals.ILocalSettingsManager localSettings, Assets.GameUi.Services.IScenarioService scenarioService, Assets.GameUi.Service.IBadgeService badgeService);
+Dòng 8441: class ScenarioUiComponent : UnityEngine.MonoBehaviour
+Dòng 8444: /*0x28*/ Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonGroup<Assets.GameUi.Externals.ScenarioTextSpeedTypes> textSpeedButtonGroup;
+Dòng 8445: /*0x30*/ Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonGroup<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> backGroundAlphaButtonGroup;
+Dòng 8446: /*0x38*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent textView;
+Dòng 8447: /*0x40*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer textTimer;
+Dòng 8451: /*0x60*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextSpeedTypes> <ScenarioTextSpeedType>k__BackingField;
+Dòng 8452: /*0x68*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> <BackGroundAlphaType>k__BackingField;
+Dòng 8457: /*0x46dcc0c*/ ScenarioUiComponent();
+Dòng 8460: /*0x46dc344*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextSpeedTypes> get_ScenarioTextSpeedType();
+Dòng 8461: /*0x46dc34c*/ void set_ScenarioTextSpeedType(UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextSpeedTypes> value);
+Dòng 8462: /*0x46dc354*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> get_BackGroundAlphaType();
+Dòng 8463: /*0x46dc35c*/ void set_BackGroundAlphaType(UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> value);
+Dòng 8471: /*0x46dc6d0*/ void Refresh(Assets.GameUi.SystemSettingWindow.ScenarioUiComponent.Args args);
+Dòng 8473: /*0x46dc9fc*/ void Apply(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes backgroundAlpha, Assets.GameUi.Externals.ScenarioTextSpeedTypes textSpeed);
+Dòng 8474: /*0x46dc864*/ void RefreshTextSpeed(Assets.GameUi.Externals.ScenarioTextSpeedTypes speedType);
+Dòng 8475: /*0x46dc7d0*/ void RefreshBackGroundAlpha(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes alphaType);
+Dòng 8479: /*0x46dcd84*/ void <Initialize>b__31_0(Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonComponent<Assets.GameUi.Externals.ScenarioTextSpeedTypes> button);
+Dòng 8480: /*0x46dcdd0*/ void <Initialize>b__31_1(Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonComponent<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> button);
+Dòng 8481: /*0x46dce1c*/ void <Initialize>b__31_2(Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText model);
+Dòng 8488: /*0x10*/ Assets.GameUi.Externals.ScenarioTextSpeedTypes <TextSpeedType>k__BackingField;
+Dòng 8489: /*0x14*/ Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes <BackGroundAlphaType>k__BackingField;
+Dòng 8497: /*0x46dcf00*/ Assets.GameUi.Externals.ScenarioTextSpeedTypes get_TextSpeedType();
+Dòng 8498: /*0x46dcf08*/ void set_TextSpeedType(Assets.GameUi.Externals.ScenarioTextSpeedTypes value);
+Dòng 8499: /*0x46dcf10*/ Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes get_BackGroundAlphaType();
+Dòng 8500: /*0x46dcf18*/ void set_BackGroundAlphaType(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes value);
+Dòng 8628: /*0x68*/ Assets.GameUi.SystemSettingWindow.ScenarioUiComponent scenarioUi;
+Dòng 8641: /*0x46df584*/ Cysharp.Threading.Tasks.UniTask LoadScenarioUiBackground();
+Dòng 8646: /*0x46df724*/ void <ProcessOnCreate>b__14_4(Assets.GameUi.SystemSettingWindow.ScenarioUiComponent.Args model);
+Dòng 8663: /*0x46e0874*/ void <ProcessOnCreate>b__14_22(Assets.GameUi.Externals.ScenarioTextSpeedTypes value);
+Dòng 8664: /*0x46e0ab4*/ void <ProcessOnCreate>b__14_23(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes value);
+Dòng 8691: Scenario = 4,
+Dòng 8741: struct <LoadScenarioUiBackground>d__17 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 8783: /*0x70*/ UniRx.ReactiveProperty<Assets.GameUi.SystemSettingWindow.ScenarioUiComponent.Args> <ScenarioArgs>k__BackingField;
+Dòng 8792: /*0x46e2b20*/ UniRx.ReactiveProperty<Assets.GameUi.SystemSettingWindow.ScenarioUiComponent.Args> get_ScenarioArgs();
+Dòng 8802: /*0x46e3254*/ void RefreshScenarioUi();
+Dòng 8803: /*0x46e0924*/ void ApplyScenarioUiToSettings(System.Nullable<Assets.GameUi.Externals.ScenarioTextSpeedTypes> textSpeed, System.Nullable<bool> voiceDownload, System.Nullable<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> backGroundAlpha, System.Nullable<bool> skipIfDownloadVoice, System.Nullable<bool> skipIfPlayRated);
+Dòng 8811: Scenario = 2,
+Dòng 8921: class ScenarioBackGroundAlphaButton : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonComponent<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes>
+Dòng 8923: /*0x46e4100*/ ScenarioBackGroundAlphaButton();
+Dòng 8926: class ScenarioBackGroundAlphaButtonGroup : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonGroup<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes>
+Dòng 8928: /*0x46e4148*/ ScenarioBackGroundAlphaButtonGroup();
+Dòng 8931: class ScenarioVoiceDownloadButton : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonAsBooleanComponent
+Dòng 8933: /*0x46e4190*/ ScenarioVoiceDownloadButton();
+Dòng 8936: class ScenarioVoiceDownloadButtonGroup : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonAsBooleanGroup
+Dòng 8938: /*0x46e41a0*/ ScenarioVoiceDownloadButtonGroup();
+Dòng 9029: class TextSpeedButton : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonComponent<Assets.GameUi.Externals.ScenarioTextSpeedTypes>
+Dòng 9034: class TextSpeedButtonGroup : Assets.GameUi.SystemSettingWindow.RadioButton.SystemRadioButtonGroup<Assets.GameUi.Externals.ScenarioTextSpeedTypes>
+Dòng 9587: /*0x46ef828*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(Assets.Api.Client.SpotCharacter spotCharacter);
+Dòng 9686: struct <MoveToScenario>d__34 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 10701: /*0x47898a0*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(Assets.Api.Client.SpotCharacter spotCharacter);
+Dòng 10823: struct <MoveToScenario>d__41 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 13082: /*0x47ab27c*/ void <ProcessOnCreate>b__27_5(bool isPlayScenario);
+Dòng 13202: /*0x78*/ UniRx.ReactiveProperty<bool> <IsPlayScenario>k__BackingField;
+Dòng 13213: /*0x47ae018*/ UniRx.ReactiveProperty<bool> get_IsPlayScenario();
+Dòng 13228: /*0x47aefa0*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 13291: struct <MoveToScenario>d__45 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 17751: Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 17752: Cysharp.Threading.Tasks.UniTask<bool> MoveToNewStoryScenario(long episodeMasterId, bool forceDoNotShowVoiceDownload);
+Dòng 17753: /*0x380bb68*/ string ParseScenarioVoice(string scenarioVoiceIdentifier);
+Dòng 17776: /*0x408b588*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 17777: /*0x408b640*/ Cysharp.Threading.Tasks.UniTask<bool> MoveToNewStoryScenario(long episodeMasterId, bool forceDoNotShowVoiceDownload);
+Dòng 17779: /*0x408b7f8*/ string ParseScenarioVoice(string scenarioVoiceIdentifier);
+Dòng 17886: struct <MoveToNewStoryScenario>d__19 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 17899: struct <MoveToScenario>d__18 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 17925: enum ScenarioVoiceAssetType
+Dòng 17931: class ScenarioVoiceAssetViewModel
+Dòng 17933: /*0x10*/ Assets.GameUi.Service.ScenarioVoiceAssetType <Type>k__BackingField;
+Dòng 17938: /*0x408b9ec*/ ScenarioVoiceAssetViewModel(string value);
+Dòng 17939: /*0x408fe08*/ Assets.GameUi.Service.ScenarioVoiceAssetType get_Type();
+Dòng 17940: /*0x408fe10*/ void set_Type(Assets.GameUi.Service.ScenarioVoiceAssetType value);
+Dòng 21601: interface IScenarioService
+Dòng 21606: class ScenarioService : Assets.GameUi.Services.IScenarioService
+Dòng 21610: /*0x40e0590*/ ScenarioService(Assets.Api.MemoryDB.IMemoryDB memoryDB);
+Dòng 22386: /*0x40ecb30*/ void <ProcessOnCreate>b__67_4(bool isPlayScenario);
+Dòng 22709: /*0xa0*/ UniRx.ReactiveProperty<bool> <IsPlayScenario>k__BackingField;
+Dòng 22713: /*0xc0*/ UniRx.ReactiveProperty<bool> <ReadyOfScenarioView>k__BackingField;
+Dòng 22725: /*0x40f426c*/ UniRx.ReactiveProperty<bool> get_IsPlayScenario();
+Dòng 22729: /*0x40f428c*/ UniRx.ReactiveProperty<bool> get_ReadyOfScenarioView();
+Dòng 22744: /*0x40f4850*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 23013: struct <MoveToScenario>d__62 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 23951: namespace Scenario
+Dòng 23953: class ScenarioComponent : UnityEngine.MonoBehaviour<Assets.GameUi.Scenario.ScenarioComponent, Assets.GameUi.Scenario.ScenarioController, Assets.GameUi.Scenario.ScenarioComponent.Args>
+Dòng 23955: /*0x48*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent textView;
+Dòng 23956: /*0x50*/ Assets.GameUi.Scenario.Menu.ScenarioMenuComponent menu;
+Dòng 23959: /*0x68*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent animationView;
+Dòng 23960: /*0x70*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent choice;
+Dòng 23962: /*0x80*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer textTimer;
+Dòng 23963: /*0x88*/ Assets.GameUi.Scenario.History.ScenarioHistoryComponent history;
+Dòng 23964: /*0x90*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent fade;
+Dòng 23965: /*0x98*/ Assets.GameUi.Scenario.Input.ScenarioInputComponent input;
+Dòng 23974: /*0xe0*/ Assets.GameUi.Scenario.ScenarioComponent.Executor executor;
+Dòng 23982: /*0x41102fc*/ ScenarioComponent();
+Dòng 23997: /*0x410ee80*/ Cysharp.Threading.Tasks.UniTask<bool> ProcessOnCreate(Assets.GameUi.Scenario.ScenarioComponent.Args args);
+Dòng 23998: /*0x410ef78*/ Cysharp.Threading.Tasks.UniTask<bool> ProcessOnRestore(Assets.GameUi.Scenario.ScenarioComponent.Args args);
+Dòng 24001: /*0x410f1d4*/ Cysharp.Threading.Tasks.UniTask ProcessFrame(Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame, System.Threading.CancellationToken cancellationToken);
+Dòng 24002: /*0x410f2b8*/ void ApplyDisableFunctionFlags(Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFlags, System.Threading.CancellationToken cancellationToken);
+Dòng 24003: /*0x410f310*/ Cysharp.Threading.Tasks.UniTask ApplyBackgroundAsVideo(Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel model);
+Dòng 24005: /*0x410f4a0*/ Cysharp.Threading.Tasks.UniTask ApplyBackground(Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel model);
+Dòng 24007: /*0x410f640*/ Cysharp.Threading.Tasks.UniTask StartPlayVoice(Assets.GameUi.Scenario.ScenarioController.VoiceViewModel model, int estimatedMilliSeconds);
+Dòng 24008: /*0x410f720*/ Cysharp.Threading.Tasks.UniTask PlayHistoryVoice(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args);
+Dòng 24009: /*0x410f7f0*/ void ApplyHistory(Assets.GameUi.Scenario.History.ScenarioHistoryComponent.Args args);
+Dòng 24010: /*0x410f840*/ void ApplyScreen(Assets.GameUi.Scenario.ScenarioController.ScreenViewModel model);
+Dòng 24012: /*0x410faac*/ Cysharp.Threading.Tasks.UniTask PlayOrStopBackgroundVoice(Assets.GameUi.Scenario.ScenarioController.BackgroundVoiceViewModel bgVoice);
+Dòng 24013: /*0x410fb78*/ Cysharp.Threading.Tasks.UniTask PlaySoundEffect(Assets.GameUi.Scenario.ScenarioController.BackgroundSoundEffectViewModel soundEffect);
+Dòng 24014: /*0x410fc48*/ Cysharp.Threading.Tasks.UniTask FadeIn(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing, System.Threading.CancellationToken token);
+Dòng 24015: /*0x410fd3c*/ Cysharp.Threading.Tasks.UniTask FadeOut(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing, System.Threading.CancellationToken token, bool shouldFade);
+Dòng 24016: /*0x410fe48*/ Cysharp.Threading.Tasks.UniTask Fade(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing, System.Threading.CancellationToken token, bool shouldFadeOut);
+Dòng 24017: /*0x410ff54*/ void ShakeCamera(Assets.GameUi.Scenario.ScenarioController.ScenarioCameraShakeViewModel shake);
+Dòng 24026: /*0x4110738*/ void <ProcessOnCreate>b__47_3(Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame);
+Dòng 24027: /*0x411080c*/ void <ProcessOnCreate>b__47_4(Assets.GameUi.Scenario.History.ScenarioHistoryComponent.Args value);
+Dòng 24028: /*0x4110810*/ void <ProcessOnCreate>b__47_5(Assets.GameUi.Scenario.ScenarioController.SettingsViewModel settings);
+Dòng 24029: /*0x4110838*/ void <ProcessOnCreate>b__47_6(Assets.GameUi.Externals.ScenarioTextSpeedTypes textSpeed);
+Dòng 24030: /*0x4110854*/ void <ProcessOnCreate>b__47_7(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes alpha);
+Dòng 24033: /*0x41108b0*/ void <ProcessOnCreate>b__47_10(Assets.GameUi.Scenario.ScenarioController.ScreenViewModel value);
+Dòng 24034: /*0x41108b4*/ void <ProcessOnCreate>b__47_11(Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args value);
+Dòng 24035: /*0x4110988*/ void <ProcessOnCreate>b__47_12(Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText model);
+Dòng 24036: /*0x4110a20*/ Cysharp.Threading.Tasks.UniTask <ProcessOnCreate>b__47_13(Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent button);
+Dòng 24051: class ScenarioDebugArgs
+Dòng 24057: /*0x4111010*/ ScenarioDebugArgs();
+Dòng 24066: class Args : Assets.UiComponentSystem.Runtime.IArgsOf<Assets.GameUi.Scenario.ScenarioComponent>
+Dòng 24069: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags <DisableFlags>k__BackingField;
+Dòng 24070: /*0x20*/ Assets.GameUi.Scenario.ScenarioComponent.ScenarioDebugArgs <DebugArgs>k__BackingField;
+Dòng 24076: /*0x41110ec*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags get_DisableFlags();
+Dòng 24077: /*0x41110f4*/ void set_DisableFlags(Assets.GameUi.Scenario.ScenarioController.FunctionFlags value);
+Dòng 24078: /*0x41110fc*/ Assets.GameUi.Scenario.ScenarioComponent.ScenarioDebugArgs get_DebugArgs();
+Dòng 24079: /*0x4111104*/ void set_DebugArgs(Assets.GameUi.Scenario.ScenarioComponent.ScenarioDebugArgs value);
+Dòng 24086: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags <DisableFlags>k__BackingField;
+Dòng 24090: /*0x4111148*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags get_DisableFlags();
+Dòng 24091: /*0x4111150*/ void set_DisableFlags(Assets.GameUi.Scenario.ScenarioController.FunctionFlags value);
+Dòng 24094: /*0x411116c*/ void TryExecute(Assets.GameUi.Scenario.ScenarioController.FunctionFlags flag, System.Action callback);
+Dòng 24095: /*0x4111208*/ Cysharp.Threading.Tasks.UniTask TryExecute(Assets.GameUi.Scenario.ScenarioController.FunctionFlags flag, System.Func<Cysharp.Threading.Tasks.UniTask> callback);
+Dòng 24101: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.Executor <>4__this;
+Dòng 24102: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags flag;
+Dòng 24115: /*0x38*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24116: /*0x40*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args value;
+Dòng 24127: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24128: /*0x30*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent button;
+Dòng 24139: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24150: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24163: /*0x40*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24174: /*0x38*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24175: /*0x40*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 24184: static /*0x0*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>9;
+Dòng 24187: static /*0x18*/ System.Func<Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel, bool> <>9__57_1;
+Dòng 24188: static /*0x20*/ System.Func<Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel, string> <>9__57_2;
+Dòng 24196: /*0x411370c*/ bool <StartPlayVoice>b__57_1(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel character);
+Dòng 24197: /*0x4113780*/ string <StartPlayVoice>b__57_2(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel character);
+Dòng 24204: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args;
+Dòng 24205: /*0x18*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24215: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24225: /*0x10*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24227: /*0x20*/ Assets.GameUi.Scenario.ScenarioComponent.Args args;
+Dòng 24230: /*0x4113e20*/ void <ProcessOnRestore>b__0(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingViewModel jamming);
+Dòng 24238: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24248: /*0x10*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24249: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 24287: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24297: /*0x10*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24298: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.VoiceViewModel model;
+Dòng 24303: /*0x4115190*/ Cysharp.Threading.Tasks.UniTask <StartPlayVoice>g__PlayVoice|0(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel[] characters, bool canPlayVoice, bool hasShowingSpeakingCharacter, System.Threading.CancellationToken token);
+Dòng 24311: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24313: /*0x38*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel[] characters;
+Dòng 24316: /*0x48*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>8__1;
+Dòng 24330: /*0x18*/ Assets.GameUi.Scenario.ScenarioComponent.<> CS$<>8__locals1;
+Dòng 24339: /*0x20*/ Assets.GameUi.Scenario.ScenarioComponent.<> CS$<>8__locals2;
+Dòng 24349: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24359: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel character;
+Dòng 24360: /*0x18*/ Assets.GameUi.Scenario.ScenarioComponent.<> CS$<>8__locals3;
+Dòng 24369: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>4__this;
+Dòng 24381: /*0x18*/ Assets.GameUi.Scenario.ScenarioComponent.<> CS$<>8__locals4;
+Dòng 24392: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel model;
+Dòng 24393: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24404: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel model;
+Dòng 24405: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24417: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24418: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 24419: /*0x38*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing;
+Dòng 24432: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 24433: /*0x30*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing;
+Dòng 24434: /*0x38*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24447: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 24448: /*0x38*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming timing;
+Dòng 24449: /*0x40*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24462: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24473: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args;
+Dòng 24474: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24486: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24497: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.BackgroundVoiceViewModel bgVoice;
+Dòng 24498: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24509: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.BackgroundSoundEffectViewModel soundEffect;
+Dòng 24510: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24521: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24522: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 24524: /*0x40*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>8__1;
+Dòng 24535: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24546: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent.Args args;
+Dòng 24547: /*0x38*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24559: /*0x30*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24560: /*0x38*/ Assets.GameUi.Scenario.ScenarioComponent.Args args;
+Dòng 24561: /*0x40*/ Assets.GameUi.Scenario.ScenarioComponent.<> <>8__1;
+Dòng 24572: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24583: /*0x28*/ Assets.GameUi.Scenario.ScenarioComponent <>4__this;
+Dòng 24584: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.VoiceViewModel model;
+Dòng 24593: class ScenarioComponentNavigation
+Dòng 24595: static /*0x41255fc*/ Cysharp.Threading.Tasks.UniTask<bool> MoveToScenario(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.GameUi.Scenario.ScenarioComponent.Args args, long episodeMasterId, bool doNotShowDialog);
+Dòng 24596: static /*0x412570c*/ Cysharp.Threading.Tasks.UniTask<bool> MoveToNewStoryScenario(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, long sceneMasterId, long episodeMasterId, bool doNotShowDialog);
+Dòng 24597: static /*0x412580c*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.Api.Client.SceneFrameMaster[] debugSceneFrameMasters);
+Dòng 24599: struct <MoveToNewStoryScenario>d__1 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 24614: struct <MoveToScenario>d__0 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 24621: /*0x48*/ Assets.GameUi.Scenario.ScenarioComponent.Args args;
+Dòng 24629: struct <MoveToScenario>d__2 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 24642: interface IScenarioEndable
+Dòng 24647: class ScenarioController : Assets.UiComponentSystem.Runtime.Controller, Assets.GameUi.Scenario.IScenarioEndable
+Dòng 24652: /*0x38*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.ScreenViewModel> <Screen>k__BackingField;
+Dòng 24653: /*0x40*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args> <Choice>k__BackingField;
+Dòng 24654: /*0x48*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.History.ScenarioHistoryComponent.Args> <History>k__BackingField;
+Dòng 24655: /*0x50*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingViewModel> <FlipFrameJamming>k__BackingField;
+Dòng 24656: /*0x58*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.SettingsViewModel> <Settings>k__BackingField;
+Dòng 24657: /*0x60*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextSpeedTypes> <TextSpeed>k__BackingField;
+Dòng 24658: /*0x68*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> <TextAlpha>k__BackingField;
+Dòng 24668: /*0xb8*/ Assets.GameUi.Services.IScenarioService scenarioService;
+Dòng 24673: /*0xe0*/ Assets.GameUi.Scenario.ScenarioFrameProcessor frameProcessor;
+Dòng 24674: /*0xe8*/ System.Collections.Generic.List<Assets.GameUi.Scenario.ScenarioController.HistoryViewModel> histories;
+Dòng 24675: /*0xf0*/ Assets.GameUi.Scenario.ScenarioFrameProcessSettings settingsStorage;
+Dòng 24678: /*0x108*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFunctionFlags;
+Dòng 24681: /*0x118*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel[] frames;
+Dòng 24687: /*0x4127810*/ ScenarioController(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.GameUi.Externals.ICameraManager cameraManager, Assets.GameUi.Service.IEpisodeService episodeService, Assets.Api.MemoryDB.IMemoryDB memoryDB, Assets.Api.Client.IApiClient apiClient, Assets.Platform.IPlatform platform, Assets.GameUi.Externals.ILocalSettingsManager localSettings, Assets.GameUi.IGameNotificationsMessageBroker gameNotificationsMessageBroker, Assets.GameUi.Toast.IToastComponent toast, Assets.GameUi.Services.IScenarioService scenarioService, Assets.GameUi.Services.IBgmService bgmService, Assets.GameUi.Icon.IAvatarIconArgsFactory avatarIconArgsFactory, Assets.GameUi.Service.Tutorial.ITutorialService tutorialService, Assets.GameUi.Guide.IGuideComponent guide);
+Dòng 24691: /*0x41270fc*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.ScreenViewModel> get_Screen();
+Dòng 24692: /*0x4127104*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args> get_Choice();
+Dòng 24693: /*0x412710c*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.History.ScenarioHistoryComponent.Args> get_History();
+Dòng 24694: /*0x4127114*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingViewModel> get_FlipFrameJamming();
+Dòng 24695: /*0x412711c*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioController.SettingsViewModel> get_Settings();
+Dòng 24696: /*0x4127124*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextSpeedTypes> get_TextSpeed();
+Dòng 24697: /*0x412712c*/ UniRx.ReactiveProperty<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> get_TextAlpha();
+Dòng 24698: /*0x4127134*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioFrameProcessor.FrameIdentifierViewModel> get_FrameIdentifier();
+Dòng 24702: /*0x41273d4*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel[] get_Frames();
+Dòng 24705: /*0x4127dd8*/ Cysharp.Threading.Tasks.UniTask<bool> Refresh(long sceneMasterId, Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFunctionFlags, bool isNewStory);
+Dòng 24707: /*0x41285b0*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel GenerateFrame(Assets.GameUi.Scenario.ScenarioFrameProcessor.FrameIdentifierViewModel frameIdentifier);
+Dòng 24716: /*0x412bd3c*/ void StartProcessFrame(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags jammingFlags);
+Dòng 24719: /*0x412be3c*/ void OpenChoice(Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args args);
+Dòng 24741: /*0x4127f4c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel[] GenerateFrames(Assets.Api.Client.SceneFrameMaster[] masters, Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFunctionFlags, bool enableDummyBranch);
+Dòng 24747: /*0x412bd44*/ void RefreshFlipFrameJammingFlag(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags flagsTo, int delayMilliSeconds);
+Dòng 24748: /*0x412c394*/ void TurnOnFlipFrameJammingFlag(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags flag);
+Dòng 24749: /*0x412b718*/ void TurnOffFlipFrameJammingFlag(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags flag, int delayMilliSeconds);
+Dòng 24751: /*0x412d2f8*/ System.ValueTuple<Assets.GameUi.Scenario.Configuration.ScenaioCharacterTypes, string> GetSpeakerInfo(Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame, Assets.GameUi.Scenario.Configuration.SpeakerTypes speaker);
+Dòng 24752: /*0x412afec*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel GenerateHistory(long id, Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame);
+Dòng 24753: /*0x412d4f8*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel GenerateSelectonHistory(long id, long frameId, string answer, long selectionMasterId);
+Dòng 24754: /*0x412ac00*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args GenerateChoice(long frameId, Assets.GameUi.Scenario.ScenarioController.ScenarioBranchViewModel branch);
+Dòng 24756: /*0x412a798*/ Assets.Utilities.Spine.MecanimController.Triggers StillAnimationTypeToTrigger(Assets.GameUi.Scenario.Configuration.ScenarioAdultStillAnimationTypes type);
+Dòng 24757: /*0x412a830*/ Assets.Utilities.Spine.MecanimController.Triggers SpineAnimationTypeToTrigger(Assets.GameUi.Scenario.Configuration.ScenarioSpineAnimationTypes type);
+Dòng 24786: enum ScenarioCharacterPositionTypes
+Dòng 24796: enum ScenarioCockpitPositionTypes
+Dòng 24825: class FlipFrameJammingViewModel : System.IEquatable<Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingViewModel>
+Dòng 24827: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags <Flag>k__BackingField;
+Dòng 24831: /*0x412dd14*/ Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags get_Flag();
+Dòng 24832: /*0x412dd1c*/ void set_Flag(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags value);
+Dòng 24835: /*0x412dd34*/ bool Equals(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingViewModel other);
+Dòng 24844: /*0x20*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel <Sentence>k__BackingField;
+Dòng 24846: /*0x2c*/ Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes <BackgroundAlpha>k__BackingField;
+Dòng 24847: /*0x30*/ Assets.GameUi.Externals.ScenarioTextSpeedTypes <Speed>k__BackingField;
+Dòng 24861: /*0x412de94*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel get_Sentence();
+Dòng 24862: /*0x412de9c*/ void set_Sentence(Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel value);
+Dòng 24865: /*0x412deb8*/ Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes get_BackgroundAlpha();
+Dòng 24866: /*0x412dec0*/ void set_BackgroundAlpha(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes value);
+Dòng 24867: /*0x412dec8*/ Assets.GameUi.Externals.ScenarioTextSpeedTypes get_Speed();
+Dòng 24868: /*0x412ded0*/ void set_Speed(Assets.GameUi.Externals.ScenarioTextSpeedTypes value);
+Dòng 24888: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel <CharacterAnimation>k__BackingField;
+Dòng 24889: /*0x20*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel <CockpitAnimation>k__BackingField;
+Dòng 24894: /*0x412df70*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel get_CharacterAnimation();
+Dòng 24895: /*0x412df78*/ void set_CharacterAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel value);
+Dòng 24896: /*0x412df80*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel get_CockpitAnimation();
+Dòng 24897: /*0x412df88*/ void set_CockpitAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel value);
+Dòng 24903: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel[] <Characters>k__BackingField;
+Dòng 24910: /*0x412dfd4*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel[] get_Characters();
+Dòng 24911: /*0x412dfdc*/ void set_Characters(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel[] value);
+Dòng 24994: class ScenarioShakeViewModel
+Dòng 25000: /*0x412e148*/ ScenarioShakeViewModel();
+Dòng 25009: class ScenarioBackgroundAnimationViewModel
+Dòng 25011: /*0x10*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration <Configuration>k__BackingField;
+Dòng 25018: /*0x412a934*/ ScenarioBackgroundAnimationViewModel();
+Dòng 25019: /*0x412e150*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration get_Configuration();
+Dòng 25020: /*0x412e158*/ void set_Configuration(Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration value);
+Dòng 25061: class ScenarioObjectMoveViewModel
+Dòng 25072: /*0x412e288*/ ScenarioObjectMoveViewModel();
+Dòng 25091: class ScenarioCharacterAnimationViewModel
+Dòng 25093: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterPositionTypes <Position>k__BackingField;
+Dòng 25094: /*0x18*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Configuration>k__BackingField;
+Dòng 25097: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel <Move>k__BackingField;
+Dòng 25098: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel <Shake>k__BackingField;
+Dòng 25101: /*0x412e3f8*/ ScenarioCharacterAnimationViewModel();
+Dòng 25102: /*0x412e2ec*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterPositionTypes get_Position();
+Dòng 25103: /*0x412e2f4*/ void set_Position(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterPositionTypes value);
+Dòng 25104: /*0x412e2fc*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Configuration();
+Dòng 25105: /*0x412e304*/ void set_Configuration(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 25110: /*0x412e32c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel get_Move();
+Dòng 25111: /*0x412e334*/ void set_Move(Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel value);
+Dòng 25112: /*0x412e33c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel get_Shake();
+Dòng 25113: /*0x412e344*/ void set_Shake(Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel value);
+Dòng 25120: class ScenarioCockpitAnimationViewModel
+Dòng 25122: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitPositionTypes <Position>k__BackingField;
+Dòng 25123: /*0x18*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Configuration>k__BackingField;
+Dòng 25127: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel <Move>k__BackingField;
+Dòng 25128: /*0x38*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel <Shake>k__BackingField;
+Dòng 25130: /*0x412e570*/ ScenarioCockpitAnimationViewModel();
+Dòng 25131: /*0x412e464*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitPositionTypes get_Position();
+Dòng 25132: /*0x412e46c*/ void set_Position(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitPositionTypes value);
+Dòng 25133: /*0x412e474*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Configuration();
+Dòng 25134: /*0x412e47c*/ void set_Configuration(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 25141: /*0x412e4b4*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel get_Move();
+Dòng 25142: /*0x412e4bc*/ void set_Move(Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel value);
+Dòng 25143: /*0x412e4c4*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel get_Shake();
+Dòng 25144: /*0x412e4cc*/ void set_Shake(Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel value);
+Dòng 25149: class ScenarioItemAnimationViewModel
+Dòng 25152: /*0x18*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration <Configuration>k__BackingField;
+Dòng 25155: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel <Move>k__BackingField;
+Dòng 25156: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel <Shake>k__BackingField;
+Dòng 25159: /*0x412e6e8*/ ScenarioItemAnimationViewModel();
+Dòng 25162: /*0x412e5ec*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration get_Configuration();
+Dòng 25163: /*0x412e5f4*/ void set_Configuration(Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration value);
+Dòng 25168: /*0x412e61c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel get_Move();
+Dòng 25169: /*0x412e624*/ void set_Move(Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel value);
+Dòng 25170: /*0x412e62c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel get_Shake();
+Dòng 25171: /*0x412e634*/ void set_Shake(Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel value);
+Dòng 25178: class ScenarioBranchViewModel
+Dòng 25185: /*0x412e79c*/ ScenarioBranchViewModel();
+Dòng 25197: class ScenarioFadeViewModel
+Dòng 25199: /*0x10*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes <Type>k__BackingField;
+Dòng 25206: /*0x2c*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming <Timing>k__BackingField;
+Dòng 25209: /*0x412aee8*/ ScenarioFadeViewModel();
+Dòng 25210: /*0x412e800*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes get_Type();
+Dòng 25211: /*0x412e808*/ void set_Type(Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes value);
+Dòng 25224: /*0x412e870*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming get_Timing();
+Dòng 25225: /*0x412e878*/ void set_Timing(Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming value);
+Dòng 25232: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel <CharacterAnimation>k__BackingField;
+Dòng 25233: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel <CockpitAnimation>k__BackingField;
+Dòng 25236: /*0x412e894*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel get_CharacterAnimation();
+Dòng 25237: /*0x412e89c*/ void set_CharacterAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel value);
+Dòng 25238: /*0x412e8a4*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel get_CockpitAnimation();
+Dòng 25239: /*0x412e8ac*/ void set_CockpitAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel value);
+Dòng 25242: class ScenarioCameraShakeViewModel
+Dòng 25246: /*0x412aef0*/ ScenarioCameraShakeViewModel();
+Dòng 25251: class ScenarioFrameViewModel
+Dòng 25255: /*0x20*/ Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration <PhraseConfiguration>k__BackingField;
+Dòng 25256: /*0x28*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration <BackgroundConfiguration>k__BackingField;
+Dòng 25257: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBranchViewModel <BranchConfiguration>k__BackingField;
+Dòng 25258: /*0x38*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration[] <CharacterConfigurations>k__BackingField;
+Dòng 25259: /*0x40*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration[] <CockpitConfigurations>k__BackingField;
+Dòng 25260: /*0x48*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration[] <ItemConfigurations>k__BackingField;
+Dòng 25261: /*0x50*/ Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration <CameraConfiguration>k__BackingField;
+Dòng 25262: /*0x58*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags <DisableFunctionFlags>k__BackingField;
+Dòng 25263: /*0x5c*/ Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags <FlipFrameJammingFlags>k__BackingField;
+Dòng 25264: /*0x60*/ Assets.GameUi.Scenario.ScenarioController.TitleAnimationViewModel <TitleAnimation>k__BackingField;
+Dòng 25266: /*0x70*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel <BackgroundAnimation>k__BackingField;
+Dòng 25267: /*0x78*/ Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel <ScreenEffect>k__BackingField;
+Dòng 25268: /*0x80*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] <CharacterAnimations>k__BackingField;
+Dòng 25269: /*0x88*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] <CockpitAnimations>k__BackingField;
+Dòng 25270: /*0x90*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] <ItemAnimations>k__BackingField;
+Dòng 25271: /*0x98*/ Assets.GameUi.Scenario.ScenarioController.TextViewModel <Text>k__BackingField;
+Dòng 25274: /*0xa8*/ Assets.GameUi.Scenario.ScenarioController.VoiceViewModel <Voice>k__BackingField;
+Dòng 25275: /*0xb0*/ Assets.GameUi.Scenario.ScenarioController.BackgroundVoiceViewModel <BackgroundVoice>k__BackingField;
+Dòng 25276: /*0xb8*/ Assets.GameUi.Scenario.ScenarioController.BackgroundSoundEffectViewModel <BackgroundSoundEffect>k__BackingField;
+Dòng 25277: /*0xc0*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args <Choice>k__BackingField;
+Dòng 25278: /*0xc8*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel <Fade>k__BackingField;
+Dòng 25279: /*0xd0*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCameraShakeViewModel <CameraShake>k__BackingField;
+Dòng 25282: /*0x412a494*/ ScenarioFrameViewModel();
+Dòng 25287: /*0x412e8ec*/ Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration get_PhraseConfiguration();
+Dòng 25288: /*0x412e8f4*/ void set_PhraseConfiguration(Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration value);
+Dòng 25289: /*0x412e8fc*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration get_BackgroundConfiguration();
+Dòng 25290: /*0x412e904*/ void set_BackgroundConfiguration(Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration value);
+Dòng 25291: /*0x412e90c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBranchViewModel get_BranchConfiguration();
+Dòng 25292: /*0x412e914*/ void set_BranchConfiguration(Assets.GameUi.Scenario.ScenarioController.ScenarioBranchViewModel value);
+Dòng 25293: /*0x412e91c*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration[] get_CharacterConfigurations();
+Dòng 25294: /*0x412e924*/ void set_CharacterConfigurations(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration[] value);
+Dòng 25295: /*0x412e92c*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration[] get_CockpitConfigurations();
+Dòng 25296: /*0x412e934*/ void set_CockpitConfigurations(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration[] value);
+Dòng 25297: /*0x412e93c*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration[] get_ItemConfigurations();
+Dòng 25298: /*0x412e944*/ void set_ItemConfigurations(Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration[] value);
+Dòng 25299: /*0x412e94c*/ Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration get_CameraConfiguration();
+Dòng 25300: /*0x412e954*/ void set_CameraConfiguration(Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration value);
+Dòng 25301: /*0x412e95c*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags get_DisableFunctionFlags();
+Dòng 25302: /*0x412e964*/ void set_DisableFunctionFlags(Assets.GameUi.Scenario.ScenarioController.FunctionFlags value);
+Dòng 25303: /*0x412e96c*/ Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags get_FlipFrameJammingFlags();
+Dòng 25304: /*0x412e974*/ void set_FlipFrameJammingFlags(Assets.GameUi.Scenario.ScenarioController.FlipFrameJammingFlags value);
+Dòng 25305: /*0x412e97c*/ Assets.GameUi.Scenario.ScenarioController.TitleAnimationViewModel get_TitleAnimation();
+Dòng 25306: /*0x412e984*/ void set_TitleAnimation(Assets.GameUi.Scenario.ScenarioController.TitleAnimationViewModel value);
+Dòng 25309: /*0x412e99c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel get_BackgroundAnimation();
+Dòng 25310: /*0x412e9a4*/ void set_BackgroundAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioBackgroundAnimationViewModel value);
+Dòng 25311: /*0x412e9ac*/ Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel get_ScreenEffect();
+Dòng 25312: /*0x412e9b4*/ void set_ScreenEffect(Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel value);
+Dòng 25313: /*0x412e9bc*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] get_CharacterAnimations();
+Dòng 25314: /*0x412e9c4*/ void set_CharacterAnimations(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] value);
+Dòng 25315: /*0x412e9cc*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] get_CockpitAnimations();
+Dòng 25316: /*0x412e9d4*/ void set_CockpitAnimations(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] value);
+Dòng 25317: /*0x412e9dc*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] get_ItemAnimations();
+Dòng 25318: /*0x412e9e4*/ void set_ItemAnimations(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] value);
+Dòng 25319: /*0x412e9ec*/ Assets.GameUi.Scenario.ScenarioController.TextViewModel get_Text();
+Dòng 25320: /*0x412e9f4*/ void set_Text(Assets.GameUi.Scenario.ScenarioController.TextViewModel value);
+Dòng 25325: /*0x412ea24*/ Assets.GameUi.Scenario.ScenarioController.VoiceViewModel get_Voice();
+Dòng 25326: /*0x412ea2c*/ void set_Voice(Assets.GameUi.Scenario.ScenarioController.VoiceViewModel value);
+Dòng 25327: /*0x412ea34*/ Assets.GameUi.Scenario.ScenarioController.BackgroundVoiceViewModel get_BackgroundVoice();
+Dòng 25328: /*0x412ea3c*/ void set_BackgroundVoice(Assets.GameUi.Scenario.ScenarioController.BackgroundVoiceViewModel value);
+Dòng 25329: /*0x412ea44*/ Assets.GameUi.Scenario.ScenarioController.BackgroundSoundEffectViewModel get_BackgroundSoundEffect();
+Dòng 25330: /*0x412ea4c*/ void set_BackgroundSoundEffect(Assets.GameUi.Scenario.ScenarioController.BackgroundSoundEffectViewModel value);
+Dòng 25331: /*0x412ea54*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args get_Choice();
+Dòng 25332: /*0x412ea5c*/ void set_Choice(Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args value);
+Dòng 25333: /*0x412ea64*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel get_Fade();
+Dòng 25334: /*0x412ea6c*/ void set_Fade(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel value);
+Dòng 25335: /*0x412ea74*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCameraShakeViewModel get_CameraShake();
+Dòng 25336: /*0x412ea7c*/ void set_CameraShake(Assets.GameUi.Scenario.ScenarioController.ScenarioCameraShakeViewModel value);
+Dòng 25339: /*0x412ea98*/ Assets.GameUi.Scenario.ScenarioController.SpeakerViewModel[] get_SpeakingModels();
+Dòng 25340: /*0x412eb5c*/ Assets.GameUi.Scenario.ScenarioController.SpeakerViewModel <get_SpeakingModels>b__113_0(Assets.GameUi.Scenario.Configuration.SpeakerTypes s);
+Dòng 25345: static /*0x0*/ Assets.GameUi.Scenario.ScenarioController.<> <>9;
+Dòng 25351: static /*0x30*/ System.Func<Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel, bool> <>9__74_12;
+Dòng 25352: static /*0x38*/ System.Func<Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel, Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel> <>9__74_13;
+Dòng 25353: static /*0x40*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__74_3;
+Dòng 25354: static /*0x48*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__74_4;
+Dòng 25355: static /*0x50*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel, bool> <>9__74_5;
+Dòng 25356: static /*0x58*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel, bool> <>9__74_6;
+Dòng 25360: static /*0x78*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, long> <>9__109_1;
+Dòng 25361: static /*0x80*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int, System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int>> <>9__114_0;
+Dòng 25362: static /*0x88*/ System.Func<System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int>, long> <>9__114_1;
+Dòng 25363: static /*0x90*/ System.Func<System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int>, int> <>9__114_2;
+Dòng 25372: /*0x412ed3c*/ bool <GenerateFrame>b__74_12(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel n);
+Dòng 25373: /*0x412ed48*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel <GenerateFrame>b__74_13(Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel n);
+Dòng 25374: /*0x412edc4*/ bool <GenerateFrame>b__74_3(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel c);
+Dòng 25375: /*0x412edd8*/ bool <GenerateFrame>b__74_4(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel c);
+Dòng 25376: /*0x412ee10*/ bool <GenerateFrame>b__74_5(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel i);
+Dòng 25377: /*0x412ee24*/ bool <GenerateFrame>b__74_6(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel c);
+Dòng 25381: /*0x412eea4*/ long <GenerateFrames>b__109_1(Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel f);
+Dòng 25382: /*0x412eebc*/ System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int> <Refresh>b__114_0(Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame, int idx);
+Dòng 25383: /*0x412ef2c*/ long <Refresh>b__114_1(System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int> item);
+Dòng 25384: /*0x412ef4c*/ int <Refresh>b__114_2(System.ValueTuple<Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel, int> item);
+Dòng 25390: /*0x18*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25391: /*0x20*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFunctionFlags;
+Dòng 25394: /*0x412ef54*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel <GenerateFrames>b__0(Assets.Api.Client.SceneFrameMaster f);
+Dòng 25415: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioBranchViewModel branch;
+Dòng 25424: /*0x412fa18*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent.Args <GenerateChoice>b__1(Assets.Api.Client.SceneBranchSelectionMaster selectionMaster);
+Dòng 25429: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 25432: /*0x412fb60*/ bool <GetNextFrameId>b__1(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel h);
+Dòng 25445: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterPositionTypes[] characterPositions;
+Dòng 25446: /*0x18*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25447: /*0x20*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitPositionTypes[] cockpitPositions;
+Dòng 25448: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 25451: /*0x412fc0c*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel <GenerateFrame>b__0(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration characterConfiguration, int idx);
+Dòng 25452: /*0x412ffec*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel <GenerateFrame>b__1(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration cockpitConfiguration, int idx);
+Dòng 25453: /*0x41303e8*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel <GenerateFrame>b__2(Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration itemConfiguration, int idx);
+Dòng 25454: /*0x4130730*/ Assets.GameUi.Scenario.ScenarioController.VoiceCharacterViewModel <GenerateFrame>b__11(string voiceAssetId, int idx);
+Dòng 25455: /*0x4130910*/ bool <GenerateFrame>b__7(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel history);
+Dòng 25461: /*0x18*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25472: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.<> <>4__this;
+Dòng 25485: /*0x4130f70*/ bool <OpenHistory>b__0(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel history);
+Dòng 25493: /*0x4130f9c*/ bool <CloseHistoryAndFlipFrameTo>b__0(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel h);
+Dòng 25498: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFrameViewModel frame;
+Dòng 25504: /*0x4131050*/ bool <PostBranchSelection>b__1(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel h);
+Dòng 25513: /*0x30*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25524: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25535: /*0x30*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25546: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25557: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25568: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25579: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25590: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25602: /*0x30*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25613: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25625: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25638: /*0x40*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25639: /*0x48*/ Assets.GameUi.Scenario.ScenarioController.<> <>8__1;
+Dòng 25650: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25661: /*0x28*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25673: /*0x30*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25685: /*0x30*/ Assets.GameUi.Scenario.ScenarioController <>4__this;
+Dòng 25687: /*0x40*/ Assets.GameUi.Scenario.ScenarioController.FunctionFlags disableFunctionFlags;
+Dòng 25696: class ScenarioFrameProcessor : System.IDisposable
+Dòng 25698: /*0x10*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioFrameProcessor.FrameIdentifierViewModel> <FrameIdentifier>k__BackingField;
+Dòng 25703: /*0x4127d40*/ ScenarioFrameProcessor();
+Dòng 25704: /*0x4138304*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.ScenarioFrameProcessor.FrameIdentifierViewModel> get_FrameIdentifier();
+Dòng 25728: /*0x28*/ Assets.GameUi.Scenario.ScenarioFrameProcessor <>4__this;
+Dòng 25739: class ScenarioFrameProcessSettings
+Dòng 25741: static Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags DefaultFlag = 1;
+Dòng 25742: /*0x10*/ Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags <Flag>k__BackingField;
+Dòng 25744: /*0x18*/ Assets.GameUi.Scenario.ScenarioFrameProcessSettings previous;
+Dòng 25746: /*0x4127dc8*/ ScenarioFrameProcessSettings();
+Dòng 25747: /*0x4138c6c*/ Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags get_Flag();
+Dòng 25748: /*0x4138c74*/ void set_Flag(Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags value);
+Dòng 25753: /*0x412cb40*/ void Apply(System.Nullable<Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags> flag, System.Nullable<bool> isSkip);
+Dòng 25754: /*0x412ce94*/ void UpdateFlagInverted(Assets.GameUi.Scenario.ScenarioFrameProcessSettingFlags flag);
+Dòng 25758: enum ScenarioFrameProcessSettingFlags
+Dòng 25766: class ScenarioViewComponent : UnityEngine.MonoBehaviour, Assets.GameUi.Scenario.View.ScenarioViewComponent.IScenarioViewController
+Dòng 25770: /*0x4138ef4*/ ScenarioViewComponent();
+Dòng 25774: interface IScenarioViewController
+Dòng 25783: class ScenarioTextComponent : UnityEngine.MonoBehaviour, UnityEngine.UI.IClickable
+Dòng 25792: /*0x58*/ System.Collections.Generic.Dictionary<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes, float> typeToAlpha;
+Dòng 25800: /*0x413956c*/ ScenarioTextComponent();
+Dòng 25803: /*0x4138f0c*/ void Apply(Assets.GameUi.Scenario.ScenarioController.TextViewModel model);
+Dòng 25804: /*0x413931c*/ void ApplyAlpha(Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes alpha);
+Dòng 25805: /*0x41391f8*/ void ApplySentence(Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel sentence);
+Dòng 25807: /*0x41393b4*/ int GetTextSize(Assets.GameUi.Scenario.Configuration.ScenarioTextSize size);
+Dòng 25817: /*0x18*/ Assets.GameUi.Scenario.Configuration.ScenarioTextSize <FontSize>k__BackingField;
+Dòng 25824: /*0x4139674*/ Assets.GameUi.Scenario.Configuration.ScenarioTextSize get_FontSize();
+Dòng 25825: /*0x413967c*/ void set_FontSize(Assets.GameUi.Scenario.Configuration.ScenarioTextSize value);
+Dòng 25833: class ScenarioTextTagHandler
+Dòng 25837: /*0x41396ac*/ ScenarioTextTagHandler(string raw, ref Assets.GameUi.Scenario.Text.ScenarioTextTagHandler.ScenarioTextResult scenarioTextResult);
+Dòng 25841: class ScenarioTextResult
+Dòng 25846: /*0x4139c20*/ ScenarioTextResult();
+Dòng 25855: static /*0x0*/ Assets.GameUi.Scenario.Text.ScenarioTextTagHandler.<> <>9;
+Dòng 25875: class ScenarioTextTimer : UnityEngine.MonoBehaviour, System.IDisposable
+Dòng 25877: /*0x20*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText> <Model>k__BackingField;
+Dòng 25878: /*0x28*/ System.Collections.Generic.Dictionary<Assets.GameUi.Externals.ScenarioTextSpeedTypes, float> speedToIntervalSeconds;
+Dòng 25883: /*0x413acb0*/ ScenarioTextTimer();
+Dòng 25884: /*0x413a4f0*/ UniRx.ReactiveProperty<Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText> get_Model();
+Dòng 25885: /*0x413a4f8*/ void set_TextSpeed(Assets.GameUi.Externals.ScenarioTextSpeedTypes value);
+Dòng 25887: /*0x413a570*/ void Apply(Assets.GameUi.Scenario.ScenarioController.TextViewModel model);
+Dòng 25889: /*0x413aaf4*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerStatus TextArgsToInitialStatus(Assets.GameUi.Scenario.ScenarioController.TextViewModel model);
+Dòng 25890: /*0x413a69c*/ void StartTimer(Assets.GameUi.Scenario.ScenarioController.TextViewModel model);
+Dòng 25891: /*0x413ab70*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText TextArgsToTextModel(Assets.GameUi.Scenario.ScenarioController.TextViewModel model, bool containsRuby, string text, bool atEnd, bool automaticallyEnd, int remainedMillSeconds);
+Dòng 25894: class ScenarioTextTimerText
+Dòng 25896: /*0x10*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel <Sentence>k__BackingField;
+Dòng 25900: /*0x413a610*/ ScenarioTextTimerText();
+Dòng 25901: /*0x413ae18*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel get_Sentence();
+Dòng 25902: /*0x413ae20*/ void set_Sentence(Assets.GameUi.Scenario.Text.ScenarioTextComponent.SentenceViewModel value);
+Dòng 25909: class ScenarioTextTimerStatus
+Dòng 25916: /*0x413ab60*/ ScenarioTextTimerStatus();
+Dòng 25929: /*0x10*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerStatus status;
+Dòng 25931: /*0x20*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer <>4__this;
+Dòng 25932: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.TextViewModel model;
+Dòng 25933: /*0x30*/ Assets.GameUi.Scenario.Text.ScenarioTextTagHandler.ScenarioTextResult scenarioTextResult;
+Dòng 25935: /*0x40*/ Assets.GameUi.Scenario.Text.ScenarioTextTagHandler handler;
+Dòng 25947: class ScenarioSoundVolume : UnityEngine.MonoBehaviour
+Dòng 25955: static /*0x413d1bc*/ ScenarioSoundVolume();
+Dòng 25956: /*0x413d0e4*/ ScenarioSoundVolume();
+Dòng 25970: class ScenarioMenuComponent : UnityEngine.MonoBehaviour
+Dòng 25984: /*0x413d398*/ ScenarioMenuComponent();
+Dòng 26009: class ScenarioInputComponent : UnityEngine.MonoBehaviour
+Dòng 26014: /*0x413d4b0*/ ScenarioInputComponent();
+Dòng 26025: class ScenarioHistoryCell : Assets.GameUi.ScrollView.ScrollViewCardComponent<Assets.GameUi.Scenario.History.ScenarioHistoryCell, Assets.GameUi.ScrollView.ScrollViewCardController, Assets.GameUi.Scenario.ScenarioController.HistoryViewModel>
+Dòng 26052: /*0x413e100*/ ScenarioHistoryCell();
+Dòng 26053: /*0x413d55c*/ void ApplySync(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args);
+Dòng 26054: /*0x413d7e4*/ Cysharp.Threading.Tasks.UniTask Apply(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args);
+Dòng 26055: /*0x413d8b4*/ void AdjustSize(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args);
+Dòng 26056: /*0x413d694*/ void ApplySyncPart(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args);
+Dòng 26074: /*0x10*/ Assets.GameUi.Scenario.History.ScenarioHistoryCell <>4__this;
+Dòng 26075: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args;
+Dòng 26088: /*0x28*/ Assets.GameUi.Scenario.History.ScenarioHistoryCell.<> <>4__this;
+Dòng 26101: /*0x28*/ Assets.GameUi.Scenario.History.ScenarioHistoryCell <>4__this;
+Dòng 26102: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel args;
+Dòng 26114: /*0x30*/ Assets.GameUi.Scenario.History.ScenarioHistoryCell <>4__this;
+Dòng 26125: class ScenarioHistoryComponent : UnityEngine.MonoBehaviour
+Dòng 26130: /*0x413fc30*/ ScenarioHistoryComponent();
+Dòng 26136: /*0x413faac*/ void Apply(Assets.GameUi.Scenario.History.ScenarioHistoryComponent.Args args);
+Dòng 26142: /*0x10*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel[] <Models>k__BackingField;
+Dòng 26145: /*0x413fc50*/ Assets.GameUi.Scenario.ScenarioController.HistoryViewModel[] get_Models();
+Dòng 26146: /*0x413fc58*/ void set_Models(Assets.GameUi.Scenario.ScenarioController.HistoryViewModel[] value);
+Dòng 26153: class ScenarioFadeComponent : UnityEngine.MonoBehaviour
+Dòng 26156: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent.FadeImage fadeImage;
+Dòng 26157: /*0x30*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent curtain;
+Dòng 26159: /*0x41402c4*/ ScenarioFadeComponent();
+Dòng 26160: /*0x413fcc4*/ Cysharp.Threading.Tasks.UniTask FadeIn(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26161: /*0x413fda4*/ Cysharp.Threading.Tasks.UniTask FadeOut(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26163: /*0x413fea8*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent.AnimationTypes GetCurtainAnimationType(Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes type);
+Dòng 26164: /*0x413ff40*/ Cysharp.Threading.Tasks.UniTask FadeInImage(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26165: /*0x4140024*/ Cysharp.Threading.Tasks.UniTask FadeOutImage(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26166: /*0x4140104*/ Cysharp.Threading.Tasks.UniTask FadeInCurtain(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26167: /*0x41401e4*/ Cysharp.Threading.Tasks.UniTask FadeOutCurtain(Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model, System.Threading.CancellationToken token);
+Dòng 26185: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26186: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26198: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26199: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26211: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26212: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26225: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26227: /*0x38*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26238: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26239: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26251: /*0x28*/ Assets.GameUi.Scenario.Fade.ScenarioFadeComponent <>4__this;
+Dòng 26252: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioFadeViewModel model;
+Dòng 26263: class ScenarioFadeCurtainComponent : UnityEngine.MonoBehaviour, System.IDisposable
+Dòng 26279: /*0x41431e8*/ ScenarioFadeCurtainComponent();
+Dòng 26280: /*0x414110c*/ Cysharp.Threading.Tasks.UniTask FadeIn(Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent.AnimationTypes type, bool rating, bool instantly, System.Threading.CancellationToken token);
+Dòng 26288: /*0x41430d4*/ string GetCurtainTriggerName(Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent.AnimationTypes type, bool open);
+Dòng 26300: /*0x28*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent <>4__this;
+Dòng 26301: /*0x30*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent.AnimationTypes type;
+Dòng 26316: /*0x30*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent <>4__this;
+Dòng 26327: namespace ScenarioDebug
+Dòng 26329: class ScenarioDebugComponent : UnityEngine.MonoBehaviour
+Dòng 26333: /*0x4144170*/ ScenarioDebugComponent();
+Dòng 26340: enum ScenarioFramePhaseTypes
+Dòng 26353: enum ScenarioProcessTiming
+Dòng 26376: enum ScenarioTextSize
+Dòng 26383: class ScenarioPhraseConfiguration
+Dòng 26390: /*0x38*/ Assets.GameUi.Scenario.Configuration.SpeakerTypes[] <Speakers>k__BackingField;
+Dòng 26391: /*0x40*/ Assets.GameUi.Scenario.Configuration.ScenarioTextSize <TextSize>k__BackingField;
+Dòng 26392: /*0x44*/ System.Nullable<Assets.GameUi.Externals.ScenarioTextSpeedTypes> <TextSpeed>k__BackingField;
+Dòng 26393: /*0x4c*/ System.Nullable<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> <TextBackgroundAlpha>k__BackingField;
+Dòng 26399: /*0x4144480*/ ScenarioPhraseConfiguration();
+Dòng 26410: /*0x41441c8*/ Assets.GameUi.Scenario.Configuration.SpeakerTypes[] get_Speakers();
+Dòng 26411: /*0x41441d0*/ void set_Speakers(Assets.GameUi.Scenario.Configuration.SpeakerTypes[] value);
+Dòng 26412: /*0x41441d8*/ Assets.GameUi.Scenario.Configuration.ScenarioTextSize get_TextSize();
+Dòng 26413: /*0x41441e0*/ void set_TextSize(Assets.GameUi.Scenario.Configuration.ScenarioTextSize value);
+Dòng 26414: /*0x41441e8*/ System.Nullable<Assets.GameUi.Externals.ScenarioTextSpeedTypes> get_TextSpeed();
+Dòng 26415: /*0x41441f0*/ void set_TextSpeed(System.Nullable<Assets.GameUi.Externals.ScenarioTextSpeedTypes> value);
+Dòng 26416: /*0x41441f8*/ System.Nullable<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> get_TextBackgroundAlpha();
+Dòng 26417: /*0x4144200*/ void set_TextBackgroundAlpha(System.Nullable<Assets.GameUi.Externals.ScenarioTextBackGroundAlphaTypes> value);
+Dòng 26426: /*0x414424c*/ void ConvertStringToDisplay(Assets.GameUi.Services.IScenarioService scenarioService);
+Dòng 26432: enum ScenarioBackgroundTypes
+Dòng 26442: enum ScenarioAdultStillAnimationTypes
+Dòng 26454: enum ScenarioSpineAnimationTypes
+Dòng 26462: enum ScenarioFadeTypes
+Dòng 26471: enum ScenarioFadeTiming
+Dòng 26477: enum ScenarioBackgroundColorTypes
+Dòng 26483: class ScenarioBackgroundConfiguration
+Dòng 26485: /*0x10*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundTypes <Type>k__BackingField;
+Dòng 26487: /*0x20*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundColorTypes <ColorType>k__BackingField;
+Dòng 26491: /*0x40*/ Assets.GameUi.Scenario.Configuration.ScenarioAdultStillAnimationTypes <AdultStillAnimationType>k__BackingField;
+Dòng 26492: /*0x44*/ Assets.GameUi.Scenario.Configuration.ScenarioSpineAnimationTypes <SpineAnimationType>k__BackingField;
+Dòng 26494: /*0x4c*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes <FadeType>k__BackingField;
+Dòng 26501: /*0x68*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming <FadeTiming>k__BackingField;
+Dòng 26519: /*0x41447d0*/ ScenarioBackgroundConfiguration();
+Dòng 26520: /*0x41445b4*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundTypes get_Type();
+Dòng 26521: /*0x41445bc*/ void set_Type(Assets.GameUi.Scenario.Configuration.ScenarioBackgroundTypes value);
+Dòng 26524: /*0x41445d4*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundColorTypes get_ColorType();
+Dòng 26525: /*0x41445dc*/ void set_ColorType(Assets.GameUi.Scenario.Configuration.ScenarioBackgroundColorTypes value);
+Dòng 26532: /*0x4144614*/ Assets.GameUi.Scenario.Configuration.ScenarioAdultStillAnimationTypes get_AdultStillAnimationType();
+Dòng 26533: /*0x414461c*/ void set_AdultStillAnimationType(Assets.GameUi.Scenario.Configuration.ScenarioAdultStillAnimationTypes value);
+Dòng 26534: /*0x4144624*/ Assets.GameUi.Scenario.Configuration.ScenarioSpineAnimationTypes get_SpineAnimationType();
+Dòng 26535: /*0x414462c*/ void set_SpineAnimationType(Assets.GameUi.Scenario.Configuration.ScenarioSpineAnimationTypes value);
+Dòng 26538: /*0x4144648*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes get_FadeType();
+Dòng 26539: /*0x4144650*/ void set_FadeType(Assets.GameUi.Scenario.Configuration.ScenarioFadeTypes value);
+Dòng 26552: /*0x41446b8*/ Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming get_FadeTiming();
+Dòng 26553: /*0x41446c0*/ void set_FadeTiming(Assets.GameUi.Scenario.Configuration.ScenarioFadeTiming value);
+Dòng 26642: class ScenarioCharacterConfiguration
+Dòng 26644: /*0x10*/ Assets.GameUi.Scenario.Configuration.ScenaioCharacterTypes <Type>k__BackingField;
+Dòng 26651: /*0x38*/ Assets.GameUi.Scenario.Configuration.CharacterFacialType <FacialType>k__BackingField;
+Dòng 26652: /*0x3c*/ Assets.GameUi.Scenario.Configuration.CharacterEmotionType <EmotionType>k__BackingField;
+Dòng 26653: /*0x40*/ Assets.GameUi.Scenario.Configuration.CharacterFadeInType <FadeInType>k__BackingField;
+Dòng 26655: /*0x48*/ Assets.GameUi.Scenario.Configuration.CharacterFadeOutType <FadeOutType>k__BackingField;
+Dòng 26672: /*0x4144a3c*/ ScenarioCharacterConfiguration();
+Dòng 26673: /*0x414487c*/ Assets.GameUi.Scenario.Configuration.ScenaioCharacterTypes get_Type();
+Dòng 26674: /*0x4144884*/ void set_Type(Assets.GameUi.Scenario.Configuration.ScenaioCharacterTypes value);
+Dòng 26687: /*0x41448f0*/ Assets.GameUi.Scenario.Configuration.CharacterFacialType get_FacialType();
+Dòng 26688: /*0x41448f8*/ void set_FacialType(Assets.GameUi.Scenario.Configuration.CharacterFacialType value);
+Dòng 26689: /*0x4144900*/ Assets.GameUi.Scenario.Configuration.CharacterEmotionType get_EmotionType();
+Dòng 26690: /*0x4144908*/ void set_EmotionType(Assets.GameUi.Scenario.Configuration.CharacterEmotionType value);
+Dòng 26691: /*0x4144910*/ Assets.GameUi.Scenario.Configuration.CharacterFadeInType get_FadeInType();
+Dòng 26692: /*0x4144918*/ void set_FadeInType(Assets.GameUi.Scenario.Configuration.CharacterFadeInType value);
+Dòng 26695: /*0x4144930*/ Assets.GameUi.Scenario.Configuration.CharacterFadeOutType get_FadeOutType();
+Dòng 26696: /*0x4144938*/ void set_FadeOutType(Assets.GameUi.Scenario.Configuration.CharacterFadeOutType value);
+Dòng 26751: class ScenarioCockpitConfiguration
+Dòng 26754: /*0x18*/ Assets.GameUi.Scenario.Configuration.CockpitAnimationTypes <AnimationType>k__BackingField;
+Dòng 26758: /*0x28*/ Assets.GameUi.Scenario.Configuration.CharacterEmotionType <EmotionType>k__BackingField;
+Dòng 26759: /*0x2c*/ Assets.GameUi.Scenario.Configuration.CockpitFadeInType <FadeInType>k__BackingField;
+Dòng 26761: /*0x34*/ Assets.GameUi.Scenario.Configuration.CockpitFadeOutType <FadeOutType>k__BackingField;
+Dòng 26778: /*0x4144c88*/ ScenarioCockpitConfiguration();
+Dòng 26781: /*0x4144b0c*/ Assets.GameUi.Scenario.Configuration.CockpitAnimationTypes get_AnimationType();
+Dòng 26782: /*0x4144b14*/ void set_AnimationType(Assets.GameUi.Scenario.Configuration.CockpitAnimationTypes value);
+Dòng 26789: /*0x4144b4c*/ Assets.GameUi.Scenario.Configuration.CharacterEmotionType get_EmotionType();
+Dòng 26790: /*0x4144b54*/ void set_EmotionType(Assets.GameUi.Scenario.Configuration.CharacterEmotionType value);
+Dòng 26791: /*0x4144b5c*/ Assets.GameUi.Scenario.Configuration.CockpitFadeInType get_FadeInType();
+Dòng 26792: /*0x4144b64*/ void set_FadeInType(Assets.GameUi.Scenario.Configuration.CockpitFadeInType value);
+Dòng 26795: /*0x4144b7c*/ Assets.GameUi.Scenario.Configuration.CockpitFadeOutType get_FadeOutType();
+Dòng 26796: /*0x4144b84*/ void set_FadeOutType(Assets.GameUi.Scenario.Configuration.CockpitFadeOutType value);
+Dòng 26829: class ScenarioItemConfiguration
+Dòng 26835: /*0x24*/ Assets.GameUi.Scenario.Configuration.CharacterFadeInType <FadeInType>k__BackingField;
+Dòng 26837: /*0x2c*/ Assets.GameUi.Scenario.Configuration.CharacterFadeOutType <FadeOutType>k__BackingField;
+Dòng 26853: /*0x4144ea0*/ ScenarioItemConfiguration();
+Dòng 26862: /*0x4144d88*/ Assets.GameUi.Scenario.Configuration.CharacterFadeInType get_FadeInType();
+Dòng 26863: /*0x4144d90*/ void set_FadeInType(Assets.GameUi.Scenario.Configuration.CharacterFadeInType value);
+Dòng 26866: /*0x4144da8*/ Assets.GameUi.Scenario.Configuration.CharacterFadeOutType get_FadeOutType();
+Dòng 26867: /*0x4144db0*/ void set_FadeOutType(Assets.GameUi.Scenario.Configuration.CharacterFadeOutType value);
+Dòng 26913: class ScenarioCameraConfiguration
+Dòng 26917: /*0x4145008*/ ScenarioCameraConfiguration();
+Dòng 26922: class ScenarioConfiguration
+Dòng 26924: /*0x10*/ Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration <Phrase>k__BackingField;
+Dòng 26925: /*0x18*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration <Background>k__BackingField;
+Dòng 26926: /*0x20*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <HiddenCharacter>k__BackingField;
+Dòng 26927: /*0x28*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Character1>k__BackingField;
+Dòng 26928: /*0x30*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Character2>k__BackingField;
+Dòng 26929: /*0x38*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Character3>k__BackingField;
+Dòng 26930: /*0x40*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Character4>k__BackingField;
+Dòng 26931: /*0x48*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration <Character5>k__BackingField;
+Dòng 26932: /*0x50*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Cockpit1>k__BackingField;
+Dòng 26933: /*0x58*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Cockpit2>k__BackingField;
+Dòng 26934: /*0x60*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Cockpit3>k__BackingField;
+Dòng 26935: /*0x68*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Cockpit4>k__BackingField;
+Dòng 26936: /*0x70*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration <Cockpit5>k__BackingField;
+Dòng 26937: /*0x78*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration <Item1>k__BackingField;
+Dòng 26938: /*0x80*/ Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration <Camera>k__BackingField;
+Dòng 26939: /*0x88*/ Assets.GameUi.Scenario.Configuration.DummySceneBranch <DummyBranch>k__BackingField;
+Dòng 26941: /*0x4145110*/ ScenarioConfiguration();
+Dòng 26942: /*0x4145010*/ Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration get_Phrase();
+Dòng 26943: /*0x4145018*/ void set_Phrase(Assets.GameUi.Scenario.Configuration.ScenarioPhraseConfiguration value);
+Dòng 26944: /*0x4145020*/ Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration get_Background();
+Dòng 26945: /*0x4145028*/ void set_Background(Assets.GameUi.Scenario.Configuration.ScenarioBackgroundConfiguration value);
+Dòng 26946: /*0x4145030*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_HiddenCharacter();
+Dòng 26947: /*0x4145038*/ void set_HiddenCharacter(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26948: /*0x4145040*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Character1();
+Dòng 26949: /*0x4145048*/ void set_Character1(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26950: /*0x4145050*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Character2();
+Dòng 26951: /*0x4145058*/ void set_Character2(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26952: /*0x4145060*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Character3();
+Dòng 26953: /*0x4145068*/ void set_Character3(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26954: /*0x4145070*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Character4();
+Dòng 26955: /*0x4145078*/ void set_Character4(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26956: /*0x4145080*/ Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration get_Character5();
+Dòng 26957: /*0x4145088*/ void set_Character5(Assets.GameUi.Scenario.Configuration.ScenarioCharacterConfiguration value);
+Dòng 26958: /*0x4145090*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Cockpit1();
+Dòng 26959: /*0x4145098*/ void set_Cockpit1(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 26960: /*0x41450a0*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Cockpit2();
+Dòng 26961: /*0x41450a8*/ void set_Cockpit2(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 26962: /*0x41450b0*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Cockpit3();
+Dòng 26963: /*0x41450b8*/ void set_Cockpit3(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 26964: /*0x41450c0*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Cockpit4();
+Dòng 26965: /*0x41450c8*/ void set_Cockpit4(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 26966: /*0x41450d0*/ Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration get_Cockpit5();
+Dòng 26967: /*0x41450d8*/ void set_Cockpit5(Assets.GameUi.Scenario.Configuration.ScenarioCockpitConfiguration value);
+Dòng 26968: /*0x41450e0*/ Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration get_Item1();
+Dòng 26969: /*0x41450e8*/ void set_Item1(Assets.GameUi.Scenario.Configuration.ScenarioItemConfiguration value);
+Dòng 26970: /*0x41450f0*/ Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration get_Camera();
+Dòng 26971: /*0x41450f8*/ void set_Camera(Assets.GameUi.Scenario.Configuration.ScenarioCameraConfiguration value);
+Dòng 26972: /*0x4145100*/ Assets.GameUi.Scenario.Configuration.DummySceneBranch get_DummyBranch();
+Dòng 26973: /*0x4145108*/ void set_DummyBranch(Assets.GameUi.Scenario.Configuration.DummySceneBranch value);
+Dòng 26979: class ScenarioChoiceComponent : UnityEngine.MonoBehaviour
+Dòng 26981: /*0x20*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent[] <Choices>k__BackingField;
+Dòng 26988: /*0x41458d4*/ ScenarioChoiceComponent();
+Dòng 26989: /*0x41453b8*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent[] get_Choices();
+Dòng 26990: /*0x41453c0*/ void set_Choices(Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent[] value);
+Dòng 26995: /*0x41453e8*/ Cysharp.Threading.Tasks.UniTask Apply(Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args args);
+Dòng 27001: /*0x10*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent.Args[] <Selections>k__BackingField;
+Dòng 27005: /*0x41458dc*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent.Args[] get_Selections();
+Dòng 27006: /*0x41458e4*/ void set_Selections(Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent.Args[] value);
+Dòng 27013: static /*0x0*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.<> <>9;
+Dòng 27025: /*0x28*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent.Args args;
+Dòng 27026: /*0x30*/ Assets.GameUi.Scenario.Choice.ScenarioChoiceComponent <>4__this;
+Dòng 27034: class ScenarioChoiceElementComponent : UnityEngine.MonoBehaviour, UnityEngine.UI.IClickable
+Dòng 27044: /*0x41464e8*/ ScenarioChoiceElementComponent();
+Dòng 27053: /*0x41463c8*/ void Apply(Assets.GameUi.Scenario.Choice.ScenarioChoiceElementComponent.Args args);
+Dòng 27080: class ScenarioAnimationComponent : UnityEngine.UCSMonoBehaviour, System.IDisposable
+Dòng 27082: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.AnchorReference anchor;
+Dòng 27083: /*0x40*/ Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent[] cockpitContainers;
+Dòng 27084: /*0x48*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer[] itemContainers;
+Dòng 27090: /*0x78*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> spineBuffers;
+Dòng 27091: /*0x80*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> backSpineBuffers;
+Dòng 27092: /*0x88*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineAssetProvider.Reference<Assets.Utilities.Spine.SkeletonController>, Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel>> cockpitSpineBuffers;
+Dòng 27097: /*0x41497ac*/ ScenarioAnimationComponent();
+Dòng 27107: /*0x4146668*/ Cysharp.Threading.Tasks.UniTask PlayTitleAnimation(Assets.GameUi.Scenario.ScenarioController.TitleAnimationViewModel data, System.Threading.CancellationToken cancellationToken);
+Dòng 27108: /*0x414676c*/ Cysharp.Threading.Tasks.UniTask ShowScreens(Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27109: /*0x4146858*/ Cysharp.Threading.Tasks.UniTask HideScreens(Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27110: /*0x4146c08*/ Cysharp.Threading.Tasks.UniTask ShowCharacters(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] model, System.Threading.CancellationToken cancellationToken);
+Dòng 27111: /*0x4146cf4*/ Cysharp.Threading.Tasks.UniTask HideCharacters(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] exceptions, System.Threading.CancellationToken cancellationToken);
+Dòng 27112: /*0x4146dd4*/ Cysharp.Threading.Tasks.UniTask MoveCharacters(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] model, System.Threading.CancellationToken cancellationToken);
+Dòng 27113: /*0x4147394*/ Cysharp.Threading.Tasks.UniTask ApplyLipSync(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model, UniRx.ReactiveProperty<float> volume);
+Dòng 27114: /*0x4147478*/ void ApplyLipSync(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model, UniRx.ReactiveProperty<float> volume);
+Dòng 27116: /*0x41475ec*/ Cysharp.Threading.Tasks.UniTask ShowCockpits(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] model, System.Threading.CancellationToken cancellationToken);
+Dòng 27117: /*0x41476d8*/ Cysharp.Threading.Tasks.UniTask HideCockpits(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] exceptions, System.Threading.CancellationToken cancellationToken);
+Dòng 27118: /*0x41477b8*/ Cysharp.Threading.Tasks.UniTask MoveCockpits(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] model, System.Threading.CancellationToken cancellationToken);
+Dòng 27119: /*0x4147d78*/ Cysharp.Threading.Tasks.UniTask ApplyLipSyncToCockpit(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model, UniRx.ReactiveProperty<float> volume);
+Dòng 27120: /*0x4147e08*/ Cysharp.Threading.Tasks.UniTask ShowItems(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] models, System.Threading.CancellationToken cancellationToken);
+Dòng 27121: /*0x4147ef4*/ Cysharp.Threading.Tasks.UniTask HideItems(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] exceptions, System.Threading.CancellationToken cancellationToken);
+Dòng 27122: /*0x4147fd4*/ Cysharp.Threading.Tasks.UniTask MoveItems(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] models, System.Threading.CancellationToken cancellationToken);
+Dòng 27128: /*0x4148cd4*/ Cysharp.Threading.Tasks.UniTask<Assets.AssetManagement.SpineMecanim> LoadCharacterMecanim(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model);
+Dòng 27129: /*0x4148dec*/ Cysharp.Threading.Tasks.UniTask PlayCharacterSpineShowAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27130: /*0x4148ed0*/ Cysharp.Threading.Tasks.UniTask PlayCharacterSpineHideAnimations(System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> buffers, System.Collections.Generic.IEnumerable<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel> exceptions, int positionOffset, System.Threading.CancellationToken cancellationToken);
+Dòng 27131: /*0x414729c*/ Cysharp.Threading.Tasks.UniTask PlayCharacterSpineMoveAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27132: /*0x4148fc8*/ Cysharp.Threading.Tasks.UniTask<Assets.Utilities.Spine.SkeletonController> LoadCockpitController(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model);
+Dòng 27133: /*0x41490e0*/ Cysharp.Threading.Tasks.UniTask PlayCockpitSpineShowAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27134: /*0x41491c4*/ Cysharp.Threading.Tasks.UniTask PlayCockpitSpineHideAnimations(System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineAssetProvider.Reference<Assets.Utilities.Spine.SkeletonController>, Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel>> buffers, System.Collections.Generic.IEnumerable<Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel> exceptions, int positionOffset, System.Threading.CancellationToken cancellationToken);
+Dòng 27135: /*0x4147c80*/ Cysharp.Threading.Tasks.UniTask PlayCockpitSpineMoveAnimation(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27136: /*0x41492d8*/ Cysharp.Threading.Tasks.UniTask PlayItemShowAnimation(Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer, Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27137: /*0x41493d8*/ Cysharp.Threading.Tasks.UniTask PlayItemHideAnimation(Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer, Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27138: /*0x41494bc*/ Cysharp.Threading.Tasks.UniTask PlayItemMoveAnimation(Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer, Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27139: /*0x41495a0*/ void Shake(UnityEngine.GameObject instsance, Assets.GameUi.Scenario.ScenarioController.ScenarioShakeViewModel model, System.Threading.CancellationToken cancellationToken);
+Dòng 27193: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel <Model>k__BackingField;
+Dòng 27202: /*0x4149f78*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel get_Model();
+Dòng 27203: /*0x4149f80*/ void set_Model(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel value);
+Dòng 27204: /*0x4149f88*/ void Activate(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model);
+Dòng 27210: static /*0x0*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>9;
+Dòng 27211: static /*0x8*/ System.Func<Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent, Cysharp.Threading.Tasks.UniTask> <>9__26_0;
+Dòng 27212: static /*0x10*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__30_0;
+Dòng 27213: static /*0x18*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__31_0;
+Dòng 27214: static /*0x20*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__31_1;
+Dòng 27215: static /*0x28*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel, bool> <>9__32_0;
+Dòng 27216: static /*0x30*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel, bool> <>9__36_0;
+Dòng 27217: static /*0x38*/ System.Func<Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel, bool> <>9__38_0;
+Dòng 27221: /*0x414a064*/ Cysharp.Threading.Tasks.UniTask <Initialize>b__26_0(Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent c);
+Dòng 27222: /*0x414a07c*/ bool <ShowCharacters>b__30_0(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel c);
+Dòng 27223: /*0x414a0ac*/ bool <HideCharacters>b__31_0(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel e);
+Dòng 27224: /*0x414a0d4*/ bool <HideCharacters>b__31_1(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel e);
+Dòng 27225: /*0x414a0f4*/ bool <MoveCharacters>b__32_0(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel c);
+Dòng 27226: /*0x414a124*/ bool <ShowCockpits>b__36_0(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel c);
+Dòng 27227: /*0x414a154*/ bool <MoveCockpits>b__38_0(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel c);
+Dòng 27233: /*0x18*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27254: /*0x414a278*/ bool <ShowItems>b__0(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel c);
+Dòng 27262: /*0x414a2a4*/ bool <HideItems>b__0(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel c);
+Dòng 27270: /*0x414a2d0*/ bool <MoveItems>b__0(Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel c);
+Dòng 27296: /*0x414a360*/ Cysharp.Threading.Tasks.UniTask <PlayCharacterSpineHideAnimations>g__Hide|0(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model, Assets.AssetManagement.SpineMecanim mecanim);
+Dòng 27302: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model;
+Dòng 27304: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>4__this;
+Dòng 27315: /*0x18*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> CS$<>8__locals1;
+Dòng 27322: /*0x10*/ System.Collections.Generic.KeyValuePair<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> item;
+Dòng 27323: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> CS$<>8__locals2;
+Dòng 27326: /*0x414a984*/ bool <PlayCharacterSpineHideAnimations>b__1(Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel e);
+Dòng 27332: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel move;
+Dòng 27345: /*0x414ab90*/ Cysharp.Threading.Tasks.UniTask <PlayCockpitSpineHideAnimations>g__Hide|0(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model, Assets.Utilities.Spine.SkeletonController controller);
+Dòng 27351: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model;
+Dòng 27353: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>4__this;
+Dòng 27364: /*0x18*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> CS$<>8__locals1;
+Dòng 27371: /*0x10*/ System.Collections.Generic.KeyValuePair<string, System.ValueTuple<Assets.AssetManagement.SpineAssetProvider.Reference<Assets.Utilities.Spine.SkeletonController>, Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel>> item;
+Dòng 27372: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> CS$<>8__locals2;
+Dòng 27375: /*0x414b144*/ bool <PlayCockpitSpineHideAnimations>b__1(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel e);
+Dòng 27381: /*0x18*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> CS$<>8__locals3;
+Dòng 27384: /*0x414b1dc*/ bool <PlayCockpitSpineHideAnimations>b__2(Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel e);
+Dòng 27389: /*0x10*/ Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent container;
+Dòng 27390: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel move;
+Dòng 27399: /*0x10*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27407: /*0x10*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27415: /*0x10*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27416: /*0x18*/ Assets.GameUi.Scenario.ScenarioController.ScenarioObjectMoveViewModel move;
+Dòng 27425: /*0x18*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27435: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27436: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model;
+Dòng 27458: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27459: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] exceptions;
+Dòng 27471: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27472: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] exceptions;
+Dòng 27484: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27485: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] exceptions;
+Dòng 27497: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27508: /*0x30*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27509: /*0x38*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model;
+Dòng 27510: /*0x40*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> <backSpineBuffer>5__2;
+Dòng 27521: /*0x30*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27522: /*0x38*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model;
+Dòng 27523: /*0x40*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineAssetProvider.Reference<Assets.Utilities.Spine.SkeletonController>, Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel>> <spineBuffer>5__2;
+Dòng 27535: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27537: /*0x48*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27548: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27549: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] models;
+Dòng 27563: /*0x38*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineMecanim, Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel>> buffers;
+Dòng 27564: /*0x40*/ System.Collections.Generic.IEnumerable<Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel> exceptions;
+Dòng 27575: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27576: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model;
+Dòng 27577: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27591: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27592: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel model;
+Dòng 27608: /*0x38*/ System.Collections.Generic.Dictionary<string, System.ValueTuple<Assets.AssetManagement.SpineAssetProvider.Reference<Assets.Utilities.Spine.SkeletonController>, Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel>> buffers;
+Dòng 27609: /*0x40*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27610: /*0x48*/ System.Collections.Generic.IEnumerable<Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel> exceptions;
+Dòng 27621: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27622: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model;
+Dòng 27623: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27637: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27638: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel model;
+Dòng 27640: /*0x40*/ Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent <container>5__2;
+Dòng 27652: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27653: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model;
+Dòng 27655: /*0x40*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27667: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27668: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model;
+Dòng 27670: /*0x40*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27682: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.ItemContainer itemContainer;
+Dòng 27683: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel model;
+Dòng 27684: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27685: /*0x40*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27700: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27702: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27714: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27715: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.TitleAnimationViewModel data;
+Dòng 27716: /*0x38*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent.<> <>8__1;
+Dòng 27730: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCharacterAnimationViewModel[] model;
+Dòng 27731: /*0x30*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27743: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScenarioCockpitAnimationViewModel[] model;
+Dòng 27744: /*0x30*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27756: /*0x28*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27757: /*0x30*/ Assets.GameUi.Scenario.ScenarioController.ScenarioItemAnimationViewModel[] models;
+Dòng 27769: /*0x28*/ Assets.GameUi.Scenario.ScenarioController.ScreenEffectViewModel model;
+Dòng 27770: /*0x30*/ Assets.GameUi.Scenario.Animation.ScenarioAnimationComponent <>4__this;
+Dòng 27812: /*0x28*/ Assets.GameUi.Scenario.Animation.CockpitView.CockpitViewComponent <>4__this;
+Dòng 27833: /*0x70*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent textView;
+Dòng 27834: /*0x78*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer textTimer;
+Dòng 27874: /*0x415dbf0*/ void <ProcessOnCreate>b__35_5(Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText model);
+Dòng 39601: /*0x60*/ UnityEngine.UI.Button scenarioButton;
+Dòng 39602: /*0x68*/ UnityEngine.GameObject scenarioButtonCover;
+Dòng 41804: /*0x42a5908*/ void <ProcessOnCreate>b__61_7(bool isPlayScenario);
+Dòng 42107: /*0x40*/ UniRx.ReactiveProperty<bool> <IsPlayScenario>k__BackingField;
+Dòng 42138: /*0x42af3d4*/ UniRx.ReactiveProperty<bool> get_IsPlayScenario();
+Dòng 42156: /*0x42b0510*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 42344: struct <MoveToScenario>d__64 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 46865: /*0x60*/ Assets.GameUi.MainQuest.MainQuestComponent.ScenarioView scenarioView;
+Dòng 46877: /*0xc0*/ UnityEngine.Rendering.SortingGroup scenarioMecanimContainer;
+Dòng 46884: /*0xf8*/ Assets.GameUi.Scenario.Fade.Curtain.ScenarioFadeCurtainComponent curtain;
+Dòng 46942: /*0x4333bbc*/ void <ProcessOnCreate>b__61_12(Assets.GameUi.MainQuest.MainQuestController.MainQuestScenarioViewModel model);
+Dòng 46966: /*0x20*/ Assets.GameUi.MainQuest.MainQuestComponent.MainQuestView.QuestHeader scenarioHeader;
+Dòng 46979: /*0x433283c*/ void ActivateScenarioHeader(bool isActive);
+Dòng 46982: /*0x4333af8*/ void ApplyScenarioHeader(string chapterName, string questTitleName);
+Dòng 47000: class ScenarioView
+Dòng 47003: /*0x18*/ TMPro.TextMeshProUGUI scenarioText;
+Dòng 47008: /*0x4334944*/ ScenarioView();
+Dòng 47010: /*0x433488c*/ void Apply(Assets.GameUi.MainQuest.MainQuestController.MainQuestScenarioViewModel mainQuest);
+Dòng 47078: /*0x40*/ Assets.GameUi.MainQuest.MainQuestController.MainQuestScenarioViewModel model;
+Dòng 47358: /*0xe0*/ UniRx.ReactiveProperty<Assets.GameUi.MainQuest.MainQuestController.MainQuestScenarioViewModel> <ScenarioModel>k__BackingField;
+Dòng 47395: /*0x433ef0c*/ UniRx.ReactiveProperty<Assets.GameUi.MainQuest.MainQuestController.MainQuestScenarioViewModel> get_ScenarioModel();
+Dòng 47435: /*0x43400a0*/ Cysharp.Threading.Tasks.UniTask<Assets.GameUi.MainQuest.MainQuestController.PerformanceViewModel[]> RefreshMap(System.Nullable<Assets.Api.Client.LocationTypes> locationType, System.Nullable<long> locationMasterId, bool scrollMap, bool generatePerformance, bool generateScenario, Assets.GameUi.MainQuest.MainQuestController.LocationInfo locationInfo);
+Dòng 47440: /*0x433531c*/ Cysharp.Threading.Tasks.UniTask MoveToQuestOrScenario();
+Dòng 47447: /*0x4340a18*/ Assets.GameUi.MainQuest.MainQuestMapIcon.Types GetScenarioIconType(bool isCurrent, bool isCleared, Assets.GameUi.MainQuest.MainQuestMapIcon.Types activeType);
+Dòng 47480: class MainQuestScenarioViewModel
+Dòng 47482: /*0x10*/ string <ScenarioTitleText>k__BackingField;
+Dòng 47486: /*0x30*/ bool <IsBranchScenario>k__BackingField;
+Dòng 47488: /*0x4341154*/ MainQuestScenarioViewModel();
+Dòng 47489: /*0x4341100*/ string get_ScenarioTitleText();
+Dòng 47490: /*0x4341108*/ void set_ScenarioTitleText(string value);
+Dòng 47497: /*0x4341140*/ bool get_IsBranchScenario();
+Dòng 47498: /*0x4341148*/ void set_IsBranchScenario(bool value);
+Dòng 47931: struct <MoveToQuestOrScenario>d__135 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 48056: /*0x69*/ bool generateScenario;
+Dòng 48176: Scenario = 4,
+Dòng 48177: ScenarioDone = 5,
+Dòng 48342: /*0x78*/ Assets.GameUi.Scenario.Text.ScenarioTextComponent textView;
+Dòng 48343: /*0x80*/ Assets.GameUi.Scenario.Text.ScenarioTextTimer textTimer;
+Dòng 48364: /*0x43553ac*/ void <Initialize>b__27_0(Assets.GameUi.Scenario.Text.ScenarioTextTimer.ScenarioTextTimerText model);
+Dòng 52828: ScenarioLog = 4,
+Dòng 53325: /*0x18*/ System.Nullable<Assets.GameUi.Constants.EnumToAssetId.ScenarioLogIconTypes> <ScenarioLogIconType>k__BackingField;
+Dòng 53332: /*0x43b75b0*/ System.Nullable<Assets.GameUi.Constants.EnumToAssetId.ScenarioLogIconTypes> get_ScenarioLogIconType();
+Dòng 53333: /*0x43b75b8*/ void set_ScenarioLogIconType(System.Nullable<Assets.GameUi.Constants.EnumToAssetId.ScenarioLogIconTypes> value);
+Dòng 55905: /*0x43eeae0*/ void SelectScenarioIllust(Assets.GameUi.HomeSettings.DisplaySetting.DisplaySettingCell.DisplaySettingCellCellArgs args);
+Dòng 56065: /*0x68*/ System.Nullable<long> <HomeScenarioMasterId>k__BackingField;
+Dòng 56085: /*0x43f37d8*/ System.Nullable<long> get_HomeScenarioMasterId();
+Dòng 56086: /*0x43f37e4*/ void set_HomeScenarioMasterId(System.Nullable<long> value);
+Dòng 56291: /*0x43f5424*/ bool <GenerateSceneArgs>b__0(Assets.Api.Client.HomeScenarioMaster sceneMaster);
+Dòng 56292: /*0x43f548c*/ Assets.GameUi.HomeSettings.DisplaySetting.DisplaySettingCell.DisplaySettingCellCellArgs <GenerateSceneArgs>b__1(Assets.Api.Client.HomeScenarioMaster sceneMaster);
+Dòng 57328: /*0x80*/ Assets.GameUi.Services.IScenarioService scenarioService;
+Dòng 57355: /*0x441298c*/ HomeController(Assets.UiComponentSystem.Runtime.IGameNavigator navigator, Assets.GameUi.Externals.ICameraManager cameraManager, Assets.GameUi.Toast.IToastComponent toast, Assets.Api.MemoryDB.IMemoryDB memoryDB, Assets.Api.Client.Time.IAdjustedTime adjustedTime, Assets.Api.Client.IApiClient apiClient, Assets.Platform.IPlatform platform, Assets.GameUi.Externals.ILocalSettingsManager localSettingsManager, Assets.Configuration.IApplicationConfiguration configuration, Assets.GameUi.IGameNotificationsMessageBroker notificationsMessageBroker, Assets.GameUi.Services.IBgmService bgmService, Assets.GameUi.Service.IPurchaseService purchaseService, Assets.GameUi.Services.IScenarioService scenarioService, Assets.GameUi.Services.IHomeSpeechService homeSpeechService, Assets.GameUi.Guide.IGuideComponent guide, Assets.GameUi.Services.IMissionService missionService, Assets.GameUi.Service.IBadgeService badgeService, Assets.GameUi.Service.IRewardService rewardService, Assets.GameUi.Service.IThrottledApiService throttledApiService, Assets.GameUi.Utilities.IJumpHelper jumpHelper);
+Dòng 68282: /*0xe0*/ UniRx.ReactiveProperty<bool> <ReadyOfScenarioView>k__BackingField;
+Dòng 68299: /*0x4520d2c*/ UniRx.ReactiveProperty<bool> get_ReadyOfScenarioView();
+Dòng 68826: /*0x452de50*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 69003: struct <MoveToScenario>d__44 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 70799: /*0x4556624*/ Assets.GameUi.ModalWindow.TextModal.TextModalWindowComponent.Args LockScenarioMessageArgs(string message);
+Dòng 70800: /*0x4556788*/ Assets.GameUi.ModalWindow.TextModal.TextModalWindowComponent.Args LockEventScenarioMessageArgs(string message);
+Dòng 70801: /*0x4556928*/ Assets.GameUi.ModalWindow.TextModal.TextModalWindowComponent.Args LockCharacterScenarioMessageArgs(string message);
+Dòng 70948: /*0x455ca3c*/ bool <GenerateCharacterCellArgs>b__8(Assets.Api.Client.HomeScenarioMaster h);
+Dòng 70967: /*0x455cb28*/ bool <GenerateMemoryCellArgs>b__5(Assets.Api.Client.HomeScenarioMaster h);
+Dòng 71231: /*0x4560c8c*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId, bool viewable);
+Dòng 71257: struct <MoveToScenario>d__13 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 71454: /*0x45651ac*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId, bool viewable);
+Dòng 71487: struct <MoveToScenario>d__13 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 72799: static /*0x45a39e8*/ string From(Assets.GameUi.Constants.EnumToAssetId.ScenarioLogIconTypes type);
+Dòng 72897: enum ScenarioLogIconTypes
+Dòng 72996: static string ScenarioFlipFrame = "ScenarioFlipFrame";
+Dòng 72997: static string ScenarioEnd = "ScenarioEnd";
+Dòng 76666: /*0x45f7608*/ void <ProcessOnCreate>b__54_4(bool isPlayScenario);
+Dòng 76796: /*0x88*/ UniRx.ReactiveProperty<bool> <IsPlayScenario>k__BackingField;
+Dòng 76799: /*0xa0*/ UniRx.ReactiveProperty<bool> <ReadyOfScenarioView>k__BackingField;
+Dòng 76807: /*0x45fd658*/ UniRx.ReactiveProperty<bool> get_IsPlayScenario();
+Dòng 76810: /*0x45fd670*/ UniRx.ReactiveProperty<bool> get_ReadyOfScenarioView();
+Dòng 76823: /*0x45fe0a0*/ Cysharp.Threading.Tasks.UniTask MoveToScenario(long episodeMasterId);
+Dòng 76965: struct <MoveToScenario>d__51 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 89392: /*0x50*/ Assets.GameUi.CharacterDetail.CharacterDetailProfile.CharacterDetailProfileComponent.ScenarioButton scenarioButton;
+Dòng 89473: class ScenarioButton
+Dòng 89478: /*0x472b730*/ ScenarioButton();
+Dòng 89502: /*0x472b4c8*/ Cysharp.Threading.Tasks.UniTask MoveToScenario();
+Dòng 89504: /*0x472ab90*/ bool CantMoveToScenario();
+Dòng 89601: struct <MoveToScenario>d__14 : System.Runtime.CompilerServices.IAsyncStateMachine
+Dòng 92240: /*0x70*/ UnityEngine.UI.Button scenarioButton;
+Dòng 92241: /*0x78*/ UnityEngine.GameObject scenarioButtonLock;
+Dòng 92295: /*0x475f640*/ void ApplyCharacterEpisodeButtonLock(int affectionLevelToUnlockScenario, int affectionLevel);
+Dòng 92712: /*0x4770580*/ Cysharp.Threading.Tasks.UniTask MoveToScenario();
+Dòng 92760: /*0x58*/ int <AffectionLevelToUnlockScenario>k__BackingField;
+Dòng 92785: /*0x4771e14*/ int get_AffectionLevelToUnlockScenario();
+Dòng 92786: /*0x4771e1c*/ void set_AffectionLevelToUnlockScenario(int value);
+Dòng 93134: struct <MoveToScenario>d__75 : System.Runtime.CompilerServices.IAsyncStateMachine
