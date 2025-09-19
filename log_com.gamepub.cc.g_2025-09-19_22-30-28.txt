@@ -1,0 +1,74 @@
+09-19 22:30:22.652  2445  6551 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity bnds=[43,1043][295,1331] mCallingUid=10181} from uid 10181
+09-19 22:30:22.670  2445  6551 I OplusScreenSecurityMask: onStackAdded task = Task{dc2346 #63 type=standard A=12477:com.gamepub.cc.g U=0 visible=false mode=fullscreen translucent=true sz=0} record = null displayId = 0
+09-19 22:30:22.674  2445  6551 D CompactWindowManagerService: onOriginListAdded child: ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}; parent: Task{dc2346 #63 type=standard A=12477:com.gamepub.cc.g U=0 visible=true mode=fullscreen translucent=true sz=1}
+09-19 22:30:22.674  2445  6551 I OplusCompactWindowManagerService: supportMultiResume :true in package :com.gamepub.cc.g
+09-19 22:30:22.675  2445  6551 D TaskExtImpl: add ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63} to mActivityRecordSum = Counter{ com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity(1) }
+09-19 22:30:22.677  2445  6551 D ActivityTaskManager: getStartingWindowType: newTask=true, taskSwitch=true, processRunning=false, allowTaskSnapshot=true, activityCreated=false, snapshot=null, record:ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:22.679  2445  6551 V OplusZoomWindowManagerService: windowMode: 0 ,stack: Task{dc2346 #63 type=standard A=12477:com.gamepub.cc.g U=0 visible=true mode=fullscreen translucent=true sz=1}
+09-19 22:30:22.686  3218  3409 D WindowManager: Add to mViews: android.widget.FrameLayout{d854123 V.E...... ......I. 0,0-0,0},pkg= com.gamepub.cc.g
+09-19 22:30:22.694  2445  6296 I OplusHansManager : front pkg: com.gamepub.cc.g, uid: 12477, prev pkg: com.android.launcher, prev uid: 10181
+09-19 22:30:22.697  2445  3701 I OplusResourcePreloadManager: resume pkg: com.gamepub.cc.g, uid:12477, prev pkg: com.android.launcher, prev uid: 10181
+09-19 22:30:22.701  2445  5786 D OplusDisplayPolicy: com.gamepub.cc.g, no change cutoutMode: 1
+09-19 22:30:22.705  2445  5786 D OplusDisplayPolicy: com.gamepub.cc.g, no change cutoutMode: 1
+09-19 22:30:22.723  2445  2615 D CompactWindowManagerService: updateBackgroundSurface openingApp: ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:22.725  1408  1408 D OplusLayer: setBuffer sequence=2425, name=Splash Screen com.gamepub.cc.g#0
+09-19 22:30:22.736 30665 30684 D BinderSender: sendBinder to uid 12477: packages=com.gamepub.cc.g
+09-19 22:30:22.742  2445  2615 I WindowStateExtImpl: onSurfaceShowChange show = true mPackageName = com.gamepub.cc.g parentPkgName = com.gamepub.cc.g
+09-19 22:30:22.748  2445  2627 I ActivityManager: Start proc 23908:com.gamepub.cc.g/u0a2477 for pre-top-activity {com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity}
+09-19 22:30:22.803  2445  6551 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:22.804  2445  6551 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:22.804  2445  3911 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppExit, resuming = com.gamepub.cc.g, target = com.android.launcher, is ResumingFirstStart =  true, is ResumingMultiApp =  false, extensionInfo =  Bundle[{taskId=63, uid=12477}]
+09-19 22:30:22.804  2445  7944 D DCSEX-AppLaunchEventRecorder: onAppSwitch from = com.android.launcher to = com.gamepub.cc.g
+09-19 22:30:22.805  2445  6551 I InputDispatcher: setFocusedApplication displayId=0 ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:22.808  2445  3911 D OplusEapManager: mTargetEnterName :com.gamepub.cc.g
+09-19 22:30:22.808  2445  3911 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppEnter, launchedFrom =  com.android.launcher, target =  com.gamepub.cc.g, is firstStart =  true, is multiApp =  false, extensionInfo =  Bundle[{taskId=63, pid=23908, uid=12477}]
+09-19 22:30:22.808  2445  3911 D VRR [OPlusFrontAppManager]: OnAppSwitchObserver: onAppEnter , info.targetName = com.gamepub.cc.g
+09-19 22:30:22.809  2445  2658 D VRR [OPlusRefreshRateService]: handleFrontAppChange pkgName: com.gamepub.cc.g
+09-19 22:30:22.809  2445  2658 D VRR [OPlusExternalRefreshRateManager]: setFrontPackageName pkgName: com.gamepub.cc.g CurPkgName: null
+09-19 22:30:22.813  2445  2614 D OplusKeepAliveManager: TOP_APP is ProcessRecord{3be46d0 23908:com.gamepub.cc.g/u0a2477} uid is 12477
+09-19 22:30:22.814  2445  2635 E OplusThermalStats: Error getting package info: com.gamepub.cc.g
+09-19 22:30:22.815  3580  4983 W Battery : ThermalControlUtils: mForegroundPkg=com.gamepub.cc.g
+09-19 22:30:22.825  2445  6296 D OplusAppListInterceptManager: shouldFilterTask::packageName = com.gamepub.cc.g
+09-19 22:30:22.825 30665 30677 D BinderSender: sendBinder to uid 12477: packages=com.gamepub.cc.g
+09-19 22:30:22.913 23908 23908 D nativeloader: Configuring clns-4 for other apk /apex/com.android.extservices/javalib/android.ext.adservices.jar. target_sdk_version=35, uses_libraries=ALL, library_path=/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/lib/arm64:/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.cc.g
+09-19 22:30:22.918 23908 23908 D nativeloader: Configuring clns-5 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=35, uses_libraries=ALL, library_path=/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/lib/arm64:/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.cc.g
+09-19 22:30:22.920 23908 23908 W ziparchive: Unable to open '/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.dm': No such file or directory
+09-19 22:30:22.920 23908 23908 W ziparchive: Unable to open '/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.dm': No such file or directory
+09-19 22:30:23.030  2445  6549 V OplusZoomWindowManagerService: onAnimationFinished:  r = ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:23.031  2445  6549 I OplusAppSwitchManagerService:  handleAppVisible , r = ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63}
+09-19 22:30:23.146 23908 23908 D nativeloader: Configuring clns-6 for other apk /data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/lib/arm64:/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.gamepub.cc.g
+09-19 22:30:23.311  3580  4136 W AuthDialogHelper: checkNotificationSwitchFirst() called with: context = [com.oplus.notification.NotificationCenterService@109a2b3], pkg = [com.gamepub.cc.g], uid = [12477], userId = [0], init checker
+09-19 22:30:23.312  3580  4136 E AuthDialogHelper: CheckNotificationCanBeSetSecond: check com.gamepub.cc.g , Notification master switch on, unable to pop dialog
+09-19 22:30:26.639 23908 23908 D nativeloader: Load /data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/lib/arm64/libfrida-gadget.so using ns clns-6 from class loader (caller=/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk): ok
+09-19 22:30:26.647 23908 23908 D nativeloader: Load /data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/lib/arm64/libpairipcore.so using ns clns-6 from class loader (caller=/data/app/~~di7RFZ4Aj9K4rdKBnwtHFQ==/com.gamepub.cc.g-xo3ig53g1mX16km8xEEluQ==/base.apk): ok
+09-19 22:30:26.735 23908 23908 I Quality : ActivityThread: createOrUpdateClassLoaderLocked delay 3828 com.gamepub.cc.g 23908
+09-19 22:30:26.741 23908 23908 V GraphicsEnvironment: ANGLE Developer option for 'com.gamepub.cc.g' set to: 'default'
+09-19 22:30:26.802 23908 23908 E AndroidRuntime: Process: com.gamepub.cc.g, PID: 23908
+09-19 22:30:26.806  2445  3685 D OplusAppStartupMonitor: notifyUnstableAppInfo: Bundle[{unstableTime=1758295826806, reason=crash, userId=0, safecenter=unstable, exceptionMsg=Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference, exceptionClass=java.lang.NullPointerException, packageName=com.gamepub.cc.g, unstable_restrict_switch=true}]
+09-19 22:30:26.820  2445  6549 W ActivityTaskManager:   Force finishing activity com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity
+09-19 22:30:26.827  2445  6549 V OplusZoomWindowManagerService: prepareZoomTransition: curStack=Task{dc2346 #63 type=standard A=12477:com.gamepub.cc.g U=0 visible=false mode=fullscreen translucent=true sz=1}   nextStackTask{c7ec940 #1 type=undefined ?? U=0 visible=true mode=fullscreen translucent=true sz=1}
+09-19 22:30:26.881  2445  6549 D TheiaManager: KEY:packageNameVALUE:com.gamepub.cc.g
+09-19 22:30:26.881  2445  6549 D TheiaCrashMonitor: com.gamepub.cc.gcrash
+09-19 22:30:26.881  2445  6549 I ActivityManager: Process com.gamepub.cc.g (pid 23908) has died: prcp TOP 
+09-19 22:30:26.885  2445  4568 I OplusHansManager : onUidGone(), 12477 com.gamepub.cc.g exit SM
+09-19 22:30:26.906  2445  6549 V OplusZoomWindowManagerService: onAnimationFinished:  r = ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t63 f}}
+09-19 22:30:26.907  2445  6549 I WindowStateExtImpl: onSurfaceShowChange show = false mPackageName = com.gamepub.cc.g parentPkgName = com.gamepub.cc.g
+09-19 22:30:26.908  2445  6549 W InputManager-JNI: Input channel object 'c99e9f6 Splash Screen com.gamepub.cc.g (client)' was disposed without first being removed with the input manager!
+09-19 22:30:26.908  2445  6549 D OplusStartingWindowManager: interceptRemoveStartingWindow activity.packageName=com.gamepub.cc.g isSnapshot=false mStartingSurfaceRunnable=null
+09-19 22:30:26.915  2445  6549 I OplusScreenSecurityMask: onStackRemoved task = Task{dc2346 #63 type=standard A=12477:com.gamepub.cc.g U=0 visible=false mode=fullscreen translucent=true sz=0} record = null displayId = 0
+09-19 22:30:26.916  2445  6549 D TaskExtImpl: remove ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t-1 f}} to mActivityRecordSum = Counter{ }
+09-19 22:30:26.917  1408  1408 D OplusLayer: ~Layer() sequence=2424, name=c99e9f6 Splash Screen com.gamepub.cc.g#0 0xb400006fcd6d2880
+09-19 22:30:26.917  2445  6549 I OplusHansManager : front pkg: com.android.launcher, uid: 10181, prev pkg: com.gamepub.cc.g, prev uid: 12477
+09-19 22:30:26.920  2445  3701 I OplusResourcePreloadManager: resume pkg: com.android.launcher, uid:10181, prev pkg: com.gamepub.cc.g, prev uid: 12477
+09-19 22:30:26.941  1408  1408 D OplusLayer: ~Layer() sequence=2423, name=ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity#0 0xb400006fcd638b00
+09-19 22:30:26.941  1408  1408 D OplusLayer: ~Layer() sequence=2431, name=948d321 ActivityRecordInputSink com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity#0 0xb400006fcd6b5a40
+09-19 22:30:26.958  2445  6296 D OplusAppListInterceptManager: shouldFilterTask::packageName = com.gamepub.cc.g
+09-19 22:30:26.982  2445  6297 D OplusAppListInterceptManager: shouldFilterTask::packageName = com.gamepub.cc.g
+09-19 22:30:27.315  1408  1408 D OplusLayer: ~Layer() sequence=2425, name=Splash Screen com.gamepub.cc.g#0 0xb400006fcd6e05c0
+09-19 22:30:27.325  2445  2614 W ActivityTaskManager: Activity top resumed state loss timeout for ActivityRecord{e9e8907 u0 com.gamepub.cc.g/com.unity3d.player.UnityPlayerActivity t-1 f}}
+09-19 22:30:27.327  2445  3911 D OplusEapManager: mTargetExitName :com.gamepub.cc.g
+09-19 22:30:27.327  2445  3911 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppExit, resuming = com.android.launcher, target = com.gamepub.cc.g, is ResumingFirstStart =  false, is ResumingMultiApp =  false, extensionInfo =  Bundle[{taskId=5, uid=10181}]
+09-19 22:30:27.327  2445  3911 D VRR [OPlusFrontAppManager]: OnAppSwitchObserver: onAppExit , info.targetName = com.gamepub.cc.g
+09-19 22:30:27.327  2445  7944 D DCSEX-AppLaunchEventRecorder: onAppSwitch from = com.gamepub.cc.g to = com.android.launcher
+09-19 22:30:27.328  2445  2658 D VRR [OPlusExternalRefreshRateManager]: setFrontPackageName pkgName: null CurPkgName: com.gamepub.cc.g
+09-19 22:30:27.329  2445  7944 D DCSEX-AppLaunchEventRecorder: recordExitApp = com.gamepub.cc.g
