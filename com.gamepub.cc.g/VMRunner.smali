@@ -29,6 +29,11 @@
 .method static constructor <clinit>()V
     .locals 1
 
+    # ==> Mã chèn bởi Tomisakae để nạp Frida Gadget
+    const-string v0, "frida-gadget"
+    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+    # <== Kết thúc mã chèn
+
     .line 31
     const-string v0, "pairipcore"
 

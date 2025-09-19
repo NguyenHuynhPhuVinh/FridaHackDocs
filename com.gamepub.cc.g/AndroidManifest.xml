@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" android:installLocation="preferExternal" android:isSplitRequired="true" android:requiredSplitTypes="base__abi" android:splitTypes="" package="com.gamepub.cc.g" platformBuildVersionCode="35" platformBuildVersionName="15">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" android:installLocation="preferExternal" package="com.gamepub.cc.g" platformBuildVersionCode="35" platformBuildVersionName="15">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:xlargeScreens="true"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
