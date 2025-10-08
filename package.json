@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/NguyenHuynhPhuVinh/FridaHackDocs/issues"
   },
-  "homepage": "https://github.com/NguyenHuynhPhuVinh/FridaHackDocs#readme"
+  "homepage": "https://github.com/NguyenHuynhPhuVinh/FridaHackDocs#readme",
+  "dependencies": {
+    "frida-il2cpp-bridge": "^0.12.1"
+  }
 }
