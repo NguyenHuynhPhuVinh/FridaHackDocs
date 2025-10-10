@@ -1,0 +1,27 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: OtherVersion_3.0.1.apk
+compressionType: false
+doNotCompress:
+- resources.arsc
+- META-INF/com.android.games.engine.build_fingerprint
+- assets/bin/Data/data.unity3d
+- assets/bin/Data/resources.resource
+- png
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '22'
+  targetSdkVersion: '35'
+sharedLibrary: false
+sparseResources: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.6.1
+versionInfo:
+  versionCode: '1'
+  versionName: 3.0.1

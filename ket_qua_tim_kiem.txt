@@ -1,500 +1,758 @@
-Dòng 2359: /*0x0*/ bool m_hasUnloadTimedOut;
-Dòng 3393: /*0x1f2fe14*/ bool get_IsUnreferenced();
-Dòng 3590: /*0x22b7ab0*/ bool get_IsUnreferenced();
-Dòng 7632: /*0x24e675c*/ bool get_DoesUnbindWhenBecomesDisabled();
-Dòng 12338: /*0x28*/ System.Collections.Generic.List<int> CosmeticsUnequipped;
-Dòng 12342: /*0x2880974*/ AvatarEquipUnequipData(string changeType, int cosmeticPreset, System.Collections.Generic.List<int> cosmeticsEquipped, System.Collections.Generic.List<int> cosmeticsUnequipped, int emoteEquipped, int emoteUnequipped);
-Dòng 12527: static /*0x0*/ Yeti.GameEvent NexusUnavailable;
-Dòng 13601: static /*0x28*/ string BonusSun;
-Dòng 13604: static /*0x40*/ string ShovelPercentSunReturned;
-Dòng 13619: static /*0xb8*/ string SunFalling;
-Dòng 13620: static /*0xc0*/ string SunFallingDisabled;
-Dòng 13621: static /*0xc8*/ string SunFallingEnabled;
-Dòng 13622: static /*0xd0*/ string SunFallingFromLevelDefinition;
-Dòng 13623: static /*0xd8*/ string TappableSunEnabled;
-Dòng 13624: static /*0xe0*/ string TappableSunDisabled;
-Dòng 14104: static string SunCollected = "SUN_COLLECTED";
-Dòng 14132: static string SunCountChangedPrefix = "SUN_COUNT_";
-Dòng 16530: /*0x290b5c0*/ void SetAllPoolsUnlockStatusTo(bool isUnlocked);
-Dòng 16532: /*0x290b894*/ bool IsUnlocked(int poolId);
-Dòng 16948: /*0x1f30804*/ float get_ApmSunCollected();
-Dòng 16957: /*0x20*/ int SunCollected;
-Dòng 16960: /*0x2c*/ float <ApmSunCollected>k__BackingField;
-Dòng 16969: /*0x291639c*/ float get_ApmSunCollected();
-Dòng 16970: /*0x29163a4*/ void set_ApmSunCollected(float value);
-Dòng 17250: static int Sunflower = 2009201556;
-Dòng 17379: /*0x291e4a0*/ void RegisterForceBossAbilityCheat(Yeti.Data.UnitAbilityDefinition unitAbilityDefinition, Yeti.UnitPuppet bossUnit);
-Dòng 17381: /*0x291e16c*/ Yeti.UnitPuppet FindBossUnit();
-Dòng 17392: /*0x18*/ Yeti.UnitPuppet bossUnit;
-Dòng 17755: /*0x10*/ System.Action OnSunDataChanged;
-Dòng 17756: /*0x18*/ System.Action<int> OnSunCountChanged;
-Dòng 17757: /*0x20*/ System.Action OnSunGenerated;
-Dòng 17758: /*0x28*/ System.Action OnSunCollectedDataChanged;
-Dòng 17759: /*0x30*/ System.Action OnSunRemovedDataChanged;
-Dòng 17760: /*0x38*/ System.Action OnSunGenerationStopped;
-Dòng 17761: /*0x40*/ System.Action OnSunGenerationEnding;
-Dòng 17824: /*0x238*/ System.Action OnSpentPlantFoodOnSunMeter;
-Dòng 17825: /*0x240*/ System.Action OnSpentPromotionUseOnSunMeter;
-Dòng 17847: /*0x2926854*/ void add_OnSunDataChanged(System.Action value);
-Dòng 17848: /*0x29268f0*/ void remove_OnSunDataChanged(System.Action value);
-Dòng 17849: /*0x292698c*/ void add_OnSunCountChanged(System.Action<int> value);
-Dòng 17850: /*0x2926a3c*/ void remove_OnSunCountChanged(System.Action<int> value);
-Dòng 17851: /*0x2926aec*/ void add_OnSunGenerated(System.Action value);
-Dòng 17852: /*0x2926b88*/ void remove_OnSunGenerated(System.Action value);
-Dòng 17853: /*0x2926c24*/ void add_OnSunCollectedDataChanged(System.Action value);
-Dòng 17854: /*0x2926cc0*/ void remove_OnSunCollectedDataChanged(System.Action value);
-Dòng 17855: /*0x2926d5c*/ void add_OnSunRemovedDataChanged(System.Action value);
-Dòng 17856: /*0x2926df8*/ void remove_OnSunRemovedDataChanged(System.Action value);
-Dòng 17857: /*0x2926e94*/ void add_OnSunGenerationStopped(System.Action value);
-Dòng 17858: /*0x2926f30*/ void remove_OnSunGenerationStopped(System.Action value);
-Dòng 17859: /*0x2926fcc*/ void add_OnSunGenerationEnding(System.Action value);
-Dòng 17860: /*0x2927068*/ void remove_OnSunGenerationEnding(System.Action value);
-Dòng 17985: /*0x292c0cc*/ void add_OnSpentPlantFoodOnSunMeter(System.Action value);
-Dòng 17986: /*0x292c168*/ void remove_OnSpentPlantFoodOnSunMeter(System.Action value);
-Dòng 17987: /*0x292c204*/ void add_OnSpentPromotionUseOnSunMeter(System.Action value);
-Dòng 17988: /*0x292c2a0*/ void remove_OnSpentPromotionUseOnSunMeter(System.Action value);
-Dòng 18028: /*0x292d468*/ void SetSunCount(int sunCount);
-Dòng 18029: /*0x292d528*/ void SetSunIsUnlimited(bool isSunUnlimited);
-Dòng 18030: /*0x292d570*/ void SetSunGeneratorTicks(int lastTick, int nextTick);
-Dòng 18031: /*0x292d5cc*/ void SetSunCollectedSourceLocation(UnityEngine.Vector3 location);
-Dòng 18032: /*0x292d610*/ void SetSunRemovedTargetLocation(UnityEngine.Vector3 location);
-Dòng 18033: /*0x292d654*/ void SetSunGenerationIsEnding();
-Dòng 18034: /*0x292d670*/ void SetSunGenerationIsStopped();
-Dòng 18039: /*0x292d6cc*/ void SetPlantFoodMeterIsUnlimited(bool isActive);
-Dòng 18087: /*0x292e54c*/ void SetIsUnlimitedResourcesMode(bool isActive);
-Dòng 18102: /*0x292e8f0*/ void SetBossUnitId(int unitId);
-Dòng 18126: /*0x292ee34*/ void SetSpentPlantFoodOnSunMeter();
-Dòng 18127: /*0x292ee50*/ void SetSpentPromotionUseOnSunMeter();
-Dòng 18131: /*0x292eecc*/ void AddSunSpent(uint amount);
-Dòng 18271: static string ReclaimValueKey = "ReclaimPreviewSunValue";
-Dòng 18272: static string ReclaimValueFractionKey = "ReclaimPreviewSunValueFraction";
-Dòng 18279: static string RemoveGrowthTimerValueKey = "RemoveGrowthTimerPreviewSunValue";
-Dòng 18521: static string TappableSunPrefabId = "prefab.tappableSun";
-Dòng 18600: static string SunCountKey = "SunCount";
-Dòng 18601: static string SunProgressKey = "SunGeneratorProgress";
-Dòng 18602: static string SunAnimationKey = "SunAnimation";
-Dòng 18603: static string SunCollectedKey = "SunCollected";
-Dòng 18604: static string SunRemovedKey = "SunRemoved";
-Dòng 18605: static string SunGenerationActiveKey = "SunGenerationActive";
-Dòng 18606: static string SunGenerationEndingKey = "SunGenerationEnding";
-Dòng 18679: /*0x50*/ RedCrow.UI.UUIF.DataProviding.Models.IntModel _sunCount;
-Dòng 18680: /*0x58*/ RedCrow.UI.UUIF.DataProviding.Models.FloatModel _sunGeneratorProgress;
-Dòng 18681: /*0x60*/ Yeti.SunAnimationModel _sunAnimation;
-Dòng 18682: /*0x68*/ Yeti.DropRemovedDataModel _sunCollected;
-Dòng 18683: /*0x70*/ Yeti.DropRemovedDataModel _sunRemoved;
-Dòng 18684: /*0x78*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _sunGenerationActive;
-Dòng 18685: /*0x80*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _sunGenerationEnding;
-Dòng 18780: /*0x2193c8c*/ void InitializeSunModels();
-Dòng 18807: /*0x21978ac*/ void UpdateSunValues();
-Dòng 18808: /*0x2199e54*/ void UpdateSunGenerated();
-Dòng 18809: /*0x2199e70*/ void UpdateSunGenerationActive();
-Dòng 18810: /*0x2199ea8*/ void UpdateSunGenerationEnding();
-Dòng 18811: /*0x2199c48*/ void SetSunGuiValues(int value);
-Dòng 18812: /*0x2199d78*/ void UpdateSunProgress();
-Dòng 18825: /*0x219aeb4*/ void UpdateSunRemovedValues();
-Dòng 18826: /*0x219af7c*/ void UpdateSunCollectedValues();
-Dòng 18866: static /*0x219cb08*/ void ReloadSunData(Yeti.CombatSceneGuiData combatSceneGuiData, Yeti.Data.GameInitState saveState);
-Dòng 18888: /*0x58*/ System.Collections.Generic.List<Yeti.SunPuppet> _sunObjects;
-Dòng 18898: /*0xa4*/ bool _isUnitAudioStopped;
-Dòng 18910: /*0x219d978*/ void AddSun(YetiSimCoreLib.Game.InstanceId instanceId, Yeti.SunPuppet view);
-Dòng 18917: /*0x219dc94*/ bool HasUnit(YetiSimCoreLib.Game.InstanceId instanceId);
-Dòng 18920: /*0x219dd10*/ System.Collections.Generic.List<Yeti.SunPuppet> GetAllSun();
-Dòng 18924: /*0x219e03c*/ bool IsUnit(YetiSimCoreLib.Game.InstanceId instanceId);
-Dòng 18947: /*0x21a01ac*/ Yeti.SunPuppet FindClosestSun(UnityEngine.Vector3 worldPosition, float threshold);
-Dòng 18948: /*0x21a023c*/ void AddSunPuppetsInRange(UnityEngine.Vector3 worldPosition, System.Collections.Generic.List<Yeti.SunPuppet> list);
-Dòng 19048: /*0x21a23d0*/ bool get_IsUnlimitedResourcesModeActive();
-Dòng 19058: /*0x21a3da8*/ void CollectSun(YetiSimCoreLib.Game.InstanceId sunInstanceId);
-Dòng 19070: /*0x21a4098*/ void UsePlantFoodOnSunMeter();
-Dòng 19072: /*0x21a40c8*/ void UsePromotionUseOnSunMeter();
-Dòng 19111: /*0x21a49c8*/ void PauseSunGeneration();
-Dòng 19112: /*0x21a49e0*/ void ResumeSunGeneration();
-Dòng 19177: /*0x1f30214*/ Yeti.SunGuiData get_SunGuiData();
-Dòng 19196: /*0x10*/ Yeti.SunGuiData <SunGuiData>k__BackingField;
-Dòng 19213: /*0x21a4f98*/ Yeti.SunGuiData get_SunGuiData();
-Dòng 19245: class SunGuiData
-Dòng 19248: /*0x14*/ int <SunCount>k__BackingField;
-Dòng 19249: /*0x18*/ int <SunGeneratorLastTick>k__BackingField;
-Dòng 19250: /*0x1c*/ int <SunGeneratorNextTick>k__BackingField;
-Dòng 19251: /*0x20*/ bool <IsSunUnlimited>k__BackingField;
-Dòng 19252: /*0x24*/ UnityEngine.Vector3 <SunRemovedTargetLocation>k__BackingField;
-Dòng 19253: /*0x30*/ uint <SunSpent>k__BackingField;
-Dòng 19255: /*0x21a5010*/ SunGuiData();
-Dòng 19258: /*0x21a5230*/ int get_SunCount();
-Dòng 19259: /*0x21a5238*/ void set_SunCount(int value);
-Dòng 19260: /*0x21a5240*/ int get_SunGeneratorLastTick();
-Dòng 19261: /*0x21a5248*/ void set_SunGeneratorLastTick(int value);
-Dòng 19262: /*0x21a5250*/ int get_SunGeneratorNextTick();
-Dòng 19263: /*0x21a5258*/ void set_SunGeneratorNextTick(int value);
-Dòng 19264: /*0x21a5260*/ bool get_IsSunUnlimited();
-Dòng 19265: /*0x21a5268*/ void set_IsSunUnlimited(bool value);
-Dòng 19266: /*0x21a5270*/ UnityEngine.Vector3 get_SunRemovedTargetLocation();
-Dòng 19267: /*0x21a527c*/ void set_SunRemovedTargetLocation(UnityEngine.Vector3 value);
-Dòng 19268: /*0x21a5288*/ uint get_SunSpent();
-Dòng 19269: /*0x21a5290*/ void set_SunSpent(uint value);
-Dòng 19270: /*0x2199ec4*/ float CalculateSunProgress();
-Dòng 19338: /*0x20*/ bool <IsUnlimitedResourcesMode>k__BackingField;
-Dòng 19365: /*0x21a53f8*/ bool get_IsUnlimitedResourcesMode();
-Dòng 19366: /*0x21a5400*/ void set_IsUnlimitedResourcesMode(bool value);
-Dòng 19463: /*0x28*/ YetiSimCoreLib.Game.UnitId <BossUnitId>k__BackingField;
-Dòng 19476: /*0x21a5be4*/ YetiSimCoreLib.Game.UnitId get_BossUnitId();
-Dòng 19477: /*0x21a5bec*/ void set_BossUnitId(YetiSimCoreLib.Game.UnitId value);
-Dòng 19502: /*0x10*/ bool <AreChargesUnlimited>k__BackingField;
-Dòng 19507: /*0x21a5ce4*/ bool get_AreChargesUnlimited();
-Dòng 19508: /*0x21a5cec*/ void set_AreChargesUnlimited(bool value);
-Dòng 19540: /*0x18*/ bool <AreChargesUnlimited>k__BackingField;
-Dòng 19547: /*0x21a6074*/ bool get_AreChargesUnlimited();
-Dòng 19548: /*0x21a607c*/ void set_AreChargesUnlimited(bool value);
-Dòng 19910: /*0x21b1b78*/ void UsePlantFoodOnSunMeter();
-Dòng 19912: /*0x21b1ec8*/ void UsePromotionUseOnSunMeter();
-Dòng 19922: /*0x21b2e00*/ void CollectSun(YetiSimCoreLib.Game.InstanceId sunInstanceId);
-Dòng 19939: /*0x21b46e0*/ void PauseSunGeneration();
-Dòng 19940: /*0x21b4864*/ void ResumeSunGeneration();
-Dòng 20338: /*0xc8*/ UnityEngine.Coroutine _delayHideSunCoroutine;
-Dòng 20344: /*0x21ba114*/ void HideRemainingSunObjects();
-Dòng 20619: static string SunMeter = "SunMeter";
-Dòng 20741: /*0x21bfdec*/ void SetPlantDetailsUnit(int unitId);
-Dòng 20813: /*0x30*/ System.Collections.Generic.List<Yeti.SunPuppet> _tempSunList;
-Dòng 20823: /*0x21c1740*/ bool TryCollectSun(UnityEngine.Vector3 worldPositionOnBoard);
-Dòng 21263: /*0x21c9aa4*/ bool HasUnitSelected();
-Dòng 21523: /*0x20*/ Yeti.SunGuiData _sunData;
-Dòng 21525: /*0x21ce6cc*/ LoadoutGuiData(Yeti.SunGuiData sunData);
-Dòng 21545: /*0x21cf0cc*/ bool HasEnoughSun(Yeti.LoadoutGuiData.LoadoutUnitGuiData unit);
-Dòng 21551: /*0x14*/ uint <SunCost>k__BackingField;
-Dòng 21561: /*0x21cf1a4*/ uint get_SunCost();
-Dòng 21562: /*0x21cf1ac*/ void set_SunCost(uint value);
-Dòng 21708: class ExtraSunSpentProcessor : Yeti.CoreSimMessageProcessor
-Dòng 21710: /*0x21d26b0*/ ExtraSunSpentProcessor();
-Dòng 21712: /*0x21d25c8*/ void HandleExtraSunSpent(YetiSimCoreLib.Messaging.Events.ExtraSunSpentEventArgs args);
-Dòng 22177: class SunDataChangedProcessor : Yeti.CoreSimMessageProcessor
-Dòng 22179: static /*0x0*/ string HandleSunGeneratorUpdatedName;
-Dòng 22180: static /*0x8*/ string HandleSunValueChangedName;
-Dòng 22181: static /*0x10*/ string HandleSpendPlantFoodOnSunName;
-Dòng 22182: static /*0x18*/ string HandleSpendPromotionOnSunName;
-Dòng 22183: static /*0x20*/ string HandleSunSpentName;
-Dòng 22185: static /*0x21df6d8*/ SunDataChangedProcessor();
-Dòng 22186: /*0x21d7510*/ SunDataChangedProcessor();
-Dòng 22188: /*0x21defa4*/ void HandleSunGeneratorUpdated(YetiSimCoreLib.Messaging.Events.SunGeneratorUpdatedEventArgs args);
-Dòng 22189: /*0x21df140*/ void HandleSunValueChanged(YetiSimCoreLib.Messaging.Events.SunValueChangedEventArgs args);
-Dòng 22190: /*0x21df288*/ void HandleSpendPlantFoodOnSun(YetiSimCoreLib.Messaging.Events.ISpendPlantFoodOnSunMeterMessage args);
-Dòng 22191: /*0x21df40c*/ void HandleSpendPromotionOnSun(YetiSimCoreLib.Messaging.Events.ISpendPromotionUseOnSunMeterMessage args);
-Dòng 22192: /*0x21df590*/ void HandleSunSpent(YetiSimCoreLib.Messaging.Events.SunSpentEventArgs args);
-Dòng 22195: class SunGenerationEventsProcessor : Yeti.CoreSimMessageProcessor
-Dòng 22197: static int SunFallColumnPadding = 1;
-Dòng 22199: /*0x21d7550*/ SunGenerationEventsProcessor();
-Dòng 22201: /*0x21dfae0*/ void HandleSunGenerationStopped(YetiSimCoreLib.Messaging.Events.SunGenerationStoppedEventArgs args);
-Dòng 22202: /*0x21dfaf8*/ void HandleSunGenerationEnding(YetiSimCoreLib.Messaging.Events.SunGenerationEndingEventArgs args);
-Dòng 22203: /*0x21dfb10*/ void HandleSunSpawned(YetiSimCoreLib.Messaging.Events.SunSpawnedEventArgs args);
-Dòng 22204: /*0x21dfd24*/ void HandleSunCollected(YetiSimCoreLib.Messaging.Events.ICollectSunMessage args);
-Dòng 22207: class SunValueModifiedProcessor : Yeti.CoreSimMessageProcessor
-Dòng 22209: /*0x21d754c*/ SunValueModifiedProcessor();
-Dòng 22211: /*0x21dff84*/ void HandleSunValueModified(YetiSimCoreLib.Messaging.Events.SunValueModifiedEventArgs args);
-Dòng 22283: static /*0x21e2330*/ void SetAvatarAnimationSpeedForAttack(bool isUnaffectedByAttackSpeed, bool isPrimary, Yeti.UnitPuppet unit);
-Dòng 22331: /*0x21e3e40*/ void ProcessUnitImpacted(YetiSimCoreLib.Messaging.Events.UnitImpactedEventArgs args);
-Dòng 22391: /*0x21e5b78*/ void ProcessUnitSpawned(YetiSimCoreLib.Messaging.Events.UnitSpawnedEventArgs args);
-Dòng 22397: /*0x21e7a04*/ void ProcessUnitSpawnedThroughInitialization(YetiSimCoreLib.Messaging.Events.UnitInitializedEventArgs args);
-Dòng 22801: /*0x70*/ Yeti.OnDiedHandler<Yeti.SunPuppet> _onSunPuppetDeathCompleteDelegate;
-Dòng 22810: /*0x21f0a08*/ Yeti.SunPuppet CreateSunPuppet(YetiSimCoreLib.Game.InstanceId instanceId);
-Dòng 22821: /*0x21f1eb4*/ void HandleSunPuppetDeathComplete(Yeti.SunPuppet sender);
-Dòng 22825: /*0x21f21bc*/ bool IsUnitDyingOrDead(Yeti.UnitPuppet puppet);
-Dòng 22968: class RuntimeSunflowerEmotion
-Dòng 22974: /*0x21f4e14*/ RuntimeSunflowerEmotion(Yeti.HostMood emotion, float duration);
-Dòng 22975: /*0x21f4e50*/ RuntimeSunflowerEmotion(Yeti.HostMood emotion);
-Dòng 22986: class SunflowerEmotionController
-Dòng 22988: /*0x10*/ System.Collections.Generic.SortedList<int, Yeti.RuntimeSunflowerEmotion> _prioritizedEmotions;
-Dòng 22990: /*0x21f5784*/ SunflowerEmotionController();
-Dòng 22991: /*0x21f4ed8*/ void QueueEmotion(Yeti.SunflowerEmotionMapping emotionMapping, float duration);
-Dòng 22992: /*0x21f517c*/ void QueuePermanentEmotion(Yeti.SunflowerEmotionMapping emotionMapping);
-Dòng 22993: /*0x21f4fc8*/ Yeti.RuntimeSunflowerEmotion GetRuntimeEmotion(Yeti.HostMood emotion);
-Dòng 23121: /*0x21f7a3c*/ bool get_IsUnlimitedResourcesModeActive();
-Dòng 23124: /*0x21f7b7c*/ void SetViewResourcesUnlimited(bool isActive);
-Dòng 26698: /*0x222f2f0*/ bool IsUnitASelectablePlant(Yeti.Data.UnitDefinition unit);
-Dòng 26804: /*0x50*/ System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<int>> _zombieIdsUnlockedAtLevel;
-Dòng 26806: static /*0x2231dd8*/ bool HasUnlockedBlockFromLevelUpRewardMoment(Yeti.Data.RewardMoment rewardMoment);
-Dòng 26823: /*0x18*/ bool HasUnlockedBlock;
-Dòng 26825: /*0x2232168*/ LevelUpRewardMomentInfo(string rewardMomentId, bool hasUnlockedBlock);
-Dòng 27309: /*0x1f2fe14*/ bool get_IsUnlocked();
-Dòng 27470: /*0x3c*/ bool <IsUnlocked>k__BackingField;
-Dòng 27505: /*0x223864c*/ bool get_IsUnlocked();
-Dòng 27506: /*0x2238654*/ void set_IsUnlocked(bool value);
-Dòng 27519: /*0x22344e4*/ void SetUnlockedState(bool isUnlocked, bool canBeUnlocked);
-Dòng 27892: /*0x223b5cc*/ void SetFallingSunRateOverride(int fallingSunRateBonusMultiplier, int rateRangeMs);
-Dòng 27893: /*0x223b5e4*/ void MakeBossBattle(int bossUnitId);
-Dòng 27897: /*0x223b6a4*/ void SetFallingSunSettings(YetiSimCoreLib.External.GameInitMessageData.FallingSunSettings fallingSunSettings);
-Dòng 28360: /*0x30*/ bool _isUnitIntroRunning;
-Dòng 29700: /*0x94*/ int _bonusSun;
-Dòng 29703: /*0xa0*/ int _shovelPercentSunReturned;
-Dòng 29713: /*0xd0*/ YetiSimCoreLib.External.GameInitMessageData.FallingSunSettings _fallingSunSettings;
-Dòng 29714: /*0xd4*/ bool _enableTappableSun;
-Dòng 29723: /*0x22528f8*/ void RegisterBonusResourcesOption(int sunSortOrder, int tacosSortOrder);
-Dòng 29734: /*0x2252cd4*/ void RegisterSunFallingOptions();
-Dòng 29735: /*0x2252cd8*/ void RegisterTappableSunOptions();
-Dòng 29736: /*0x22532c8*/ void SetBonusSun(int sun);
-Dòng 29739: /*0x22532e8*/ void SetShovelPercentSunReturned(int percent);
-Dòng 29768: /*0x2254e90*/ void SetSunFallingEnabled();
-Dòng 29769: /*0x2254e9c*/ void SetSunFallingDisabled();
-Dòng 29770: /*0x2254ea8*/ void SetSunFallingFromLevelDefinition();
-Dòng 29771: /*0x2254eb0*/ void SetTappableSunEnabled();
-Dòng 29772: /*0x2254ebc*/ void SetTappableSunDisabled();
-Dòng 30288: /*0x40*/ Yeti.YetiAudioEvent _promotionUsedOnSunEvent;
-Dòng 30301: /*0xa8*/ Yeti.YetiAudioEvent _plantFoodUsedOnSunEvent;
-Dòng 30305: /*0xc8*/ Yeti.YetiAudioEvent _sunGeneratedEvent;
-Dòng 30307: /*0xd8*/ Yeti.YetiAudioEvent _sunRemoved;
-Dòng 30335: /*0x225bfac*/ int get_PromotionUsedOnSun();
-Dòng 30348: /*0x225c048*/ int get_PlantFoodUsedOnSun();
-Dòng 30352: /*0x225c078*/ int get_SunGenerated();
-Dòng 30354: /*0x225c090*/ int get_SunRemoved();
-Dòng 30374: /*0x225c36c*/ int GetScoreBonusUnityEventId(Yeti.Data.ScoreBonusType type);
-Dòng 30602: /*0x280*/ string _relcaimSunVfxId;
-Dòng 30603: /*0x288*/ string _relcaimSunTextPopId;
-Dòng 30604: /*0x290*/ float _reclaimSunVfxTimingOffsets;
-Dòng 30605: /*0x298*/ string _extraSunSpentForTerrainBypassVfxId;
-Dòng 30608: /*0x2b0*/ Yeti.SunflowerConfig _sunflowerConfig;
-Dòng 30617: /*0x2f8*/ float _hideSunDelayAtEndOfCombat;
-Dòng 30618: /*0x2fc*/ float _autoCollectSunAboveGroundHeight;
-Dòng 30645: /*0x225eafc*/ string get_ReclaimSunTextPopId();
-Dòng 30646: /*0x225eb04*/ string get_ReclaimSunVfxId();
-Dòng 30647: /*0x225eb0c*/ string get_ExtraSunSpentForTerrainBypass();
-Dòng 30652: /*0x225eb34*/ float get_ReclaimSunVfxTimingOffsets();
-Dòng 30662: /*0x225eb84*/ float get_AutoCollectSunAboveGroundHeight();
-Dòng 30663: /*0x225eb8c*/ Yeti.SunflowerConfig get_SunflowerConfig();
-Dòng 30671: /*0x225ebcc*/ float get_HideSunDelayAtEndOfCombat();
-Dòng 31644: static /*0x226726c*/ UnityEngine.Vector3 GetRandomizedSunPosition(UnityEngine.Vector3 randomTilePosition, float xVariation, float zOffset);
-Dòng 31674: /*0x22672d4*/ void MoveToSameLayerAsUnits();
-Dòng 32491: /*0x2270a28*/ Yeti.OnBoardDropPuppetAvatarView CreateSunAvatar();
-Dòng 32923: /*0x58*/ YetiSimCoreLib.Core.ObjectPool<Yeti.SunPuppet> _sunPuppetPool;
-Dòng 32934: /*0x22768dc*/ Yeti.SunPuppet CreateSunPuppet(YetiSimCoreLib.Game.InstanceId instanceId);
-Dòng 32940: /*0x2276ef8*/ void DestroySun(Yeti.SunPuppet sunPuppet);
-Dòng 33632: class SunflowerEmotionMapping
-Dòng 33638: /*0x2283234*/ SunflowerEmotionMapping();
-Dòng 33644: class SunflowerEventConfig
-Dòng 33651: /*0x228325c*/ SunflowerEventConfig();
-Dòng 33658: class SunflowerConfig
-Dòng 33661: /*0x18*/ Yeti.SunflowerEmotionMapping[] _sunflowerEmotions;
-Dòng 33662: /*0x20*/ Yeti.SunflowerEventConfig _winStage;
-Dòng 33663: /*0x28*/ Yeti.SunflowerEventConfig _loseStage;
-Dòng 33664: /*0x30*/ Yeti.SunflowerEventConfig _zombieNearHouse;
-Dòng 33665: /*0x38*/ Yeti.SunflowerEventConfig _plantFoodUsed;
-Dòng 33666: /*0x40*/ Yeti.SunflowerEventConfig _legendaryPlantPlayed;
-Dòng 33667: /*0x48*/ Yeti.SunflowerEventConfig _sunGenerationEnding;
-Dòng 33668: /*0x50*/ Yeti.SunflowerEventConfig _plantFoodUsedOnSun;
-Dòng 33669: /*0x58*/ Yeti.SunflowerEventConfig _promotionUsedOnSun;
-Dòng 33671: /*0x22832b4*/ SunflowerConfig();
-Dòng 33673: /*0x228326c*/ Yeti.SunflowerEmotionMapping[] get_SunflowerEmotions();
-Dòng 33674: /*0x2283274*/ Yeti.SunflowerEventConfig get_WinStage();
-Dòng 33675: /*0x228327c*/ Yeti.SunflowerEventConfig get_LoseStage();
-Dòng 33676: /*0x2283284*/ Yeti.SunflowerEventConfig get_ZombieNearHouse();
-Dòng 33677: /*0x228328c*/ Yeti.SunflowerEventConfig get_PlantFoodUsed();
-Dòng 33678: /*0x2283294*/ Yeti.SunflowerEventConfig get_LegendaryPlantPlayed();
-Dòng 33679: /*0x228329c*/ Yeti.SunflowerEventConfig get_SunGenerationEnding();
-Dòng 33680: /*0x22832a4*/ Yeti.SunflowerEventConfig get_PlantFoodUsedOnSun();
-Dòng 33681: /*0x22832ac*/ Yeti.SunflowerEventConfig get_PromotionUsedOnSun();
-Dòng 33684: class SunPuppet : Yeti.SimplePuppet<Yeti.SunPuppet, Yeti.OnBoardDropPuppetAvatarView>
-Dòng 33686: /*0x30*/ int <SunValue>k__BackingField;
-Dòng 33688: /*0x2283350*/ SunPuppet();
-Dòng 33689: /*0x22832bc*/ int get_SunValue();
-Dòng 33690: /*0x22832c4*/ void set_SunValue(int value);
-Dòng 33691: /*0x22832cc*/ Yeti.OnBoardDropPuppetAvatarView get_SunAvatar();
-Dòng 34651: Sunburn = 24,
-Dòng 35080: NexusUnavailable = 1012,
-Dòng 39296: static string AreChargesUnlimited = "AreChargesUnlimited";
-Dòng 39307: /*0xd8*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _areChargesUnlimitedModel;
-Dòng 39387: /*0xb8*/ RedCrow.UI.UUIF.DataProviding.Models.IntModel _sunCost;
-Dòng 39401: /*0x22ef68c*/ int get_SunCost();
-Dòng 39423: /*0xc8*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _hasEnoughSunToPlay;
-Dòng 39438: /*0x22efdec*/ bool get_HasEnoughSun();
-Dòng 39442: /*0x22f02c0*/ void SetTotalSunCount(int sunCount);
-Dòng 39648: class SunAnimationModel : Yeti.YetiModelBase
-Dòng 39650: static string SunGeneratedKey = "SunGenerated";
-Dòng 39651: static string SunGenerationRateKey = "SunGenerationRate";
-Dòng 39652: /*0xa8*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _sunGeneratedModel;
-Dòng 39653: /*0xb0*/ RedCrow.UI.UUIF.DataProviding.Models.FloatModel _sunGenerationRateModel;
-Dòng 39655: /*0x22f2914*/ SunAnimationModel(string modelName, float sunGenerationInMs);
-Dòng 39656: /*0x22f2904*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel get_SunGeneratedModel();
-Dòng 39657: /*0x22f290c*/ RedCrow.UI.UUIF.DataProviding.Models.FloatModel get_SunGenerationRateModel();
-Dòng 39658: /*0x22f2a74*/ void SetSunGeneratedValue(bool sunGenerated);
-Dòng 39897: static string IsUnlockedKey = "IsUnlocked";
-Dòng 39918: /*0x108*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _isUnlocked;
-Dòng 43974: /*0x3c*/ bool _snapOnFocusUnchanged;
-Dòng 43975: /*0x40*/ float _snapTimeOnFocusUnchanged;
-Dòng 43976: /*0x44*/ bool _delaySnapOnFocusUnchanged;
-Dòng 43977: /*0x48*/ float _snapDelayForFocusUnchanged;
-Dòng 43987: /*0x2332b40*/ bool get_IsUsingDelayedSnapForFocusUnchanged();
-Dòng 43998: /*0x233321c*/ void SnapOnFocusUnchanged();
-Dòng 46485: StatusUnknown = 0,
-Dòng 47678: static int FeaturesUnlockedFieldNumber = 7;
-Dòng 47685: static /*0x28*/ Google.Protobuf.FieldCodec<int> _repeated_featuresUnlocked_codec;
-Dòng 47691: /*0x38*/ Google.Protobuf.Collections.RepeatedField<int> featuresUnlocked_;
-Dòng 47705: /*0x23629f4*/ Google.Protobuf.Collections.RepeatedField<int> get_FeaturesUnlocked();
-Dòng 48138: static int IsUnlockedFieldNumber = 2;
-Dòng 48145: /*0x1c*/ bool isUnlocked_;
-Dòng 48159: /*0x236be10*/ bool get_IsUnlocked();
-Dòng 48160: /*0x236be18*/ void set_IsUnlocked(bool value);
-Dòng 51395: static int SunUsedFieldNumber = 6;
-Dòng 51410: /*0x38*/ int sunUsed_;
-Dòng 51429: /*0x23ac344*/ int get_SunUsed();
-Dòng 51430: /*0x23ac34c*/ void set_SunUsed(int value);
-Dòng 56820: static int SunCollectedFieldNumber = 1;
-Dòng 56821: static int SunSpentFieldNumber = 2;
-Dòng 56835: /*0x18*/ int sunCollected_;
-Dòng 56836: /*0x1c*/ int sunSpent_;
-Dòng 56852: /*0x2429ce4*/ int get_SunCollected();
-Dòng 56853: /*0x2429cec*/ void set_SunCollected(int value);
-Dòng 56854: /*0x2429cf4*/ int get_SunSpent();
-Dòng 56855: /*0x2429cfc*/ void set_SunSpent(int value);
-Dòng 57092: static int SunBalanceFieldNumber = 4;
-Dòng 57110: /*0x30*/ int sunBalance_;
-Dòng 57130: /*0x242dc68*/ int get_SunBalance();
-Dòng 57131: /*0x242dc70*/ void set_SunBalance(int value);
-Dòng 57683: /*0xb0*/ int <CurrentSunAvailable>k__BackingField;
-Dòng 57684: /*0xb4*/ int <TotalSunCollected>k__BackingField;
-Dòng 57685: /*0xb8*/ int <TotalSunSpent>k__BackingField;
-Dòng 57706: /*0x2435790*/ int get_CurrentSunAvailable();
-Dòng 57707: /*0x2435798*/ void set_CurrentSunAvailable(int value);
-Dòng 57708: /*0x24357a0*/ int get_TotalSunCollected();
-Dòng 57709: /*0x24357a8*/ void set_TotalSunCollected(int value);
-Dòng 57710: /*0x24357b0*/ int get_TotalSunSpent();
-Dòng 57711: /*0x24357b8*/ void set_TotalSunSpent(int value);
-Dòng 57764: /*0x2438f98*/ void HandleSunValueChanged(YetiSimCoreLib.Messaging.Events.SunValueChangedEventArgs args);
-Dòng 57765: /*0x2438fbc*/ void HandleSunSpent(YetiSimCoreLib.Messaging.Events.SunSpentEventArgs args);
-Dòng 57932: /*0x243b60c*/ void HandleSunValueChanged(YetiSimCoreLib.Messaging.Events.SunValueChangedEventArgs args);
-Dòng 57933: /*0x243b624*/ void HandleSunSpent(YetiSimCoreLib.Messaging.Events.SunSpentEventArgs args);
-Dòng 58644: /*0x2447b38*/ Yeti.Almanac.UI.DescriptiveElementInfo ForSunCost(string alias, PvzN3xt.Data.PlantDescriptiveElementTypeCost data, Yeti.Data.UnitDefinition unitDefinition, int levelIndex);
-Dòng 58645: /*0x2447be8*/ Yeti.Almanac.UI.DescriptiveElementTextInfo SunGeneratedFromData(string alias, PvzN3xt.Data.PlantDescriptiveElementTypeSunGenerated de, Yeti.Data.UnitDefinition unitDefinition, int levelIndex);
-Dòng 58646: /*0x2447e1c*/ Yeti.Almanac.UI.DescriptiveElementInfo ForSunGenerated(string alias, PvzN3xt.Data.PlantDescriptiveElementTypeSunGenerated data, Yeti.Data.UnitDefinition unitDefinition, int levelIndex);
-Dòng 58714: SunGenerated = 14,
-Dòng 61765: static int SunRemainingFieldNumber = 7;
-Dòng 61766: static int SunCollectedFieldNumber = 8;
-Dòng 61807: /*0x34*/ int sunRemaining_;
-Dòng 61808: /*0x38*/ int sunCollected_;
-Dòng 61846: /*0x2480efc*/ int get_SunRemaining();
-Dòng 61847: /*0x2480f04*/ void set_SunRemaining(int value);
-Dòng 61848: /*0x2480f0c*/ int get_SunCollected();
-Dòng 61849: /*0x2480f14*/ void set_SunCollected(int value);
-Dòng 63042: static int HasUnlockedPremiumTrackFieldNumber = 4;
-Dòng 63056: /*0x24*/ bool hasUnlockedPremiumTrack_;
-Dòng 63077: /*0x2495a4c*/ bool get_HasUnlockedPremiumTrack();
-Dòng 63078: /*0x2495a54*/ void set_HasUnlockedPremiumTrack(bool value);
-Dòng 63129: static int SunCollectedApmFieldNumber = 1;
-Dòng 63136: /*0x18*/ float sunCollectedApm_;
-Dòng 63149: /*0x24971a8*/ float get_SunCollectedApm();
-Dòng 63150: /*0x24971b0*/ void set_SunCollectedApm(float value);
-Dòng 67406: static int FallingSunRateBonusMultiplierFieldNumber = 6;
-Dòng 67417: /*0x2c*/ int fallingSunRateBonusMultiplier_;
-Dòng 67439: /*0x24fcb44*/ int get_FallingSunRateBonusMultiplier();
-Dòng 67440: /*0x24fcb4c*/ void set_FallingSunRateBonusMultiplier(int value);
-Dòng 76701: CollectSun = 19,
-Dòng 76702: SpendSun = 20,
-Dòng 78385: static int SunCollectedFieldNumber = 10;
-Dòng 78386: static int SunBalanceFieldNumber = 11;
-Dòng 78403: /*0x44*/ int sunCollected_;
-Dòng 78404: /*0x48*/ int sunBalance_;
-Dòng 78434: /*0x25cfebc*/ int get_SunCollected();
-Dòng 78435: /*0x25cfec4*/ void set_SunCollected(int value);
-Dòng 78436: /*0x25cfecc*/ int get_SunBalance();
-Dòng 78437: /*0x25cfed4*/ void set_SunBalance(int value);
-Dòng 78850: static int CosmeticsUnequippedFieldNumber = 4;
-Dòng 78855: static /*0x10*/ Google.Protobuf.FieldCodec<PvzN3xt.Data.CosmeticId> _repeated_cosmeticsUnequipped_codec;
-Dòng 78860: /*0x30*/ Google.Protobuf.Collections.RepeatedField<PvzN3xt.Data.CosmeticId> cosmeticsUnequipped_;
-Dòng 78876: /*0x25eedd4*/ Google.Protobuf.Collections.RepeatedField<PvzN3xt.Data.CosmeticId> get_CosmeticsUnequipped();
-Dòng 82694: /*0x262dbc4*/ void AddSunParameters(System.Collections.Generic.List<Firebase.Analytics.Parameter> parameters, Yeti.Data.Next.BattleSummary summary);
-Dòng 82831: static string SunRemaining = "sun_remaining";
-Dòng 86199: /*0xa8*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _hasUnsavedChanges;
-Dòng 86212: /*0x266f2c4*/ void UpdateHasUnsavedChanges();
-Dòng 86224: static string HasUnsavedChanges = "HasUnsavedChanges";
-Dòng 87093: /*0x267b240*/ void OnNexusUnavailable();
-Dòng 89335: /*0x269d97c*/ void OnSunCountChanged(int sunCount);
-Dòng 89336: /*0x269dad4*/ void OnSunFlowerPromoted();
-Dòng 89337: /*0x269dc20*/ void OnSunCollected();
-Dòng 89404: /*0x1f30ebc*/ void add_OnPauseSunGeneration(System.Action value);
-Dòng 89405: /*0x1f30ebc*/ void remove_OnPauseSunGeneration(System.Action value);
-Dòng 89406: /*0x1f30ebc*/ void add_OnResumeSunGeneration(System.Action value);
-Dòng 89407: /*0x1f30ebc*/ void remove_OnResumeSunGeneration(System.Action value);
-Dòng 89426: /*0x1f309e4*/ void PauseSunGeneration();
-Dòng 89427: /*0x1f309e4*/ void ResumeSunGeneration();
-Dòng 89444: /*0x60*/ System.Action OnPauseSunGeneration;
-Dòng 89445: /*0x68*/ System.Action OnResumeSunGeneration;
-Dòng 89470: /*0x269fa2c*/ void add_OnPauseSunGeneration(System.Action value);
-Dòng 89471: /*0x269fac8*/ void remove_OnPauseSunGeneration(System.Action value);
-Dòng 89472: /*0x269fb64*/ void add_OnResumeSunGeneration(System.Action value);
-Dòng 89473: /*0x269fc00*/ void remove_OnResumeSunGeneration(System.Action value);
-Dòng 89488: /*0x26a0034*/ void PauseSunGeneration();
-Dòng 89489: /*0x26a0050*/ void ResumeSunGeneration();
-Dòng 90113: /*0x26a8ccc*/ bool ContainsUnit();
-Dòng 91709: /*0x30*/ string <BossUnitAlias>k__BackingField;
-Dòng 91729: /*0x26c9610*/ string get_BossUnitAlias();
-Dòng 91730: /*0x26c9618*/ void set_BossUnitAlias(string value);
-Dòng 92116: /*0x26d3678*/ void GetIsUnitBuffedOrDebuffedByLevelPerks(Yeti.Data.UnitDefinition unitDef, System.Collections.Generic.List<Yeti.Data.PerLevelCombatModifier> levelPerks, ref bool isBuffed, ref bool isDebuffed);
-Dòng 92117: /*0x26d3cfc*/ void GetIsUnitBuffedOrDebuffedByCombatModifier(Yeti.Data.UnitDefinition unitDef, Yeti.Data.CombatModifier modDef, int numStacks, Yeti.Data.PerksAndHazardType type, ref bool isBuffed, ref bool isDebuffed);
-Dòng 94411: class MapAssetStreamingRoot : UnityEngine.MonoBehaviour, PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener
-Dòng 94431: /*0x2706688*/ void PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener.OnAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController streamableAssetController);
-Dòng 94432: /*0x2706648*/ void OnNodeAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController streamableAssetController);
-Dòng 94525: interface IAssetsUnloadedCallbackListener
-Dòng 94527: /*0x1f30ebc*/ void OnAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController controller);
-Dòng 94535: static /*0x10*/ System.Collections.Generic.List<PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener> UnloadedListenersScratchList;
-Dòng 94545: /*0x68*/ System.Collections.Generic.List<PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener> _onAssetsUnloadedListeners;
-Dòng 94554: /*0x2706598*/ void SubscribeToAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener listener);
-Dòng 94555: /*0x27065f0*/ void UnsubscribeFromAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener listener);
-Dòng 94573: /*0x2708d14*/ void InvokeAssetsUnloaded();
-Dòng 94648: class MapStreamingAnimationEnabler : UnityEngine.MonoBehaviour, PvzN3xt.TownMap.AssetStreaming.IAssetsLoadedCallbackListener, PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener
-Dòng 94657: /*0x270a59c*/ void PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener.OnAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController controller);
-Dòng 94660: class MapStreamingParticleSystemEnabler : UnityEngine.MonoBehaviour, PvzN3xt.TownMap.AssetStreaming.IAssetsLoadedCallbackListener, PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener
-Dòng 94668: /*0x270a804*/ void PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener.OnAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController controller);
-Dòng 94671: class PlaySoundComponentsEnabler : UnityEngine.MonoBehaviour, PvzN3xt.TownMap.AssetStreaming.IAssetsLoadedCallbackListener, PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener
-Dòng 94683: /*0x270adb0*/ void PvzN3xt.TownMap.AssetStreaming.IAssetsUnloadedCallbackListener.OnAssetsUnloaded(PvzN3xt.TownMap.AssetStreaming.MapStreamableAssetController controller);
-Dòng 96659: /*0x2754164*/ int CalculateBoardStrength(int sunAmount, int boardPlantSunTotal, int boosts, int preBattleBoosts, int lawnMowers, int blovers);
-Dòng 96718: /*0x20*/ int <FallingSunRateBonusMultiplier>k__BackingField;
-Dòng 96733: /*0x2754df8*/ int get_FallingSunRateBonusMultiplier();
-Dòng 97102: /*0x2758058*/ bool IsUnlockedAndEnabled();
-Dòng 97158: /*0xd8*/ bool _hasUnclaimedReward;
-Dòng 97164: /*0x275b540*/ bool HasUnclaimedReward();
-Dòng 97371: /*0xb8*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _hasUnclaimedRewardsModel;
-Dòng 97374: /*0xcc*/ bool _hasUnclaimedRewards;
-Dòng 97381: /*0x275ec24*/ void SetHasUnclaimedRewards(bool hasUnclaimedRewards);
-Dòng 97389: static string HasUnclaimedRewards = "HasUnclaimedRewards";
-Dòng 97417: /*0x275ced8*/ bool IsUnlockedAndEnabled();
-Dòng 97418: /*0x275ec98*/ bool HasUnclaimedRewardsForCurrentWeek();
-Dòng 97419: /*0x275e9ec*/ bool HasUnclaimedRewardsForDayInCurrentWeek(int dayNumber);
-Dòng 97628: /*0x27619b8*/ bool IsUnlockedAndEnabled();
-Dòng 97955: class ScriptedActionPauseCombatSunGeneration : PvzN3xt.ScriptedAction.BaseScriptedAction
-Dòng 97959: /*0x276a474*/ ScriptedActionPauseCombatSunGeneration(PvzN3xt.Tutorial.ITutorialMessageDispatcher messageDispatcher);
-Dòng 97973: class ScriptedActionResumeCombatSunGeneration : PvzN3xt.ScriptedAction.BaseScriptedAction
-Dòng 97977: /*0x276a764*/ ScriptedActionResumeCombatSunGeneration(PvzN3xt.Tutorial.ITutorialMessageDispatcher messageDispatcher);
-Dòng 98006: class TutorialConditionCombatSunBalance : Yeti.TutorialConditionComparison<int>
-Dòng 98010: /*0x276ab4c*/ TutorialConditionCombatSunBalance(int sunBalance, PvzN3xt.Data.ComparisonType comparisonType);
-Dòng 98046: static /*0x276bdc4*/ bool IsUnitAvailable(Yeti.Data.UnitDefinition unitDefinition, System.Collections.Generic.IReadOnlyList<Yeti.Data.RemoveUnitConfig> filters);
-Dòng 99069: SunBoost = 2,
-Dòng 99126: /*0x2785548*/ bool IsUnlockedAndEnabled(PvzN3xt.Meta.FeatureUnlocks.Feature feature);
-Dòng 99128: /*0x2785584*/ bool IsUnlocked(PvzN3xt.Meta.FeatureUnlocks.Feature feature);
-Dòng 99156: /*0x27856dc*/ bool IsUnlocked(PvzN3xt.Meta.FeatureUnlocks.Feature feature);
-Dòng 99898: /*0x28*/ bool <HasUnlockedPremiumTrack>k__BackingField;
-Dòng 99920: /*0x27943a8*/ bool get_HasUnlockedPremiumTrack();
-Dòng 99921: /*0x27943b0*/ void set_HasUnlockedPremiumTrack(bool value);
-Dòng 100929: /*0x18*/ CapitalGames.LinkedHashSet<CapitalGames.ILifecycleAware> SoftResetInstancesUnordered;
-Dòng 104594: /*0x27e5ff4*/ bool IsUnlockedAndEnabled();
-Dòng 105982: /*0x1f2fe14*/ bool IsUnlockedAndEnabled();
-Dòng 106161: /*0x2809e4c*/ bool IsUnlockedAndEnabled();
-Dòng 107456: /*0x1f30c88*/ void MarkDecorationAsUnseen(int decoId, System.Action onSuccess);
-Dòng 107464: /*0x281f564*/ void MarkDecorationAsUnseen(int decoId, System.Action onSuccess);
-Dòng 107476: class MarkDecorationAsUnseenCall : Yeti.CheatServerCall<Google.Protobuf.WellKnownTypes.Empty, PvzN3xt.Data.GameApiResponse>
-Dòng 107478: /*0x281f92c*/ MarkDecorationAsUnseenCall();
-Dòng 107505: /*0x281f9b4*/ void <MarkDecorationAsUnseen>b__0(PvzN3xt.Data.GameApiResponse gar);
-Dòng 110386: /*0x285a1d0*/ void AddSunProducerDelays(PvzN3xt.ConcreteLevelLayoutGenerator.ConcreteLevelLayout result, YetiSimCoreLib.Game.IRandomProvider random, System.Collections.Generic.List<int> sunProducerIndexes);
-Dòng 110495: /*0x54*/ System.Nullable<int> StartingSunOverride;
-Dòng 110496: /*0x5c*/ System.Nullable<int> FallingSunDelayMs;
-Dòng 110502: /*0x84*/ System.Nullable<int> BaseFallingSunOverrideMs;
-Dòng 110507: /*0x285f360*/ BattleElementaryDefinitionGeneratorParameters(PvzN3xt.ConcreteLevelLayoutGenerator.ConcreteLevelLayout levelLayout, System.Collections.Generic.List<string> tags, System.Collections.Generic.List<System.ValueTuple<bool, int>> plantTeam, System.Collections.Generic.List<int> zombieTeam, System.Collections.Generic.List<int> featuredZombies, System.Collections.Generic.List<PvzN3xt.BattleElementaryDefinitionGenerator.WaveData> waves, int seed, int cascadeTriggerWaveIndex, string boardVisualAlias, int levelDifficultyTier, System.Nullable<int> startingSunOverride, System.Nullable<int> fallingSunDelayMs, int parAdjustment, System.Nullable<int> levelTypeId, System.Collections.Generic.IEnumerable<int> boardMechanicIds, bool disableBonusCoins, System.Nullable<int> overrideTaskPoints, System.Nullable<int> baseFallingSunOverrideMs, System.Collections.Generic.List<System.ValueTuple<int, float>> cascadeTokenDistributionOverride, System.Nullable<int> recommendedCascadeUnitId);
-Dòng 110778: static string SunflowerEvent = "sunflower";
-Dòng 110844: /*0xb8*/ PvzN3xt.Event.MilestoneEventModel _sunflowerEventModel;
-Dòng 110913: /*0x28698ac*/ void SetValue(PvzN3xt.Event.MilestoneEventInfo eventInfo, bool hasUnclaimedRewards, bool hasEnded);
-Dòng 111149: static string SunflowerEvent = "SunflowerEvent";
-Dòng 111286: static string SunflowerEvent = "SunflowerEvent";
-Dòng 111341: /*0x2873038*/ bool HasUnclaimedReward(PvzN3xt.Event.EventInfo leaderboardEvent);
-Dòng 111645: /*0x2878498*/ bool HasUnclaimedReward(PvzN3xt.Event.EventInfo raceEvent);
-Dòng 111716: /*0x286a1ac*/ void SetValue(PvzN3xt.Event.RaceEventInfo eventInfo, bool hasUnclaimedRewards, bool hasEnded);
-Dòng 111847: /*0x287ab58*/ bool HasUnclaimedReward(PvzN3xt.Event.EventInfo raceEvent);
-Dòng 113166: /*0x1f30ebc*/ void TemporarilyMarkPlantAsUnlocked(string alias);
-Dòng 113237: /*0x28b05ec*/ void TemporarilyMarkPlantAsUnlocked(string alias);
-Dòng 113904: static string IsUnlocked = "IsUnlocked";
-Dòng 114239: /*0xc0*/ RedCrow.UI.UUIF.DataProviding.Models.BoolModel _hasUnlockedPerk;
-Dòng 114275: static string HasUnlockedPerk = "HasUnlockedPerk";
-Dòng 114705: static string DefaultLowTierDevices = "HUAWEI DUB-LX3,HUAWEI INE-LX2,HUAWEI STK-L22,INFINIX Infinix X6515,INFINIX Infinix X6525,INFINIX Infinix X6528,INFINIX Infinix X669,INFINIX Infinix X6831,INFINIX Infinix X6835B,INFINIX MOBILITY LIMITED Infinix X6812B,INFINIX MOBILITY LIMITED Infinix X688B,ITEL itel A665L,ITEL itel S665L,OPPO CPH1803,OPPO CPH1823,OPPO CPH1853,OPPO CPH1903,OPPO CPH1909,OPPO CPH1911,OPPO CPH1933,OPPO CPH1969,OPPO CPH2015,OPPO CPH2083,OPPO CPH2127,OPPO CPH2185,OPPO CPH2219,OPPO CPH2239,OPPO CPH2269,OPPO CPH2349,OPPO CPH2387,OPPO CPH2471,OPPO CPH2477,OPPO CPH2591,realme RMX1911,Realme RMX1941,realme RMX2020,realme RMX2030,realme RMX2040,realme RMX2180,realme RMX2185,realme RMX2189,realme RMX2195,realme RMX3191,realme RMX3195,realme RMX3231,realme RMX3261,realme RMX3263,realme RMX3269,realme RMX3511,realme RMX3624,realme RMX3690,realme RMX3830,samsung SM-A025F,samsung SM-A035F,samsung SM-A047F,samsung SM-A107F,samsung SM-A115F,samsung SM-A125F,samsung SM-A127F,samsung SM-A135F,samsung SM-A136B,samsung SM-A137F,samsung SM-A146P,samsung SM-A207F,samsung SM-A217F,samsung SM-A325F,samsung SM-A505GN,samsung SM-A507FN,samsung SM-A515F,samsung SM-T225,samsung SM-X200,TECNO TECNO BF7,TECNO TECNO BG6,TECNO TECNO BG7,TECNO TECNO KI5k,TECNO TECNO KI7,vivo V2026,vivo V2032,vivo V2120,vivo V2134,vivo V2204,vivo V2221,vivo vivo 1811,vivo vivo 1906,Xiaomi 220333QAG,Xiaomi 23028RNCAG,Xiaomi M2003J15SC,Xiaomi M2004J19C,Xiaomi M2006C3LG,Xiaomi M2006C3MG,Xiaomi M2010J19CG,Xiaomi M2010J19SG,Xiaomi Redmi Note 8,";
+Dòng 1572: /*0x48*/ System.Collections.Generic.List<Bullet> bulletArray;
+Dòng 1608: /*0x114*/ int currentBulletNum;
+Dòng 1767: /*0x335110*/ Bullet FirePeas(Bullet ob, Plant torch, int damage, BulletType theBulletType);
+Dòng 2617: /*0x40*/ NutCannon_bullet shootObj;
+Dòng 2618: /*0x48*/ NutCannon_bullet waitObj;
+Dòng 2628: /*0x52f440*/ NutCannon_bullet GetBullet(PlantType theSeedType);
+Dòng 2631: class NutCannon_bullet : UnityEngine.MonoBehaviour
+Dòng 2644: /*0x530990*/ NutCannon_bullet();
+Dòng 2982: class Bullet : UnityEngine.MonoBehaviour
+Dòng 2991: /*0x54*/ BulletType theBulletType;
+Dòng 3003: /*0xa0*/ BulletStatus theStatus;
+Dòng 3007: /*0xb4*/ int theBulletRow;
+Dòng 3015: /*0xd1*/ bool isZombieBullet;
+Dòng 3032: /*0x31c640*/ Bullet();
+Dòng 3043: /*0x53ffa0*/ void CannonBulletUpdate();
+Dòng 3044: /*0x5459a0*/ void ThrowBulletUpdate();
+Dòng 3081: enum BulletMoveWay
+Dòng 3110: class Bullet_basketball : Bullet_cabbage
+Dòng 3112: /*0x31c640*/ Bullet_basketball();
+Dòng 3118: class Bullet_bigButter : Bullet_sunCabbage
+Dòng 3120: /*0x546660*/ Bullet_bigButter();
+Dòng 3126: class Bullet_bigKernal : Bullet_sunCabbage
+Dòng 3128: /*0x546660*/ Bullet_bigKernal();
+Dòng 3134: class Bullet_blackPuff : Bullet
+Dòng 3136: /*0x31c640*/ Bullet_blackPuff();
+Dòng 3141: class Bullet_butter : Bullet_cabbage
+Dòng 3143: /*0x31c640*/ Bullet_butter();
+Dòng 3148: class Bullet_butterMelon : Bullet_melon
+Dòng 3150: /*0x546660*/ Bullet_butterMelon();
+Dòng 3155: class Bullet_butter_iron : Bullet_butter
+Dòng 3157: /*0x31c640*/ Bullet_butter_iron();
+Dòng 3162: class Bullet_butter_portal : Bullet_butter
+Dòng 3166: /*0x31c640*/ Bullet_butter_portal();
+Dòng 3171: class Bullet_butter_ulti : Bullet
+Dòng 3173: /*0x31c640*/ Bullet_butter_ulti();
+Dòng 3178: class Bullet_cabbage : Bullet
+Dòng 3182: /*0x31c640*/ Bullet_cabbage();
+Dòng 3190: class Bullet_cabbageMelon : Bullet_sunCabbage
+Dòng 3192: /*0x546660*/ Bullet_cabbageMelon();
+Dòng 3199: class Bullet_cabbage_small : Bullet_sunCabbage
+Dòng 3203: /*0x546660*/ Bullet_cabbage_small();
+Dòng 3210: class Bullet_cabbage_ulti : Bullet_cabbage_small
+Dòng 3212: /*0x546660*/ Bullet_cabbage_ulti();
+Dòng 3217: class Bullet_cactus : Bullet_pierce
+Dòng 3219: /*0x546660*/ Bullet_cactus();
+Dòng 3230: /*0x20*/ Bullet_cactus <>4__this;
+Dòng 3246: class Bullet_cactusStar : Bullet_star
+Dòng 3248: /*0x548ab0*/ Bullet_cactusStar();
+Dòng 3255: class Bullet_cannon : Bullet
+Dòng 3257: /*0x31c640*/ Bullet_cannon();
+Dòng 3265: /*0x18*/ Bullet_cannon <>4__this;
+Dòng 3275: /*0x20*/ Bullet_cannon.<> CS$<>8__locals1;
+Dòng 3283: class Bullet_cherry : Bullet
+Dòng 3285: /*0x317730*/ Bullet_cherry();
+Dòng 3291: class Bullet_cherryJalapeno : Bullet_pierce
+Dòng 3293: /*0x317730*/ Bullet_cherryJalapeno();
+Dòng 3299: class Bullet_cherrySquash : Bullet_squash
+Dòng 3301: /*0x317730*/ Bullet_cherrySquash();
+Dòng 3305: class Bullet_cornMelon : Bullet_melon
+Dòng 3307: /*0x317730*/ Bullet_cornMelon();
+Dòng 3312: class Bullet_corn_ulti : Bullet_garlicKernal
+Dòng 3314: /*0x317730*/ Bullet_corn_ulti();
+Dòng 3318: class Bullet_doom : Bullet
+Dòng 3322: /*0x317730*/ Bullet_doom();
+Dòng 3330: class Bullet_doomCactus : Bullet_pierce
+Dòng 3332: /*0x317730*/ Bullet_doomCactus();
+Dòng 3338: class Bullet_doom_throw : Bullet
+Dòng 3340: /*0x317730*/ Bullet_doom_throw();
+Dòng 3347: class Bullet_endoSun : Bullet
+Dòng 3349: /*0x317730*/ Bullet_endoSun();
+Dòng 3355: class Bullet_extremeSnowPea : Bullet_snowPea
+Dòng 3359: /*0x317730*/ Bullet_extremeSnowPea();
+Dòng 3365: class Bullet_fireKelp : Bullet
+Dòng 3367: /*0x317730*/ Bullet_fireKelp();
+Dòng 3374: class Bullet_fireMelon : Bullet_melon
+Dòng 3376: /*0x317730*/ Bullet_fireMelon();
+Dòng 3381: class Bullet_firePea : Bullet
+Dòng 3385: /*0x317730*/ Bullet_firePea();
+Dòng 3392: class Bullet_firePea_purple : Bullet_firePea
+Dòng 3394: /*0x317730*/ Bullet_firePea_purple();
+Dòng 3399: class Bullet_firePea_super : Bullet_pierce
+Dòng 3401: /*0x317730*/ Bullet_firePea_super();
+Dòng 3407: class Bullet_fireStar : Bullet_star
+Dòng 3409: /*0x556dc0*/ Bullet_fireStar();
+Dòng 3414: class Bullet_fireTrack : Bullet
+Dòng 3416: /*0x317730*/ Bullet_fireTrack();
+Dòng 3421: class Bullet_garlicBomb : Bullet
+Dòng 3423: /*0x317730*/ Bullet_garlicBomb();
+Dòng 3429: class Bullet_garlicButter : Bullet_butter
+Dòng 3431: /*0x317730*/ Bullet_garlicButter();
+Dòng 3436: class Bullet_garlicCabbage : Bullet_sunCabbage
+Dòng 3438: /*0x317730*/ Bullet_garlicCabbage();
+Dòng 3444: class Bullet_garlicKernal : Bullet_kernal
+Dòng 3446: /*0x317730*/ Bullet_garlicKernal();
+Dòng 3450: class Bullet_garlicMelon : Bullet_melon
+Dòng 3452: /*0x317730*/ Bullet_garlicMelon();
+Dòng 3457: class Bullet_goldSquashKelp : Bullet_squashKelp
+Dòng 3459: /*0x317730*/ Bullet_goldSquashKelp();
+Dòng 3463: class Bullet_helmetPea : Bullet_ironPea
+Dòng 3465: /*0x317730*/ Bullet_helmetPea();
+Dòng 3469: class Bullet_hypnoPea : Bullet
+Dòng 3471: /*0x317730*/ Bullet_hypnoPea();
+Dòng 3476: class Bullet_hypnoPea_fire : Bullet_firePea
+Dòng 3478: /*0x317730*/ Bullet_hypnoPea_fire();
+Dòng 3482: class Bullet_iceBlock : Bullet_cabbage
+Dòng 3484: /*0x317730*/ Bullet_iceBlock();
+Dòng 3489: class Bullet_iceBlock_big : Bullet_iceBlock
+Dòng 3491: /*0x317730*/ Bullet_iceBlock_big();
+Dòng 3495: class Bullet_iceBlock_recover : Bullet_cabbage
+Dòng 3497: /*0x317730*/ Bullet_iceBlock_recover();
+Dòng 3501: class Bullet_iceDoom : Bullet_pierce
+Dòng 3503: /*0x317730*/ Bullet_iceDoom();
+Dòng 3508: class Bullet_iceSpark : Bullet_pierce
+Dòng 3510: /*0x317730*/ Bullet_iceSpark();
+Dòng 3516: class Bullet_iceSword : Bullet
+Dòng 3518: /*0x317730*/ Bullet_iceSword();
+Dòng 3523: class Bullet_iceTrack : Bullet
+Dòng 3525: /*0x317730*/ Bullet_iceTrack();
+Dòng 3532: class Bullet_ironPea : Bullet
+Dòng 3534: /*0x317730*/ Bullet_ironPea();
+Dòng 3540: class Bullet_ironPea_air : Bullet
+Dòng 3542: /*0x317730*/ Bullet_ironPea_air();
+Dòng 3548: class Bullet_ironStar : Bullet_star
+Dòng 3550: /*0x556dc0*/ Bullet_ironStar();
+Dòng 3555: class Bullet_jackboxStar : Bullet_star
+Dòng 3557: /*0x556dc0*/ Bullet_jackboxStar();
+Dòng 3562: class Bullet_kelp : Bullet
+Dòng 3564: /*0x317730*/ Bullet_kelp();
+Dòng 3569: class Bullet_kernal : Bullet_cabbage
+Dòng 3571: /*0x317730*/ Bullet_kernal();
+Dòng 3576: class Bullet_lotusSpruce : Bullet
+Dòng 3578: /*0x317730*/ Bullet_lotusSpruce();
+Dòng 3584: class Bullet_lourCactus : Bullet_cactus
+Dòng 3589: /*0x55aa20*/ Bullet_lourCactus();
+Dòng 3595: class Bullet_lunarCabbage : Bullet_cabbage
+Dòng 3597: /*0x317730*/ Bullet_lunarCabbage();
+Dòng 3602: class Bullet_magicTrack : Bullet
+Dòng 3604: /*0x317730*/ Bullet_magicTrack();
+Dòng 3609: class Bullet_magnetCactus : Bullet
+Dòng 3611: /*0x317730*/ Bullet_magnetCactus();
+Dòng 3617: class Bullet_magnetStar : Bullet_star
+Dòng 3619: /*0x556dc0*/ Bullet_magnetStar();
+Dòng 3625: class Bullet_melon : Bullet_cabbage
+Dòng 3627: /*0x317730*/ Bullet_melon();
+Dòng 3634: class Bullet_melonCannon : Bullet_cannon
+Dòng 3638: /*0x317730*/ Bullet_melonCannon();
+Dòng 3643: class Bullet_melon_hypno : Bullet_melon
+Dòng 3645: /*0x317730*/ Bullet_melon_hypno();
+Dòng 3650: class Bullet_melon_iron : Bullet_melon
+Dòng 3652: /*0x317730*/ Bullet_melon_iron();
+Dòng 3658: class Bullet_melon_magnet : Bullet_melon
+Dòng 3660: /*0x317730*/ Bullet_melon_magnet();
+Dòng 3666: class Bullet_melon_portal : Bullet_melon
+Dòng 3668: /*0x317730*/ Bullet_melon_portal();
+Dòng 3675: static /*0x0*/ Bullet_melon_portal.<> <>9;
+Dòng 3684: class Bullet_melon_small : Bullet
+Dòng 3686: /*0x317730*/ Bullet_melon_small();
+Dòng 3691: class Bullet_melon_ulti : Bullet_melon_small
+Dòng 3693: /*0x317730*/ Bullet_melon_ulti();
+Dòng 3698: class Bullet_normalSun : Bullet_smallSun
+Dòng 3700: /*0x317730*/ Bullet_normalSun();
+Dòng 3704: class Bullet_nut : Bullet_pierce
+Dòng 3706: /*0x317730*/ Bullet_nut();
+Dòng 3712: class Bullet_passionFruit : Bullet
+Dòng 3714: /*0x317730*/ Bullet_passionFruit();
+Dòng 3719: class Bullet_pea : Bullet
+Dòng 3721: /*0x317730*/ Bullet_pea();
+Dòng 3727: class Bullet_pickaxeStar : Bullet_star
+Dòng 3729: /*0x556dc0*/ Bullet_pickaxeStar();
+Dòng 3734: class Bullet_pierce : Bullet
+Dòng 3736: /*0x317730*/ Bullet_pierce();
+Dòng 3743: class Bullet_portalPea : Bullet
+Dòng 3745: /*0x317730*/ Bullet_portalPea();
+Dòng 3751: class Bullet_puff : Bullet
+Dòng 3753: /*0x317730*/ Bullet_puff();
+Dòng 3758: class Bullet_puffLove : Bullet
+Dòng 3760: /*0x317730*/ Bullet_puffLove();
+Dòng 3767: class Bullet_puffNut : Bullet_pierce
+Dòng 3769: /*0x317730*/ Bullet_puffNut();
+Dòng 3775: class Bullet_puffPea : Bullet
+Dòng 3777: /*0x317730*/ Bullet_puffPea();
+Dòng 3782: class Bullet_puffPotato : Bullet
+Dòng 3784: /*0x317730*/ Bullet_puffPotato();
+Dòng 3789: class Bullet_puffRandomColor : Bullet
+Dòng 3794: /*0x317730*/ Bullet_puffRandomColor();
+Dòng 3802: class Bullet_redLunarCabbage : Bullet_cabbage
+Dòng 3804: /*0x317730*/ Bullet_redLunarCabbage();
+Dòng 3809: class Bullet_seaStar : Bullet_star
+Dòng 3811: /*0x556dc0*/ Bullet_seaStar();
+Dòng 3816: class Bullet_shulkLeaf : Bullet_pierce
+Dòng 3820: /*0x317730*/ Bullet_shulkLeaf();
+Dòng 3828: class Bullet_shulkLeaf_ice : Bullet_shulkLeaf
+Dòng 3830: /*0x317730*/ Bullet_shulkLeaf_ice();
+Dòng 3837: /*0x10*/ Bullet bullet;
+Dòng 3844: class Bullet_shulkLeaf_ultimate : Bullet_pierce
+Dòng 3848: /*0x317730*/ Bullet_shulkLeaf_ultimate();
+Dòng 3857: class Bullet_shulkLeaf_water : Bullet_shulkLeaf
+Dòng 3859: /*0x317730*/ Bullet_shulkLeaf_water();
+Dòng 3866: /*0x10*/ Bullet bullet;
+Dòng 3873: class Bullet_silverButter : Bullet_butter
+Dòng 3875: /*0x317730*/ Bullet_silverButter();
+Dòng 3880: class Bullet_silverCabbage : Bullet_cabbage
+Dòng 3884: /*0x317730*/ Bullet_silverCabbage();
+Dòng 3890: class Bullet_silverCoin : Bullet
+Dòng 3892: /*0x317730*/ Bullet_silverCoin();
+Dòng 3897: class Bullet_silverMelon : Bullet_melon
+Dòng 3899: /*0x317730*/ Bullet_silverMelon();
+Dòng 3904: class Bullet_smallButter : Bullet_butter
+Dòng 3906: /*0x317730*/ Bullet_smallButter();
+Dòng 3910: class Bullet_smallGoldCannon : Bullet
+Dòng 3912: /*0x317730*/ Bullet_smallGoldCannon();
+Dòng 3918: class Bullet_smallSun : Bullet_pea
+Dòng 3922: /*0x317730*/ Bullet_smallSun();
+Dòng 3930: class Bullet_snowBall : Bullet
+Dòng 3932: /*0x317730*/ Bullet_snowBall();
+Dòng 3938: class Bullet_snowPea : Bullet_pea
+Dòng 3940: /*0x317730*/ Bullet_snowPea();
+Dòng 3945: class Bullet_springMelon : Bullet_fireMelon
+Dòng 3947: /*0x317730*/ Bullet_springMelon();
+Dòng 3954: class Bullet_spruce : Bullet_pierce
+Dòng 3956: /*0x317730*/ Bullet_spruce();
+Dòng 3962: class Bullet_spruceBallista : Bullet_pierce
+Dòng 3964: /*0x317730*/ Bullet_spruceBallista();
+Dòng 3971: class Bullet_spruceShulk : Bullet_spruce
+Dòng 3975: /*0x317730*/ Bullet_spruceShulk();
+Dòng 3981: /*0x10*/ Bullet bullet;
+Dòng 3988: class Bullet_spruce_bamboo : Bullet_spruce
+Dòng 3990: /*0x317730*/ Bullet_spruce_bamboo();
+Dòng 3994: class Bullet_squash : Bullet
+Dòng 3996: /*0x317730*/ Bullet_squash();
+Dòng 4004: class Bullet_squashKelp : Bullet_squash
+Dòng 4006: /*0x317730*/ Bullet_squashKelp();
+Dòng 4012: class Bullet_star : Bullet
+Dòng 4022: /*0x556dc0*/ Bullet_star();
+Dòng 4032: class Bullet_steelPea : Bullet_pierce
+Dòng 4034: /*0x317730*/ Bullet_steelPea();
+Dòng 4040: class Bullet_sunCabbage : Bullet_pierce
+Dòng 4044: /*0x317730*/ Bullet_sunCabbage();
+Dòng 4052: class Bullet_sunSpike : Bullet_iceSpark
+Dòng 4054: /*0x317730*/ Bullet_sunSpike();
+Dòng 4059: class Bullet_superCherry : Bullet
+Dòng 4061: /*0x317730*/ Bullet_superCherry();
+Dòng 4067: class Bullet_superMelon : Bullet_melon
+Dòng 4071: /*0x317730*/ Bullet_superMelon();
+Dòng 4076: class Bullet_superStar : Bullet_star
+Dòng 4078: /*0x556dc0*/ Bullet_superStar();
+Dòng 4086: class Bullet_sword : Bullet_pierce
+Dòng 4088: /*0x317730*/ Bullet_sword();
+Dòng 4094: class Bullet_threeSpike : Bullet
+Dòng 4096: /*0x317730*/ Bullet_threeSpike();
+Dòng 4101: class Bullet_ultimateCactus : Bullet_iceDoom
+Dòng 4103: /*0x317730*/ Bullet_ultimateCactus();
+Dòng 4111: class Bullet_ultimateKernal : Bullet
+Dòng 4113: /*0x317730*/ Bullet_ultimateKernal();
+Dòng 4117: class Bullet_ultimateMelon : Bullet_superMelon
+Dòng 4119: /*0x317730*/ Bullet_ultimateMelon();
+Dòng 4124: class Bullet_ultimatePuff : Bullet_ultimateMelon
+Dòng 4126: /*0x317730*/ Bullet_ultimatePuff();
+Dòng 4131: class Bullet_ultimateStar : Bullet_star
+Dòng 4133: /*0x556dc0*/ Bullet_ultimateStar();
+Dòng 4144: class Bullet_ultimateSun : Bullet_pierce
+Dòng 4148: /*0x546660*/ Bullet_ultimateSun();
+Dòng 4157: class Bullet_water : Bullet_cabbage
+Dòng 4159: /*0x317730*/ Bullet_water();
+Dòng 4164: class Bullet_waterBallista : Bullet_spruceBallista
+Dòng 4166: /*0x546660*/ Bullet_waterBallista();
+Dòng 4170: class Bullet_waterBallista2 : Bullet_spruceBallista
+Dòng 4172: /*0x546660*/ Bullet_waterBallista2();
+Dòng 4176: class Bullet_watercan : Bullet
+Dòng 4178: /*0x317730*/ Bullet_watercan();
+Dòng 4185: static /*0x0*/ Bullet_watercan.<> <>9;
+Dòng 4194: class Bullet_water_big : Bullet
+Dòng 4196: /*0x317730*/ Bullet_water_big();
+Dòng 4201: class Bullet_winterMelon : Bullet_melon
+Dòng 4203: /*0x546660*/ Bullet_winterMelon();
+Dòng 4208: class Bullet_zombieBlock : Bullet_nut
+Dòng 4210: /*0x546660*/ Bullet_zombieBlock();
+Dòng 4215: class Bullet_zombieBlock2 : Bullet_zombieBlock
+Dòng 4217: /*0x546660*/ Bullet_zombieBlock2();
+Dòng 4223: /*0x20*/ Bullet bullet;
+Dòng 4224: /*0x28*/ BulletMoveWay theMoveWay;
+Dòng 4474: class CreateBullet : UnityEngine.MonoBehaviour
+Dòng 4476: static /*0x0*/ CreateBullet Instance;
+Dòng 4478: /*0x31c640*/ CreateBullet();
+Dòng 4480: /*0x56f2d0*/ Bullet SetBullet(float x, float y, int theRow, BulletType theBulletType, int theMovingWay, bool isZombieBullet);
+Dòng 4481: /*0x56f0c0*/ Bullet SetBullet(float x, float y, int theRow, BulletType theBulletType, BulletMoveWay theMovingWay, bool isZombieBullet);
+Dòng 4482: /*0x56ee00*/ void AddToList(Bullet bullet);
+Dòng 4483: /*0x56f4f0*/ void SetLayer(Bullet bullet, int theRow);
+Dòng 4533: /*0x28*/ UnityEngine.LayerMask bulletLayer;
+Dòng 4669: Bullet = 2,
+Dòng 4672: BulletAll = 5,
+Dòng 5426: /*0x5970e0*/ void CreateStars(BulletType bulletType);
+Dòng 5486: /*0x58*/ UnityEngine.LayerMask bulletLayer;
+Dòng 5610: /*0x59b990*/ void HitBullet(Bullet bullet);
+Dòng 6071: /*0x118*/ UnityEngine.LayerMask bulletLayer;
+Dòng 6684: /*0x358c50*/ Bullet AnimShoot();
+Dòng 6693: /*0x359080*/ Bullet Shoot1();
+Dòng 6812: /*0x230*/ BulletType shootType;
+Dòng 6918: /*0x34a2e0*/ void Block(Bullet bullet);
+Dòng 6925: /*0x34a750*/ BulletType GetBulletType();
+Dòng 6934: /*0x34a7c0*/ void AdjustBulletSpeed(Bullet bullet);
+Dòng 6943: /*0x34b410*/ Bullet Shoot1();
+Dòng 7094: /*0x350750*/ void Block(Bullet bullet);
+Dòng 7264: /*0x354890*/ void AdjustBulletSpeed(Bullet bullet);
+Dòng 7266: /*0x355340*/ void ReinforceBullet(Bullet bullet, int theRow);
+Dòng 7279: /*0x356190*/ void FireBullets();
+Dòng 7290: /*0x355a90*/ Bullet Shoot1();
+Dòng 7372: /*0x3581a0*/ bool Attrackable(Bullet bullet);
+Dòng 7386: /*0x35c950*/ void FireBullet(Bullet bullet);
+Dòng 7387: /*0x35ce20*/ void SetBullet(int theRow, BulletType theBulletType, float theDamage, float speed, int theMoveWay, float offset);
+Dòng 7595: /*0x362ad0*/ void TurnAtoB(Bullet bullet, BulletType newBulletType, int damage);
+Dòng 7934: /*0x208*/ System.Collections.Generic.List<Bullet> bullets;
+Dòng 7940: /*0x36d020*/ void SearchBullet();
+Dòng 8015: /*0x370110*/ BulletType GetBulletType();
+Dòng 8042: /*0x371b30*/ void Block(Bullet bullet);
+Dòng 8065: /*0x3734e0*/ void Block(Bullet bullet);
+Dòng 8144: /*0x3752b0*/ Bullet Shoot1();
+Dòng 8151: /*0x3753d0*/ Bullet Shoot1();
+Dòng 8288: /*0x37ba60*/ Bullet Shoot1();
+Dòng 8301: /*0x37be70*/ void Block(Bullet bullet);
+Dòng 8559: /*0x210*/ Bullet_star[] starBullets;
+Dòng 8564: /*0x230*/ int maxBullets;
+Dòng 8571: /*0x382a70*/ bool AddNode(Bullet_star starBullet);
+Dòng 8572: /*0x383490*/ void RemoveNode(Bullet_star starBullet);
+Dòng 8575: /*0x383060*/ void MoveToCircle(Bullet_star star);
+Dòng 8576: /*0x3835b0*/ void RotateOnCircle(Bullet_star star);
+Dòng 8584: /*0x383b70*/ void SetBullet(int theMovingWay, float angle);
+Dòng 8647: /*0x38af10*/ Bullet Shoot1();
+Dòng 8702: /*0x38c6e0*/ Bullet Shoot1();
+Dòng 8720: /*0x38cb90*/ void ExtraBullet();
+Dòng 8728: /*0x38d2b0*/ void FirePeas(Bullet bullet);
+Dòng 8738: /*0x38d810*/ bool CheckFire(Bullet bullet);
+Dòng 8745: /*0x38e130*/ bool CheckFire(Bullet bullet);
+Dòng 8751: /*0x38e720*/ Bullet Shoot1();
+Dòng 8821: /*0x391650*/ Bullet Shoot1();
+Dòng 8856: /*0x240*/ System.Collections.Generic.List<UltimateMagnet.AttrackedBucket> bullets;
+Dòng 8863: /*0x393490*/ void AddToBullets(UltimateMagnet.AttrackedBucket bucket);
+Dòng 8885: /*0x3864e0*/ void BulletUpdate();
+Dòng 8985: /*0x398200*/ void Block(Bullet bullet);
+Dòng 8987: /*0x398370*/ System.Collections.IEnumerator DelayBlock(Bullet bullet);
+Dòng 8996: /*0x20*/ Bullet bullet;
+Dòng 9024: /*0x3989f0*/ BulletType GetBulletType();
+Dòng 9277: /*0x388e70*/ Bullet AnimShoot();
+Dòng 9279: /*0x388e90*/ Bullet Shoot1();
+Dòng 9280: /*0x388e90*/ Bullet Shoot2();
+Dòng 9281: /*0x388e90*/ BulletType GetBulletType();
+Dòng 9302: /*0x386bc0*/ Bullet Shoot1();
+Dòng 9316: /*0x399ad0*/ Bullet Shoot1();
+Dòng 9322: /*0x39a1f0*/ Bullet Shoot1();
+Dòng 9323: /*0x39a380*/ Bullet Shoot2();
+Dòng 9331: /*0x39a9b0*/ Bullet Shoot1();
+Dòng 9337: /*0x34a750*/ BulletType GetBulletType();
+Dòng 9345: /*0x39ab50*/ BulletType GetBulletType();
+Dòng 9353: /*0x39ac50*/ BulletType GetBulletType();
+Dòng 9361: /*0x39b6b0*/ Bullet Shoot1();
+Dòng 9362: /*0x39b830*/ Bullet Shoot2();
+Dòng 9363: /*0x39b060*/ BulletType GetBulletType();
+Dòng 9372: /*0x39af40*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 9380: /*0x39bed0*/ Bullet Shoot1();
+Dòng 9381: /*0x39bff0*/ Bullet Shoot2();
+Dòng 9395: /*0x39c160*/ Bullet Shoot1();
+Dòng 9402: /*0x39c610*/ Bullet Shoot1();
+Dòng 9408: /*0x39c770*/ Bullet Shoot1();
+Dòng 9415: /*0x39c910*/ Bullet Shoot1();
+Dòng 9421: /*0x39ca10*/ Bullet Shoot1();
+Dòng 9428: /*0x39cb20*/ Bullet Shoot1();
+Dòng 9429: /*0x39cd40*/ Bullet Shoot2();
+Dòng 9438: /*0x39cf00*/ BulletType GetBulletType();
+Dòng 9439: /*0x39cef0*/ BulletType GetBulletType2();
+Dòng 9445: /*0x39d000*/ BulletType GetBulletType();
+Dòng 9446: /*0x39cff0*/ BulletType GetBulletType2();
+Dòng 9454: /*0x39d0d0*/ BulletType GetBulletType();
+Dòng 9455: /*0x39d0c0*/ BulletType GetBulletType2();
+Dòng 9464: /*0x39d4f0*/ BulletType GetBulletType();
+Dòng 9465: /*0x39d4e0*/ BulletType GetBulletType2();
+Dòng 9480: /*0x39d720*/ BulletType GetBulletType();
+Dòng 9483: /*0x39d860*/ Bullet Shoot1();
+Dòng 9484: /*0x39daa0*/ Bullet Shoot2();
+Dòng 9501: /*0x39e270*/ Bullet Shoot1();
+Dòng 9507: /*0x39e4d0*/ Bullet Shoot1();
+Dòng 9518: /*0x39eae0*/ Bullet Shoot1();
+Dòng 9534: /*0x39f260*/ Bullet Shoot1();
+Dòng 9541: /*0x39f500*/ Bullet Shoot1();
+Dòng 9542: /*0x39f370*/ BulletType GetBulletType();
+Dòng 9548: /*0x39f620*/ Bullet Shoot1();
+Dòng 9554: /*0x39f9d0*/ Bullet Shoot1();
+Dòng 9563: /*0x39fef0*/ Bullet Shoot1();
+Dòng 9569: /*0x39ffa0*/ BulletType GetBulletType();
+Dòng 9586: /*0x3a0700*/ Bullet Shoot1();
+Dòng 9592: /*0x3a0840*/ BulletType GetBulletType();
+Dòng 9598: /*0x3a0860*/ BulletType GetBulletType();
+Dòng 9599: /*0x3a0850*/ BulletType GetBulletType2();
+Dòng 9606: /*0x3a08d0*/ Bullet Shoot1();
+Dòng 9612: /*0x3a0a50*/ BulletType GetBulletType();
+Dòng 9619: /*0x3a0ab0*/ Bullet Shoot1();
+Dòng 9633: /*0x3a1320*/ Bullet Shoot1();
+Dòng 9647: /*0x3a19f0*/ Bullet Shoot1();
+Dòng 9648: /*0x3a22a0*/ Bullet Shoot2();
+Dòng 9676: /*0x3a2410*/ Bullet Shoot1();
+Dòng 9682: /*0x3a25c0*/ Bullet Shoot1();
+Dòng 9683: /*0x3a2590*/ BulletType GetBulletType();
+Dòng 9689: /*0x3a2700*/ BulletType GetBulletType();
+Dòng 9696: /*0x3a2710*/ Bullet Shoot1();
+Dòng 9703: /*0x3a2820*/ Bullet Shoot1();
+Dòng 9704: /*0x3a29f0*/ Bullet Shoot2();
+Dòng 9711: /*0x3a2c90*/ Bullet Shoot1();
+Dòng 9718: /*0x3a4690*/ Bullet Shoot1();
+Dòng 9725: /*0x3a4a30*/ Bullet Shoot1();
+Dòng 9735: /*0x3a4d10*/ Bullet Shoot1();
+Dòng 9761: /*0x3a50b0*/ Bullet Shoot1();
+Dòng 9768: /*0x3a55c0*/ Bullet Shoot1();
+Dòng 9774: /*0x3a5770*/ Bullet Shoot1();
+Dòng 9781: /*0x3a58d0*/ Bullet Shoot1();
+Dòng 9787: /*0x3a5e70*/ Bullet Shoot1();
+Dòng 9803: /*0x3a3a90*/ Bullet Shoot1();
+Dòng 9804: /*0x3a3ba0*/ Bullet Shoot2();
+Dòng 9819: /*0x3a5fd0*/ BulletType GetBulletType();
+Dòng 9820: /*0x3a5fc0*/ BulletType GetBulletType2();
+Dòng 9826: /*0x3a5fe0*/ BulletType GetBulletType();
+Dòng 9832: /*0x3a5ff0*/ Bullet Shoot1();
+Dòng 9838: /*0x3a6150*/ Bullet Shoot1();
+Dòng 9860: /*0x3a7170*/ Bullet Shoot2();
+Dòng 9861: /*0x3a6f60*/ Bullet Shoot1();
+Dòng 9873: /*0x3a77f0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 9898: /*0x3a8380*/ void UniqueEffect(Bullet bullet);
+Dòng 9899: /*0x3a8120*/ BulletType GetBulletType();
+Dòng 9907: /*0x3a8430*/ Bullet Shoot1();
+Dòng 9908: /*0x3a8580*/ Bullet Shoot2();
+Dòng 9914: /*0x3a86f0*/ BulletType GetBulletType();
+Dòng 9915: /*0x3a86e0*/ BulletType GetBulletType2();
+Dòng 9922: /*0x3a8790*/ Bullet Shoot1();
+Dòng 9928: /*0x3a8910*/ BulletType GetBulletType();
+Dòng 9939: /*0x3a8aa0*/ BulletType GetBulletType();
+Dòng 9944: /*0x3a8d40*/ void UniqueEffect(Bullet bullet);
+Dòng 9953: /*0x3a8f10*/ BulletType GetBulletType();
+Dòng 9959: /*0x370110*/ BulletType GetBulletType();
+Dòng 9967: /*0x3a90b0*/ BulletType GetBulletType();
+Dòng 9975: /*0x3a9410*/ BulletType GetBulletType();
+Dòng 9976: /*0x3a93f0*/ BulletType GetBulletType2();
+Dòng 9985: /*0x3a9d00*/ BulletType GetBulletType();
+Dòng 9996: /*0x3aa0b0*/ Bullet Shoot1();
+Dòng 10016: /*0x3aa6b0*/ Bullet Shoot1();
+Dòng 10024: /*0x3aaa40*/ Bullet Shoot1();
+Dòng 10034: /*0x3aacb0*/ Bullet AnimShoot();
+Dòng 10042: /*0x3ab330*/ Bullet Shoot1();
+Dòng 10048: /*0x3ab450*/ Bullet Shoot1();
+Dòng 10055: /*0x3ab5e0*/ BulletType GetBulletType();
+Dòng 10056: /*0x3ab5d0*/ BulletType GetBulletType2();
+Dòng 10063: /*0x3ab5f0*/ BulletType GetBulletType();
+Dòng 10071: /*0x3ab930*/ Bullet Shoot1();
+Dòng 10078: /*0x3aba80*/ Bullet Shoot1();
+Dòng 10084: /*0x3abb90*/ BulletType GetBulletType();
+Dòng 10092: /*0x3ac750*/ Bullet Shoot1();
+Dòng 10102: /*0x3ac9e0*/ Bullet Shoot1();
+Dòng 10110: /*0x3acd00*/ Bullet Shoot1();
+Dòng 10133: /*0x3ada70*/ Bullet Shoot1();
+Dòng 10144: /*0x3adf40*/ Bullet Shoot1();
+Dòng 10164: /*0x3af130*/ Bullet Shoot1();
+Dòng 10165: /*0x3af230*/ Bullet Shoot2();
+Dòng 10176: /*0x3af4e0*/ Bullet Shoot1();
+Dòng 10199: /*0x3af9f0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10206: /*0x3afde0*/ Bullet Shoot1();
+Dòng 10221: /*0x3b09c0*/ Bullet Shoot1();
+Dòng 10234: /*0x3b1000*/ Bullet Shoot1();
+Dòng 10236: /*0x3b12a0*/ Bullet Shoot2();
+Dòng 10243: /*0x3b1720*/ Bullet Shoot1();
+Dòng 10249: /*0x3b1a40*/ Bullet Shoot1();
+Dòng 10250: /*0x3b18b0*/ BulletType GetBulletType();
+Dòng 10257: /*0x3b1d10*/ Bullet Shoot1();
+Dòng 10258: /*0x3b1f60*/ Bullet Shoot2();
+Dòng 10259: /*0x3b1b80*/ BulletType GetBulletType();
+Dòng 10270: /*0x3b2570*/ void UniqueEffect(Bullet bullet);
+Dòng 10271: /*0x3b2270*/ BulletType GetBulletType();
+Dòng 10282: /*0x3b2810*/ Bullet Shoot1();
+Dòng 10283: /*0x3b2960*/ Bullet Shoot2();
+Dòng 10290: /*0x3b2ab0*/ Bullet Shoot1();
+Dòng 10291: /*0x3b2bf0*/ Bullet Shoot2();
+Dòng 10297: /*0x3b2d20*/ BulletType GetBulletType();
+Dòng 10298: /*0x3b2d30*/ Bullet Shoot1();
+Dòng 10304: /*0x3b2e70*/ Bullet Shoot1();
+Dòng 10310: /*0x3b2fa0*/ Bullet Shoot1();
+Dòng 10316: /*0x3b39d0*/ Bullet Shoot1();
+Dòng 10317: /*0x3b38b0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10324: /*0x3b30d0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10330: /*0x3b4880*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10336: /*0x3b49a0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10342: /*0x3b4ac0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10357: /*0x3b4070*/ Bullet Shoot1();
+Dòng 10365: /*0x3b4390*/ void FireStar(Bullet bullet);
+Dòng 10371: /*0x3b2270*/ BulletType GetBulletType();
+Dòng 10379: /*0x3b4c40*/ Bullet Shoot1();
+Dòng 10386: /*0x3b4fa0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10394: /*0x3b5240*/ Bullet Shoot1();
+Dòng 10409: /*0x3b5690*/ Bullet Shoot1();
+Dòng 10416: /*0x3b59b0*/ BulletType GetBulletType();
+Dòng 10422: /*0x3b5bd0*/ Bullet Shoot1();
+Dòng 10428: /*0x3b5bc0*/ BulletType GetBulletType();
+Dòng 10444: /*0x3b62b0*/ BulletType GetBulletType();
+Dòng 10447: /*0x3b63e0*/ void UniqueEffect(Bullet bullet);
+Dòng 10455: /*0x3b6a40*/ Bullet Shoot1();
+Dòng 10456: /*0x3b67e0*/ BulletType GetBulletType();
+Dòng 10470: /*0x3b6e80*/ Bullet Shoot1();
+Dòng 10478: /*0x3b71f0*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10488: /*0x3b7950*/ Bullet Shoot1();
+Dòng 10494: /*0x3b7a10*/ void SuperShoot(float angle, float speed, float x, float y, BulletMoveWay bulletMoveWay, int row);
+Dòng 10500: /*0x3b7c90*/ BulletType GetBulletType();
+Dòng 10502: /*0x3b7ca0*/ Bullet Shoot1();
+Dòng 10508: /*0x3b8050*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10538: /*0x3b8e20*/ BulletType GetBulletType();
+Dòng 10554: /*0x3b93f0*/ Bullet Shoot1();
+Dòng 10557: /*0x3b9090*/ void ExtraBullet();
+Dòng 10559: /*0x388e90*/ BulletType GetBulletType();
+Dòng 10565: /*0x3b98e0*/ Bullet Shoot1();
+Dòng 10568: /*0x3b97b0*/ void ExtraBullet();
+Dòng 10577: /*0x3ba980*/ Bullet Shoot1();
+Dòng 10595: /*0x3bc700*/ Bullet Shoot1();
+Dòng 10620: /*0x3bcaf0*/ BulletType GetBulletType();
+Dòng 10631: /*0x3bd330*/ BulletType GetBulletType();
+Dòng 10632: /*0x3bd320*/ BulletType GetBulletType2();
+Dòng 10657: /*0x3bdfb0*/ Bullet Shoot1();
+Dòng 10667: /*0x3be6d0*/ Bullet Shoot1();
+Dòng 10700: /*0x3bf7e0*/ BulletType GetBulletType();
+Dòng 10703: /*0x3bfb20*/ void UniqueEffect(Bullet bullet);
+Dòng 10713: /*0x3bfc40*/ Bullet Shoot1();
+Dòng 10719: /*0x3bff10*/ BulletType GetBulletType();
+Dòng 10725: /*0x3c01b0*/ BulletType GetBulletType();
+Dòng 10726: /*0x3c0350*/ void UniqueEffect(Bullet bullet);
+Dòng 10740: /*0x3c0930*/ Bullet Shoot1();
+Dòng 10761: /*0x3c1b20*/ void SetBullet(UnityEngine.Transform _transform, int theMovingWay);
+Dòng 10771: /*0x3c0b90*/ void FireStar(Bullet bullet);
+Dòng 10796: /*0x3d7670*/ Bullet Shoot1();
+Dòng 10797: /*0x3d77b0*/ Bullet Shoot2();
+Dòng 10807: /*0x3d7b20*/ Bullet Shoot1();
+Dòng 10808: /*0x3d78f0*/ BulletType GetBulletType();
+Dòng 10816: /*0x3d7dd0*/ BulletType GetBulletType();
+Dòng 10833: /*0x3cbc60*/ Bullet Shoot1();
+Dòng 10834: /*0x3cc430*/ Bullet Shoot2();
+Dòng 10835: /*0x32d010*/ void UniqueEffect(Bullet bullet);
+Dòng 10836: /*0x388e90*/ BulletType GetBulletType();
+Dòng 10837: /*0x388e90*/ BulletType GetBulletType2();
+Dòng 10862: /*0x3ce1c0*/ BulletMoveWay get_TowardsMoveWay();
+Dòng 11017: /*0x3d20d0*/ BulletType GetBulletType();
+Dòng 11061: /*0x3d3a40*/ void SetBullet(int theMovingWay, float angle);
+Dòng 12323: /*0x38*/ int bulletTime;
+Dòng 12759: /*0x248*/ UnityEngine.GameObject bulletPrefab;
+Dòng 12783: /*0x3fcf10*/ void SetBullet(UnityEngine.Vector2 startPosition, UnityEngine.Vector2 targetPosition);
+Dòng 13183: /*0x407b30*/ Bullet AnimShoot();
+Dòng 13200: /*0x408450*/ BulletType GetBulletType();
+Dòng 13375: /*0x40f530*/ Bullet AnimShoot();
+Dòng 13560: /*0x42f5b0*/ Bullet AnimShoot();
+Dòng 13578: /*0x42eba0*/ Bullet AnimShoot();
+Dòng 13595: /*0x388e90*/ BulletType GetBulletType();
+Dòng 13609: /*0x4301f0*/ Bullet AnimShoot();
+Dòng 13610: /*0x4303f0*/ BulletType GetBulletType();
+Dòng 13783: /*0x248*/ UnityEngine.LayerMask bulletLayer;
+Dòng 13805: /*0x4366f0*/ Bullet AnimShoot();
+Dòng 15949: class BulletPoolManager : UnityEngine.MonoBehaviour
+Dòng 15951: static /*0x0*/ BulletPoolManager Instance;
+Dòng 15952: /*0x20*/ System.Collections.Generic.Dictionary<BulletType, UnityEngine.Pool.ObjectPool<Bullet>> pools;
+Dòng 15955: /*0x4741f0*/ BulletPoolManager();
+Dòng 15957: /*0x473dd0*/ Bullet CreateBullet(BulletType theBulletType);
+Dòng 15958: /*0x474170*/ void GetBullet(Bullet obj);
+Dòng 15959: /*0x4741b0*/ void ReleaseBullet(Bullet obj);
+Dòng 15960: /*0x474100*/ void DestoryBullet(Bullet obj);
+Dòng 15964: /*0x10*/ BulletType item;
+Dòng 15965: /*0x18*/ BulletPoolManager <>4__this;
+Dòng 15968: /*0x4acfc0*/ Bullet <Awake>b__0();
+Dòng 16095: Bullet = 2,
+Dòng 16581: /*0x388e90*/ BulletType GetBulletType();
+Dòng 16674: /*0x4b0670*/ BulletType GetBulletType();
+Dòng 16681: /*0x4b0b00*/ BulletType GetBulletType();
+Dòng 16690: /*0x4b0fa0*/ BulletType GetBulletType();
+Dòng 16722: /*0x4b22d0*/ BulletType GetBulletType();
+Dòng 18548: /*0x40*/ System.Collections.Generic.Dictionary<BulletType, UnityEngine.GameObject> bulletPrefabs;
+Dòng 18554: /*0x70*/ System.Collections.Generic.List<BulletType> allBullets;
+Dòng 18563: /*0x4ce600*/ void LoadBullet();
+Dòng 19565: enum BulletType
+Dòng 19567: Bullet_pea = 0,
+Dòng 19568: Bullet_cherry = 1,
+Dòng 19569: Bullet_nut = 2,
+Dòng 19570: Bullet_superCherry = 3,
+Dòng 19571: Bullet_zombieBlock = 4,
+Dòng 19572: Bullet_zombieBlock2 = 5,
+Dòng 19573: Bullet_zombieBlock3 = 6,
+Dòng 19574: Bullet_potato = 7,
+Dòng 19575: Bullet_smallSun = 8,
+Dòng 19576: Bullet_puff = 9,
+Dòng 19577: Bullet_puffPea = 10,
+Dòng 19578: Bullet_ironPea = 11,
+Dòng 19579: Bullet_threeSpike = 12,
+Dòng 19580: Bullet_puffRandomColor = 13,
+Dòng 19581: Bullet_puffLove = 14,
+Dòng 19582: Bullet_snowPea = 15,
+Dòng 19583: Bullet_snowPuffPea = 16,
+Dòng 19584: Bullet_iceSpark = 17,
+Dòng 19585: Bullet_smallIceSpark = 18,
+Dòng 19586: Bullet_magicTrack = 20,
+Dòng 19587: Bullet_snowPuff = 21,
+Dòng 19588: Bullet_blackPuff = 22,
+Dòng 19589: Bullet_doom = 23,
+Dòng 19590: Bullet_iceDoom = 24,
+Dòng 19591: Bullet_firePea_yellow = 25,
+Dòng 19592: Bullet_firePea_orange = 26,
+Dòng 19593: Bullet_firePea_red = 27,
+Dòng 19594: Bullet_squash = 28,
+Dòng 19595: Bullet_kelp = 29,
+Dòng 19596: Bullet_fireKelp = 30,
+Dòng 19597: Bullet_squashKelp = 32,
+Dòng 19598: Bullet_normalTrack = 33,
+Dòng 19599: Bullet_iceTrack = 34,
+Dòng 19600: Bullet_fireTrack = 35,
+Dòng 19601: Bullet_cherrySquash = 36,
+Dòng 19602: Bullet_cactus = 37,
+Dòng 19603: Bullet_lanternCactus_glow = 38,
+Dòng 19604: Bullet_star = 39,
+Dòng 19605: Bullet_lanternStar = 40,
+Dòng 19606: Bullet_seaStar = 41,
+Dòng 19607: Bullet_cactusStar = 42,
+Dòng 19608: Bullet_jackboxStar = 43,
+Dòng 19609: Bullet_pickaxeStar = 44,
+Dòng 19610: Bullet_magnetStar = 45,
+Dòng 19611: Bullet_ironStar = 46,
+Dòng 19612: Bullet_magnetCactus = 47,
+Dòng 19613: Bullet_superStar = 48,
+Dòng 19614: Bullet_ultimateStar = 49,
+Dòng 19615: Bullet_firePea_small = 50,
+Dòng 19616: Bullet_sword = 51,
+Dòng 19617: Bullet_cabbage = 52,
+Dòng 19618: Bullet_sunCabbage = 53,
+Dòng 19619: Bullet_kernal = 54,
+Dòng 19620: Bullet_butter = 55,
+Dòng 19621: Bullet_bigKernal = 56,
+Dòng 19622: Bullet_bigButter = 57,
+Dòng 19623: Bullet_basketball = 58,
+Dòng 19624: Bullet_melon = 59,
+Dòng 19625: Bullet_winterMelon = 60,
+Dòng 19626: Bullet_garlicKernal = 61,
+Dòng 19627: Bullet_garlicButter = 62,
+Dòng 19628: Bullet_garlicCabbage = 63,
+Dòng 19629: Bullet_garlicMelon = 64,
+Dòng 19630: Bullet_cannon = 65,
+Dòng 19631: Bullet_cornMelon = 66,
+Dòng 19632: Bullet_butterMelon = 67,
+Dòng 19633: Bullet_fireCannon = 68,
+Dòng 19634: Bullet_iceCannon = 69,
+Dòng 19635: Bullet_cabbageMelon = 70,
+Dòng 19636: Bullet_superMelon = 71,
+Dòng 19637: Bullet_ultimateMelon = 72,
+Dòng 19638: Bullet_melonCannon = 73,
+Dòng 19639: Bullet_silverCabbage = 74,
+Dòng 19640: Bullet_goldCabbage = 75,
+Dòng 19641: Bullet_silverKernal = 76,
+Dòng 19642: Bullet_goldKernal = 77,
+Dòng 19643: Bullet_silverButter = 78,
+Dòng 19644: Bullet_goldButter = 79,
+Dòng 19645: Bullet_smallGoldCannon = 80,
+Dòng 19646: Bullet_silverMelon = 81,
+Dòng 19647: Bullet_goldMelon = 82,
+Dòng 19648: Bullet_goldMelonCannon = 83,
+Dòng 19649: Bullet_ultimateCannon = 84,
+Dòng 19650: Bullet_ultimateKernal = 85,
+Dòng 19651: Bullet_fireMelon = 86,
+Dòng 19652: Bullet_firePea_super = 87,
+Dòng 19653: Bullet_garlicBomb = 89,
+Dòng 19654: Bullet_puffIronPea = 90,
+Dòng 19655: Bullet_lourCactus = 91,
+Dòng 19656: Bullet_puffPotato = 92,
+Dòng 19657: Bullet_steelPea = 93,
+Dòng 19658: Bullet_shulkLeaf = 94,
+Dòng 19659: Bullet_sunSpike = 95,
+Dòng 19660: Bullet_endoSun = 96,
+Dòng 19661: Bullet_extremeSnowPea = 97,
+Dòng 19662: Bullet_silverCoin = 98,
+Dòng 19663: Bullet_goldCoin = 99,
+Dòng 19664: Bullet_ultimateCactus = 100,
+Dòng 19665: Bullet_snowBall = 101,
+Dòng 19666: Bullet_doomCactus = 102,
+Dòng 19667: Bullet_bigMelon = 103,
+Dòng 19668: Bullet_fireStar = 104,
+Dòng 19669: Bullet_fireCherry = 105,
+Dòng 19670: Bullet_lanternCactus_dark = 106,
+Dòng 19671: Bullet_firePea_ultimate = 107,
+Dòng 19672: Bullet_redIronPea = 108,
+Dòng 19673: Bullet_normalSun = 109,
+Dòng 19674: Bullet_firePea_purple = 110,
+Dòng 19675: Bullet_springMelon = 111,
+Dòng 19676: Bullet_smallKernal = 112,
+Dòng 19677: Bullet_smallButter = 113,
+Dòng 19678: Bullet_portalPea = 114,
+Dòng 19679: Bullet_goldSquashKelp = 115,
+Dòng 19680: Bullet_ironPea_air = 116,
+Dòng 19681: Bullet_kernal_magnet = 117,
+Dòng 19682: Bullet_butter_magnet = 118,
+Dòng 19683: Bullet_kernal_portal = 119,
+Dòng 19684: Bullet_butter_portal = 120,
+Dòng 19685: Bullet_kernal_iron = 121,
+Dòng 19686: Bullet_butter_iron = 122,
+Dòng 19687: Bullet_pea_doom = 123,
+Dòng 19688: Bullet_pea_doom_fire = 124,
+Dòng 19689: Bullet_doom_fire = 125,
+Dòng 19690: Bullet_doom_big = 126,
+Dòng 19691: Bullet_spruce = 127,
+Dòng 19692: Bullet_spruceShulk = 128,
+Dòng 19693: Bullet_icePeach = 129,
+Dòng 19694: Bullet_passionFruit = 130,
+Dòng 19695: Bullet_passionFruit2 = 131,
+Dòng 19696: Bullet_water = 132,
+Dòng 19697: Bullet_iceBlock = 133,
+Dòng 19698: Bullet_water_big = 134,
+Dòng 19699: Bullet_iceBlock_big = 135,
+Dòng 19700: Bullet_shulkLeaf_water = 136,
+Dòng 19701: Bullet_iceBlock_recover = 137,
+Dòng 19702: Bullet_shulkLeaf_ice = 138,
+Dòng 19703: Bullet_lotusSpruce = 139,
+Dòng 19704: Bullet_kernal_ultimate = 140,
+Dòng 19705: Bullet_BlackHole_gold = 141,
+Dòng 19706: Bullet_shulkLeaf_ultimate = 142,
+Dòng 19707: Bullet_iceSword = 143,
+Dòng 19708: Bullet_fireStar_red = 144,
+Dòng 19709: Bullet_cherryStar = 145,
+Dòng 19710: Bullet_jalaStar = 146,
+Dòng 19711: Bullet_ultimateStar_fire = 147,
+Dòng 19712: Bullet_spruceBallista = 148,
+Dòng 19713: Bullet_waterBallista = 149,
+Dòng 19714: Bullet_waterBallista2 = 150,
+Dòng 19715: Bullet_spruce_bamboo = 151,
+Dòng 19716: Bullet_doom_throw = 152,
+Dòng 19717: Bullet_hypnoPea = 153,
+Dòng 19718: Bullet_hypnoPea_fire = 154,
+Dòng 19719: Bullet_puff_cherry = 155,
+Dòng 19720: Bullet_melon_small = 156,
+Dòng 19721: Bullet_cabbage_small = 157,
+Dòng 19722: Bullet_melon_hypno = 158,
+Dòng 19723: Bullet_ultimatePuff = 159,
+Dòng 19724: Bullet_corn_ulti = 160,
+Dòng 19725: Bullet_butter_ulti = 161,
+Dòng 19726: Bullet_cabbage_ulti = 162,
+Dòng 19727: Bullet_melon_ulti = 163,
+Dòng 19728: Bullet_watercan = 164,
+Dòng 19729: Bullet_ultimateSun = 165,
+Dòng 19730: Bullet_ultimateExplodeCannon = 166,
+Dòng 19731: Bullet_cherryJalapeno = 167,
+Dòng 19732: Bullet_helmetPea = 168,
+Dòng 19733: Bullet_lunarCabbage = 169,
+Dòng 19734: Bullet_redLunarCabbage = 170,
+Dòng 19735: Bullet_puffNut = 171,
+Dòng 19736: Bullet_melon_magnet = 172,
+Dòng 19737: Bullet_melon_iron = 173,
+Dòng 19738: Bullet_melon_portal = 174,
+Dòng 20066: enum BulletStatus
+Dòng 20148: static int ThreeSpikeBulletDamage = 5;
+Dòng 20271: static /*0x50cfa0*/ void SetBulletTarget(Bullet bullet, UnityEngine.Vector2 projetilePosition, UnityEngine.Vector2 targetVelocity, UnityEngine.Vector2 targetCurrentPosition, float flightTime);
+Dòng 20421: static /*0x0*/ UnityEngine.LayerMask plantBulletExclude;
+Dòng 20422: static /*0x4*/ UnityEngine.LayerMask zombieBulletExclude;
+Dòng 20423: static /*0x8*/ UnityEngine.LayerMask dreamBulletExclude;
+Dòng 20427: static /*0x18*/ UnityEngine.LayerMask BulletLayer;
+Dòng 20428: static /*0x1c*/ UnityEngine.LayerMask ZombieBulletLayer;
+Dòng 20566: BulletTime = 21,

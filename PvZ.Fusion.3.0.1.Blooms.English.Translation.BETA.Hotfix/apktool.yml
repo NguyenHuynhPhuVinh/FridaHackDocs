@@ -1,0 +1,28 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: PvZ.Fusion.3.0.1.Blooms.English.Translation.BETA.Hotfix.apk
+compressionType: false
+doNotCompress:
+- resources.arsc
+- png
+- assets/bin/Data/data.unity3d
+- assets/bin/Data/resources.resource
+- assets/bin/Data/Managed/Metadata/global-metadata.dat
+- META-INF/com.android.games.engine.build_fingerprint
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '22'
+  targetSdkVersion: '35'
+sharedLibrary: false
+sparseResources: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.6.1
+versionInfo:
+  versionCode: '1'
+  versionName: 3.0.1

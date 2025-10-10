@@ -1,0 +1,107 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA-256-Digest-Manifest: eXiYj7Sfbu+vqUGeAhzos3dvC8UicsJUE0nfxsMBpq8=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA-256-Digest: psVa7z/7uy4gUBAzJGhOjwkwp7V3ZBo9/sVvJOyCa5c=
+
+Name: META-INF/com.android.games.engine.build_fingerprint
+SHA-256-Digest: HrUMNUg1J02EV/FPbqtVkszPXvrO7uNR8nEorfYCmzo=
+
+Name: META-INF/com/android/build/gradle/app-metadata.properties
+SHA-256-Digest: 0FOL+fr/8aZBEav/2wjEK6vVyEHG7SyqXRekTvG5poU=
+
+Name: assets/bin/Data/Managed/Metadata/global-metadata.dat
+SHA-256-Digest: okN8srZMU3p7Dor8jD9XuD1cS1+mBNscVAHkB7cUMf8=
+
+Name: assets/bin/Data/Managed/Resources/mscorlib.dll-resources.dat
+SHA-256-Digest: YDrQxP+U0yOIvIJbkgQiTKYFz7XPWoekRyh24ezbP20=
+
+Name: assets/bin/Data/RuntimeInitializeOnLoads.json
+SHA-256-Digest: bch527S+itLvJzk2+5wxOiNdsVU2J6lQskKWJBsKVwE=
+
+Name: assets/bin/Data/ScriptingAssemblies.json
+SHA-256-Digest: Fl0sBhObChlMsl1aBA7Rh4VUylDJ0tyZtzejRXAdoqo=
+
+Name: assets/bin/Data/boot.config
+SHA-256-Digest: BnQi8/f2aKf4llbu0XoLheSPdtBlTCDK7KP8cPhMLSI=
+
+Name: assets/bin/Data/data.unity3d
+SHA-256-Digest: 5hZsah1rmboGfU+cBhu+h6nCM3DouZPimi7SwEGy3uc=
+
+Name: assets/bin/Data/resources.resource
+SHA-256-Digest: /BtT0OzZkYR8qynXo7NTrOciAT4Nc6Gejpr235QcIqw=
+
+Name: assets/bin/Data/unity default resources
+SHA-256-Digest: aFZzjen6WDqzXvCnZF+2fr6d28WmCmuiQ9ZfLzgbpnc=
+
+Name: assets/bin/Data/unity_app_guid
+SHA-256-Digest: zBsU8Bsva3fR6T7VbBU7d/nt0MXQ+DubLdS07LVmqGw=
+
+Name: classes.dex
+SHA-256-Digest: 1MBdx+TKXpw8U/S1BJDKjXh35SZIS71zuOvgAhU2Tek=
+
+Name: lib/arm64-v8a/lib_burst_generated.so
+SHA-256-Digest: aJv0AMZuev494uMPt29UPOB/7o6NTvpcGYMJGy3RSs4=
+
+Name: lib/arm64-v8a/libil2cpp.so
+SHA-256-Digest: oulaDRYnmA3c7YLk9NTBrH2JViMS3wVvZmjgaRyUqcI=
+
+Name: lib/arm64-v8a/libmain.so
+SHA-256-Digest: 09pdqoXuxKGMnZoLxuRS+cDSRJfL2PdOEQp0x0RB70o=
+
+Name: lib/arm64-v8a/libunity.so
+SHA-256-Digest: Gi82y/fzJMaaG7a3765u/fGaFY9qcpDB8H5m3bFQT/E=
+
+Name: lib/armeabi-v7a/lib_burst_generated.so
+SHA-256-Digest: ohXucVe/0Kl+QKEUBnkTLLszUFBGq01jdzn3uBRd8nQ=
+
+Name: lib/armeabi-v7a/libil2cpp.so
+SHA-256-Digest: JoMkDgXxPUSp9XtE6S7THulOSSIk0MRwL+f1U7SE0nY=
+
+Name: lib/armeabi-v7a/libmain.so
+SHA-256-Digest: DF+BafBd72DBMjokSRwegQyQ8XxOwyrJLFSyi2znsxc=
+
+Name: lib/armeabi-v7a/libunity.so
+SHA-256-Digest: 6b7xzLRMZqrvROzckFfZifFnrEElqrarOFl89JmHNvE=
+
+Name: res/mipmap-hdpi/app_icon.png
+SHA-256-Digest: qPDX52NLW1Ts+lAxZlB3gXw8xcozPq/K3ffEcVP2B/E=
+
+Name: res/mipmap-hdpi/app_icon_round.png
+SHA-256-Digest: QHGDqRm4z+Ce87OnU6ilbP0Sc0eVgeS2CY3sAauQY6k=
+
+Name: res/mipmap-ldpi/app_icon.png
+SHA-256-Digest: 4qj4FnmPkSuuWz3IjK5J7DkaHJxVCKKZ0ty3nuZ8zNs=
+
+Name: res/mipmap-ldpi/app_icon_round.png
+SHA-256-Digest: xsx86R6456QOWq9SzTT9uEKw8Jk4ywlUIOT8oX+aPBg=
+
+Name: res/mipmap-mdpi/app_icon.png
+SHA-256-Digest: m32ZDBv0jFS4xJaV5BALFYRr/cpwVV0KJtXoP/AdjZU=
+
+Name: res/mipmap-mdpi/app_icon_round.png
+SHA-256-Digest: pFbHT1nj8wMPeK6ir0Wqq2FaZFusMjNgsoGF2oUGdjY=
+
+Name: res/mipmap-xhdpi/app_icon.png
+SHA-256-Digest: dTaM1V0vuC4fzOILgsFcfnu6TquFuut10i3hu/aqEdg=
+
+Name: res/mipmap-xhdpi/app_icon_round.png
+SHA-256-Digest: kvdx/H4gjl9F+hnhamN8QTQZK0n9k50ozlZnPuQGEOg=
+
+Name: res/mipmap-xxhdpi/app_icon.png
+SHA-256-Digest: kb0FxnolDUfmBJF9j1qDt0srd4aEkQD8QnC39bk8OzY=
+
+Name: res/mipmap-xxhdpi/app_icon_round.png
+SHA-256-Digest: ZLdqisT8Ucmf7A+TgdUq5KdM1MKDbWc+Rxj+3T/RgaQ=
+
+Name: res/mipmap-xxxhdpi/app_icon.png
+SHA-256-Digest: 2cPD0sQ3W4Zxi7IBiiWo5YmgA+gfwDe3r93jDAoX4iA=
+
+Name: res/mipmap-xxxhdpi/app_icon_round.png
+SHA-256-Digest: pyr+hKXNk6nv3NuW4nmRlH2h8jO6yKk1xsstrpUWDTw=
+
+Name: resources.arsc
+SHA-256-Digest: 7yweIzFI6yuRaQI+HKyv92sXEGgXq3q5rvJfhe9yQ+o=
+

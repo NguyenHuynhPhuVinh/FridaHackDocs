@@ -44,7 +44,7 @@ def main():
     Hàm chính để chạy chương trình.
     """
     # Mặc định tên tệp dump và output
-    dump_filename = r"C:\Users\tomis\Documents\FridaHackDocs\app_process64\16b9a95911d4a0\Assembly-CSharp.cs"
+    dump_filename = r"C:\Users\tomis\Documents\FridaHackDocs\PVZRH\Assembly-CSharp.cs"
     output_filename = "ket_qua_tim_kiem.txt"
 
     print("--- CÔNG CỤ TÌM KIẾM HÀM TRONG DUMP.CS ---")
